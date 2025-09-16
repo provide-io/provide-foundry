@@ -1,10 +1,10 @@
-# Ecosystem Overview
+# Foundry Overview
 
-The provide.io ecosystem is designed as a cohesive collection of tools and frameworks that work together to solve the challenges of building Terraform providers, packaging applications, and managing development workflows.
+The Provide Foundry is designed as a cohesive collection of tools and frameworks that work together to solve the challenges of building Terraform providers, packaging applications, and managing development workflows.
 
 ## Design Philosophy
 
-The ecosystem is built around core principles that ensure consistency, maintainability, and developer experience:
+The foundry is built around core principles that ensure consistency, maintainability, and developer experience:
 
 <div class="grid cards" markdown>
 
@@ -131,7 +131,7 @@ Development and deployment tools that enhance the development experience:
 
 ## Data Flow
 
-Understanding how data flows through the ecosystem helps with debugging and optimization:
+Understanding how data flows through the foundry helps with debugging and optimization:
 
 ```mermaid
 sequenceDiagram
@@ -153,7 +153,7 @@ sequenceDiagram
 
 ## Deployment Architecture
 
-The ecosystem supports multiple deployment patterns:
+The foundry supports multiple deployment patterns:
 
 ### Development Mode
 
@@ -194,7 +194,7 @@ graph TB
 
 ## Quality Assurance
 
-The ecosystem maintains high quality through multiple layers of validation:
+The foundry maintains high quality through multiple layers of validation:
 
 ### Code Quality
 
@@ -219,7 +219,7 @@ The ecosystem maintains high quality through multiple layers of validation:
 
 ## Versioning Strategy
 
-The ecosystem uses semantic versioning with coordinated releases:
+The foundry uses semantic versioning with coordinated releases:
 
 ### Individual Package Versions
 
@@ -229,7 +229,7 @@ Each package maintains its own version following semantic versioning:
 - **Minor**: New features, backward compatible
 - **Patch**: Bug fixes, backward compatible
 
-### Ecosystem Compatibility
+### Foundry Compatibility
 
 Packages declare compatibility with specific versions of their dependencies:
 
@@ -253,7 +253,7 @@ Major releases are coordinated across packages to ensure compatibility:
 
 ## Performance Characteristics
 
-The ecosystem is designed for performance at scale:
+The foundry is designed for performance at scale:
 
 ### Logging Performance
 
@@ -275,7 +275,7 @@ The ecosystem is designed for performance at scale:
 
 ## Security Considerations
 
-Security is built into the ecosystem at multiple levels:
+Security is built into the foundry at multiple levels:
 
 ### Package Security
 
@@ -297,4 +297,4 @@ Security is built into the ecosystem at multiple levels:
 
 ---
 
-Continue exploring the ecosystem with our detailed [architecture guide](architecture.md) or learn about our [design principles](principles.md).
+Continue exploring the foundry with our detailed [architecture guide](architecture.md) or learn about our [design principles](principles.md).

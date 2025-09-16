@@ -1,10 +1,10 @@
 # provide-foundation
 
-The foundation of the entire provide.io ecosystem, providing core infrastructure services including structured logging, error handling, configuration management, and component discovery.
+The foundation of the entire provide.io foundry, providing core infrastructure services including structured logging, error handling, configuration management, and component discovery.
 
 ## Overview
 
-`provide-foundation` is designed to be the bedrock upon which all other ecosystem packages are built. It provides essential services that every application needs: logging, error handling, configuration, and component management.
+`provide-foundation` is designed to be the bedrock upon which all other foundry packages are built. It provides essential services that every application needs: logging, error handling, configuration, and component management.
 
 ### Key Features
 
@@ -428,4 +428,4 @@ For complete API documentation, see:
 
 ---
 
-`provide-foundation` is the cornerstone of the provide.io ecosystem. Master its patterns and you'll be well-equipped to build robust, observable applications with the rest of the ecosystem.
+`provide-foundation` is the cornerstone of the provide.io foundry. Master its patterns and you'll be well-equipped to build robust, observable applications with the rest of the foundry.
