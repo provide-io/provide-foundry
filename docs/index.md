@@ -1,6 +1,6 @@
-# Welcome to the Provide.io Ecosystem
+# Welcome to the Provide Foundry
 
-The provide.io ecosystem is a comprehensive collection of Python tools and frameworks designed to make building Terraform providers, packaging applications, and managing development workflows both powerful and enjoyable.
+The Provide Foundry is a comprehensive collection of Python tools and frameworks designed to make building Terraform providers, packaging applications, and managing development workflows both powerful and enjoyable.
 
 <div class="grid cards" markdown>
 
@@ -8,7 +8,7 @@ The provide.io ecosystem is a comprehensive collection of Python tools and frame
 
     ---
 
-    Set up the entire ecosystem with a single command and start building providers in minutes.
+    Set up the entire foundry with a single command and start building providers in minutes.
 
     [:octicons-arrow-right-24: Getting Started](getting-started.md)
 
@@ -18,7 +18,7 @@ The provide.io ecosystem is a comprehensive collection of Python tools and frame
 
     Built as composable layers from foundation to tools, with clear separation of concerns.
 
-    [:octicons-arrow-right-24: Architecture](ecosystem/architecture.md)
+    [:octicons-arrow-right-24: Architecture](foundry/architecture.md)
 
 -   :fontawesome-solid-code:{ .lg .middle } **Developer First**
 
@@ -38,14 +38,14 @@ The provide.io ecosystem is a comprehensive collection of Python tools and frame
 
 </div>
 
-## What's in the Ecosystem?
+## What's in the Foundry?
 
 ### :material-foundation: Foundation Layer
 
 Build on solid fundamentals with structured logging, testing utilities, and error handling.
 
 - **[provide-foundation](packages/foundation.md)** - Core telemetry and logging infrastructure
-- **[provide-testkit](packages/testkit.md)** - Testing utilities and fixtures for the ecosystem
+- **[provide-testkit](packages/testkit.md)** - Testing utilities and fixtures for the foundry
 
 ### :material-terraform: Pyvider Framework
 
@@ -116,7 +116,7 @@ source workenv/env.sh
 
 ## Architecture Overview
 
-The provide.io ecosystem follows a layered architecture designed for composability and maintainability:
+The Provide Foundry follows a layered architecture designed for composability and maintainability:
 
 ```mermaid
 graph TB
@@ -156,7 +156,7 @@ graph TB
     FOUND --> TEST
 ```
 
-## Why Provide.io?
+## Why the Provide Foundry?
 
 ### :material-speedometer: **Performance First**
 - Async-native architecture
@@ -203,4 +203,4 @@ Comprehensive guides, tutorials, and API documentation for every package.
 
 ---
 
-Ready to start building? Check out our [Getting Started guide](getting-started.md) or dive into the [architecture overview](ecosystem/architecture.md).
+Ready to start building? Check out our [Getting Started guide](getting-started.md) or dive into the [architecture overview](foundry/architecture.md).

@@ -1,6 +1,6 @@
 # Architecture
 
-The provide.io ecosystem is built on a three-layer architecture that promotes separation of concerns, maintainability, and extensibility. This document provides a deep dive into the architectural decisions, patterns, and principles that guide the ecosystem.
+The Provide Foundry is built on a three-layer architecture that promotes separation of concerns, maintainability, and extensibility. This document provides a deep dive into the architectural decisions, patterns, and principles that guide the foundry.
 
 ## Overview
 
@@ -169,7 +169,7 @@ The tools layer provides development and deployment utilities:
 
 ### Hub Pattern
 
-The ecosystem uses a centralized hub pattern for component discovery and registration:
+The foundry uses a centralized hub pattern for component discovery and registration:
 
 ```python
 from provide.foundation.hub import get_hub
@@ -332,7 +332,7 @@ class LoggingConfig:
 
 ### Async-First Design
 
-The ecosystem is built with async operations as the primary pattern:
+The foundry is built with async operations as the primary pattern:
 
 ```python
 async def create_resource(config: ResourceConfig) -> ResourceState:
@@ -462,4 +462,4 @@ The architecture supports cloud-native deployment:
 
 ---
 
-Continue exploring the ecosystem with our [design principles](principles.md) or see how this architecture applies in practice with our [development guides](../guides/).
+Continue exploring the foundry with our [design principles](principles.md) or see how this architecture applies in practice with our [development guides](../guides/).

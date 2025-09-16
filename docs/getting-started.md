@@ -1,6 +1,6 @@
 # Getting Started
 
-Welcome to the provide.io ecosystem! This guide will get you up and running with all the tools you need to build Terraform providers, package applications, and manage your development workflow.
+Welcome to the Provide Foundry! This guide will get you up and running with all the tools you need to build Terraform providers, package applications, and manage your development workflow.
 
 ## Prerequisites
 
@@ -11,14 +11,14 @@ Before you start, ensure you have:
 - **A Unix-like environment** (macOS, Linux, or WSL on Windows)
 
 !!! tip "Python Version"
-    The provide.io ecosystem uses modern Python features and requires 3.11+. We recommend using [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
+    The Provide Foundry uses modern Python features and requires 3.11+. We recommend using [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
 
 ## Quick Setup
 
-The fastest way to get started is to set up the entire ecosystem using our unified workspace:
+The fastest way to get started is to set up the entire foundry using our unified workspace:
 
 ```bash
-# Clone the ecosystem repository
+# Clone the foundry repository
 git clone https://github.com/provide-io/provide-io.git
 cd provide-io
 
@@ -31,14 +31,14 @@ This single command:
 
 - ✅ Installs UV package manager (if needed)
 - ✅ Creates a unified virtual environment
-- ✅ Installs all 13 ecosystem packages in editable mode
+- ✅ Installs all 13 foundry packages in editable mode
 - ✅ Includes all development tools (ruff, mypy, pytest, etc.)
 - ✅ Sets up proper dependency resolution between packages
 
 !!! success "Verification"
     Verify your setup by running:
     ```bash
-    python -c "import provide, pyvider; print('✅ Ecosystem ready!')"
+    python -c "import provide, pyvider; print('✅ Foundry ready!')"
     ```
 
 ## Your First Terraform Provider
@@ -193,7 +193,7 @@ my-provider/
 
 ### Development Commands
 
-Common development tasks using the ecosystem tools:
+Common development tasks using the foundry tools:
 
 ```bash
 # Code quality
@@ -251,7 +251,7 @@ log.info("Application started", version="1.0.0")
 
 ### 2. Type Safety
 
-The ecosystem emphasizes type safety throughout:
+The foundry emphasizes type safety throughout:
 
 ```python
 from pyvider.cty import CtyString, CtyNumber
@@ -297,7 +297,7 @@ mkdocs serve -f docs/mkdocs.yml
 
 ## Next Steps
 
-Now that you have the ecosystem set up, explore these guides:
+Now that you have the foundry set up, explore these guides:
 
 <div class="grid cards" markdown>
 

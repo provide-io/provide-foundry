@@ -1,9 +1,12 @@
-site_name: Provide.io Ecosystem Documentation
-site_url: https://provide.io/docs
-site_description: Comprehensive documentation for the provide.io ecosystem of Python tools and frameworks
+site_name: Provide Foundry Documentation
+site_url: https://foundry.provide.io
+site_description: Comprehensive documentation for the Provide Foundry collection of Python tools and frameworks
 repo_url: https://github.com/provide-io/provide-io
 repo_name: provide-io/provide-io
-edit_uri: edit/main/provide-ecosystem/docs/
+edit_uri: edit/main/provide-foundry/docs/
+
+# Use aggregated documentation directory
+docs_dir: .docs_aggregated
 
 theme:
   name: material
@@ -57,21 +60,34 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - autorefs
-  - mkdocstrings:
-      handlers:
-        python:
-          import:
-            - https://docs.python.org/3/objects.inv
-          options:
-            docstring_style: google
-            docstring_options:
-              ignore_init_summary: true
-            merge_init_into_class: true
-            show_source: false
-            show_root_heading: true
-            show_root_full_path: false
-            show_signature_annotations: true
-            separate_signature: true
+  # mkdocstrings disabled temporarily - re-enable when source paths are properly configured
+  # - mkdocstrings:
+  #     handlers:
+  #       python:
+  #         paths:
+  #           - foundation/src
+  #           - flavorpack/src
+  #           - pyvider/src
+  #           - testkit/src
+  #         options:
+  #           docstring_style: google
+  #           docstring_section_style: list
+  #           show_source: true
+  #           show_symbol_type_heading: true
+  #           show_symbol_type_toc: true
+  #           show_root_heading: true
+  #           show_root_toc_entry: true
+  #           show_object_full_path: false
+  #           show_category_heading: true
+  #           show_if_no_docstring: false
+  #           show_signature: true
+  #           show_signature_annotations: true
+  #           show_bases: true
+  #           show_submodules: false
+  #           group_by_category: true
+  #           merge_init_into_class: true
+  #           separate_signature: true
+  #           line_length: 80
 
 extra:
   version:
@@ -135,59 +151,47 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - Ecosystem:
-    - ecosystem/index.md
-    - Architecture: ecosystem/architecture.md
-    - Design Principles: ecosystem/principles.md
-    - Roadmap: ecosystem/roadmap.md
-  - Packages:
-    - packages/index.md
-    - Foundation:
-      - Overview: packages/foundation.md
-      - API Reference: packages/foundation-api.md
-    - Testing Framework:
-      - Overview: packages/testkit.md
-      - Fixtures Catalog: packages/testkit-fixtures.md
-    - Pyvider Framework:
-      - Core Framework: packages/pyvider.md
-      - CTY Type System: packages/pyvider-cty.md
-      - HCL Parser: packages/pyvider-hcl.md
-      - RPC Plugin: packages/pyvider-rpcplugin.md
-      - Components Library: packages/pyvider-components.md
-      - Provider Package: packages/terraform-provider-pyvider.md
-    - Development Tools:
-      - FlavorPack (Packaging): packages/flavorpack.md
-      - Wrknv (Environment): packages/wrknv.md
-      - Plating (Documentation): packages/plating.md
-      - TofuSoup (Testing): packages/tofusoup.md
-      - Supsrc (Git Automation): packages/supsrc.md
+
+  # Foundation Layer
+  - Foundation: foundation/index.md
+  - TestKit: testkit/index.md
+
+  # FlavorPack - Packaging System
+  - FlavorPack: flavorpack/index.md
+
+  # PyVider Framework
+  - PyVider: pyvider/index.md
+  - PyVider CTY: pyvider-cty/index.md
+  - PyVider HCL: pyvider-hcl/index.md
+  - PyVider RPC Plugin: pyvider-rpcplugin/index.md
+
+  # Development Tools
+  - WrkNv: wrknv/index.md
+
+  # Foundry Information
+  - Foundry:
+    - foundry/index.md
+    - Architecture: foundry/architecture.md
+    - Design Principles: foundry/principles.md
+    - Roadmap: foundry/roadmap.md
+
+  # Guides and API
   - Guides:
     - guides/index.md
     - Installation: guides/installation.md
-    - Development Setup: guides/development.md
-    - Building Providers: guides/provider-development.md
-    - Testing Strategy: guides/testing.md
-    - Packaging Applications: guides/packaging.md
-    - Documentation: guides/documentation.md
-    - Release Management: guides/releases.md
   - API Reference:
     - api/index.md
-    - Foundation API: api/foundation.md
-    - Pyvider API: api/pyvider.md
-    - Tools API: api/tools.md
-  - Contributing: ../CONTRIBUTING.md
-  - Changelog: changelog.md
+
+hooks:
+  - scripts/docs_hooks.py
 
 watch:
-  - ../provide-foundation/src
-  - ../provide-testkit/src
-  - ../pyvider/src
-  - ../pyvider-cty/src
-  - ../pyvider-hcl/src
-  - ../pyvider-rpcplugin/src
-  - ../pyvider-components/src
-  - ../flavorpack/src
-  - ../wrknv/src
-  - ../plating/src
-  - ../tofusoup/src
-  - ../supsrc/src
+  - docs/
+  - ../provide-foundation/docs/
+  - ../provide-testkit/docs/
+  - ../pyvider/docs/
+  - ../pyvider-cty/docs/
+  - ../pyvider-hcl/docs/
+  - ../pyvider-rpcplugin/docs/
+  - ../flavorpack/docs/
+  - ../wrknv/docs/

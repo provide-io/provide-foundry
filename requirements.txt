@@ -11,3 +11,7 @@ pygments>=2.19.0
 
 # For API documentation generation
 griffe>=1.14.0
+
+# For documentation aggregation
+watchdog>=3.0.0
+pyyaml>=6.0.0

@@ -1,0 +1,120 @@
+# Documentation Manifest for Provide Foundry
+#
+# This file defines which projects are included in the aggregated documentation
+# and how they should be organized in the unified site.
+
+projects:
+  # Foundation Layer - Core infrastructure
+  foundation:
+    source: ../provide-foundation
+    target: foundation
+    nav_title: Foundation
+    description: "Core telemetry and logging infrastructure"
+    enabled: true
+
+  testkit:
+    source: ../provide-testkit
+    target: testkit
+    nav_title: TestKit
+    description: "Testing utilities and fixtures for the foundry"
+    enabled: true
+
+  # FlavorPack - Packaging system
+  flavorpack:
+    source: ../flavorpack
+    target: flavorpack
+    nav_title: FlavorPack
+    description: "Progressive Secure Package Format (PSPF/2025) packaging system"
+    enabled: true
+
+  # PyVider Framework - Terraform provider framework
+  pyvider:
+    source: ../pyvider
+    target: pyvider
+    nav_title: PyVider
+    description: "Python framework for building Terraform providers"
+    enabled: true
+
+  pyvider-cty:
+    source: ../pyvider-cty
+    target: pyvider-cty
+    nav_title: PyVider CTY
+    description: "CTY type system bindings for PyVider"
+    enabled: true
+
+  pyvider-hcl:
+    source: ../pyvider-hcl
+    target: pyvider-hcl
+    nav_title: PyVider HCL
+    description: "HCL parsing and manipulation for PyVider"
+    enabled: true
+
+  pyvider-rpcplugin:
+    source: ../pyvider-rpcplugin
+    target: pyvider-rpcplugin
+    nav_title: PyVider RPC Plugin
+    description: "RPC plugin implementation for PyVider providers"
+    enabled: true
+
+  # Development Tools
+  wrknv:
+    source: ../wrknv
+    target: wrknv
+    nav_title: WrkNv
+    description: "Workspace environment management tool"
+    enabled: true
+
+  # Optional/Future Projects (disabled for now)
+  pyvider-components:
+    source: ../pyvider-components
+    target: pyvider-components
+    nav_title: PyVider Components
+    description: "Reusable components for PyVider providers"
+    enabled: false
+
+  plating:
+    source: ../plating
+    target: plating
+    nav_title: Plating
+    description: "Template management and code generation"
+    enabled: false
+
+  tofusoup:
+    source: ../tofusoup
+    target: tofusoup
+    nav_title: TofuSoup
+    description: "OpenTofu/Terraform configuration management"
+    enabled: false
+
+  supsrc:
+    source: ../supsrc
+    target: supsrc
+    nav_title: SupSrc
+    description: "Source code management utilities"
+    enabled: false
+
+# Global settings for aggregation
+settings:
+  # Whether to include project navigation in top-level nav
+  include_in_nav: true
+
+  # Whether to generate cross-project API references
+  cross_references: true
+
+  # Asset handling
+  copy_assets: true
+
+  # Watch mode settings
+  watch_patterns:
+    - "*.md"
+    - "*.yml"
+    - "*.yaml"
+    - "mkdocs.yml"
+
+  # Exclusion patterns
+  exclude_patterns:
+    - "__pycache__"
+    - "*.pyc"
+    - ".DS_Store"
+    - "node_modules"
+    - ".git"

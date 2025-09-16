@@ -1,6 +1,6 @@
 # Design Principles
 
-The provide.io ecosystem is built on a foundation of carefully considered design principles that guide every architectural decision, API design, and implementation choice. These principles ensure consistency, maintainability, and excellent developer experience across all packages.
+The Provide Foundry is built on a foundation of carefully considered design principles that guide every architectural decision, API design, and implementation choice. These principles ensure consistency, maintainability, and excellent developer experience across all packages.
 
 ## Core Philosophy
 
@@ -149,7 +149,7 @@ get_hub().register_processor(CustomProcessor())
 
 ### No Backward Compatibility Burden
 
-The ecosystem prioritizes clean, modern code over backward compatibility:
+The foundry prioritizes clean, modern code over backward compatibility:
 
 - **No Migration Code**: Implement the target state directly
 - **Modern Python Features**: Use Python 3.11+ features without hesitation
@@ -416,7 +416,7 @@ Each package should be independently useful:
 
 ### Evolution
 
-The ecosystem should evolve gracefully:
+The foundry should evolve gracefully:
 
 - **Versioned APIs**: Use semantic versioning for APIs
 - **Deprecation Process**: Clear process for deprecating features
@@ -425,6 +425,6 @@ The ecosystem should evolve gracefully:
 
 ---
 
-These principles guide every decision in the provide.io ecosystem. They ensure that the tools remain consistent, maintainable, and enjoyable to use as the ecosystem grows and evolves.
+These principles guide every decision in the provide.io foundry. They ensure that the tools remain consistent, maintainable, and enjoyable to use as the foundry grows and evolves.
 
 Continue exploring with our [architecture overview](architecture.md) or see these principles in action in our [development guides](../guides/).

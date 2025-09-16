@@ -1,6 +1,6 @@
 # Packages Overview
 
-The provide.io ecosystem consists of 13 interconnected packages organized into three distinct layers. Each package is designed to be independently useful while working seamlessly with others in the ecosystem.
+The provide.io foundry consists of 13 interconnected packages organized into three distinct layers. Each package is designed to be independently useful while working seamlessly with others in the foundry.
 
 ## Package Map
 
@@ -51,7 +51,7 @@ The foundation layer provides core infrastructure that all other packages build 
 
 -   **[provide-testkit](testkit.md)**
 
-    Comprehensive testing utilities and fixtures organized by domain (file, process, transport, crypto) for the entire ecosystem.
+    Comprehensive testing utilities and fixtures organized by domain (file, process, transport, crypto) for the entire foundry.
 
     [:octicons-arrow-right-24: Learn more](testkit.md)
 
@@ -199,10 +199,10 @@ pip install pyvider[all] pyvider-components[all]
 
 ### Complete Ecosystem
 
-Install everything for ecosystem development:
+Install everything for foundry development:
 
 ```bash
-# Clone the ecosystem
+# Clone the foundry
 git clone https://github.com/provide-io/provide-io.git
 cd provide-io
 
@@ -213,7 +213,7 @@ source .venv/bin/activate
 
 ## Version Compatibility
 
-The ecosystem uses semantic versioning with coordinated releases:
+The foundry uses semantic versioning with coordinated releases:
 
 | Release | Foundation | Framework | Tools | Status |
 |---------|------------|-----------|--------|---------|
