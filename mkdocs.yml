@@ -1,0 +1,193 @@
+site_name: Provide.io Ecosystem Documentation
+site_url: https://provide.io/docs
+site_description: Comprehensive documentation for the provide.io ecosystem of Python tools and frameworks
+repo_url: https://github.com/provide-io/provide-io
+repo_name: provide-io/provide-io
+edit_uri: edit/main/provide-ecosystem/docs/
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - autorefs
+  - mkdocstrings:
+      handlers:
+        python:
+          import:
+            - https://docs.python.org/3/objects.inv
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: true
+            merge_init_into_class: true
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
+            show_signature_annotations: true
+            separate_signature: true
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/provide-io
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/user/provide-io/
+  analytics:
+    provider: google
+    property: !ENV GA_TRACKING_ID
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: provide-io
+      repo: provide-io
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Ecosystem:
+    - ecosystem/index.md
+    - Architecture: ecosystem/architecture.md
+    - Design Principles: ecosystem/principles.md
+    - Roadmap: ecosystem/roadmap.md
+  - Packages:
+    - packages/index.md
+    - Foundation:
+      - Overview: packages/foundation.md
+      - API Reference: packages/foundation-api.md
+    - Testing Framework:
+      - Overview: packages/testkit.md
+      - Fixtures Catalog: packages/testkit-fixtures.md
+    - Pyvider Framework:
+      - Core Framework: packages/pyvider.md
+      - CTY Type System: packages/pyvider-cty.md
+      - HCL Parser: packages/pyvider-hcl.md
+      - RPC Plugin: packages/pyvider-rpcplugin.md
+      - Components Library: packages/pyvider-components.md
+      - Provider Package: packages/terraform-provider-pyvider.md
+    - Development Tools:
+      - FlavorPack (Packaging): packages/flavorpack.md
+      - Wrknv (Environment): packages/wrknv.md
+      - Plating (Documentation): packages/plating.md
+      - TofuSoup (Testing): packages/tofusoup.md
+      - Supsrc (Git Automation): packages/supsrc.md
+  - Guides:
+    - guides/index.md
+    - Installation: guides/installation.md
+    - Development Setup: guides/development.md
+    - Building Providers: guides/provider-development.md
+    - Testing Strategy: guides/testing.md
+    - Packaging Applications: guides/packaging.md
+    - Documentation: guides/documentation.md
+    - Release Management: guides/releases.md
+  - API Reference:
+    - api/index.md
+    - Foundation API: api/foundation.md
+    - Pyvider API: api/pyvider.md
+    - Tools API: api/tools.md
+  - Contributing: ../CONTRIBUTING.md
+  - Changelog: changelog.md
+
+watch:
+  - ../provide-foundation/src
+  - ../provide-testkit/src
+  - ../pyvider/src
+  - ../pyvider-cty/src
+  - ../pyvider-hcl/src
+  - ../pyvider-rpcplugin/src
+  - ../pyvider-components/src
+  - ../flavorpack/src
+  - ../wrknv/src
+  - ../plating/src
+  - ../tofusoup/src
+  - ../supsrc/src
