@@ -6,41 +6,41 @@
       show_source: false
       heading_level: 2
 
-## Protocol Implementation
+## Configuration
 
-::: pyvider.rpcplugin.protocol
+::: pyvider.rpcplugin.config
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## gRPC Server
+## Exceptions
 
-::: pyvider.rpcplugin.server
+::: pyvider.rpcplugin.exception
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Message Handling
+## Transport
 
-::: pyvider.rpcplugin.messages
+::: pyvider.rpcplugin.transport
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Schema Conversion
+## Handshake
 
-::: pyvider.rpcplugin.schema
+::: pyvider.rpcplugin.handshake
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Plugin Lifecycle
+## Health Servicer
 
-::: pyvider.rpcplugin.lifecycle
+::: pyvider.rpcplugin.health_servicer
     options:
       show_root_heading: true
       show_source: false

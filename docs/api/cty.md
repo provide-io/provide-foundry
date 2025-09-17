@@ -30,13 +30,6 @@
       show_source: false
       heading_level: 3
 
-## Serialization
-
-::: pyvider.cty.serialization
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
 
 ## Path Operations
 

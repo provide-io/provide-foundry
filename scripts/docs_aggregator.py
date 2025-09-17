@@ -16,15 +16,16 @@ Features:
 
 import argparse
 import logging
+from pathlib import Path
 import re
 import shutil
 import sys
 import time
-from pathlib import Path
-from typing import Any, Dict, List, Optional
-import yaml
-from watchdog.observers import Observer
+from typing import Any
+
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
+import yaml
 
 logger = logging.getLogger(__name__)
 
@@ -32,14 +33,14 @@ logger = logging.getLogger(__name__)
 class ProjectConfig:
     """Configuration for a single project."""
 
-    def __init__(self, name: str, config: Dict[str, Any]):
+    def __init__(self, name: str, config: dict[str, Any]):
         self.name = name
-        self.source_path = Path(config['source']).resolve()
-        self.target = config['target']
-        self.nav_title = config['nav_title']
-        self.docs_dir = self.source_path / 'docs'
-        self.mkdocs_config = self.source_path / 'mkdocs.yml'
-        self.enabled = config.get('enabled', True)
+        self.source_path = Path(config["source"]).resolve()
+        self.target = config["target"]
+        self.nav_title = config["nav_title"]
+        self.docs_dir = self.source_path / "docs"
+        self.mkdocs_config = self.source_path / "mkdocs.yml"
+        self.enabled = config.get("enabled", True)
 
     @property
     def exists(self) -> bool:
@@ -53,22 +54,19 @@ class ProjectConfig:
 class DocsAggregator:
     """Main documentation aggregator."""
 
-    def __init__(self, foundry_root: Path, manifest_path: Optional[Path] = None):
+    def __init__(self, foundry_root: Path, manifest_path: Path | None = None):
         self.foundry_root = foundry_root
-        self.manifest_path = manifest_path or foundry_root / 'docs_manifest.yaml'
-        self.docs_dir = foundry_root / 'docs'
-        self.aggregated_dir = foundry_root / '.docs_aggregated'
-        self.projects: Dict[str, ProjectConfig] = {}
+        self.manifest_path = manifest_path or foundry_root / "docs_manifest.yaml"
+        self.docs_dir = foundry_root / "docs"
+        self.aggregated_dir = foundry_root / ".docs_aggregated"
+        self.projects: dict[str, ProjectConfig] = {}
 
         self._setup_logging()
         self._load_manifest()
 
     def _setup_logging(self):
         """Configure logging."""
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
+        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
     def _load_manifest(self):
         """Load projects manifest."""
@@ -76,10 +74,10 @@ class DocsAggregator:
             logger.error(f"Manifest not found: {self.manifest_path}")
             sys.exit(1)
 
-        with open(self.manifest_path, 'r') as f:
+        with open(self.manifest_path) as f:
             manifest = yaml.safe_load(f)
 
-        for name, config in manifest.get('projects', {}).items():
+        for name, config in manifest.get("projects", {}).items():
             project = ProjectConfig(name, config)
             if project.enabled:
                 self.projects[name] = project
@@ -137,16 +135,16 @@ class DocsAggregator:
                 project.docs_dir,
                 target_dir,
                 dirs_exist_ok=True,
-                ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.DS_Store')
+                ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store"),
             )
 
             # Process markdown files for cross-references
             self._process_markdown_files(target_dir, project)
 
             # Copy any generated API docs if they exist
-            api_source = project.source_path / 'site' / 'api'
+            api_source = project.source_path / "site" / "api"
             if api_source.exists():
-                api_target = target_dir / 'api'
+                api_target = target_dir / "api"
                 if api_target.exists():
                     shutil.rmtree(api_target)
                 shutil.copytree(api_source, api_target, dirs_exist_ok=True)
@@ -160,9 +158,9 @@ class DocsAggregator:
 
     def _process_markdown_files(self, target_dir: Path, project: ProjectConfig):
         """Process markdown files to fix cross-references."""
-        for md_file in target_dir.rglob('*.md'):
+        for md_file in target_dir.rglob("*.md"):
             try:
-                content = md_file.read_text(encoding='utf-8')
+                content = md_file.read_text(encoding="utf-8")
 
                 # Fix relative references to other projects
                 # Pattern: ../other-project/path -> /other-project/path
@@ -171,7 +169,7 @@ class DocsAggregator:
                 # Fix asset references
                 content = self._fix_asset_references(content, project)
 
-                md_file.write_text(content, encoding='utf-8')
+                md_file.write_text(content, encoding="utf-8")
 
             except Exception as e:
                 logger.warning(f"⚠️ Failed to process {md_file}: {e}")
@@ -192,13 +190,13 @@ class DocsAggregator:
                     project_patterns = [
                         f"../{other_project.source_path.name}",
                         f"../{other_name}",
-                        f"../{other_project.target}"
+                        f"../{other_project.target}",
                     ]
 
                     for pattern in project_patterns:
                         if ref_path.startswith(pattern):
                             # Replace with aggregated path
-                            remainder = ref_path[len(pattern):].lstrip('/')
+                            remainder = ref_path[len(pattern) :].lstrip("/")
                             new_path = f"/{other_project.target}/" + remainder
                             return full_match.replace(ref_path, new_path)
 
@@ -206,8 +204,8 @@ class DocsAggregator:
 
         # Match markdown links [text](path) and reference links [text]: path
         patterns = [
-            r'\[([^\]]+)\]\(([^)]+)\)',  # [text](path)
-            r'\[([^\]]+)\]:\s*([^\s]+)', # [text]: path
+            r"\[([^\]]+)\]\(([^)]+)\)",  # [text](path)
+            r"\[([^\]]+)\]:\s*([^\s]+)",  # [text]: path
         ]
 
         for pattern in patterns:
@@ -221,20 +219,16 @@ class DocsAggregator:
         # Could be expanded to handle project-specific assets
         return content
 
-    def generate_navigation(self) -> Dict[str, Any]:
+    def generate_navigation(self) -> dict[str, Any]:
         """Generate navigation structure for aggregated site."""
-        nav = [
-            {'Home': 'index.md'}
-        ]
+        nav = [{"Home": "index.md"}]
 
         # Add each project to navigation
         for name, project in self.projects.items():
             if project.exists:
-                nav.append({
-                    project.nav_title: f'{project.target}/'
-                })
+                nav.append({project.nav_title: f"{project.target}/"})
 
-        return {'nav': nav}
+        return {"nav": nav}
 
     def watch_mode(self):
         """Run in watch mode for development."""
@@ -255,7 +249,7 @@ class DocsAggregator:
                     return
 
                 # Only watch markdown and yaml files
-                if not any(event.src_path.endswith(ext) for ext in ['.md', '.yml', '.yaml']):
+                if not any(event.src_path.endswith(ext) for ext in [".md", ".yml", ".yaml"]):
                     return
 
                 logger.info(f"📝 Detected change: {event.src_path}")
@@ -293,28 +287,11 @@ class DocsAggregator:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description='Provide Foundry Documentation Aggregator')
-    parser.add_argument(
-        'command',
-        choices=['collect', 'watch'],
-        help='Command to run'
-    )
-    parser.add_argument(
-        '--manifest',
-        type=Path,
-        help='Path to docs manifest file'
-    )
-    parser.add_argument(
-        '--foundry-root',
-        type=Path,
-        default=Path.cwd(),
-        help='Path to foundry root directory'
-    )
-    parser.add_argument(
-        '--verbose', '-v',
-        action='store_true',
-        help='Verbose logging'
-    )
+    parser = argparse.ArgumentParser(description="Provide Foundry Documentation Aggregator")
+    parser.add_argument("command", choices=["collect", "watch"], help="Command to run")
+    parser.add_argument("--manifest", type=Path, help="Path to docs manifest file")
+    parser.add_argument("--foundry-root", type=Path, default=Path.cwd(), help="Path to foundry root directory")
+    parser.add_argument("--verbose", "-v", action="store_true", help="Verbose logging")
 
     args = parser.parse_args()
 
@@ -322,18 +299,15 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
 
     # Initialize aggregator
-    aggregator = DocsAggregator(
-        foundry_root=args.foundry_root,
-        manifest_path=args.manifest
-    )
+    aggregator = DocsAggregator(foundry_root=args.foundry_root, manifest_path=args.manifest)
 
     # Run command
-    if args.command == 'collect':
+    if args.command == "collect":
         success = aggregator.collect_all()
         sys.exit(0 if success else 1)
-    elif args.command == 'watch':
+    elif args.command == "watch":
         aggregator.watch_mode()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

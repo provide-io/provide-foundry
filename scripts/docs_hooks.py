@@ -6,9 +6,8 @@ documentation from all projects in the provide.io ecosystem.
 """
 
 import logging
-import os
-import sys
 from pathlib import Path
+import sys
 
 # Add the scripts directory to the path so we can import the aggregator
 scripts_dir = Path(__file__).parent
@@ -62,7 +61,7 @@ def on_post_build(config, **kwargs):
     logger.info("🎉 Documentation build completed")
 
 
-def on_serve(config, server, **kwargs):
+def on_serve(server, config, **kwargs):
     """
     Hook that runs when starting the development server.
 
@@ -85,14 +84,14 @@ def on_config(config, **kwargs):
 
     # Ensure the aggregated docs directory exists
     foundry_root = Path(__file__).parent.parent
-    aggregated_dir = foundry_root / '.docs_aggregated'
+    aggregated_dir = foundry_root / ".docs_aggregated"
 
     if not aggregated_dir.exists():
         logger.info("📁 Creating aggregated documentation directory")
         aggregated_dir.mkdir(exist_ok=True)
 
         # Create a minimal index.md if none exists
-        index_file = aggregated_dir / 'index.md'
+        index_file = aggregated_dir / "index.md"
         if not index_file.exists():
             index_file.write_text("""# Provide Foundry Documentation
 
