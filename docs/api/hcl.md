@@ -14,49 +14,33 @@
       show_source: false
       heading_level: 3
 
-## Expressions
+## Exceptions
 
-::: pyvider.hcl.expressions
+::: pyvider.hcl.exceptions
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Functions
+## Printer
 
-::: pyvider.hcl.functions
+::: pyvider.hcl.printer
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Variables
+## Terraform
 
-::: pyvider.hcl.variables
+::: pyvider.hcl.terraform
     options:
       show_root_heading: true
       show_source: false
       heading_level: 3
 
-## Templates
+## Factories
 
-::: pyvider.hcl.templates
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-## Configuration
-
-::: pyvider.hcl.config
-    options:
-      show_root_heading: true
-      show_source: false
-      heading_level: 3
-
-## Schema
-
-::: pyvider.hcl.schema
+::: pyvider.hcl.factories
     options:
       show_root_heading: true
       show_source: false
