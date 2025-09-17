@@ -19,13 +19,13 @@ The core framework for building Terraform providers in Python with type safety, 
 
 ```bash
 # Basic installation
-pip install pyvider
+uv add pyvider
 
 # With all extras for full functionality
-pip install pyvider[all]
+uv add pyvider[all]
 
 # Development installation
-pip install pyvider[dev]
+uv add pyvider[dev]
 ```
 
 ## Quick Start

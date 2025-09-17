@@ -18,7 +18,7 @@ Cross-language packaging system that creates self-contained executable packages 
 ## Installation
 
 ```bash
-pip install flavorpack
+uv add flavorpack
 ```
 
 ## Quick Start
@@ -423,7 +423,7 @@ $ flavor pack --manifest pyproject.toml
 # .github/workflows/package.yml
 - name: Package Application
   run: |
-    pip install flavorpack
+    uv add flavorpack
     flavor pack \
       --manifest pyproject.toml \
       --output dist/${{ github.event.repository.name }}.psp \

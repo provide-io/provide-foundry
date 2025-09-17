@@ -20,23 +20,27 @@ if errorlevel 1 (
     exit /b 1
 )
 
+REM Check if uv is available
+uv --version >nul 2>&1
+if errorlevel 1 (
+    echo ❌ uv is required but not found
+    echo Install with: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+    exit /b 1
+)
+
 REM Check if mkdocs is available
 mkdocs --version >nul 2>&1
 if errorlevel 1 (
     echo ❌ MkDocs is required but not found
-    echo Install with: pip install -r requirements.txt
+    echo Install with: uv sync
     exit /b 1
 )
 
 REM Install Python dependencies if needed
-if exist requirements.txt (
+if exist pyproject.toml (
     echo 📦 Installing Python dependencies...
-    pip install -r requirements.txt
+    uv sync
 )
-
-REM Add missing dependency for docs_aggregator
-echo 📦 Installing additional dependencies...
-pip install watchdog pyyaml
 
 REM Collect documentation from all projects
 echo 📋 Collecting documentation from all projects...

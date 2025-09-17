@@ -21,10 +21,10 @@ The foundation of the entire provide.io foundry, providing core infrastructure s
 
 ```bash
 # Basic installation
-pip install provide-foundation
+uv add provide-foundation
 
 # With all optional features
-pip install provide-foundation[all]
+uv add provide-foundation[all]
 
 # Development installation
 git clone https://github.com/provide-io/provide-foundation.git

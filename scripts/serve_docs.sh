@@ -30,22 +30,25 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
+# Check if uv is available
+if ! command -v uv &> /dev/null; then
+    echo -e "${RED}❌ uv is required but not found${NC}"
+    echo "Install with: curl -LsSf https://astral.sh/uv/install.sh | sh"
+    exit 1
+fi
+
 # Check if mkdocs is available
 if ! command -v mkdocs &> /dev/null; then
     echo -e "${RED}❌ MkDocs is required but not found${NC}"
-    echo "Install with: pip install -r requirements.txt"
+    echo "Install with: uv sync"
     exit 1
 fi
 
 # Install Python dependencies if needed
-if [ -f "requirements.txt" ]; then
+if [ -f "pyproject.toml" ]; then
     echo -e "${BLUE}📦 Installing Python dependencies...${NC}"
-    pip install -r requirements.txt
+    uv sync
 fi
-
-# Add missing dependency for docs_aggregator
-echo -e "${BLUE}📦 Installing additional dependencies...${NC}"
-pip install watchdog pyyaml
 
 # Collect documentation from all projects
 echo -e "${BLUE}📋 Collecting documentation from all projects...${NC}"

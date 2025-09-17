@@ -176,13 +176,13 @@ Install specific packages for focused use:
 
 ```bash
 # Just the type system
-pip install pyvider-cty
+uv add pyvider-cty
 
 # Core framework only
-pip install pyvider
+uv add pyvider
 
 # Packaging tools
-pip install flavorpack
+uv add flavorpack
 ```
 
 ### Framework Installation
@@ -191,10 +191,10 @@ Install the complete framework for provider development:
 
 ```bash
 # Core framework with components
-pip install pyvider pyvider-components
+uv add pyvider pyvider-components
 
 # Full framework with all extras
-pip install pyvider[all] pyvider-components[all]
+uv add pyvider[all] pyvider-components[all]
 ```
 
 ### Complete Ecosystem

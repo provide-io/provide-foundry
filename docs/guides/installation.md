@@ -49,13 +49,13 @@ Install specific packages as needed:
 
 ```bash
 # Core packages
-pip install provide-foundation provide-testkit
+uv add provide-foundation provide-testkit
 
 # Framework packages
-pip install pyvider pyvider-cty pyvider-hcl
+uv add pyvider pyvider-cty pyvider-hcl
 
 # Tool packages
-pip install wrknv flavorpack
+uv add wrknv flavorpack
 ```
 
 ## Detailed Installation
@@ -80,7 +80,7 @@ UV is the recommended package manager for the Provide Foundry:
     # Using curl
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    # Or using pip
+    # Or using pip (fallback)
     pip install uv
     ```
 
@@ -90,7 +90,7 @@ UV is the recommended package manager for the Provide Foundry:
     # Using PowerShell
     powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-    # Or using pip
+    # Or using pip (fallback)
     pip install uv
     ```
 
@@ -206,12 +206,12 @@ For using foundry packages in your projects:
 
 ```bash
 # Install specific packages
-pip install provide-foundation[all]
-pip install pyvider[all]
-pip install wrknv flavorpack
+uv add provide-foundation[all]
+uv add pyvider[all]
+uv add wrknv flavorpack
 
 # Or install everything
-pip install \
+uv add \
   provide-foundation[all] \
   provide-testkit[all] \
   pyvider[all] \
@@ -445,8 +445,8 @@ uv --version
 # Fix permission issues on macOS/Linux
 sudo chown -R $(whoami) /usr/local/lib/python3.11/site-packages
 
-# Or use user installation
-pip install --user package-name
+# Or use uv instead
+uv add package-name
 ```
 
 #### Network Issues
@@ -457,7 +457,7 @@ export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=http://proxy.company.com:8080
 
 # Use different index URL
-pip install --index-url https://pypi.org/simple/ package-name
+uv add --index-url https://pypi.org/simple/ package-name
 ```
 
 ### Verification Commands

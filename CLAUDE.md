@@ -8,7 +8,7 @@ This is the documentation hub for the provide.io ecosystem. For development:
 
 ```bash
 # Install documentation dependencies
-pip install -r requirements.txt
+uv sync
 
 # Serve docs locally for development
 make docs-serve

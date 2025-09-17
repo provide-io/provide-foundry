@@ -18,13 +18,13 @@ Comprehensive testing utilities and fixtures for the Provide Foundry, organized 
 
 ```bash
 # Basic installation
-pip install provide-testkit
+uv add provide-testkit
 
 # With optional extras for specific domains
-pip install provide-testkit[transport]  # HTTP testing
-pip install provide-testkit[crypto]     # Cryptographic testing
-pip install provide-testkit[process]    # Process monitoring
-pip install provide-testkit[all]        # Everything
+uv add provide-testkit[transport]  # HTTP testing
+uv add provide-testkit[crypto]     # Cryptographic testing
+uv add provide-testkit[process]    # Process monitoring
+uv add provide-testkit[all]        # Everything
 ```
 
 ## Quick Start
@@ -468,7 +468,7 @@ def test_resource_creation(mock_server):
 **Import errors:**
 ```python
 # Ensure testkit is installed with required extras
-pip install provide-testkit[all]
+uv add provide-testkit[all]
 ```
 
 **Fixture not found:**

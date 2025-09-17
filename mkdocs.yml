@@ -5,6 +5,9 @@ repo_url: https://github.com/provide-io/provide-io
 repo_name: provide-io/provide-io
 edit_uri: edit/main/provide-foundry/docs/
 
+# Development server configuration
+dev_addr: '127.0.0.1:8000'
+
 # Use aggregated documentation directory
 docs_dir: .docs_aggregated
 
@@ -60,34 +63,32 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - autorefs
-  # mkdocstrings disabled temporarily - re-enable when source paths are properly configured
-  # - mkdocstrings:
-  #     handlers:
-  #       python:
-  #         paths:
-  #           - foundation/src
-  #           - flavorpack/src
-  #           - pyvider/src
-  #           - testkit/src
-  #         options:
-  #           docstring_style: google
-  #           docstring_section_style: list
-  #           show_source: true
-  #           show_symbol_type_heading: true
-  #           show_symbol_type_toc: true
-  #           show_root_heading: true
-  #           show_root_toc_entry: true
-  #           show_object_full_path: false
-  #           show_category_heading: true
-  #           show_if_no_docstring: false
-  #           show_signature: true
-  #           show_signature_annotations: true
-  #           show_bases: true
-  #           show_submodules: false
-  #           group_by_category: true
-  #           merge_init_into_class: true
-  #           separate_signature: true
-  #           line_length: 80
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths:
+            - ../provide-foundation/src
+            - ../provide-testkit/src
+            - ../flavorpack/src
+            - ../pyvider/src
+            - ../pyvider-cty/src
+            - ../pyvider-hcl/src
+            - ../pyvider-rpcplugin/src
+            - ../wrknv/src
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+            show_bases: true
+            merge_init_into_class: true
+            separate_signature: true
+            show_object_full_path: false
+            show_category_heading: true
+            show_if_no_docstring: false
 
 extra:
   version:
