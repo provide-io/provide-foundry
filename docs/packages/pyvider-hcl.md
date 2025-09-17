@@ -19,10 +19,10 @@ Comprehensive HCL (HashiCorp Configuration Language) parsing and generation with
 
 ```bash
 # Basic installation
-pip install pyvider-hcl
+uv add pyvider-hcl
 
 # With all extras for full functionality
-pip install pyvider-hcl[all]
+uv add pyvider-hcl[all]
 ```
 
 ## Quick Start

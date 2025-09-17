@@ -12,7 +12,7 @@ SCRIPTS_DIR := scripts
 
 # Python configuration
 PYTHON := python3
-PIP := pip3
+UV := uv
 MKDOCS := mkdocs
 
 # Colors for output
@@ -141,7 +141,7 @@ docs-testkit: ## Build only TestKit documentation
 .PHONY: dev-install
 dev-install: ## Install documentation dependencies
 	@echo "$(BLUE)📦 Installing documentation dependencies...$(NC)"
-	@$(PIP) install -r requirements.txt
+	@$(UV) sync
 	@echo "$(GREEN)✅ Dependencies installed$(NC)"
 
 .PHONY: dev-update
@@ -184,7 +184,7 @@ test-links: ## Test for broken links in documentation
 		linkchecker $(DOCS_OUTPUT)/index.html; \
 	else \
 		echo "$(YELLOW)⚠️ linkchecker not installed, skipping link validation$(NC)"; \
-		echo "Install with: pip install linkchecker"; \
+		echo "Install with: uv add linkchecker"; \
 	fi
 
 .PHONY: test-projects
@@ -206,7 +206,7 @@ deploy-github: ## Deploy to GitHub Pages
 		mike deploy --push --update-aliases latest main; \
 		echo "$(GREEN)✅ Deployed to GitHub Pages$(NC)"; \
 	else \
-		echo "$(RED)❌ mike not installed. Install with: pip install mike$(NC)"; \
+		echo "$(RED)❌ mike not installed. Install with: uv sync$(NC)"; \
 		exit 1; \
 	fi
 
@@ -225,14 +225,19 @@ check-deps: ## Check if required dependencies are available
 		echo "$(RED)❌ Python 3 is required but not found$(NC)"; \
 		exit 1; \
 	}
+	@command -v $(UV) >/dev/null 2>&1 || { \
+		echo "$(RED)❌ uv is required but not found$(NC)"; \
+		echo "Install with: curl -LsSf https://astral.sh/uv/install.sh | sh"; \
+		exit 1; \
+	}
 	@command -v $(MKDOCS) >/dev/null 2>&1 || { \
 		echo "$(RED)❌ MkDocs is required but not found$(NC)"; \
-		echo "Install with: pip install -r requirements.txt"; \
+		echo "Install with: uv sync"; \
 		exit 1; \
 	}
 	@$(PYTHON) -c "import yaml, watchdog" 2>/dev/null || { \
 		echo "$(RED)❌ Missing Python dependencies$(NC)"; \
-		echo "Install with: pip install -r requirements.txt"; \
+		echo "Install with: uv sync"; \
 		exit 1; \
 	}
 

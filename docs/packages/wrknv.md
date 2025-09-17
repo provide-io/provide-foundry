@@ -19,13 +19,13 @@ Work Environment management tool that generates standardized development environ
 
 ```bash
 # Install from PyPI
-pip install wrknv
+uv add wrknv
 
 # Install with all features
-pip install wrknv[all]
+uv add wrknv[all]
 
 # Development installation
-pip install wrknv[dev]
+uv add wrknv[dev]
 ```
 
 ## Quick Start
@@ -364,13 +364,13 @@ source "$WORKENV_DIR/bin/activate"
 
 # Install project dependencies
 echo "📦 Installing dependencies..."
-{{ tools.uv.executable }} pip install -e .
+{{ tools.uv.executable }} uv add -e .
 
 # Install sibling packages
 {% for sibling in siblings %}
 if [[ -d "{{ sibling.path }}" ]]; then
     echo "🔗 Installing {{ sibling.name }}..."
-    {{ tools.uv.executable }} pip install -e "{{ sibling.path }}"
+    {{ tools.uv.executable }} uv add -e "{{ sibling.path }}"
 fi
 {% endfor %}
 
@@ -631,7 +631,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install wrknv
-        run: pip install wrknv
+        run: uv add wrknv
 
       - name: Set up development environment
         run: |

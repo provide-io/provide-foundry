@@ -19,10 +19,10 @@ Python implementation of Terraform's CTY (Configuration Type System) providing t
 
 ```bash
 # Basic installation
-pip install pyvider-cty
+uv add pyvider-cty
 
 # With all extras for full functionality
-pip install pyvider-cty[all]
+uv add pyvider-cty[all]
 ```
 
 ## Quick Start
