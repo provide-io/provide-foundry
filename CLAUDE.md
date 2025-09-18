@@ -98,3 +98,4 @@ Projects are interconnected:
 - All packages use unified workspace configuration in parent `pyproject.toml`
 
 When making changes that affect multiple packages, test the entire ecosystem build with `uv sync --extra all --extra dev` in the parent directory.
+- do not use pkill when kill mkdocs
