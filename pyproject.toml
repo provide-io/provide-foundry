@@ -6,7 +6,7 @@
 
 [project]
 name = "provide-foundry"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Documentation hub for the provide.io ecosystem"
 authors = [
     {name = "Provide Technologies", email = "hello@provide.io"},
@@ -33,5 +33,34 @@ dependencies = [
     "mkdocs-gen-files>=0.5.0",
     "mkdocs-literate-nav>=0.6.0",
     "mkdocs-section-index>=0.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "provide-testkit[standard,build]",
+]
+docs = [
+    "provide-testkit[docs]",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks integration tests",
+    "unit: marks unit tests",
 ]
 
