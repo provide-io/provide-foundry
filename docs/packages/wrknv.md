@@ -78,7 +78,7 @@ wrknv generate --dry-run
 
 ```bash
 # Activate the environment
-source env.sh
+uv sync
 
 # Or on Windows
 .\env.ps1
@@ -636,16 +636,16 @@ jobs:
       - name: Set up development environment
         run: |
           wrknv generate
-          source env.sh
+          uv sync
 
       - name: Run tests
         run: |
-          source env.sh
+          uv sync
           pytest tests/
 
       - name: Check tool versions
         run: |
-          source env.sh
+          uv sync
           wrknv status
 ```
 
