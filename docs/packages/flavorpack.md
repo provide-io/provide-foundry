@@ -413,7 +413,7 @@ tool = "flavorpack"
 flavorpack = "latest"
 
 # Build package in wrknv environment
-$ source env.sh
+$ uv sync
 $ flavor pack --manifest pyproject.toml
 ```
 
