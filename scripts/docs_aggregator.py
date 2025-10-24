@@ -94,7 +94,10 @@ class DocsAggregator:
             shutil.rmtree(self.aggregated_dir)
         self.aggregated_dir.mkdir(exist_ok=True)
 
-        # Copy foundry's own docs first
+        # Copy shared theme first
+        self._copy_shared_theme()
+
+        # Copy foundry's own docs
         foundry_docs = self.docs_dir
         if foundry_docs.exists():
             logger.info("📋 Copying foundry documentation")
@@ -114,6 +117,41 @@ class DocsAggregator:
 
         logger.info(f"✅ Aggregation complete: {success_count}/{len(self.projects)} projects")
         return success_count > 0
+
+    def _copy_shared_theme(self):
+        """Copy shared theme to aggregated docs directory."""
+        shared_theme_src = self.foundry_root / "shared-theme"
+        if not shared_theme_src.exists():
+            logger.warning("⚠️ Shared theme directory not found")
+            return
+
+        logger.info("🎨 Copying shared theme")
+
+        # Copy stylesheets
+        stylesheets_src = shared_theme_src / "stylesheets"
+        if stylesheets_src.exists():
+            stylesheets_dest = self.aggregated_dir / "stylesheets"
+            stylesheets_dest.mkdir(parents=True, exist_ok=True)
+            for css_file in stylesheets_src.glob("*.css"):
+                shutil.copy2(css_file, stylesheets_dest)
+
+        # Copy javascripts
+        javascripts_src = shared_theme_src / "javascripts"
+        if javascripts_src.exists():
+            javascripts_dest = self.aggregated_dir / "javascripts"
+            javascripts_dest.mkdir(parents=True, exist_ok=True)
+            for js_file in javascripts_src.glob("*.js"):
+                shutil.copy2(js_file, javascripts_dest)
+
+        # Copy assets
+        assets_src = shared_theme_src / "assets"
+        if assets_src.exists():
+            assets_dest = self.aggregated_dir / "assets"
+            if assets_dest.exists():
+                shutil.rmtree(assets_dest)
+            shutil.copytree(assets_src, assets_dest, dirs_exist_ok=True)
+
+        logger.info("✅ Shared theme copied")
 
     def _collect_project(self, project: ProjectConfig) -> bool:
         """Collect documentation from a single project."""
