@@ -90,6 +90,13 @@ plugins:
             show_category_heading: true
             show_if_no_docstring: false
 
+extra_css:
+  - stylesheets/provide-theme.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
 extra:
   version:
     provider: mike
