@@ -111,7 +111,7 @@ flavor pack --manifest pyproject.toml --output myapp.psp
 wrknv init --with-pyvider --with-testing
 
 # Activate the environment
-source workenv/env.sh
+uv sync
 ```
 
 ## Architecture Overview
