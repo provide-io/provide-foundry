@@ -212,7 +212,7 @@ mkdocs serve               # Serve docs locally
 
 # Environment management
 wrknv sync                 # Sync environment
-source workenv/env.sh      # Activate environment
+uv sync      # Activate environment
 
 # Packaging
 flavor pack                # Create executable package

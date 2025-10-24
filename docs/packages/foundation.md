@@ -29,7 +29,7 @@ uv add provide-foundation[all]
 # Development installation
 git clone https://github.com/provide-io/provide-foundation.git
 cd provide-foundation
-source workenv/env.sh
+uv sync
 ```
 
 ### Basic Usage
