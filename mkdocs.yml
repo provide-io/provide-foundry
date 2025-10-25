@@ -63,6 +63,8 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - autorefs
+  - macros:
+      include_dir: shared-theme/data
   - mkdocstrings:
       default_handler: python
       handlers:
@@ -91,11 +93,14 @@ plugins:
             show_if_no_docstring: false
 
 extra_css:
-  - stylesheets/provide-theme.css
+  - shared-theme/stylesheets/provide-theme.css
+  - shared-theme/stylesheets/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - javascripts/mermaid-init.js
+  - shared-theme/javascripts/mermaid-init.js
+  - shared-theme/javascripts/termynal.js
+  - shared-theme/javascripts/custom.js
 
 extra:
   version:
