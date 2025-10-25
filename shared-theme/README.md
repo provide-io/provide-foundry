@@ -4,7 +4,20 @@ This directory contains the shared MkDocs Material theme used across all provide
 
 ## Quick Start
 
-To use the shared theme in your project's `mkdocs.yml`:
+The shared theme uses a **push-based distribution system**. Theme files are synced from provide-foundry into each project's `docs/.shared-theme/` directory.
+
+### Step 1: Sync Theme Files
+
+```bash
+cd provide-foundry
+python scripts/sync_theme.py sync --all              # Sync to all projects
+python scripts/sync_theme.py sync --project plating  # Sync to specific project
+python scripts/sync_theme.py status                  # Check sync status
+```
+
+### Step 2: Configure Your Project
+
+Add to your project's `mkdocs.yml`:
 
 ```yaml
 theme:
@@ -12,14 +25,14 @@ theme:
   # ... other theme config ...
 
 extra_css:
-  - ../../provide-foundry/shared-theme/stylesheets/provide-theme.css
-  - ../../provide-foundry/shared-theme/stylesheets/termynal.css
+  - .shared-theme/stylesheets/provide-theme.css
+  - .shared-theme/stylesheets/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - ../../provide-foundry/shared-theme/javascripts/mermaid-init.js
-  - ../../provide-foundry/shared-theme/javascripts/termynal.js
-  - ../../provide-foundry/shared-theme/javascripts/custom.js
+  - .shared-theme/javascripts/mermaid-init.js
+  - .shared-theme/javascripts/termynal.js
+  - .shared-theme/javascripts/custom.js
 
 plugins:
   - search
@@ -30,7 +43,14 @@ plugins:
             show_source: true
             show_root_heading: true
   - macros:
-      include_dir: ../../provide-foundry/shared-theme/data
+      include_dir: docs/.shared-theme/data  # Note: relative to project root
+```
+
+### Step 3: Add to .gitignore
+
+```gitignore
+# Synced theme files (source: provide-foundry/shared-theme/)
+docs/.shared-theme/
 ```
 
 ## Structure
@@ -206,15 +226,37 @@ Hello from my_app!
 
 ## Maintenance
 
-The shared theme is maintained in the `provide-foundry` repository. Updates to the theme will automatically propagate to all projects using it.
+The shared theme is maintained in the `provide-foundry` repository. Updates are distributed to projects using the sync script.
 
-### Updating Projects
+### Updating the Theme
 
-After updating the shared theme:
+After editing theme files in `provide-foundry/shared-theme/`:
 
-1. Run `make docs-collect` in provide-foundry to refresh aggregated docs
-2. Individual projects will pick up changes on next build
-3. No action needed for aggregated documentation site
+```bash
+cd provide-foundry
+
+# Test changes locally first
+mkdocs serve
+
+# Sync to all projects
+python scripts/sync_theme.py sync --all
+
+# Verify sync
+python scripts/sync_theme.py status
+
+# Test a project
+cd ../plating
+mkdocs serve  # Check http://127.0.0.1:8009
+```
+
+### Why Push-Based Distribution?
+
+The original "pull" model (`../provide-foundry/shared-theme/`) didn't work with `mkdocs serve` because:
+- MkDocs cannot serve files from parent directories (security restriction)
+- Terminal animations and shared assets returned 404 errors
+- Local development testing was broken
+
+The push-based model copies theme files into each project's `docs/.shared-theme/` directory, allowing `mkdocs serve` to work correctly
 
 ### Adding Dependencies
 
