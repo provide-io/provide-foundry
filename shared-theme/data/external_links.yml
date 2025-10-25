@@ -1,0 +1,11 @@
+# External links for the provide.io ecosystem
+# Useful resources, related projects, and external documentation
+
+links:
+  - name: "provide.io"
+    url: "https://provide.io"
+    description: "Official provide.io website"
+
+  - name: "GitHub Organization"
+    url: "https://github.com/provide-io"
+    description: "provide.io on GitHub"

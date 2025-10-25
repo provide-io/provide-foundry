@@ -1,0 +1,8 @@
+# Sponsors of the provide.io ecosystem
+# Format:
+# - name: Sponsor Name
+#   url: https://sponsor-website.com
+#   logo: path/to/logo.png
+#   tier: gold|silver|bronze
+
+sponsors: []

@@ -1,0 +1,8 @@
+# People involved in the provide.io ecosystem
+# Format:
+# - name: Person Name
+#   role: Core Maintainer|Contributor|Reviewer
+#   github: github_username
+#   avatar: https://github.com/username.png
+
+people: []
