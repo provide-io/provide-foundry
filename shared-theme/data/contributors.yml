@@ -1,0 +1,9 @@
+# Contributors to the provide.io ecosystem
+# This file can be populated with contributor information
+# Format:
+# - name: Contributor Name
+#   github: github_username
+#   contributions: Number of contributions
+#   avatar: https://github.com/username.png
+
+contributors: []
