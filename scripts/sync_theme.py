@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""
-Sync shared theme files to documentation projects.
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+
+"""Sync shared theme files to documentation projects.
 
 This script copies the shared theme from provide-foundry/shared-theme/
 into each project's docs/.shared-theme/ directory, allowing mkdocs serve
@@ -10,8 +13,7 @@ Usage:
     python sync_theme.py sync --all              # Sync to all projects
     python sync_theme.py sync --project plating  # Sync to specific project
     python sync_theme.py status                  # Show sync status
-    python sync_theme.py clean                   # Remove all .shared-theme dirs
-"""
+    python sync_theme.py clean                   # Remove all .shared-theme dirs"""
 
 from __future__ import annotations
 
@@ -141,7 +143,7 @@ def status():
         pout(f"{project.name:25} {status}")
 
     pout("=" * 60)
-    pout(f"Source: provide-foundry/shared-theme/")
+    pout("Source: provide-foundry/shared-theme/")
 
 
 @click.command()
@@ -167,7 +169,7 @@ def clean(yes: bool = False):
 
     if not yes:
         response = input("\nRemove all these directories? [y/N]: ")
-        if response.lower() != 'y':
+        if response.lower() != "y":
             pout("Cancelled")
             return
 
@@ -192,3 +194,5 @@ cli.add_command(clean)
 
 if __name__ == "__main__":
     cli()
+
+# 🏭⚒️🔚

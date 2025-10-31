@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""
-Documentation Aggregator for Provide Foundry
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+
+"""Documentation Aggregator for Provide Foundry
 
 Collects documentation from all provide.io projects and creates a unified
 documentation site while maintaining each project's ability to serve docs
@@ -11,8 +14,7 @@ Features:
 - No symlinks required
 - Preserves project independence
 - Handles cross-references
-- Supports hot reload in development
-"""
+- Supports hot reload in development"""
 
 import argparse
 import logging
@@ -66,7 +68,10 @@ class DocsAggregator:
 
     def _setup_logging(self):
         """Configure logging."""
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        )
 
     def _load_manifest(self):
         """Load projects manifest."""
@@ -87,7 +92,6 @@ class DocsAggregator:
 
     def collect_all(self) -> bool:
         """Collect documentation from all projects."""
-        logger.info("🏗️ Starting documentation aggregation")
 
         # Clean aggregated directory
         if self.aggregated_dir.exists():
@@ -115,7 +119,6 @@ class DocsAggregator:
             if self._collect_project(project):
                 success_count += 1
 
-        logger.info(f"✅ Aggregation complete: {success_count}/{len(self.projects)} projects")
         return success_count > 0
 
     def _copy_shared_theme(self):
@@ -151,15 +154,13 @@ class DocsAggregator:
                 shutil.rmtree(assets_dest)
             shutil.copytree(assets_src, assets_dest, dirs_exist_ok=True)
 
-        logger.info("✅ Shared theme copied")
-
     def _collect_project(self, project: ProjectConfig) -> bool:
         """Collect documentation from a single project."""
         if not project.exists:
-            logger.warning(f"⚠️ Project not found: {project.name} at {project.source_path}")
+            logger.warning(
+                f"⚠️ Project not found: {project.name} at {project.source_path}"
+            )
             return False
-
-        logger.info(f"📦 Collecting {project.name} documentation")
 
         try:
             # Create target directory
@@ -187,7 +188,6 @@ class DocsAggregator:
                     shutil.rmtree(api_target)
                 shutil.copytree(api_source, api_target, dirs_exist_ok=True)
 
-            logger.info(f"✅ Collected {project.name}")
             return True
 
         except Exception as e:
@@ -287,7 +287,9 @@ class DocsAggregator:
                     return
 
                 # Only watch markdown and yaml files
-                if not any(event.src_path.endswith(ext) for ext in [".md", ".yml", ".yaml"]):
+                if not any(
+                    event.src_path.endswith(ext) for ext in [".md", ".yml", ".yaml"]
+                ):
                     return
 
                 logger.info(f"📝 Detected change: {event.src_path}")
@@ -325,10 +327,17 @@ class DocsAggregator:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description="Provide Foundry Documentation Aggregator")
+    parser = argparse.ArgumentParser(
+        description="Provide Foundry Documentation Aggregator"
+    )
     parser.add_argument("command", choices=["collect", "watch"], help="Command to run")
     parser.add_argument("--manifest", type=Path, help="Path to docs manifest file")
-    parser.add_argument("--foundry-root", type=Path, default=Path.cwd(), help="Path to foundry root directory")
+    parser.add_argument(
+        "--foundry-root",
+        type=Path,
+        default=Path.cwd(),
+        help="Path to foundry root directory",
+    )
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose logging")
 
     args = parser.parse_args()
@@ -337,7 +346,9 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
 
     # Initialize aggregator
-    aggregator = DocsAggregator(foundry_root=args.foundry_root, manifest_path=args.manifest)
+    aggregator = DocsAggregator(
+        foundry_root=args.foundry_root, manifest_path=args.manifest
+    )
 
     # Run command
     if args.command == "collect":
@@ -349,3 +360,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# 🏭⚒️🔚

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""
-Documentation validation CLI tool for the provide.io ecosystem.
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+
+"""Documentation validation CLI tool for the provide.io ecosystem.
 
 Provides commands to validate links, configs, structure, and list projects.
-Inspired by FastAPI's docs.py validation approach.
-"""
+Inspired by FastAPI's docs.py validation approach."""
 
 from __future__ import annotations
 
 import re
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -138,13 +139,15 @@ def verify_config():
 @app.command()
 def verify_links(
     project: str = typer.Option(None, help="Specific project to check"),
-    external: bool = typer.Option(False, help="Check external links (slow)")
+    external: bool = typer.Option(False, help="Check external links (slow)"),
 ):
     """Verify internal and optionally external links in documentation."""
     if project:
         projects = [find_project_root() / project]
         if not (projects[0] / "mkdocs.yml").exists():
-            console.print(f"[red]Project {project} not found or has no mkdocs.yml[/red]")
+            console.print(
+                f"[red]Project {project} not found or has no mkdocs.yml[/red]"
+            )
             return 1
     else:
         projects = find_mkdocs_projects()
@@ -171,17 +174,20 @@ def verify_links(
             content = md_file.read_text()
 
             # Check for internal links
-            internal_links = re.findall(r'\[([^\]]+)\]\(([^)]+)\)', content)
+            internal_links = re.findall(r"\[([^\]]+)\]\(([^)]+)\)", content)
 
             for link_text, link_url in internal_links:
                 # Skip external URLs
-                if link_url.startswith(('http://', 'https://', 'mailto:', '#')):
+                if link_url.startswith(("http://", "https://", "mailto:", "#")):
                     continue
 
                 # Resolve relative link
                 target = (md_file.parent / link_url).resolve()
                 if not target.exists():
-                    console.print(f"  ✗ {md_file.relative_to(docs_dir)}: Broken link to {link_url}", style="red")
+                    console.print(
+                        f"  ✗ {md_file.relative_to(docs_dir)}: Broken link to {link_url}",
+                        style="red",
+                    )
                     total_issues += 1
 
         if total_issues == 0:
@@ -224,7 +230,13 @@ def check_structure():
             console.print("  ✓ Has index.md", style="green")
 
         # Check for common sections
-        sections = ["getting-started", "tutorials", "guides", "reference", "api-reference"]
+        sections = [
+            "getting-started",
+            "tutorials",
+            "guides",
+            "reference",
+            "api-reference",
+        ]
         found_sections = []
         for section in sections:
             section_path = docs_dir / section
@@ -232,9 +244,13 @@ def check_structure():
                 found_sections.append(section)
 
         if found_sections:
-            console.print(f"  ✓ Found sections: {', '.join(found_sections)}", style="green")
+            console.print(
+                f"  ✓ Found sections: {', '.join(found_sections)}", style="green"
+            )
         else:
-            recommendations.append(f"{project.name}: Consider adding structured sections")
+            recommendations.append(
+                f"{project.name}: Consider adding structured sections"
+            )
             console.print("  ⚠ No standard sections found", style="yellow")
 
         console.print()
@@ -251,7 +267,9 @@ def check_structure():
 
 @app.command()
 def build_all(
-    parallel: bool = typer.Option(False, "--parallel", "-p", help="Build projects in parallel")
+    parallel: bool = typer.Option(
+        False, "--parallel", "-p", help="Build projects in parallel"
+    ),
 ):
     """Build all documentation projects."""
     projects = find_mkdocs_projects()
@@ -269,7 +287,7 @@ def build_all(
                 cwd=project,
                 capture_output=True,
                 text=True,
-                timeout=60
+                timeout=60,
             )
 
             if result.returncode == 0:
@@ -283,7 +301,9 @@ def build_all(
             console.print(f"  ✗ {project.name} build timed out", style="red")
             failed.append(project.name)
         except FileNotFoundError:
-            console.print("[red]mkdocs not found. Install with: uv sync --group docs[/red]")
+            console.print(
+                "[red]mkdocs not found. Install with: uv sync --group docs[/red]"
+            )
             return 1
 
     console.print()
@@ -324,10 +344,15 @@ def update_shared_theme():
 
         if has_theme_css and has_termynal_css and has_termynal_js and has_custom_js:
             using_shared.append(project.name)
-            console.print(f"  ✓ {project.name}: Fully using shared theme", style="green")
+            console.print(
+                f"  ✓ {project.name}: Fully using shared theme", style="green"
+            )
         elif has_theme_css:
             needs_update.append(project.name)
-            console.print(f"  ⚠ {project.name}: Partial shared theme (missing Termynal)", style="yellow")
+            console.print(
+                f"  ⚠ {project.name}: Partial shared theme (missing Termynal)",
+                style="yellow",
+            )
         else:
             not_using.append(project.name)
             console.print(f"  ✗ {project.name}: Not using shared theme", style="red")
@@ -345,3 +370,5 @@ def update_shared_theme():
 
 if __name__ == "__main__":
     app()
+
+# 🏭⚒️🔚

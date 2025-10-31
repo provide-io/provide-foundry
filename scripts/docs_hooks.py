@@ -1,9 +1,12 @@
-"""
-MkDocs hooks for Provide Foundry documentation aggregation.
+#
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+
+"""MkDocs hooks for Provide Foundry documentation aggregation.
 
 These hooks run automatically during mkdocs build/serve to collect
-documentation from all projects in the provide.io ecosystem.
-"""
+documentation from all projects in the provide.io ecosystem."""
 
 import logging
 from pathlib import Path
@@ -29,7 +32,6 @@ def on_pre_build(config, **kwargs):
     This collects documentation from all projects and places it in the
     aggregated directory for MkDocs to process.
     """
-    logger.info("🏗️ Running pre-build hook: collecting documentation")
 
     # Get the foundry root directory (parent of this script)
     foundry_root = Path(__file__).parent.parent
@@ -80,14 +82,12 @@ def on_config(config, **kwargs):
 
     This can be used to modify the configuration based on available projects.
     """
-    logger.info("⚙️ Configuring federated documentation")
 
     # Ensure the aggregated docs directory exists
     foundry_root = Path(__file__).parent.parent
     aggregated_dir = foundry_root / ".docs_aggregated"
 
     if not aggregated_dir.exists():
-        logger.info("📁 Creating aggregated documentation directory")
         aggregated_dir.mkdir(exist_ok=True)
 
         # Create a minimal index.md if none exists
@@ -101,3 +101,6 @@ Documentation is being aggregated from individual projects...
 """)
 
     return config
+
+
+# 🏭⚒️🔚
