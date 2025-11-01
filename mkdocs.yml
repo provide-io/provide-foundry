@@ -198,7 +198,6 @@ nav:
   - Guides:
     - guides/index.md
     - Installation: guides/installation.md
-  # API Reference will be handled in Phase 4
   # - API Reference:
   #   - api/index.md
 

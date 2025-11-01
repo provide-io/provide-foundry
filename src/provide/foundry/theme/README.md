@@ -255,7 +255,7 @@ The namespace package approach provides:
 - **Editable installs**: `uv pip install -e .` makes changes immediately available
 - **Type safety**: `from provide.foundry.theme import THEME_DIR` is type-checked
 - **No gitignore needed**: No generated files in project directories
-- **Simpler maintenance**: Single source of truth for theme files
+- **Python-based distribution**: Theme assets managed as a proper Python package
 
 ### Adding Dependencies
 

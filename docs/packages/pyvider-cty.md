@@ -705,33 +705,6 @@ new_terraform_state = to_terraform_state(updated_state)
 6. **Performance-aware** - Use caching and lazy evaluation for large values
 7. **Test thoroughly** - Use testing utilities for comprehensive validation
 
-## Migration Guide
-
-### From Raw Python Types
-
-```python
-# Old: Raw Python types
-user_data = {
-    "name": "alice",
-    "age": 25,
-    "tags": ["user", "admin"]
-}
-
-# New: CTY types
-user_data = CtyObject({
-    "name": CtyString("alice"),
-    "age": CtyNumber(25),
-    "tags": CtyList([CtyString("user"), CtyString("admin")])
-})
-
-# Or convert automatically
-user_data = from_python({
-    "name": "alice",
-    "age": 25,
-    "tags": ["user", "admin"]
-})
-```
-
 ## Related Packages
 
 - **[pyvider](pyvider.md)**: Core framework that uses CTY types

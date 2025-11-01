@@ -34,14 +34,14 @@ The documentation system uses a modern, DRY approach with shared configuration:
 - **Auto-Generated API Docs** - Build-time generation using mkdocs-gen-files
 - **Shared Makefile** (`Makefile.docs.inc`) - Standardized build targets
 
-### Building the Aggregated Documentation
+### Building the Documentation
 
 ```bash
 # Install dependencies
 cd provide-foundry
 uv sync
 
-# Serve aggregated documentation locally (all projects)
+# Serve documentation locally (all projects)
 make docs-serve
 # or: uv run mkdocs serve
 
@@ -80,7 +80,7 @@ uv run mkdocs serve
 ```
 provide-foundry/                    # Documentation hub
 ├── base-mkdocs.yml                # Shared configuration (inherited by all projects)
-├── mkdocs.yml                     # Aggregated site configuration
+├── mkdocs.yml                     # Documentation site configuration
 ├── Makefile.docs.inc              # Shared documentation targets
 ├── scripts/
 │   └── gen_ref_pages.py          # Shared API doc generator
