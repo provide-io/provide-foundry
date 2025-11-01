@@ -8,8 +8,8 @@ edit_uri: edit/main/provide-foundry/docs/
 # Development server configuration
 dev_addr: '127.0.0.1:8000'
 
-# Use aggregated documentation directory
-docs_dir: .docs_aggregated
+# Use standard docs directory for foundry-specific content
+docs_dir: docs
 
 theme:
   name: material
@@ -62,9 +62,15 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - monorepo
   - autorefs
   - macros:
       include_dir: shared-theme/data
+      # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
+      j2_variable_start_string: '{$'
+      j2_variable_end_string: '$}'
+      j2_block_start_string: '{%'
+      j2_block_end_string: '%}'
   - mkdocstrings:
       default_handler: python
       handlers:
@@ -165,21 +171,21 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
 
-  # Foundation Layer
-  - Foundation: foundation/index.md
-  - TestKit: testkit/index.md
+  # Foundation Layer - Using monorepo !include directives
+  - Foundation: '!include ../provide-foundation/mkdocs.yml'
+  - TestKit: '!include ../provide-testkit/mkdocs.yml'
 
   # FlavorPack - Packaging System
-  - FlavorPack: flavorpack/index.md
+  - FlavorPack: '!include ../flavorpack/mkdocs.yml'
 
   # PyVider Framework
-  - PyVider: pyvider/index.md
-  - PyVider CTY: pyvider-cty/index.md
-  - PyVider HCL: pyvider-hcl/index.md
-  - PyVider RPC Plugin: pyvider-rpcplugin/index.md
+  - PyVider: '!include ../pyvider/mkdocs.yml'
+  - PyVider CTY: '!include ../pyvider-cty/mkdocs.yml'
+  - PyVider HCL: '!include ../pyvider-hcl/mkdocs.yml'
+  - PyVider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
 
   # Development Tools
-  - WrkNv: wrknv/index.md
+  - WrkNv: '!include ../wrknv/mkdocs.yml'
 
   # Foundry Information
   - Foundry:
@@ -188,23 +194,19 @@ nav:
     - Design Principles: foundry/principles.md
     - Roadmap: foundry/roadmap.md
 
-  # Guides and API
+  # Guides
   - Guides:
     - guides/index.md
     - Installation: guides/installation.md
-  - API Reference:
-    - api/index.md
+  # API Reference will be handled in Phase 4
+  # - API Reference:
+  #   - api/index.md
 
-hooks:
-  - scripts/docs_hooks.py
+# Hooks disabled - mkdocs-monorepo plugin handles aggregation automatically
+# hooks:
+#   - scripts/docs_hooks.py
 
+# Watch configuration - monorepo plugin handles watching included projects
 watch:
   - docs/
-  - ../provide-foundation/docs/
-  - ../provide-testkit/docs/
-  - ../pyvider/docs/
-  - ../pyvider-cty/docs/
-  - ../pyvider-hcl/docs/
-  - ../pyvider-rpcplugin/docs/
-  - ../flavorpack/docs/
-  - ../wrknv/docs/
+  - shared-theme/

@@ -2,6 +2,16 @@
 
 The shared theme includes YAML data files that can be used across all provide.io documentation using the `mkdocs-macros-plugin`.
 
+## ⚠️ Important: Custom Delimiter Syntax
+
+**To avoid conflicts with GitHub Actions syntax (`${{ }}`), this documentation uses custom Jinja2 delimiters:**
+
+- **Variables**: Use `{$ variable $}` instead of `{{ variable }}`
+- **Blocks**: Use `{% block %}` (standard syntax unchanged)
+- **Comments**: Use `{# comment #}` (standard syntax unchanged)
+
+This means GitHub Actions examples like `${{ secrets.TOKEN }}` will render correctly without escaping.
+
 ## Available Data Files
 
 ### contributors.yml
@@ -14,19 +24,21 @@ Information about contributors to the ecosystem.
 We're grateful to our contributors:
 
 {% for contributor in contributors %}
-### {{ contributor.name }}
+### {$ contributor.name $}
 
-- **Role:** {{ contributor.role }}
-- **GitHub:** [@{{ contributor.github }}](https://github.com/{{ contributor.github }})
+- **Role:** {$ contributor.role $}
+- **GitHub:** [@{$ contributor.github $}](https://github.com/{$ contributor.github $})
 {% if contributor.contributions %}
-- **Projects:** {{ contributor.contributions | join(", ") }}
+- **Projects:** {$ contributor.contributions | join(", ") $}
 {% endif %}
 
-{{ contributor.bio }}
+{$ contributor.bio $}
 
 ---
 {% endfor %}
 ```
+
+**Note:** This documentation uses custom Jinja2 delimiters (`{$ $}` for variables) to avoid conflicts with GitHub Actions syntax (`${{ }}`). Block tags still use standard `{% %}` syntax.
 
 ### external_links.yml
 Organized external resources and links.

@@ -71,32 +71,26 @@ help: ## Show this help message
 # ==================== Documentation Targets ====================
 
 .PHONY: docs-build
-docs-build: ## Build aggregated documentation
+docs-build: ## Build aggregated documentation (using mkdocs-monorepo)
 	@echo "$(BLUE)🏗️ Building aggregated documentation...$(NC)"
 	@$(MAKE) check-deps
-	@$(MAKE) docs-collect
 	@$(MKDOCS) build --clean
 	@echo "$(GREEN)✅ Documentation built successfully!$(NC)"
+	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin handles aggregation automatically$(NC)"
 	@echo "Output: $(FOUNDRY_ROOT)/$(DOCS_OUTPUT)"
 
 .PHONY: docs-serve
-docs-serve: ## Serve documentation locally for development
+docs-serve: ## Serve documentation locally for development (using mkdocs-monorepo)
 	@echo "$(BLUE)🚀 Starting documentation development server...$(NC)"
 	@$(MAKE) check-deps
-	@$(MAKE) docs-collect
 	@echo "$(GREEN)📖 Documentation available at: http://localhost:8000$(NC)"
+	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin handles aggregation automatically$(NC)"
 	@echo "$(YELLOW)🛑 Press Ctrl+C to stop the server$(NC)"
 	@$(MKDOCS) serve
-
-.PHONY: docs-collect
-docs-collect: ## Collect documentation from all projects
-	@echo "$(BLUE)📋 Collecting documentation from all projects...$(NC)"
-	@$(PYTHON) $(SCRIPTS_DIR)/docs_aggregator.py collect
 
 .PHONY: docs-clean
 docs-clean: ## Clean all documentation artifacts
 	@echo "$(BLUE)🧹 Cleaning documentation artifacts...$(NC)"
-	@rm -rf $(DOCS_AGGREGATED)
 	@rm -rf $(DOCS_OUTPUT)
 	@echo "$(GREEN)✅ Documentation artifacts cleaned$(NC)"
 

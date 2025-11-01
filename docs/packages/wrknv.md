@@ -341,6 +341,7 @@ wrknv uses Jinja2 templates to generate environment scripts:
 
 Create custom environment script templates:
 
+{% raw %}
 ```jinja2
 {# env.sh.j2 - Custom Bash template #}
 #!/bin/bash
@@ -392,6 +393,7 @@ echo "   Python: $(python --version)"
 echo "   {{ tool_name }}: $({{ tool.executable }} --version 2>/dev/null | head -n1 || echo 'not found')"
 {% endfor %}
 ```
+{% endraw %}
 
 ## Sibling Package Discovery
 
