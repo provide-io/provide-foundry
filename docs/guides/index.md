@@ -12,12 +12,6 @@ Comprehensive guides for working with the Provide Foundry, from basic installati
 
     Set up the entire Provide Foundry on your development machine.
 
--   :material-cog:{ .lg .middle } **[Development Setup](development.md)**
-
-    ---
-
-    Configure your development environment for foundry projects.
-
 </div>
 
 ## Core Guides
@@ -50,36 +44,21 @@ Comprehensive guides for working with the Provide Foundry, from basic installati
 
 </div>
 
-## Advanced Topics
-
-<div class="grid cards" markdown>
-
--   :material-rocket-launch:{ .lg .middle } **[Release Management](releases.md)**
-
-    ---
-
-    Manage releases, versioning, and distribution across the foundry.
-
-</div>
-
 ## Quick Reference
 
 | Guide | Purpose | Key Tools |
 |-------|---------|-----------|
 | [Installation](installation.md) | Set up foundry | UV, wrknv |
-| [Development](development.md) | Configure dev environment | wrknv, provide-testkit |
 | [Provider Development](provider-development.md) | Build Terraform providers | pyvider, pyvider-cty, pyvider-hcl |
 | [Testing](testing.md) | Test foundry applications | provide-testkit, tofusoup |
 | [Packaging](packaging.md) | Package applications | flavorpack |
 | [Documentation](documentation.md) | Create documentation | plating, MkDocs |
-| [Releases](releases.md) | Manage releases | supsrc, GitHub Actions |
 
 ## Learning Path
 
 ### Beginner Path
 1. **[Installation](installation.md)** - Get the foundry running
-2. **[Development Setup](development.md)** - Configure your workspace
-3. **[Provider Development](provider-development.md)** - Build your first provider
+2. **[Provider Development](provider-development.md)** - Build your first provider
 
 ### Intermediate Path
 1. **[Testing Strategy](testing.md)** - Add comprehensive testing
@@ -87,9 +66,8 @@ Comprehensive guides for working with the Provide Foundry, from basic installati
 3. **[Documentation](documentation.md)** - Create great docs
 
 ### Advanced Path
-1. **[Release Management](releases.md)** - Automate releases
-2. **[Architecture Patterns](../foundry/architecture.md)** - Advanced patterns
-3. **[Contributing](../../CONTRIBUTING.md)** - Contribute to the foundry
+1. **[Architecture Patterns](../foundry/architecture.md)** - Advanced patterns
+2. **[Contributing](../../CONTRIBUTING.md)** - Contribute to the foundry
 
 ---
 

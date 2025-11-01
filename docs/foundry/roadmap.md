@@ -88,7 +88,6 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
 
 - **pyvider-cloud**: Cloud-native deployment tools
 - **pyvider-registry**: Provider registry and discovery
-- **pyvider-migrate**: Migration tools for existing providers
 - **tofusoup**: Enhanced conformance testing (expansion)
 - **plating**: Advanced documentation generation (expansion)
 
@@ -147,7 +146,6 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
 - **Integration**:
   - Enterprise identity providers
   - Existing tool chain integration
-  - Legacy system migration
   - API gateway support
 
 ### Advanced Tooling

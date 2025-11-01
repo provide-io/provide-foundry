@@ -381,36 +381,6 @@ def my_view(request):
     # View logic here
 ```
 
-## Migration Guide
-
-### From Standard Logging
-
-```python
-# Before: Standard Python logging
-import logging
-logger = logging.getLogger(__name__)
-logger.info("User %s logged in", user.id)
-
-# After: Foundation logging
-from provide.foundation import logger
-log = logger.get_logger(__name__)
-log.info("User logged in", user_id=user.id)
-```
-
-### From Structlog
-
-```python
-# Before: Direct structlog usage
-import structlog
-logger = structlog.get_logger()
-logger.info("Processing request", user_id=123)
-
-# After: Foundation (built on structlog but enhanced)
-from provide.foundation import logger
-log = logger.get_logger(__name__)
-log.info("Processing request", user_id=123)  # Same API, more features
-```
-
 ## API Reference
 
 For complete API documentation, see:

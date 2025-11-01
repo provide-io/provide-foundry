@@ -6,9 +6,7 @@ This guide is for developers working on the shared theme system itself. If you'r
 
 ### Namespace Package Distribution
 
-The shared theme is distributed as a **Python namespace package** at `provide.foundry.theme`. Theme files are accessed directly from the installed package, eliminating the need for file synchronization or copying.
-
-**Design Decision**: This approach solves the MkDocs serve 404 problem while providing immediate updates during development through editable installs. All projects share a single source of truth.
+The shared theme is distributed as a **Python namespace package** at `provide.foundry.theme`. Theme files are accessed directly from the installed package, eliminating the need for file synchronization or copying. During development, `uv pip install -e .` provides immediate access to theme changes.
 
 ### File Structure
 

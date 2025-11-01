@@ -729,30 +729,6 @@ class BatchableResource:
 6. **Follow Terraform conventions** - Use standard Terraform patterns and naming
 7. **Optimize API calls** - Batch operations and cache responses when possible
 
-## Migration Guide
-
-### From Terraform Plugin SDK
-
-```python
-# Old (Go SDK)
-func resourceUserCreate(d *schema.ResourceData, m interface{}) error {
-    name := d.Get("name").(string)
-    // ... API call ...
-    d.SetId(user.ID)
-    return nil
-}
-
-# New (Pyvider)
-@resource
-class User:
-    name: CtyString = Attribute(required=True)
-    id: CtyString = Attribute(computed=True)
-
-    def create(self, config) -> dict:
-        user = self.provider.client.create_user(config.name)
-        return {"id": user.id, "name": config.name}
-```
-
 ## Examples
 
 For complete examples, see:

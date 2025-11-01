@@ -1,5 +1,5 @@
 # Provide Foundry Documentation Makefile
-# Comprehensive build system for federated documentation
+# Comprehensive build system for ecosystem documentation
 
 # ==================== Configuration ====================
 
@@ -70,12 +70,12 @@ help: ## Show this help message
 # ==================== Documentation Targets ====================
 
 .PHONY: docs-build
-docs-build: ## Build aggregated documentation (using mkdocs-monorepo)
-	@echo "$(BLUE)🏗️ Building aggregated documentation...$(NC)"
+docs-build: ## Build documentation (using mkdocs-monorepo)
+	@echo "$(BLUE)🏗️ Building documentation...$(NC)"
 	@$(MAKE) check-deps
 	@$(MKDOCS) build --clean
 	@echo "$(GREEN)✅ Documentation built successfully!$(NC)"
-	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin handles aggregation automatically$(NC)"
+	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin includes all projects automatically$(NC)"
 	@echo "Output: $(FOUNDRY_ROOT)/$(DOCS_OUTPUT)"
 
 .PHONY: docs-serve
@@ -83,7 +83,7 @@ docs-serve: ## Serve documentation locally for development (using mkdocs-monorep
 	@echo "$(BLUE)🚀 Starting documentation development server...$(NC)"
 	@$(MAKE) check-deps
 	@echo "$(GREEN)📖 Documentation available at: http://localhost:8000$(NC)"
-	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin handles aggregation automatically$(NC)"
+	@echo "$(BLUE)ℹ️  mkdocs-monorepo plugin includes all projects automatically$(NC)"
 	@echo "$(YELLOW)🛑 Press Ctrl+C to stop the server$(NC)"
 	@$(MKDOCS) serve
 
@@ -416,11 +416,10 @@ pristine: ## Complete reset to fresh state (DANGEROUS)
 # ==================== Special Targets ====================
 
 # Quick aliases for common commands
-.PHONY: build serve clean watch
+.PHONY: build serve clean
 build: docs-build   ## Alias for docs-build
 serve: docs-serve   ## Alias for docs-serve
 clean: docs-clean   ## Alias for docs-clean
-watch: docs-watch   ## Alias for docs-watch
 
 # Cache cleaning aliases
 .PHONY: clean-cache clean-python clean-uv

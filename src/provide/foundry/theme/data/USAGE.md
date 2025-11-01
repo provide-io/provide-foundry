@@ -213,7 +213,7 @@ plugins:
       include_dir: ../provide-foundry/shared-theme/data
 ```
 
-For the aggregated documentation hub (provide-foundry):
+For the documentation hub (provide-foundry):
 
 ```yaml
 plugins:

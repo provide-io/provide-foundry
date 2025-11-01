@@ -214,7 +214,7 @@ Releases are coordinated across the ecosystem:
 1. **Version coordination**: Ensure compatible versions across packages
 2. **Testing**: Run full integration test suite
 3. **Documentation**: Update all relevant documentation
-4. **Changelog**: Consolidate changes across packages
+4. **Changelog**: Compile changes across packages
 5. **Announcement**: Communicate changes to users
 
 ## 📞 Getting Help
