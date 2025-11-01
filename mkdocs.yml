@@ -65,7 +65,7 @@ plugins:
   - monorepo
   - autorefs
   - macros:
-      include_dir: shared-theme/data
+      include_dir: src/provide/foundry/theme/data
       # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
       j2_variable_start_string: '{$'
       j2_variable_end_string: '$}'
@@ -99,14 +99,14 @@ plugins:
             show_if_no_docstring: false
 
 extra_css:
-  - shared-theme/stylesheets/provide-theme.css
-  - shared-theme/stylesheets/termynal.css
+  - src/provide/foundry/theme/stylesheets/provide-theme.css
+  - src/provide/foundry/theme/stylesheets/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - shared-theme/javascripts/mermaid-init.js
-  - shared-theme/javascripts/termynal.js
-  - shared-theme/javascripts/custom.js
+  - src/provide/foundry/theme/javascripts/mermaid-init.js
+  - src/provide/foundry/theme/javascripts/termynal.js
+  - src/provide/foundry/theme/javascripts/custom.js
 
 extra:
   version:
@@ -202,11 +202,7 @@ nav:
   # - API Reference:
   #   - api/index.md
 
-# Hooks disabled - mkdocs-monorepo plugin handles aggregation automatically
-# hooks:
-#   - scripts/docs_hooks.py
-
 # Watch configuration - monorepo plugin handles watching included projects
 watch:
   - docs/
-  - shared-theme/
+  - src/provide/foundry/theme/

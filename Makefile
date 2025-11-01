@@ -6,7 +6,6 @@
 # Directories
 FOUNDRY_ROOT := $(shell pwd)
 DOCS_SOURCE := docs
-DOCS_AGGREGATED := .docs_aggregated
 DOCS_OUTPUT := site
 SCRIPTS_DIR := scripts
 
@@ -32,7 +31,7 @@ else
     PLATFORM := windows
 endif
 
-# Projects to aggregate (from docs_manifest.yaml)
+# Ecosystem projects
 PROJECTS := foundation testkit flavorpack pyvider pyvider-cty pyvider-hcl pyvider-rpcplugin wrknv
 
 # Cache configuration
@@ -94,41 +93,12 @@ docs-clean: ## Clean all documentation artifacts
 	@rm -rf $(DOCS_OUTPUT)
 	@echo "$(GREEN)✅ Documentation artifacts cleaned$(NC)"
 
-.PHONY: docs-watch
-docs-watch: ## Watch and rebuild docs automatically (development)
-	@echo "$(BLUE)👀 Starting documentation watch mode...$(NC)"
-	@$(MAKE) check-deps
-	@$(PYTHON) $(SCRIPTS_DIR)/docs_aggregator.py watch
-
 .PHONY: docs-validate
 docs-validate: ## Validate documentation structure and links
 	@echo "$(BLUE)🔍 Validating documentation...$(NC)"
 	@$(MAKE) check-deps
-	@$(MAKE) docs-collect
 	@$(MKDOCS) build --strict
 	@echo "$(GREEN)✅ Documentation validation passed$(NC)"
-
-# ==================== Individual Project Documentation ====================
-
-.PHONY: docs-foundation
-docs-foundation: ## Build only Foundation documentation
-	@echo "$(BLUE)📦 Building Foundation documentation...$(NC)"
-	@cd ../provide-foundation && $(MKDOCS) build
-
-.PHONY: docs-flavorpack
-docs-flavorpack: ## Build only FlavorPack documentation
-	@echo "$(BLUE)📦 Building FlavorPack documentation...$(NC)"
-	@cd ../flavorpack && $(MKDOCS) build
-
-.PHONY: docs-pyvider
-docs-pyvider: ## Build only PyVider documentation
-	@echo "$(BLUE)📦 Building PyVider documentation...$(NC)"
-	@cd ../pyvider && $(MKDOCS) build
-
-.PHONY: docs-testkit
-docs-testkit: ## Build only TestKit documentation
-	@echo "$(BLUE)📦 Building TestKit documentation...$(NC)"
-	@cd ../provide-testkit && $(MKDOCS) build
 
 # ==================== Development Targets ====================
 
@@ -244,7 +214,6 @@ info: ## Show build system information
 	@echo "MkDocs: $(shell $(MKDOCS) --version 2>&1 || echo 'Not installed')"
 	@echo "Foundry Root: $(FOUNDRY_ROOT)"
 	@echo "Documentation Source: $(DOCS_SOURCE)"
-	@echo "Aggregated Docs: $(DOCS_AGGREGATED)"
 	@echo "Build Output: $(DOCS_OUTPUT)"
 	@echo ""
 	@echo "Available Projects:"
