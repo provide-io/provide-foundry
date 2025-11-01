@@ -28,7 +28,8 @@ The documentation system uses a modern, DRY approach with shared configuration:
 ### Architecture Overview
 
 - **Shared Base Configuration** (`base-mkdocs.yml`) - Common theme, plugins, and extensions
-- **Centralized Theme** (`shared-theme/`) - Single source for CSS, JavaScript, and assets
+- **Centralized Theme** (`src/provide/foundry/theme/`) - Namespace package with CSS, JavaScript, and assets
+  - Install: `uv pip install -e .` for editable development
 - **Monorepo Plugin** - Automatic aggregation of all project documentation
 - **Auto-Generated API Docs** - Build-time generation using mkdocs-gen-files
 - **Shared Makefile** (`Makefile.docs.inc`) - Standardized build targets
@@ -83,7 +84,14 @@ provide-foundry/                    # Documentation hub
 ├── Makefile.docs.inc              # Shared documentation targets
 ├── scripts/
 │   └── gen_ref_pages.py          # Shared API doc generator
-├── shared-theme/                  # Centralized theme assets
+├── src/provide/foundry/           # Namespace package
+│   ├── __init__.py
+│   ├── py.typed
+│   ├── docs/
+│   │   ├── __init__.py
+│   │   └── gen_ref_pages.py      # API documentation generator
+│   └── theme/                     # Centralized theme assets
+│       ├── __init__.py
 │   ├── stylesheets/
 │   ├── javascripts/
 │   └── data/
@@ -163,12 +171,10 @@ The provide.io ecosystem follows a layered architecture:
    plugins:
      - gen-files:
          scripts:
-           - ../provide-foundry/scripts/gen_ref_pages.py
+           - docs/scripts/gen_api.py  # Wrapper imports from provide.foundry.docs
      - literate-nav:
          nav_file: SUMMARY.md
    ```
-
-4. **Register in docs_manifest.yaml** for aggregated site inclusion
 
 ### Documentation Guidelines
 

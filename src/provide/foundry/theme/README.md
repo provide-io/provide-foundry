@@ -4,59 +4,61 @@ This directory contains the shared MkDocs Material theme used across all provide
 
 ## Quick Start
 
-The shared theme uses a **push-based distribution system**. Theme files are synced from provide-foundry into each project's `docs/.shared-theme/` directory.
+The shared theme is distributed as a **Python namespace package**. Theme files are accessed directly from the `provide.foundry.theme` package installed in editable mode.
 
-### Step 1: Sync Theme Files
+### Step 1: Install provide-foundry Package
 
 ```bash
 cd provide-foundry
-python scripts/sync_theme.py sync --all              # Sync to all projects
-python scripts/sync_theme.py sync --project plating  # Sync to specific project
-python scripts/sync_theme.py status                  # Check sync status
+uv pip install -e .
 ```
 
-### Step 2: Configure Your Project
+### Step 2: Use Shared Base Configuration
 
-Add to your project's `mkdocs.yml`:
+The simplest approach is to inherit from `base-mkdocs.yml`, which already includes theme configuration:
 
 ```yaml
+# your-project/mkdocs.yml
+INHERIT: ../provide-foundry/base-mkdocs.yml
+
+# Project-specific configuration
+site_name: Your Project Documentation
+site_url: https://foundry.provide.io/your-project/
+```
+
+### Step 3: Custom Configuration (Advanced)
+
+If you need custom theme setup without inheriting base-mkdocs.yml:
+
+```python
+# your-project/docs/scripts/get_theme_dir.py
+from provide.foundry.theme import THEME_DIR
+
+# Use THEME_DIR in your build scripts
+```
+
+```yaml
+# your-project/mkdocs.yml
 theme:
   name: material
   # ... other theme config ...
 
 extra_css:
-  - .shared-theme/stylesheets/provide-theme.css
-  - .shared-theme/stylesheets/termynal.css
+  - !relative $THEME_DIR/stylesheets/provide-theme.css
+  - !relative $THEME_DIR/stylesheets/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - .shared-theme/javascripts/mermaid-init.js
-  - .shared-theme/javascripts/termynal.js
-  - .shared-theme/javascripts/custom.js
-
-plugins:
-  - search
-  - mkdocstrings:
-      handlers:
-        python:
-          options:
-            show_source: true
-            show_root_heading: true
-  - macros:
-      include_dir: docs/.shared-theme/data  # Note: relative to project root
-```
-
-### Step 3: Add to .gitignore
-
-```gitignore
-# Synced theme files (source: provide-foundry/shared-theme/)
-docs/.shared-theme/
+  - !relative $THEME_DIR/javascripts/mermaid-init.js
+  - !relative $THEME_DIR/javascripts/termynal.js
+  - !relative $THEME_DIR/javascripts/custom.js
 ```
 
 ## Structure
 
 ```
-shared-theme/
+src/provide/foundry/theme/
+├── __init__.py               # Exposes THEME_DIR constant
 ├── stylesheets/
 │   ├── provide-theme.css     # Main theme CSS
 │   └── termynal.css          # Terminal simulator styles
@@ -158,12 +160,12 @@ Use YAML data files to separate content from data:
 
 ## Customization
 
-Individual projects can override or extend the shared theme by adding their own CSS after the shared theme:
+Individual projects can override or extend the shared theme by adding their own CSS:
 
 ```yaml
 extra_css:
-  - ../../provide-foundry/shared-theme/stylesheets/provide-theme.css
-  - ../../provide-foundry/shared-theme/stylesheets/termynal.css
+  - !relative $THEME_DIR/stylesheets/provide-theme.css
+  - !relative $THEME_DIR/stylesheets/termynal.css
   - stylesheets/project-specific.css  # Project overrides
 ```
 
@@ -226,37 +228,34 @@ Hello from my_app!
 
 ## Maintenance
 
-The shared theme is maintained in the `provide-foundry` repository. Updates are distributed to projects using the sync script.
+The shared theme is maintained in the `provide-foundry` repository as a namespace package.
 
 ### Updating the Theme
 
-After editing theme files in `provide-foundry/shared-theme/`:
+After editing theme files in `src/provide/foundry/theme/`:
 
 ```bash
 cd provide-foundry
 
-# Test changes locally first
+# Test changes locally
 mkdocs serve
 
-# Sync to all projects
-python scripts/sync_theme.py sync --all
-
-# Verify sync
-python scripts/sync_theme.py status
+# Changes are immediately available to all projects
+# (since they install provide-foundry in editable mode)
 
 # Test a project
 cd ../plating
 mkdocs serve  # Check http://127.0.0.1:8009
 ```
 
-### Why Push-Based Distribution?
+### Why Namespace Package?
 
-The original "pull" model (`../provide-foundry/shared-theme/`) didn't work with `mkdocs serve` because:
-- MkDocs cannot serve files from parent directories (security restriction)
-- Terminal animations and shared assets returned 404 errors
-- Local development testing was broken
-
-The push-based model copies theme files into each project's `docs/.shared-theme/` directory, allowing `mkdocs serve` to work correctly
+The namespace package approach provides:
+- **Direct access**: No file copying or syncing required
+- **Editable installs**: `uv pip install -e .` makes changes immediately available
+- **Type safety**: `from provide.foundry.theme import THEME_DIR` is type-checked
+- **No gitignore needed**: No generated files in project directories
+- **Simpler maintenance**: Single source of truth for theme files
 
 ### Adding Dependencies
 

@@ -52,9 +52,9 @@ The provide.io ecosystem is a multi-package Python workspace with three layers:
 ## Documentation System
 
 This repository aggregates documentation from all ecosystem packages using:
-- `docs_aggregator.py` script that collects docs from sibling projects
-- `docs_manifest.yaml` defining which projects to include
-- MkDocs Material for rendering unified documentation site
+- **mkdocs-monorepo plugin** - Automatic aggregation via `!include` directives
+- **MkDocs Material** - Rendering unified documentation site
+- **Shared base configuration** - All projects inherit from `base-mkdocs.yml`
 - Individual packages maintain their own `docs/` directories
 
 ## Key Commands
@@ -64,7 +64,6 @@ This repository aggregates documentation from all ecosystem packages using:
 make docs-serve     # Development server with auto-reload
 make docs-build     # Production build
 make docs-validate  # Validate links and structure
-make docs-collect   # Re-aggregate from projects
 ```
 
 ### Maintenance Commands
@@ -85,7 +84,7 @@ make test-projects  # Test individual project builds
 
 - **Python 3.11+** required across ecosystem
 - **Modern typing**: Use `str | None`, not `Optional[str]`
-- **No legacy code**: No backward compatibility or migration logic
+- **Code modernization**: No backward compatibility or migration logic
 - **Constants pattern**: No inline defaults - use `constants.py` or `defaults.py`
 - **Future annotations**: `from __future__ import annotations` encouraged
 

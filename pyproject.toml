@@ -7,16 +7,18 @@
 [project]
 name = "provide-foundry"
 dynamic = ["version"]
-description = "Documentation hub for the provide.io ecosystem"
+description = "Shared documentation infrastructure for provide.io ecosystem"
 authors = [
-    {name = "Provide Technologies", email = "hello@provide.io"},
+    {name = "Tim Perkins", email = "code@tim.life"},
+    {name = "provide.io maintainers"},
 ]
 readme = "README.md"
 requires-python = ">=3.11"
-license = "Apache-2.0"
+license = {text = "Apache-2.0"}
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -45,11 +47,22 @@ docs = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = {find = {where = ["src"]}}
 
 [tool.setuptools.dynamic]
 version = {file = "VERSION"}
+
+[tool.setuptools.package-data]
+"provide.foundry.theme" = [
+    "assets/**/*",
+    "data/**/*",
+    "javascripts/**/*",
+    "stylesheets/**/*",
+]
 
 [tool.pytest.ini_options]
 log_cli = true
@@ -64,4 +77,21 @@ markers = [
     "integration: marks integration tests",
     "unit: marks unit tests",
 ]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+select = ["E", "F", "W", "I", "UP", "ANN", "B", "C90", "SIM", "PTH", "RUF"]
+ignore = ["ANN101", "ANN102", "ANN401"]
+exclude = [".venv", "workenv", "build", "dist", ".git", "site"]
+
+[tool.ruff.per-file-ignores]
+"tests/**/*.py" = ["ANN"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+exclude = ["workenv", ".venv", "build", "dist", "site"]
 

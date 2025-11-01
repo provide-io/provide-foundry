@@ -46,7 +46,7 @@ provide-io/
 #### Python Requirements
 - **Python 3.11+**: All code must use modern Python features
 - **Type Hints**: Full type annotations required (`str | None`, not `Optional[str]`)
-- **No Legacy**: No backward compatibility code or migration logic
+- **Modern Only**: No backward compatibility code or migration logic
 - **Modern Patterns**: Use `attrs` for data classes, async where appropriate
 
 #### Code Quality

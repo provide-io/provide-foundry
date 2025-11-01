@@ -151,7 +151,7 @@ get_hub().register_processor(CustomProcessor())
 
 The foundry prioritizes clean, modern code over backward compatibility:
 
-- **No Migration Code**: Implement the target state directly
+- **Direct Implementation**: Implement the target state directly
 - **Modern Python Features**: Use Python 3.11+ features without hesitation
 - **Clean Abstractions**: Don't compromise design for compatibility
 - **Breaking Changes**: Accept breaking changes to improve the design
@@ -161,7 +161,7 @@ The foundry prioritizes clean, modern code over backward compatibility:
 def process_items(items: list[Item]) -> dict[str, Any]:
     return {item.name: item.value for item in items}
 
-# Bad: Legacy compatibility
+# Bad: Backward compatibility
 def process_items(items):
     # Type: (List[Item]) -> Dict[str, Any]
     return dict((item.name, item.value) for item in items)

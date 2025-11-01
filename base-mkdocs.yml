@@ -82,7 +82,7 @@ plugins:
   - autorefs
 
   - macros:
-      include_dir: ../provide-foundry/shared-theme/data
+      include_dir: ../provide-foundry/src/provide/foundry/theme/data
       # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
       j2_variable_start_string: '{$'
       j2_variable_end_string: '$}'
@@ -163,18 +163,18 @@ markdown_extensions:
       mode: view
 
 # Extra CSS
-# Projects reference centralized theme from provide-foundry
+# Projects reference centralized theme from provide-foundry namespace package
 extra_css:
-  - ../provide-foundry/shared-theme/stylesheets/provide-theme.css
-  - ../provide-foundry/shared-theme/stylesheets/termynal.css
+  - ../provide-foundry/src/provide/foundry/theme/stylesheets/provide-theme.css
+  - ../provide-foundry/src/provide/foundry/theme/stylesheets/termynal.css
   - stylesheets/extra.css  # Project-specific overrides
 
 # Extra JavaScript
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - ../provide-foundry/shared-theme/javascripts/mermaid-init.js
-  - ../provide-foundry/shared-theme/javascripts/termynal.js
-  - ../provide-foundry/shared-theme/javascripts/custom.js
+  - ../provide-foundry/src/provide/foundry/theme/javascripts/mermaid-init.js
+  - ../provide-foundry/src/provide/foundry/theme/javascripts/termynal.js
+  - ../provide-foundry/src/provide/foundry/theme/javascripts/custom.js
 
 # Validation
 validation:
