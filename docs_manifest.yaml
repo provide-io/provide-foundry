@@ -11,6 +11,10 @@ projects:
     nav_title: Foundation
     description: "Core telemetry and logging infrastructure"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: docs/reference/gen_ref_pages.py
 
   testkit:
     source: ../provide-testkit
@@ -18,6 +22,10 @@ projects:
     nav_title: TestKit
     description: "Testing utilities and fixtures for the foundry"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   # FlavorPack - Packaging system
   flavorpack:
@@ -26,6 +34,10 @@ projects:
     nav_title: FlavorPack
     description: "Progressive Secure Package Format (PSPF/2025) packaging system"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   # PyVider Framework - Terraform provider framework
   pyvider:
@@ -34,6 +46,10 @@ projects:
     nav_title: PyVider
     description: "Python framework for building Terraform providers"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   pyvider-cty:
     source: ../pyvider-cty
@@ -41,6 +57,10 @@ projects:
     nav_title: PyVider CTY
     description: "CTY type system bindings for PyVider"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   pyvider-hcl:
     source: ../pyvider-hcl
@@ -48,6 +68,10 @@ projects:
     nav_title: PyVider HCL
     description: "HCL parsing and manipulation for PyVider"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: docs/reference/gen_ref_pages.py
 
   pyvider-rpcplugin:
     source: ../pyvider-rpcplugin
@@ -55,6 +79,10 @@ projects:
     nav_title: PyVider RPC Plugin
     description: "RPC plugin implementation for PyVider providers"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: docs/reference/gen_ref_pages.py
 
   # Development Tools
   wrknv:
@@ -63,6 +91,10 @@ projects:
     nav_title: WrkNv
     description: "Workspace environment management tool"
     enabled: true
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   # Optional/Future Projects (disabled for now)
   pyvider-components:
@@ -71,6 +103,10 @@ projects:
     nav_title: PyVider Components
     description: "Reusable components for PyVider providers"
     enabled: false
+    api_docs:
+      enabled: true
+      method: plating
+      note: "Uses PlatingAPI for Terraform provider documentation"
 
   plating:
     source: ../plating
@@ -78,6 +114,10 @@ projects:
     nav_title: Plating
     description: "Template management and code generation"
     enabled: false
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   tofusoup:
     source: ../tofusoup
@@ -85,6 +125,10 @@ projects:
     nav_title: TofuSoup
     description: "OpenTofu/Terraform configuration management"
     enabled: false
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
 
   supsrc:
     source: ../supsrc
@@ -92,6 +136,21 @@ projects:
     nav_title: SupSrc
     description: "Source code management utilities"
     enabled: false
+    api_docs:
+      enabled: true
+      method: gen-files
+      script: ../provide-foundry/scripts/gen_ref_pages.py
+
+  terraform-provider-pyvider:
+    source: ../terraform-provider-pyvider
+    target: terraform-provider-pyvider
+    nav_title: Terraform Provider PyVider
+    description: "Reference implementation of a PyVider-based Terraform provider"
+    enabled: false
+    api_docs:
+      enabled: false
+      method: gen-files
+      note: "Project exists but does not have mkdocs.yml configuration yet"
 
 # Global settings for aggregation
 settings:
@@ -118,3 +177,26 @@ settings:
     - ".DS_Store"
     - "node_modules"
     - ".git"
+
+# API Documentation Generation Methods
+#
+# Projects can use one of these methods for API documentation:
+#
+# 1. gen-files (Recommended):
+#    Uses mkdocs-gen-files + literate-nav plugins to auto-generate API docs
+#    at build time from Python source code. Configure in mkdocs.yml:
+#      plugins:
+#        - gen-files:
+#            scripts:
+#              - ../provide-foundry/scripts/gen_ref_pages.py  # Shared template
+#        - literate-nav:
+#            nav_file: SUMMARY.md
+#
+# 2. plating (Terraform Providers Only):
+#    Uses PlatingAPI for Terraform-specific provider documentation.
+#    Generates function, resource, and data source documentation.
+#    Run: python scripts/regenerate_docs.py
+#
+# 3. manual:
+#    Hand-written API documentation files.
+#    Use when auto-generation doesn't meet specific needs.
