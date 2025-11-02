@@ -1,10 +1,10 @@
 # Provider Development Guide
 
-This guide covers the complete process of developing Terraform providers using the PyVider framework within the provide.foundation ecosystem.
+This guide covers the complete process of developing Terraform providers using the Pyvider framework within the provide.foundation ecosystem.
 
 ## Overview
 
-Developing Terraform providers with PyVider involves understanding the provider lifecycle, implementing resources and data sources, and following best practices for maintainable, production-ready providers.
+Developing Terraform providers with Pyvider involves understanding the provider lifecycle, implementing resources and data sources, and following best practices for maintainable, production-ready providers.
 
 ## Getting Started
 
@@ -481,10 +481,10 @@ with mock_api_response("create_server", {"id": "test-123"}):
 
 - **[Testing Guide](testing.md)** - Comprehensive testing strategies
 - **[Packaging Guide](packaging.md)** - Building and distributing providers
-- **[API Reference](../api/pyvider.md)** - Complete PyVider API documentation
+- **[API Reference](../api/pyvider.md)** - Complete Pyvider API documentation
 
 ## Community Resources
 
 - **Provider Registry**: Submit your provider to the Terraform Registry
 - **Community Forum**: Get help and share experiences
-- **Contributing**: Contribute to the PyVider framework itself
+- **Contributing**: Contribute to the Pyvider framework itself

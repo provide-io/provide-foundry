@@ -1,6 +1,6 @@
 # Testing Guide
 
-Comprehensive guide to testing Terraform providers built with PyVider and the provide.foundation ecosystem.
+Comprehensive guide to testing Terraform providers built with Pyvider and the provide.foundation ecosystem.
 
 ## Overview
 
@@ -721,6 +721,6 @@ jobs:
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development.md)** - Building providers with PyVider
+- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
 - **[API Reference](../api/testkit.md)** - Complete testing framework API
 - **[Packaging Guide](packaging.md)** - Preparing providers for distribution
