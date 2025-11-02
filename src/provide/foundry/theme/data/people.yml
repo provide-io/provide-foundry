@@ -11,7 +11,7 @@ core_team:
     bio: Lead architect and primary developer of the provide.io ecosystem
     focus_areas:
       - Foundation telemetry
-      - PyVider framework
+      - Pyvider framework
       - Developer tooling
       - Documentation
 

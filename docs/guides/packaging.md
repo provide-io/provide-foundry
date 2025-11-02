@@ -1,10 +1,10 @@
 # Packaging Guide
 
-Complete guide to packaging, distributing, and publishing Terraform providers built with PyVider and the provide.foundation ecosystem.
+Complete guide to packaging, distributing, and publishing Terraform providers built with Pyvider and the provide.foundation ecosystem.
 
 ## Overview
 
-This guide covers the entire packaging lifecycle for PyVider-based Terraform providers, from local development builds to publishing on the Terraform Registry.
+This guide covers the entire packaging lifecycle for Pyvider-based Terraform providers, from local development builds to publishing on the Terraform Registry.
 
 ## Project Structure
 
@@ -119,7 +119,7 @@ packages = ["src/terraform_provider_myservice"]
 [tool.hatch.version]
 path = "src/terraform_provider_myservice/__init__.py"
 
-# PyVider-specific configuration
+# Pyvider-specific configuration
 [tool.pyvider]
 provider_name = "myservice"
 binary_name = "terraform-provider-myservice"
@@ -737,6 +737,6 @@ pre-commit autoupdate
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development.md)** - Building providers with PyVider
+- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
 - **[Testing Guide](testing.md)** - Comprehensive testing strategies
-- **[API Reference](../api/pyvider.md)** - Complete PyVider API documentation
+- **[API Reference](../api/pyvider.md)** - Complete Pyvider API documentation

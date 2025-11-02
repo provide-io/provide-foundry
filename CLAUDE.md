@@ -92,7 +92,7 @@ make test-projects  # Test individual project builds
 
 Projects are interconnected:
 - Foundation packages provide core infrastructure to all others
-- PyVider packages depend on Foundation layer
+- Pyvider packages depend on Foundation layer
 - Tools can depend on both Foundation and Framework layers
 - All packages use unified workspace configuration in parent `pyproject.toml`
 

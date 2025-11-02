@@ -1,10 +1,10 @@
 # pyvider-components
 
-Standard reusable provider components for building Terraform providers with the PyVider framework in the provide.foundation ecosystem.
+Standard reusable provider components for building Terraform providers with the Pyvider framework in the provide.foundation ecosystem.
 
 ## Overview
 
-`pyvider-components` provides a comprehensive library of pre-built, reusable components for Terraform provider development. These components encapsulate common patterns, reduce boilerplate code, and ensure consistency across provider implementations built with the PyVider framework.
+`pyvider-components` provides a comprehensive library of pre-built, reusable components for Terraform provider development. These components encapsulate common patterns, reduce boilerplate code, and ensure consistency across provider implementations built with the Pyvider framework.
 
 ### Key Features
 
@@ -335,19 +335,19 @@ Automatically incorporate Terraform provider best practices without manual imple
 ### **Reduced Maintenance**
 Leverage maintained, tested components to reduce the maintenance burden of custom provider code.
 
-## Integration with PyVider
+## Integration with Pyvider
 
-pyvider-components is designed to work seamlessly with the PyVider framework:
+pyvider-components is designed to work seamlessly with the Pyvider framework:
 
-- **Decorator compatibility**: Components work with PyVider's `@resource` and `@data_source` decorators
-- **Schema integration**: Components automatically integrate with PyVider's schema system
+- **Decorator compatibility**: Components work with Pyvider's `@resource` and `@data_source` decorators
+- **Schema integration**: Components automatically integrate with Pyvider's schema system
 - **Type safety**: Full type annotations and validation support
 - **Testing framework**: Built-in testing utilities for component validation
 
 ## Related Documentation
 
 - **[API Reference](../api/pyvider-components.md)** - Complete API documentation
-- **[PyVider Integration](../packages/pyvider.md)** - PyVider framework documentation
+- **[Pyvider Integration](../packages/pyvider.md)** - Pyvider framework documentation
 - **[Component Guide](../guides/component-development.md)** - Building custom components
 
 ## Repository

@@ -4,7 +4,7 @@ Comprehensive guide to creating, maintaining, and publishing documentation for t
 
 ## Overview
 
-This guide covers documentation strategies, tooling, automation, and best practices for creating high-quality documentation across all provide.foundation projects, including PyVider-based Terraform providers and related tools.
+This guide covers documentation strategies, tooling, automation, and best practices for creating high-quality documentation across all provide.foundation projects, including Pyvider-based Terraform providers and related tools.
 
 ## Documentation Philosophy
 

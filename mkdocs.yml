@@ -178,11 +178,11 @@ nav:
   # FlavorPack - Packaging System
   - FlavorPack: '!include ../flavorpack/mkdocs.yml'
 
-  # PyVider Framework
-  - PyVider: '!include ../pyvider/mkdocs.yml'
-  - PyVider CTY: '!include ../pyvider-cty/mkdocs.yml'
-  - PyVider HCL: '!include ../pyvider-hcl/mkdocs.yml'
-  - PyVider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
+  # Pyvider Framework
+  - Pyvider: '!include ../pyvider/mkdocs.yml'
+  - Pyvider CTY: '!include ../pyvider-cty/mkdocs.yml'
+  - Pyvider HCL: '!include ../pyvider-hcl/mkdocs.yml'
+  - Pyvider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
 
   # Development Tools
   - WrkNv: '!include ../wrknv/mkdocs.yml'
