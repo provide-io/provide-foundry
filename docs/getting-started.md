@@ -18,9 +18,9 @@ Before you start, ensure you have:
 The fastest way to get started is to set up the entire foundry using our unified workspace:
 
 ```bash
-# Clone the foundry repository
-git clone https://github.com/provide-io/provide-io.git
-cd provide-io
+# Clone the workspace repository
+git clone https://github.com/provide-io/provide-workenv.git
+cd provide-workenv
 
 # Set up the unified development environment
 uv sync --extra all --extra dev
