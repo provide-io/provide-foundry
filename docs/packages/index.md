@@ -203,8 +203,8 @@ Install everything for foundry development:
 
 ```bash
 # Clone the foundry
-git clone https://github.com/provide-io/provide-io.git
-cd provide-io
+git clone https://github.com/provide-io/provide-workenv.git
+cd provide-workenv
 
 # Install all packages in editable mode
 uv sync --extra all --extra dev
