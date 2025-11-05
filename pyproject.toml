@@ -49,6 +49,13 @@ packages = {find = {where = ["src"]}}
 version = {file = "VERSION"}
 
 [tool.setuptools.package-data]
+"provide.foundry.config" = [
+    "base-mkdocs.yml",
+    "Makefile.docs.inc",
+]
+"provide.foundry.docs" = [
+    "*.py",
+]
 "provide.foundry.theme" = [
     "assets/**/*",
     "data/**/*",

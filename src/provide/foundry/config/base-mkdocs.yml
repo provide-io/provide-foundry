@@ -1,6 +1,6 @@
 # Base MkDocs Configuration for provide.io Ecosystem
 # This file contains shared configuration for all provide.io project documentation.
-# Individual projects should inherit from this using: INHERIT: ../provide-foundry/base-mkdocs.yml
+# Individual projects should inherit from this using: INHERIT: .provide/foundry/base-mkdocs.yml
 
 # Theme Configuration
 theme:
@@ -82,7 +82,7 @@ plugins:
   - autorefs
 
   - macros:
-      include_dir: ../provide-foundry/src/provide/foundry/theme/data
+      include_dir: .provide/foundry/theme/data
       # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
       j2_variable_start_string: '{$'
       j2_variable_end_string: '$}'
@@ -165,16 +165,16 @@ markdown_extensions:
 # Extra CSS
 # Projects reference centralized theme from provide-foundry namespace package
 extra_css:
-  - ../provide-foundry/src/provide/foundry/theme/stylesheets/provide-theme.css
-  - ../provide-foundry/src/provide/foundry/theme/stylesheets/termynal.css
+  - .provide/foundry/theme/stylesheets/provide-theme.css
+  - .provide/foundry/theme/stylesheets/termynal.css
   - stylesheets/extra.css  # Project-specific overrides
 
 # Extra JavaScript
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - ../provide-foundry/src/provide/foundry/theme/javascripts/mermaid-init.js
-  - ../provide-foundry/src/provide/foundry/theme/javascripts/termynal.js
-  - ../provide-foundry/src/provide/foundry/theme/javascripts/custom.js
+  - .provide/foundry/theme/javascripts/mermaid-init.js
+  - .provide/foundry/theme/javascripts/termynal.js
+  - .provide/foundry/theme/javascripts/custom.js
 
 # Validation
 validation:
