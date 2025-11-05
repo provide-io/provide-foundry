@@ -59,8 +59,8 @@ version = {file = "VERSION"}
 "provide.foundry.theme" = [
     "assets/**/*",
     "data/**/*",
-    "javascripts/**/*",
-    "stylesheets/**/*",
+    "js/**/*",
+    "css/**/*",
 ]
 
 [tool.pytest.ini_options]
