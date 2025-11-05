@@ -493,7 +493,7 @@ async def test_async():
 
 ## API Reference
 
-For detailed API documentation, see the [API Reference](../api/testkit.md).
+For detailed API documentation, see the [API Reference](../provide-testkit/reference/).
 
 ## Contributing
 

@@ -280,7 +280,7 @@ supsrc tui --repo /path/to/repo
 
 ## Related Documentation
 
-- **[API Reference](../api/supsrc.md)** - Complete API documentation
+- **[API Reference](../supsrc/reference/)** - Complete API documentation
 - **[Workflow Guide](../guides/git-workflows.md)** - Git workflow best practices
 - **[Configuration](../guides/supsrc-config.md)** - Configuration options and examples
 
