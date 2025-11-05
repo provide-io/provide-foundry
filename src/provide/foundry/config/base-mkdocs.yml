@@ -32,6 +32,10 @@ theme:
     text: Roboto
     code: Roboto Mono
 
+  # Logo
+  logo: .provide/foundry/theme/assets/images/officium-light.svg
+  favicon: .provide/foundry/theme/assets/images/officium-dark.svg
+
   # Material theme features
   features:
     # Navigation
@@ -165,16 +169,16 @@ markdown_extensions:
 # Extra CSS
 # Projects reference centralized theme from provide-foundry namespace package
 extra_css:
-  - .provide/foundry/theme/stylesheets/provide-theme.css
-  - .provide/foundry/theme/stylesheets/termynal.css
-  - stylesheets/extra.css  # Project-specific overrides
+  - .provide/foundry/theme/css/provide-theme.css
+  - .provide/foundry/theme/css/termynal.css
+  - css/extra.css  # Project-specific overrides
 
 # Extra JavaScript
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - .provide/foundry/theme/javascripts/mermaid-init.js
-  - .provide/foundry/theme/javascripts/termynal.js
-  - .provide/foundry/theme/javascripts/custom.js
+  - .provide/foundry/theme/js/mermaid-init.js
+  - .provide/foundry/theme/js/termynal.js
+  - .provide/foundry/theme/js/custom.js
 
 # Validation
 validation:

@@ -13,8 +13,8 @@ docs_dir: docs
 
 theme:
   name: material
-  logo: assets/logo.png
-  favicon: assets/favicon.ico
+  logo: src/provide/foundry/theme/assets/images/officium-light.svg
+  favicon: src/provide/foundry/theme/assets/images/officium-dark.svg
   features:
     - announce.dismiss
     - content.action.edit
@@ -62,6 +62,11 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - gen-files:
+      scripts:
+        - scripts/gen_monorepo_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
   - monorepo
   - autorefs
   - macros:
@@ -97,16 +102,19 @@ plugins:
             show_object_full_path: false
             show_category_heading: true
             show_if_no_docstring: false
+          import:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [std, py]
 
 extra_css:
-  - src/provide/foundry/theme/stylesheets/provide-theme.css
-  - src/provide/foundry/theme/stylesheets/termynal.css
+  - src/provide/foundry/theme/css/provide-theme.css
+  - src/provide/foundry/theme/css/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - src/provide/foundry/theme/javascripts/mermaid-init.js
-  - src/provide/foundry/theme/javascripts/termynal.js
-  - src/provide/foundry/theme/javascripts/custom.js
+  - src/provide/foundry/theme/js/mermaid-init.js
+  - src/provide/foundry/theme/js/termynal.js
+  - src/provide/foundry/theme/js/custom.js
 
 extra:
   version:
