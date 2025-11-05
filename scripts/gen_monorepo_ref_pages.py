@@ -26,9 +26,7 @@ CHILD_PROJECTS = {
 }
 
 
-def generate_reference_pages_for_project(
-    project_name: str, project_path: str
-) -> None:
+def generate_reference_pages_for_project(project_name: str, project_path: str) -> None:
     """Generate API reference pages for a single project.
 
     Args:
