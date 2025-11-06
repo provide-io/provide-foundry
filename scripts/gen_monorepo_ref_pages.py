@@ -22,6 +22,7 @@ CHILD_PROJECTS = {
     "pyvider-cty": "../pyvider-cty",
     "pyvider-hcl": "../pyvider-hcl",
     "pyvider-rpcplugin": "../pyvider-rpcplugin",
+    "pyvider-components": "../pyvider-components",
     "wrknv": "../wrknv",
 }
 
