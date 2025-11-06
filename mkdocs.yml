@@ -13,8 +13,9 @@ docs_dir: docs
 
 theme:
   name: material
-  logo: src/provide/foundry/theme/assets/images/officium-light.svg
-  favicon: src/provide/foundry/theme/assets/images/officium-dark.svg
+  custom_dir: .provide/foundry/theme
+  logo: assets/images/officium-light.svg
+  favicon: assets/images/officium-dark.svg
   features:
     - announce.dismiss
     - content.action.edit
