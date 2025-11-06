@@ -26,7 +26,7 @@ The Provide Foundry is a comprehensive collection of Python tools and frameworks
 
     Type-safe, well-documented APIs with excellent error messages and debugging support.
 
-    [:octicons-arrow-right-24: API Reference](api/)
+    <!-- [:octicons-arrow-right-24: API Reference](api/) -->
 
 -   :fontawesome-solid-heart:{ .lg .middle } **Open Source**
 
@@ -199,7 +199,7 @@ Join the community discussion for questions, ideas, and collaboration.
 ### :material-book-open: **Documentation**
 Comprehensive guides, tutorials, and API documentation for every package.
 
-[Explore Packages :octicons-arrow-right-24:](packages/){ .md-button }
+[Explore Packages :octicons-arrow-right-24:](packages/index.md){ .md-button }
 
 ---
 

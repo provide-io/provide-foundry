@@ -169,7 +169,7 @@ Production-ready plugin systems with comprehensive security, monitoring, and con
 
 ## Related Documentation
 
-- **[API Reference](../pyvider-rpcplugin/reference/)** - Complete API documentation
+- **[API Reference](../pyvider-rpcplugin/reference/index.md)** - Complete API documentation
 - **[Foundation Integration](../foundry/index.md)** - Foundation ecosystem patterns
 - **[Security Guide](../guides/security.md)** - Security configuration and best practices
 
