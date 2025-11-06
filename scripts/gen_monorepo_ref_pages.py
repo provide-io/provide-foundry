@@ -9,9 +9,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import mkdocs_gen_files
-
 from provide.foundation import logger
-
 
 # Define all child projects with their site_name values (used for directory prefixes)
 CHILD_PROJECTS = {
