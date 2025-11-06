@@ -113,6 +113,11 @@ plugins:
       add_print_site_banner: true
       enumerate_headings: true
       enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: ""
+      exclude:
+        - api/*
+        - "*/api/*"
 
 extra_css:
   - css/provide-theme.css
