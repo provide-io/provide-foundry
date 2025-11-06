@@ -96,43 +96,7 @@ UV is the recommended package manager for the Provide Foundry:
 
 ### Step 2: Python Version Management
 
-Ensure you have Python 3.11 or higher:
-
-=== "Using pyenv (Recommended)"
-
-    ```bash
-    # Install pyenv if not present
-    curl https://pyenv.run | bash
-
-    # Install Python 3.11
-    pyenv install 3.11.8
-    pyenv global 3.11.8
-
-    # Verify version
-    python --version  # Should show 3.11.8
-    ```
-
-=== "Using UV"
-
-    ```bash
-    # UV can manage Python versions
-    uv python install 3.11.8
-    uv python pin 3.11.8
-    ```
-
-=== "System Package Manager"
-
-    ```bash
-    # Ubuntu/Debian
-    sudo apt update
-    sudo apt install python3.11 python3.11-venv python3.11-dev
-
-    # CentOS/RHEL
-    sudo dnf install python3.11 python3.11-venv python3.11-devel
-
-    # macOS (Homebrew)
-    brew install python@3.11
-    ```
+--8<-- "provide-foundry/docs/_partials/python-version-setup.md"
 
 ### Step 3: Clone and Set Up Foundry
 
@@ -418,9 +382,9 @@ Add foundry tools to your shell:
 # Check Python version
 python --version
 
-# If wrong version, use pyenv
-pyenv install 3.11.8
-pyenv local 3.11.8
+# If wrong version, use uv
+uv python install 3.11
+uv python pin 3.11
 
 # Or specify python3.11 explicitly
 python3.11 -m venv .venv
