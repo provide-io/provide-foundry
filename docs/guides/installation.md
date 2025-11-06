@@ -62,41 +62,11 @@ uv add wrknv flavorpack
 
 ### Step 1: Install UV Package Manager
 
-UV is the recommended package manager for the Provide Foundry:
-
-=== "macOS"
-
-    ```bash
-    # Using Homebrew (recommended)
-    brew install uv
-
-    # Or using curl
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    ```
-
-=== "Linux"
-
-    ```bash
-    # Using curl
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-
-    # Or using pip (fallback)
-    pip install uv
-    ```
-
-=== "Windows"
-
-    ```powershell
-    # Using PowerShell
-    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-    # Or using pip (fallback)
-    pip install uv
-    ```
+--8<-- ".provide/foundry/docs/_partials/uv-installation.md"
 
 ### Step 2: Python Version Management
 
---8<-- "provide-foundry/docs/_partials/python-version-setup.md"
+--8<-- ".provide/foundry/docs/_partials/python-version-setup.md"
 
 ### Step 3: Clone and Set Up Foundry
 

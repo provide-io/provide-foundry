@@ -55,6 +55,7 @@ version = {file = "VERSION"}
 ]
 "provide.foundry.docs" = [
     "*.py",
+    "_partials/*.md",
 ]
 "provide.foundry.theme" = [
     "assets/**/*",

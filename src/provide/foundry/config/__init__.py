@@ -55,6 +55,7 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
     This function extracts to .provide/foundry/:
     - base-mkdocs.yml
     - theme/ (stylesheets, javascripts, data)
+    - docs/_partials/ (shared documentation snippets)
     - gen_ref_pages.py (for mkdocs-gen-files plugin)
 
     Args:
@@ -93,6 +94,30 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
 
     # Copy theme directory
     shutil.copytree(theme_src, theme_dst)
+
+    # Extract documentation partials
+    partials_src = files("provide.foundry.docs") / "_partials"
+    partials_dst = provide_foundry_dir / "docs" / "_partials"
+
+    # Remove existing partials directory if present
+    if partials_dst.exists():
+        shutil.rmtree(partials_dst)
+
+    # Create docs directory
+    (provide_foundry_dir / "docs").mkdir(exist_ok=True)
+
+    # Copy partials directory
+    if hasattr(partials_src, "__fspath__"):
+        shutil.copytree(Path(partials_src.__fspath__()), partials_dst)
+    else:
+        # Fallback for resource types that don't support __fspath__
+        partials_dst.mkdir(parents=True, exist_ok=True)
+        for partial in partials_src.iterdir():
+            if partial.name.endswith(".md"):
+                shutil.copy2(
+                    Path(str(partial)) if hasattr(partial, "__fspath__") else str(partial),
+                    partials_dst / partial.name,
+                )
 
     return base_mkdocs_dst
 
