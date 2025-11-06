@@ -427,4 +427,4 @@ The foundry should evolve gracefully:
 
 These principles guide every decision in the provide.io foundry. They ensure that the tools remain consistent, maintainable, and enjoyable to use as the foundry grows and evolves.
 
-Continue exploring with our [architecture overview](architecture.md) or see these principles in action in our [development guides](../guides/).
+Continue exploring with our [architecture overview](architecture.md) or see these principles in action in our [development guides](../guides/index.md).

@@ -71,7 +71,7 @@ plugins:
   - monorepo
   - autorefs
   - macros:
-      include_dir: src/provide/foundry/theme/data
+      include_dir: .provide/foundry/theme/data
       # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
       j2_variable_start_string: '{$'
       j2_variable_end_string: '$}'
@@ -109,14 +109,14 @@ plugins:
               domains: [std, py]
 
 extra_css:
-  - src/provide/foundry/theme/css/provide-theme.css
-  - src/provide/foundry/theme/css/termynal.css
+  - css/provide-theme.css
+  - css/termynal.css
 
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - src/provide/foundry/theme/js/mermaid-init.js
-  - src/provide/foundry/theme/js/termynal.js
-  - src/provide/foundry/theme/js/custom.js
+  - js/mermaid-init.js
+  - js/termynal.js
+  - js/custom.js
 
 extra:
   version:

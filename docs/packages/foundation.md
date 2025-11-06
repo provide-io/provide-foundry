@@ -385,10 +385,10 @@ def my_view(request):
 
 For complete API documentation, see:
 
-- **[Logger API](../provide-foundation/reference/provide/foundation/logger/)**: Complete logging interface
-- **[Configuration API](../provide-foundation/reference/provide/foundation/config/)**: Configuration management
-- **[Hub API](../provide-foundation/reference/provide/foundation/hub/)**: Component discovery
-- **[Error API](../provide-foundation/reference/provide/foundation/errors/)**: Error handling
+- **[Logger API](../provide-foundation/reference/provide/foundation/logger/index.md)**: Complete logging interface
+- **[Configuration API](../provide-foundation/reference/provide/foundation/config/index.md)**: Configuration management
+- **[Hub API](../provide-foundation/reference/provide/foundation/hub/index.md)**: Component discovery
+- **[Error API](../provide-foundation/reference/provide/foundation/errors/index.md)**: Error handling
 
 ## Related Packages
 
