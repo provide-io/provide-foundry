@@ -462,8 +462,8 @@ result = instance.main_method()
 
 ## Next Steps
 
-- [Installation Guide](getting-started/installation.md)
-- [User Guide](guides/user-guide.md)
+<!-- - [Installation Guide](getting-started/installation.md) -->
+<!-- - [User Guide](guides/user-guide.md) -->
 - [API Reference](reference/api/)
 ```
 
@@ -513,8 +513,8 @@ This creates the following structure:
 ## What's Next?
 
 Now that you've built your first application, try these next steps:
-- [Advanced Tutorial](advanced-tutorial.md)
-- [Deployment Guide](../guides/deployment.md)
+<!-- - [Advanced Tutorial](advanced-tutorial.md) -->
+<!-- - [Deployment Guide](../guides/deployment.md) -->
 - [API Reference](../reference/api/)
 ```
 

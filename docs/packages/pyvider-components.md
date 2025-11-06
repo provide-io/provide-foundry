@@ -348,7 +348,7 @@ pyvider-components is designed to work seamlessly with the Pyvider framework:
 
 - **[API Reference](../pyvider-components/reference/)** - Complete API documentation
 - **[Pyvider Integration](../packages/pyvider.md)** - Pyvider framework documentation
-- **[Component Guide](../guides/component-development.md)** - Building custom components
+<!-- - **[Component Guide](../guides/component-development.md)** --> - Building custom components
 
 ## Repository
 

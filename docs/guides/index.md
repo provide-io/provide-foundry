@@ -67,7 +67,7 @@ Comprehensive guides for working with the Provide Foundry, from basic installati
 
 ### Advanced Path
 1. **[Architecture Patterns](../foundry/architecture.md)** - Advanced patterns
-2. **[Contributing](../../CONTRIBUTING.md)** - Contribute to the foundry
+<!-- 2. **[Contributing](../../CONTRIBUTING.md)** - Contribute to the foundry -->
 
 ---
 

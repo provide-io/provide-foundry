@@ -222,8 +222,8 @@ TofuSoup integrates with other provide.foundation tools:
 ## Related Documentation
 
 - **[API Reference](../tofusoup/reference/)** - Complete API documentation
-- **[Testing Guide](../guides/conformance-testing.md)** - Best practices for conformance testing
-- **[Performance Testing](../guides/performance-testing.md)** - Performance benchmarking strategies
+<!-- - **[Testing Guide](../guides/conformance-testing.md)** --> - Best practices for conformance testing
+<!-- - **[Performance Testing](../guides/performance-testing.md)** --> - Performance benchmarking strategies
 
 ## Repository
 
