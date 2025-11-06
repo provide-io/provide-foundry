@@ -88,6 +88,7 @@ plugins:
             - ../pyvider-cty/src
             - ../pyvider-hcl/src
             - ../pyvider-rpcplugin/src
+            - ../pyvider-components/src
             - ../wrknv/src
           options:
             docstring_style: google
@@ -102,7 +103,7 @@ plugins:
             show_object_full_path: false
             show_category_heading: true
             show_if_no_docstring: false
-          import:
+          inventories:
             - url: https://docs.python.org/3/objects.inv
               domains: [std, py]
 
@@ -191,6 +192,7 @@ nav:
   - Pyvider CTY: '!include ../pyvider-cty/mkdocs.yml'
   - Pyvider HCL: '!include ../pyvider-hcl/mkdocs.yml'
   - Pyvider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
+  - Pyvider Components: '!include ../pyvider-components/mkdocs.yml'
 
   # Development Tools
   - WrkNv: '!include ../wrknv/mkdocs.yml'
@@ -206,6 +208,27 @@ nav:
   - Guides:
     - guides/index.md
     - Installation: guides/installation.md
+    - Documentation: guides/documentation.md
+    - Packaging: guides/packaging.md
+    - Provider Development: guides/provider-development.md
+    - Testing: guides/testing.md
+
+  # Package Overviews
+  - Packages:
+    - packages/index.md
+    - Foundation: packages/foundation.md
+    - TestKit: packages/testkit.md
+    - FlavorPack: packages/flavorpack.md
+    - Pyvider: packages/pyvider.md
+    - Pyvider CTY: packages/pyvider-cty.md
+    - Pyvider HCL: packages/pyvider-hcl.md
+    - Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
+    - Pyvider Components: packages/pyvider-components.md
+    - Plating: packages/plating.md
+    - TofuSoup: packages/tofusoup.md
+    - SupSrc: packages/supsrc.md
+    - WrkNv: packages/wrknv.md
+
   # - API Reference:
   #   - api/index.md
 
