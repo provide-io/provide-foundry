@@ -196,8 +196,8 @@ Plating integrates seamlessly with other provide.foundation tools:
 ## Related Documentation
 
 - **[API Reference](../plating/reference/)** - Complete API documentation
-- **[Template Gallery](../guides/template-gallery.md)** - Available templates and examples
-- **[Custom Templates](../guides/custom-templates.md)** - Creating your own templates
+<!-- - **[Template Gallery](../guides/template-gallery.md)** --> - Available templates and examples
+<!-- - **[Custom Templates](../guides/custom-templates.md)** --> - Creating your own templates
 
 ## Repository
 

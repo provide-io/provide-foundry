@@ -497,7 +497,7 @@ For detailed API documentation, see the [API Reference](../provide-testkit/refer
 
 ## Contributing
 
-We welcome contributions! See our [Contributing Guide](../../CONTRIBUTING.md) for details on:
+We welcome contributions! <!-- See our [Contributing Guide](../../CONTRIBUTING.md) for details on: -->
 - Adding new fixtures
 - Improving existing fixtures
 - Documentation improvements

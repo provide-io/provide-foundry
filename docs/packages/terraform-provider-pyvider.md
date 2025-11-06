@@ -69,7 +69,7 @@ The provider includes examples of:
 
 ## Documentation
 
-See the [Provider Tour](../pyvider-components/guides/provider-tour.md) and [Build Your Own](../pyvider-components/guides/build-your-own.md) guides for detailed walkthroughs.
+<!-- See the [Provider Tour](../pyvider-components/guides/provider-tour.md) --> and [Build Your Own](../pyvider-components/guides/build-your-own.md) guides for detailed walkthroughs.
 
 ## Related Packages
 

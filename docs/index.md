@@ -34,7 +34,7 @@ The Provide Foundry is a comprehensive collection of Python tools and frameworks
 
     Apache 2.0 licensed with active development and community contributions welcome.
 
-    [:octicons-arrow-right-24: Contributing](../CONTRIBUTING.md)
+    <!-- [:octicons-arrow-right-24: Contributing](../CONTRIBUTING.md) -->
 
 </div>
 
