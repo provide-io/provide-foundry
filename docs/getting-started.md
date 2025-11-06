@@ -11,7 +11,7 @@ Before you start, ensure you have:
 - **A Unix-like environment** (macOS, Linux, or WSL on Windows)
 
 !!! tip "Python Version"
-    The Provide Foundry uses modern Python features and requires 3.11+. We recommend using [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
+    The Provide Foundry uses modern Python features and requires 3.11+. We recommend using [UV](https://github.com/astral-sh/uv) to manage Python versions with `uv python install 3.11`.
 
 ## Quick Setup
 
