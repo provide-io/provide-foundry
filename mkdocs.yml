@@ -181,22 +181,29 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
 
-  # Foundation Layer - Using monorepo !include directives
-  - Foundation: '!include ../provide-foundation/mkdocs.yml'
-  - TestKit: '!include ../provide-testkit/mkdocs.yml'
+  # Core Infrastructure - Dropdown section
+  - Core Infrastructure:
+    - Foundation: '!include ../provide-foundation/mkdocs.yml'
+    - TestKit: '!include ../provide-testkit/mkdocs.yml'
 
-  # FlavorPack - Packaging System
-  - FlavorPack: '!include ../flavorpack/mkdocs.yml'
+  # Packaging System - Dropdown section
+  - Packaging:
+    - FlavorPack: '!include ../flavorpack/mkdocs.yml'
 
-  # Pyvider Framework
-  - Pyvider: '!include ../pyvider/mkdocs.yml'
-  - Pyvider CTY: '!include ../pyvider-cty/mkdocs.yml'
-  - Pyvider HCL: '!include ../pyvider-hcl/mkdocs.yml'
-  - Pyvider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
-  - Pyvider Components: '!include ../pyvider-components/mkdocs.yml'
+  # Pyvider Framework - Dropdown section
+  - Pyvider Framework:
+    - Pyvider: '!include ../pyvider/mkdocs.yml'
+    - Pyvider CTY: '!include ../pyvider-cty/mkdocs.yml'
+    - Pyvider HCL: '!include ../pyvider-hcl/mkdocs.yml'
+    - Pyvider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
+    - Pyvider Components: '!include ../pyvider-components/mkdocs.yml'
 
-  # Development Tools
-  - WrkNv: '!include ../wrknv/mkdocs.yml'
+  # Development Tools - Dropdown section
+  - Development Tools:
+    - WrkNv: '!include ../wrknv/mkdocs.yml'
+    - SupSrc: '!include ../supsrc/mkdocs.yml'
+    - TofuSoup: '!include ../tofusoup/mkdocs.yml'
+    - Plating: '!include ../plating/mkdocs.yml'
 
   # Foundry Information
   - Foundry:
@@ -209,10 +216,12 @@ nav:
   - Guides:
     - guides/index.md
     - Installation: guides/installation.md
+    - IDE Setup: guides/ide-setup.md
+    - Development Workflow: guides/development-workflow.md
+    - Testing Patterns: guides/testing-patterns.md
     - Documentation: guides/documentation.md
     - Packaging: guides/packaging.md
     - Provider Development: guides/provider-development.md
-    - Testing: guides/testing.md
 
   # Package Overviews
   - Packages:

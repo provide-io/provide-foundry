@@ -33,12 +33,14 @@ uv add pyvider[dev]
 ### Your First Provider
 
 ```python
-from pyvider import provider, resource, data_source
+from pyvider.providers import register_provider, BaseProvider
+from pyvider.resources import register_resource, BaseResource
+from pyvider.data_sources import register_data_source, BaseDataSource
 from pyvider.schema import Attribute, Block
 from pyvider.cty import CtyString, CtyNumber, CtyBool
 
-@provider
-class ExampleProvider:
+@register_provider("example")
+class ExampleProvider(BaseProvider):
     """A simple example provider."""
 
     # Provider configuration
@@ -61,8 +63,8 @@ class ExampleProvider:
             api_key=self.api_key
         )
 
-@resource
-class User:
+@register_resource("user")
+class User(BaseResource):
     """User resource management."""
 
     # Required attributes
@@ -157,8 +159,8 @@ class User:
         """Delete user."""
         self.provider.client.delete_user(state["id"])
 
-@data_source
-class Users:
+@register_data_source("users")
+class Users(BaseDataSource):
     """Users data source."""
 
     # Filter attributes

@@ -15,8 +15,8 @@ Every decision prioritizes the developer experience. This means:
 
 ```python
 # Good: Clear, intuitive API
-@resource
-class WebServer:
+@register_resource("webserver")
+class WebServer(BaseResource):
     port: int = Attribute(description="Port to listen on", default=8080)
 
 # Bad: Unclear, complex API
@@ -117,7 +117,10 @@ Make functionality easy to discover:
 
 ```python
 # Good: Clear public API
-from pyvider import provider, resource, data_source, function
+from pyvider.providers import register_provider
+from pyvider.resources import register_resource
+from pyvider.data_sources import register_data_source
+from pyvider.functions import register_function
 from pyvider.schema import Attribute, Block
 
 # Bad: Deep imports required

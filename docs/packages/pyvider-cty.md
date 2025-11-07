@@ -634,11 +634,11 @@ def test_user_processing():
 ### With pyvider
 
 ```python
-from pyvider import resource
+from pyvider.resources import register_resource, BaseResource
 from pyvider.cty import CtyString, CtyObject
 
-@resource
-class Database:
+@register_resource("database")
+class Database(BaseResource):
     """Database resource using CTY types."""
 
     config: CtyObject = Attribute(
