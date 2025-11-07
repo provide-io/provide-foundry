@@ -11,6 +11,10 @@ dev_addr: '127.0.0.1:8000'
 # Use standard docs directory for foundry-specific content
 docs_dir: docs
 
+# Ensure proper URL handling - converts .md links to HTML
+use_directory_urls: true
+strict: false
+
 theme:
   name: material
   custom_dir: .provide/foundry/theme
@@ -62,6 +66,7 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - autolinks
   - gen-files:
       scripts:
         - scripts/gen_monorepo_ref_pages.py
@@ -211,27 +216,27 @@ nav:
 
   # Core Infrastructure - Dropdown section
   - Core Infrastructure:
-    - Foundation: '!include ../provide-foundation/mkdocs.yml'
-    - TestKit: '!include ../provide-testkit/mkdocs.yml'
+    - foundation: '!include ../provide-foundation/mkdocs.yml'
+    - testkit: '!include ../provide-testkit/mkdocs.yml'
 
   # Packaging System - Dropdown section
   - Packaging:
-    - FlavorPack: '!include ../flavorpack/mkdocs.yml'
+    - flavorpack: '!include ../flavorpack/mkdocs.yml'
 
   # Pyvider Framework - Dropdown section
   - Pyvider Framework:
-    - Pyvider: '!include ../pyvider/mkdocs.yml'
-    - Pyvider CTY: '!include ../pyvider-cty/mkdocs.yml'
-    - Pyvider HCL: '!include ../pyvider-hcl/mkdocs.yml'
-    - Pyvider RPC Plugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
-    - Pyvider Components: '!include ../pyvider-components/mkdocs.yml'
+    - pyvider: '!include ../pyvider/mkdocs.yml'
+    - pyvider-cty: '!include ../pyvider-cty/mkdocs.yml'
+    - pyvider-hcl: '!include ../pyvider-hcl/mkdocs.yml'
+    - pyvider-rpcplugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
+    - pyvider-components: '!include ../pyvider-components/mkdocs.yml'
 
   # Development Tools - Dropdown section
   - Development Tools:
-    - WrkNv: '!include ../wrknv/mkdocs.yml'
-    - SupSrc: '!include ../supsrc/mkdocs.yml'
-    - TofuSoup: '!include ../tofusoup/mkdocs.yml'
-    - Plating: '!include ../plating/mkdocs.yml'
+    - wrknv: '!include ../wrknv/mkdocs.yml'
+    - supsrc: '!include ../supsrc/mkdocs.yml'
+    - tofusoup: '!include ../tofusoup/mkdocs.yml'
+    - plating: '!include ../plating/mkdocs.yml'
 
   # Foundry Information
   - Foundry:
