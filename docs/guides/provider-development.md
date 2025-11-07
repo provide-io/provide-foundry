@@ -37,13 +37,15 @@ uv sync --extra dev
 ### Basic Provider Structure
 
 ```python
-from pyvider import provider, resource, data_source
+from pyvider.providers import register_provider, BaseProvider
+from pyvider.resources import register_resource, BaseResource
+from pyvider.data_sources import register_data_source, BaseDataSource
 from pyvider.schema import Attribute, Block
 from pyvider.cty import CtyString, CtyNumber, CtyBool
 from provide.foundation import logger
 
-@provider
-class MyServiceProvider:
+@register_provider("myservice")
+class MyServiceProvider(BaseProvider):
     """Terraform provider for MyService API."""
 
     # Provider configuration
@@ -73,8 +75,8 @@ class MyServiceProvider:
 ### Resource Implementation
 
 ```python
-@resource("myservice_server")
-class ServerResource:
+@register_resource("myservice_server")
+class ServerResource(BaseResource):
     """Manages a MyService server instance."""
 
     # Required attributes
@@ -181,8 +183,8 @@ class ServerResource:
 ### Data Source Implementation
 
 ```python
-@data_source("myservice_image")
-class ImageDataSource:
+@register_data_source("myservice_image")
+class ImageDataSource(BaseDataSource):
     """Fetch information about available server images."""
 
     # Filter attributes
@@ -231,8 +233,8 @@ class ImageDataSource:
 ### Complex Schema Structures
 
 ```python
-@resource("myservice_application")
-class ApplicationResource:
+@register_resource("myservice_application")
+class ApplicationResource(BaseResource):
     """Application with complex configuration."""
 
     # Nested block configuration
@@ -284,8 +286,8 @@ class ServerResource:
 ```python
 from pyvider.validation import ValidationError
 
-@resource("myservice_database")
-class DatabaseResource:
+@register_resource("myservice_database")
+class DatabaseResource(BaseResource):
     """Database with custom validation."""
 
     name: CtyString = Attribute(required=True)

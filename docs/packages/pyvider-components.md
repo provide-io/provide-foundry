@@ -62,15 +62,16 @@ uv add pyvider-components[dev]
 ### Using Standard Components
 
 ```python
-from pyvider import provider, resource
+from pyvider.providers import register_provider, BaseProvider
+from pyvider.resources import register_resource
 from pyvider.components import (
     RestResourceComponent,
     OAuthAuthenticator,
     StandardAttributes
 )
 
-@provider
-class MyCloudProvider:
+@register_provider("mycloud")
+class MyCloudProvider(BaseProvider):
     """Provider using standard components."""
 
     # Use standard OAuth component
@@ -80,7 +81,7 @@ class MyCloudProvider:
         token_url="https://api.example.com/oauth/token"
     )
 
-@resource("mycloud_server")
+@register_resource("mycloud_server")
 class ServerResource(RestResourceComponent):
     """Server resource using REST component."""
 
@@ -139,7 +140,7 @@ class DatabaseComponent(BaseComponent):
         return conn.execute(query).fetchall()
 
 # Use custom component
-@resource("mydb_table")
+@register_resource("mydb_table")
 class TableResource(DatabaseComponent):
     """Database table resource."""
 

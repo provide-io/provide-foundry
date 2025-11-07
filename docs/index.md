@@ -72,16 +72,17 @@ Streamline your workflow with packaging, documentation, testing, and automation 
 ### Create a Terraform Provider
 
 ```python
-from pyvider import provider, resource, data_source
+from pyvider.providers import register_provider, BaseProvider
+from pyvider.resources import register_resource, BaseResource
 from pyvider.schema import Attribute
 
-@provider
-class MyProvider:
+@register_provider("myprovider")
+class MyProvider(BaseProvider):
     """A simple example provider."""
     pass
 
-@resource
-class ExampleResource:
+@register_resource("example")
+class ExampleResource(BaseResource):
     """An example resource."""
 
     name: str = Attribute(

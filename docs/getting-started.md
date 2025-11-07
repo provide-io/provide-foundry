@@ -48,11 +48,12 @@ Let's create a simple Terraform provider to see the framework in action:
 ### 1. Create a New Provider
 
 ```python title="my_provider.py"
-from pyvider import provider, resource
+from pyvider.providers import register_provider, BaseProvider
+from pyvider.resources import register_resource, BaseResource
 from pyvider.schema import Attribute
 
-@provider
-class HelloProvider:
+@register_provider("hello")
+class HelloProvider(BaseProvider):
     """A simple greeting provider."""
 
     # Provider configuration
@@ -62,8 +63,8 @@ class HelloProvider:
         required=True
     )
 
-@resource
-class Greeting:
+@register_resource("greeting")
+class Greeting(BaseResource):
     """A greeting resource."""
 
     # Resource schema

@@ -712,11 +712,11 @@ assert config1 is config2  # Same cached instance
 Use HCL parsing in Terraform providers:
 
 ```python
-from pyvider import resource
+from pyvider.resources import register_resource, BaseResource
 from pyvider.hcl import parse_hcl_string
 
-@resource
-class TerraformConfig:
+@register_resource("terraform_config")
+class TerraformConfig(BaseResource):
     """Resource for managing Terraform configurations."""
 
     content: CtyString = Attribute(

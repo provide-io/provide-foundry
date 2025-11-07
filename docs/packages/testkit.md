@@ -430,11 +430,11 @@ def test_logging_to_file(temp_directory):
 ### With pyvider
 
 ```python
-from pyvider import resource
+from pyvider.resources import register_resource, BaseResource
 from provide.testkit import mock_server
 
-@resource
-class TestResource:
+@register_resource("test")
+class TestResource(BaseResource):
     api_url: str
 
     def create(self):
