@@ -46,7 +46,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-    - navigation.expand
+    # - navigation.expand  # Disabled - causes issues with monorepo nested nav
     - navigation.path
     - navigation.indexes
     - navigation.top
@@ -54,7 +54,7 @@ theme:
 
     # Table of contents
     - toc.follow
-    - toc.integrate
+    # - toc.integrate  # Disabled - can interfere with navigation sidebar in monorepo
 
     # Search
     - search.suggest
