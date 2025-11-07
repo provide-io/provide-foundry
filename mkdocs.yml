@@ -25,7 +25,6 @@ theme:
     - content.tabs.link
     - content.tooltips
     - header.autohide
-    - navigation.expand
     - navigation.footer
     - navigation.indexes
     - navigation.instant
@@ -178,8 +177,37 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  - Home: index.md
-  - Getting Started: getting-started.md
+  # Documentation Section
+  - Documentation:
+      - index.md
+      - Getting Started: getting-started.md
+
+      # Guides
+      - Guides:
+          - guides/index.md
+          - Installation: guides/installation.md
+          - IDE Setup: guides/ide-setup.md
+          - Development Workflow: guides/development-workflow.md
+          - Testing Patterns: guides/testing-patterns.md
+          - Documentation: guides/documentation.md
+          - Packaging: guides/packaging.md
+          - Provider Development: guides/provider-development.md
+
+      # Package Overviews
+      - Packages:
+          - packages/index.md
+          - Foundation: packages/foundation.md
+          - TestKit: packages/testkit.md
+          - FlavorPack: packages/flavorpack.md
+          - Pyvider: packages/pyvider.md
+          - Pyvider CTY: packages/pyvider-cty.md
+          - Pyvider HCL: packages/pyvider-hcl.md
+          - Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
+          - Pyvider Components: packages/pyvider-components.md
+          - Plating: packages/plating.md
+          - TofuSoup: packages/tofusoup.md
+          - SupSrc: packages/supsrc.md
+          - WrkNv: packages/wrknv.md
 
   # Core Infrastructure - Dropdown section
   - Core Infrastructure:
@@ -211,33 +239,6 @@ nav:
     - Architecture: foundry/architecture.md
     - Design Principles: foundry/principles.md
     - Roadmap: foundry/roadmap.md
-
-  # Guides
-  - Guides:
-    - guides/index.md
-    - Installation: guides/installation.md
-    - IDE Setup: guides/ide-setup.md
-    - Development Workflow: guides/development-workflow.md
-    - Testing Patterns: guides/testing-patterns.md
-    - Documentation: guides/documentation.md
-    - Packaging: guides/packaging.md
-    - Provider Development: guides/provider-development.md
-
-  # Package Overviews
-  - Packages:
-    - packages/index.md
-    - Foundation: packages/foundation.md
-    - TestKit: packages/testkit.md
-    - FlavorPack: packages/flavorpack.md
-    - Pyvider: packages/pyvider.md
-    - Pyvider CTY: packages/pyvider-cty.md
-    - Pyvider HCL: packages/pyvider-hcl.md
-    - Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
-    - Pyvider Components: packages/pyvider-components.md
-    - Plating: packages/plating.md
-    - TofuSoup: packages/tofusoup.md
-    - SupSrc: packages/supsrc.md
-    - WrkNv: packages/wrknv.md
 
   # - API Reference:
   #   - api/index.md
