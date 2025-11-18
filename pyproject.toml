@@ -1,0 +1,110 @@
+#
+# provide-foundry pyproject.toml
+#
+# Documentation hub for the provide.io ecosystem
+#
+
+[project]
+name = "provide-foundry"
+dynamic = ["version"]
+description = "Shared documentation infrastructure for provide.io ecosystem"
+authors = [
+    {name = "Tim Perkins", email = "code@tim.life"},
+    {name = "provide.io maintainers"},
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "provide-testkit[standard,build,docs]",
+    "tomli>=2.2.1",
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.6.0",
+    "mkdocstrings[python]>=0.26.0",
+    "mkdocs-autorefs>=1.4.0",
+    "mkdocs-monorepo-plugin>=1.1.0",
+    "mkdocs-macros-plugin>=1.0.0",
+    "mkdocs-autolinks-plugin>=0.7.0",
+    "mike>=2.1.0",
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-literate-nav>=0.6.0",
+    "mkdocs-section-index>=0.3.0",
+    "mkdocs-htmlproofer-plugin>=1.3.0",
+]
+
+[project.urls]
+Homepage = "https://foundry.provide.io/provide-foundry/"
+Documentation = "https://foundry.provide.io/provide-foundry/"
+Repository = "https://foundry.provide.io/provide-foundry/repo"
+Issues = "https://foundry.provide.io/provide-foundry/issues"
+
+[project.entry-points."mkdocs.plugins"]
+crossrepo-links = "provide.foundry.mkdocs_plugins.crossrepo_links:CrossRepoLinksPlugin"
+markdown-export = "provide.foundry.mkdocs_plugins.markdown_export:MarkdownExportPlugin"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = {find = {where = ["src"]}}
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.setuptools.package-data]
+"provide.foundry.config" = [
+    "base-mkdocs.yml",
+    "Makefile.provider.tmpl",
+]
+"provide.foundry.docs" = [
+    "*.py",
+    "_partials/*.md",
+]
+"provide.foundry.theme" = [
+    "assets/**/*",
+    "data/**/*",
+    "js/**/*",
+    "css/**/*",
+]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks integration tests",
+    "unit: marks unit tests",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 111
+exclude = [".venv", "workenv", "build", "dist", ".git", "site"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "ANN", "B", "C90", "SIM", "PTH", "RUF"]
+ignore = ["ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ANN"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+exclude = ["workenv", ".venv", "build", "dist", "site"]
+

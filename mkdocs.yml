@@ -1,0 +1,287 @@
+site_name: Provide Foundry Documentation
+site_url: https://foundry.provide.io
+site_description: Comprehensive documentation for the Provide Foundry collection of Python tools and frameworks
+repo_url: https://github.com/provide-io/provide-foundry
+repo_name: provide-io/provide-foundry
+edit_uri: edit/main/docs/
+
+# Development server configuration
+dev_addr: '127.0.0.1:11000'
+
+# Use standard docs directory for foundry-specific content
+docs_dir: docs
+
+# Ensure proper URL handling - converts .md links to HTML
+use_directory_urls: true
+strict: false
+
+theme:
+  name: material
+  custom_dir: src/provide/foundry/theme
+  logo: assets/images/officium-light.svg
+  favicon: assets/images/officium-dark.svg
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - autolinks
+  - crossrepo-links:
+      enabled: true
+      verbose: false
+  - gen-files:
+      scripts:
+        - scripts/gen_monorepo_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - monorepo
+  - autorefs
+  - markdown-export:
+      enabled: !ENV [DOCS_MARKDOWN_ENABLED, false]
+      output_dir: site/md
+      include_api_reference: !ENV [DOCS_INCLUDE_API, false]
+      single_file: !ENV [DOCS_SINGLE_FILE, false]
+      single_file_name: FULL.md
+      structure: !ENV [DOCS_STRUCTURE, collapsed]
+      incremental: !ENV [DOCS_INCREMENTAL, true]
+      verbose: !ENV [DOCS_VERBOSE, false]
+  - htmlproofer:
+      enabled: !ENV [HTMLPROOFER_ENABLED, false]
+      raise_error: false
+      raise_error_after_finish: false
+      validate_external_urls: !ENV [HTMLPROOFER_VALIDATE_EXTERNAL, false]
+      validate_rendered_template: true
+  - macros:
+      include_dir: .provide/foundry/theme/data
+      # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
+      j2_variable_start_string: '{$'
+      j2_variable_end_string: '$}'
+      j2_block_start_string: '{%'
+      j2_block_end_string: '%}'
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths:
+            - ../provide-foundation/src
+            - ../provide-testkit/src
+            - ../ci-tooling/src
+            - ../flavorpack/src
+            - ../pyvider/src
+            - ../pyvider-cty/src
+            - ../pyvider-hcl/src
+            - ../pyvider-rpcplugin/src
+            - ../pyvider-components/src
+            - ../wrknv/src
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+            show_bases: true
+            merge_init_into_class: true
+            separate_signature: true
+            show_object_full_path: false
+            show_category_heading: true
+            show_if_no_docstring: false
+          inventories:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [std, py]
+
+extra_css:
+  - css/provide-theme.css
+  - css/termynal.css
+
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - js/mermaid-init.js
+  - js/termynal.js
+  - js/custom.js
+
+extra:
+  generator: false  # Hide "Made with Material for MkDocs"
+  version:
+    provider: mike
+  analytics:
+    provider: google
+    property: !ENV GA_TRACKING_ID
+
+copyright: ©2024-2025 provide.io llc<br/>🛠️ with 💚 and 🦝 on 🌎
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: provide-io
+      repo: provide-io
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path:
+        - docs
+        - src/provide/foundry/theme
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  # Foundry Section
+  - Foundry:
+      - Overview: index.md
+      - Architecture: foundry/architecture.md
+      - Design Principles: foundry/principles.md
+      - Roadmap: foundry/roadmap.md
+
+      # What's Available
+      - Packages:
+          - packages/index.md
+          - 🌐🔧 Workspace: packages/workspace.md
+          - 🧱🏗️ Foundation: packages/foundation.md
+          - 🧪✅ TestKit: packages/testkit.md
+          - 🌶️📦 FlavorPack: packages/flavorpack.md
+          - 🐍🏗️ Pyvider: packages/pyvider.md
+          - 🌊🪢 Pyvider CTY: packages/pyvider-cty.md
+          - 📄⚙️ Pyvider HCL: packages/pyvider-hcl.md
+          - 🔌📞 Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
+          - 🧩🔧 Pyvider Components: packages/pyvider-components.md
+          - 🍽️📖 Plating: packages/plating.md
+          - 🥣🔬 TofuSoup: packages/tofusoup.md
+          - 🔼⚙️ SupSrc: packages/supsrc.md
+          - 🧰🌍 WrkNv: packages/wrknv.md
+
+      # How to Start
+      - Getting Started: getting-started.md
+
+      # Practical Application
+      - Guides:
+          - guides/index.md
+          - Installation: guides/installation.md
+          - IDE Setup: guides/ide-setup.md
+          - Development Workflow: guides/development-workflow.md
+          - Testing Patterns: guides/testing-patterns.md
+          - Documentation: guides/documentation.md
+          - Packaging: guides/packaging.md
+          - Provider Development: guides/provider-development.md
+
+  # Workspace Setup
+  - Workspace: '!include ../provide-workspace/mkdocs.yml'
+
+  # Foundation - Dropdown section
+  - Foundation:
+    - foundation/index.md
+    - foundation: '!include ../provide-foundation/mkdocs.yml'
+    - testkit: '!include ../provide-testkit/mkdocs.yml'
+
+  # Pyvider Framework - Dropdown section
+  - Pyvider Framework:
+    - pyvider-framework/index.md
+    - pyvider: '!include ../pyvider/mkdocs.yml'
+    - pyvider-cty: '!include ../pyvider-cty/mkdocs.yml'
+    - pyvider-hcl: '!include ../pyvider-hcl/mkdocs.yml'
+    - pyvider-rpcplugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
+    - pyvider-components: '!include ../pyvider-components/mkdocs.yml'
+    - tofusoup: '!include ../tofusoup/mkdocs.yml'
+
+  # Development Tools - Dropdown section
+  - Development Tools:
+    - development-tools/index.md
+    - ci-tooling: '!include ../ci-tooling/mkdocs.yml'
+    - flavorpack: '!include ../flavorpack/mkdocs.yml'
+    - plating: '!include ../plating/mkdocs.yml'
+    - supsrc: '!include ../supsrc/mkdocs.yml'
+    - wrknv: '!include ../wrknv/mkdocs.yml'
+
+  # Terraform Providers - Dropdown section
+  - Terraform Providers:
+    - terraform-providers/index.md
+    - terraform-provider-pyvider: '!include ../terraform-provider-pyvider/mkdocs.yml'
+    - terraform-provider-tofusoup: '!include ../terraform-provider-tofusoup/mkdocs.yml'
+
+# Hooks for custom build-time processing
+hooks:
+  - src/provide/foundry/theme/hooks/version_hook.py
+  - src/provide/foundry/theme/hooks/nav_filter_hook.py
+  - src/provide/foundry/theme/hooks/terraform_provider.py
+
+# Watch configuration - monorepo plugin handles watching included projects
+watch:
+  - docs/
+  - src/provide/foundry/theme/
+  - .provide/foundry/theme/
