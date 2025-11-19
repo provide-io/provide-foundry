@@ -2,206 +2,363 @@
 
 The Provide Foundry is a comprehensive collection of Python tools and frameworks designed to make building Terraform providers, packaging applications, and managing development workflows both powerful and enjoyable.
 
+## What is the Provide Foundry?
+
+A unified ecosystem of Python packages for:
+
+- **Building Terraform providers in Python** - The Pyvider Framework brings Python's elegance to infrastructure as code
+- **Packaging applications as secure executables** - FlavorPack creates self-contained binaries from Python applications
+- **Managing development environments** - WrkNv standardizes tooling and dependencies across projects
+- **Testing and conformance validation** - TofuSoup ensures cross-language compatibility
+- **Documentation generation** - Plating creates beautiful, registry-compliant docs
+
+## Why Does It Exist?
+
+**Problem**: Building Terraform providers traditionally requires Go expertise, has limited tooling options, and makes testing complex infrastructure code difficult.
+
+**Solution**: The Provide Foundry brings the power of Python's ecosystem to Terraform provider development, with:
+
+- Type-safe APIs using modern Python 3.11+ features
+- Comprehensive testing frameworks with fixtures and mocks
+- Automated packaging and distribution tools
+- First-class documentation generation
+- Structured logging and observability built-in
+
+## When Should You Use It?
+
+Use the Provide Foundry when you:
+
+- Want to build Terraform providers in Python instead of Go
+- Need to package Python applications as self-contained executables
+- Require sophisticated testing for infrastructure code
+- Want a unified, opinionated development workflow
+- Value developer experience and clear documentation
+
+## Quick Navigation
+
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-rocket:{ .lg .middle } **Get Started Quickly**
+-   :material-layers:{ .lg .middle } **Understand the Ecosystem**
 
-    ---
+    Learn the architecture and design principles behind the Foundry.
 
-    Set up the entire foundry with a single command and start building providers in minutes.
+    [:octicons-arrow-right-24: Explore Details Below](#design-philosophy)
 
-    [:octicons-arrow-right-24: Getting Started](getting-started.md)
+-   :material-package-variant:{ .lg .middle } **Browse Packages**
 
--   :fontawesome-solid-cubes:{ .lg .middle } **Modular Architecture**
+    See all available packages and their capabilities.
 
-    ---
+    [:octicons-arrow-right-24: View Packages](packages/)
 
-    Built as composable layers from foundation to tools, with clear separation of concerns.
+-   :material-rocket-launch:{ .lg .middle } **Start Building**
 
-    [:octicons-arrow-right-24: Architecture](foundry/architecture.md)
+    Get up and running with your first provider.
 
--   :fontawesome-solid-code:{ .lg .middle } **Developer First**
+    [:octicons-arrow-right-24: Getting Started](getting-started/)
 
-    ---
+-   :material-school:{ .lg .middle } **Learn Best Practices**
 
-    Type-safe, well-documented APIs with excellent error messages and debugging support.
+    Deep dive into patterns and workflows.
 
-    <!-- [:octicons-arrow-right-24: API Reference](api/) -->
-
--   :fontawesome-solid-heart:{ .lg .middle } **Open Source**
-
-    ---
-
-    Apache 2.0 licensed with active development and community contributions welcome.
-
-    <!-- [:octicons-arrow-right-24: Contributing](../CONTRIBUTING.md) -->
+    [:octicons-arrow-right-24: Read Guides](guides/)
 
 </div>
 
-## What's in the Foundry?
+---
 
-### :material-foundation: Foundation Layer
+## Design Philosophy
 
-Build on solid fundamentals with structured logging, testing utilities, and error handling.
+The foundry is built around core principles that ensure consistency, maintainability, and developer experience:
 
-- **[provide-foundation](packages/foundation.md)** - Core telemetry and logging infrastructure
-- **[provide-testkit](packages/testkit.md)** - Testing utilities and fixtures for the foundry
+<div class="grid cards" markdown>
 
-### :material-terraform: Pyvider Framework
+-   :material-layers:{ .lg } **Layered Architecture**
 
-Create Terraform providers in Python with type safety and excellent developer experience.
+    Clear separation between foundation, framework, and tools with well-defined interfaces.
 
-- **[pyvider](packages/pyvider.md)** - Core framework for building Terraform providers
-- **[pyvider-cty](packages/pyvider-cty.md)** - CTY type system implementation
-- **[pyvider-hcl](packages/pyvider-hcl.md)** - HCL parsing with CTY integration
-- **[pyvider-rpcplugin](packages/pyvider-rpcplugin.md)** - gRPC plugin protocol implementation
-- **[pyvider-components](packages/pyvider-components.md)** - Standard components library
+-   :material-typewriter:{ .lg } **Type Safety First**
 
-### :material-tools: Development Tools
+    Comprehensive type annotations using modern Python 3.11+ features throughout.
 
-Streamline your workflow with packaging, documentation, testing, and automation tools.
+-   :material-rocket-launch:{ .lg } **Developer Experience**
 
-- **[flavorpack](packages/flavorpack.md)** - Create self-contained executable packages
-- **[wrknv](packages/wrknv.md)** - Manage development environments
-- **[plating](packages/plating.md)** - Generate documentation for providers
-- **[tofusoup](packages/tofusoup.md)** - Cross-language conformance testing
-- **[supsrc](packages/supsrc.md)** - Automated Git workflow management
+    Excellent error messages, comprehensive documentation, and intuitive APIs.
 
-## Quick Examples
+-   :material-test-tube:{ .lg } **Testing Excellence**
 
-### Create a Terraform Provider
+    High test coverage with unit, integration, and property-based testing.
 
-```python
-from pyvider.providers import register_provider, BaseProvider
-from pyvider.resources import register_resource, BaseResource
-from pyvider.schema import Attribute
+</div>
 
-@register_provider("myprovider")
-class MyProvider(BaseProvider):
-    """A simple example provider."""
-    pass
+## Package Relationships
 
-@register_resource("example")
-class ExampleResource(BaseResource):
-    """An example resource."""
-
-    name: str = Attribute(
-        description="The name of the resource",
-        required=True
-    )
-
-    def create(self, config):
-        # Implementation here
-        return {"id": "example-123", "name": config.name}
-```
-
-### Package an Application
-
-```bash
-# Create a self-contained executable
-flavor pack --manifest pyproject.toml --output myapp.psp
-
-# Run the packaged application
-./myapp.psp --help
-```
-
-### Set Up Development Environment
-
-```bash
-# Initialize environment with all tools
-wrknv init --with-pyvider --with-testing
-
-# Activate the environment
-uv sync
-```
-
-## Architecture Overview
-
-The Provide Foundry follows a layered architecture designed for composability and maintainability:
+Understanding how packages relate to each other helps you choose the right tools for your needs:
 
 ```mermaid
 graph TB
+    subgraph "User Applications"
+        APP[Your Terraform Provider]
+        PKG[Your Packaged Application]
+        DOC[Generated Documentation]
+    end
+
     subgraph "Tools Layer"
-        FP[flavorpack<br/>Packaging]
-        WE[wrknv<br/>Environment]
-        PL[plating<br/>Documentation]
-        TS[tofusoup<br/>Testing]
-        SS[supsrc<br/>Git Automation]
+        FP[flavorpack]
+        WE[wrknv]
+        PL[plating]
+        TS[tofusoup]
+        SS[supsrc]
     end
 
     subgraph "Framework Layer"
-        PY[pyvider<br/>Core Framework]
-        CTY[pyvider-cty<br/>Type System]
-        HCL[pyvider-hcl<br/>HCL Parser]
-        RPC[pyvider-rpcplugin<br/>gRPC Protocol]
-        COMP[pyvider-components<br/>Standard Components]
+        PY[pyvider]
+        CTY[pyvider-cty]
+        HCL[pyvider-hcl]
+        RPC[pyvider-rpcplugin]
+        COMP[pyvider-components]
+        TPP[terraform-provider-pyvider]
     end
 
     subgraph "Foundation Layer"
-        FOUND[provide-foundation<br/>Core Infrastructure]
-        TEST[provide-testkit<br/>Testing Utilities]
+        FOUND[provide-foundation]
+        TEST[provide-testkit]
     end
 
-    FP --> PY
+    APP --> PY
+    APP --> COMP
+    PKG --> FP
+    DOC --> PL
+
+    FP --> FOUND
     WE --> FOUND
     PL --> PY
+    PL --> CTY
     TS --> CTY
+    TS --> HCL
+    TS --> RPC
     SS --> FOUND
 
     PY --> FOUND
+    PY --> TEST
     CTY --> FOUND
     HCL --> CTY
+    HCL --> FOUND
     RPC --> FOUND
     COMP --> PY
+    COMP --> CTY
+    COMP --> RPC
+    TPP --> PY
+    TPP --> COMP
 
-    FOUND --> TEST
+    TEST --> FOUND
+
+    classDef foundation fill:#e1f5fe
+    classDef framework fill:#f3e5f5
+    classDef tools fill:#e8f5e8
+    classDef user fill:#fff3e0
+
+    class FOUND,TEST foundation
+    class PY,CTY,HCL,RPC,COMP,TPP framework
+    class FP,WE,PL,TS,SS tools
+    class APP,PKG,DOC user
 ```
 
-## Why the Provide Foundry?
+## Package Categories
 
-### :material-speedometer: **Performance First**
-- Async-native architecture
-- Efficient resource utilization
-- Benchmarked and optimized critical paths
+### Foundation Layer
 
-### :material-shield-check: **Type Safety**
-- Full type annotations using modern Python 3.11+
-- Runtime type validation
-- Comprehensive error messages
+The foundation provides core infrastructure that all other packages build upon:
 
-### :material-test-tube: **Testing Excellence**
-- Comprehensive test coverage
-- Property-based testing with Hypothesis
-- Cross-language conformance testing
+- **[provide-foundation](packages/foundation/)**: Structured logging, error handling, configuration
+- **[provide-testkit](packages/testkit/)**: Testing utilities, fixtures, and test infrastructure
 
-### :material-cog: **Production Ready**
-- Structured logging and observability
-- Error handling and resilience patterns
-- Security best practices
+### Framework Layer
 
-### :material-account-group: **Developer Experience**
-- Excellent documentation
-- Interactive examples
-- Clear error messages
-- AI assistant integration
+The Pyvider framework enables building Terraform providers in Python:
 
-## Community
+- **[pyvider](packages/pyvider/)**: Core framework with provider, resource, and data source abstractions
+- **[pyvider-cty](packages/pyvider-cty/)**: Implementation of Terraform's CTY type system
+- **[pyvider-hcl](packages/pyvider-hcl/)**: HCL parsing and generation with CTY integration
+- **[pyvider-rpcplugin](packages/pyvider-rpcplugin/)**: Terraform plugin protocol implementation
+- **[pyvider-components](packages/pyvider-components/)**: Standard library of components
+- **[terraform-provider-pyvider](packages/terraform-provider-pyvider/)**: Meta-package demonstrating the framework
 
-### :material-github: **GitHub**
-All development happens on GitHub with issues, discussions, and pull requests welcome.
+### Tools Layer
 
-[View on GitHub :octicons-arrow-right-24:](https://github.com/provide-io){ .md-button .md-button--primary }
+Development and deployment tools that enhance the development experience:
 
-### :material-chat: **Discussions**
-Join the community discussion for questions, ideas, and collaboration.
+- **[flavorpack](packages/flavorpack/)**: Create self-contained executable packages
+- **[wrknv](packages/wrknv/)**: Development environment management
+- **[plating](packages/plating/)**: Documentation generation for Terraform providers
+- **[tofusoup](packages/tofusoup/)**: Cross-language conformance testing
+- **[supsrc](packages/supsrc/)**: Automated Git workflow management
 
-[Join Discussions :octicons-arrow-right-24:](https://github.com/provide-io/discussions){ .md-button }
+## Data Flow
 
-### :material-book-open: **Documentation**
-Comprehensive guides, tutorials, and API documentation for every package.
+Understanding how data flows through the foundry helps with debugging and optimization:
 
-[Explore Packages :octicons-arrow-right-24:](packages/index.md){ .md-button }
+```mermaid
+sequenceDiagram
+    participant User
+    participant Terraform
+    participant Provider
+    participant Framework
+    participant Foundation
+
+    User->>Terraform: terraform apply
+    Terraform->>Provider: gRPC calls
+    Provider->>Framework: pyvider handlers
+    Framework->>Foundation: logging, errors
+    Foundation-->>Framework: structured logs
+    Framework-->>Provider: processed results
+    Provider-->>Terraform: gRPC responses
+    Terraform-->>User: apply results
+```
+
+## Deployment Architecture
+
+The foundry supports multiple deployment patterns:
+
+### Development Mode
+
+```mermaid
+graph LR
+    Dev[Developer] --> IDE[IDE/Editor]
+    IDE --> Git[Git Repository]
+    Git --> CI[CI/CD Pipeline]
+    CI --> Test[Test Environment]
+
+    subgraph "Development Tools"
+        Wrknv[wrknv<br/>Environment]
+        Supsrc[supsrc<br/>Git Automation]
+        Plating[plating<br/>Documentation]
+    end
+
+    Dev --> Wrknv
+    Dev --> Supsrc
+    Dev --> Plating
+```
+
+### Production Deployment
+
+```mermaid
+graph TB
+    Source[Source Code] --> FP[flavorpack]
+    FP --> PSP[Package.psp]
+    PSP --> Registry[Package Registry]
+
+    Registry --> Deploy1[Deployment 1]
+    Registry --> Deploy2[Deployment 2]
+    Registry --> DeployN[Deployment N]
+
+    Deploy1 --> TF1[Terraform]
+    Deploy2 --> TF2[Terraform]
+    DeployN --> TFN[Terraform]
+```
+
+## Quality Assurance
+
+The foundry maintains high quality through multiple layers of validation:
+
+### Code Quality
+
+- **Type Checking**: MyPy with strict settings
+- **Linting**: Ruff with comprehensive rule sets
+- **Formatting**: Consistent code style across all packages
+- **Security**: Bandit security scanning
+
+### Testing Strategy
+
+- **Unit Tests**: High coverage for individual components
+- **Integration Tests**: Cross-package functionality validation
+- **Property-Based Testing**: Hypothesis for edge case discovery
+- **Conformance Tests**: TofuSoup for Terraform compatibility
+
+### Documentation Quality
+
+- **API Documentation**: Comprehensive coverage of all public APIs
+- **Examples**: Working code examples for all major features
+- **Guides**: Step-by-step tutorials for common tasks
+- **Architecture**: Clear explanations of design decisions
+
+## Versioning Strategy
+
+The foundry uses semantic versioning with coordinated releases:
+
+### Individual Package Versions
+
+Each package maintains its own version following semantic versioning:
+
+- **Major**: Breaking changes to public APIs
+- **Minor**: New features, backward compatible
+- **Patch**: Bug fixes, backward compatible
+
+### Foundry Compatibility
+
+Packages declare compatibility with specific versions of their dependencies:
+
+```toml
+# Example from pyvider-components
+dependencies = [
+    "provide-foundation>=0.1.0,<0.2.0",
+    "pyvider>=0.1.0,<0.2.0",
+    "pyvider-cty>=0.0.113,<0.1.0"
+]
+```
+
+### Release Coordination
+
+Major releases are coordinated across packages to ensure compatibility:
+
+1. **Planning**: Major changes discussed across affected packages
+2. **Alpha/Beta**: Pre-release versions for testing
+3. **Release Candidates**: Final validation before release
+4. **Coordinated Release**: All packages released together
+
+## Performance Characteristics
+
+The foundry is designed for performance at scale:
+
+### Logging Performance
+
+- **14,000+ messages/second** with emoji processing
+- **Async-first** design for non-blocking operations
+- **Structured data** for efficient processing
+
+### Provider Performance
+
+- **Fast startup**: Minimal import time
+- **Efficient gRPC**: Optimized protocol implementation
+- **Memory management**: Careful resource handling
+
+### Build Performance
+
+- **Incremental builds**: Only rebuild what changed
+- **Parallel execution**: Multi-core utilization
+- **Caching**: Aggressive caching of build artifacts
+
+## Security Considerations
+
+Security is built into the foundry at multiple levels:
+
+### Package Security
+
+- **Signed packages**: Ed25519 signatures for integrity
+- **Dependency scanning**: Automated vulnerability detection
+- **Minimal dependencies**: Reduced attack surface
+
+### Runtime Security
+
+- **Secure defaults**: Safe configuration out of the box
+- **Input validation**: Comprehensive data validation
+- **Error handling**: No sensitive data in error messages
+
+### Development Security
+
+- **Secret management**: No secrets in code or logs
+- **Access control**: Principle of least privilege
+- **Audit logging**: Comprehensive activity logging
 
 ---
 
-Ready to start building? Check out our [Getting Started guide](getting-started.md) or dive into the [architecture overview](foundry/architecture.md).
+Ready to dive deeper? Explore our [architecture guide](foundry/architecture/), learn about our [design principles](foundry/principles/), or check out the [roadmap](foundry/roadmap/) for what's coming next.

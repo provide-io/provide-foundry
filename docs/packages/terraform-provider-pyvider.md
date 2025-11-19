@@ -69,11 +69,11 @@ The provider includes examples of:
 
 ## Documentation
 
-<!-- See the [Provider Tour](../pyvider-components/guides/provider-tour.md) --> and [Build Your Own](../pyvider-components/guides/build-your-own.md) guides for detailed walkthroughs.
+<!-- See the [Provider Tour](../pyvider-components/guides/provider-tour/) --> and [Build Your Own](../pyvider-components/guides/build-your-own/) guides for detailed walkthroughs.
 
 ## Related Packages
 
-- [pyvider](pyvider.md) - Core framework
-- [pyvider-components](pyvider-components.md) - Component library
-- [plating](plating.md) - Documentation and code generation
-- [flavorpack](flavorpack.md) - Binary packaging system
+- [pyvider](pyvider/) - Core framework
+- [pyvider-components](pyvider-components/) - Component library
+- [plating](plating/) - Documentation and code generation
+- [flavorpack](flavorpack/) - Binary packaging system

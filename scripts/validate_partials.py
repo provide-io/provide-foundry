@@ -38,10 +38,7 @@ def find_partial_references(docs_dir: Path) -> list[tuple[Path, str, int]]:
     return references
 
 
-def validate_references(
-    project_root: Path,
-    references: list[tuple[Path, str, int]]
-) -> list[str]:
+def validate_references(project_root: Path, references: list[tuple[Path, str, int]]) -> list[str]:
     """Validate that referenced partials exist.
 
     Returns:
@@ -56,8 +53,7 @@ def validate_references(
         if not partial_path.exists():
             relative_md = md_file.relative_to(project_root)
             errors.append(
-                f"{relative_md}:{line_num}: "
-                f"Referenced partial '{partial_ref}' does not exist"
+                f"{relative_md}:{line_num}: Referenced partial '{partial_ref}' does not exist"
             )
 
     return errors
@@ -86,15 +82,17 @@ def main() -> int:
     # Check if partials have been extracted
     if not check_extracted_partials(project_root):
         print("⚠️  Partials not extracted yet. Run:")
-        print("   python -c \"from provide.foundry.config import extract_base_mkdocs; "
-              "from pathlib import Path; extract_base_mkdocs(Path('.'))\"")
+        print(
+            '   python -c "from provide.foundry.config import extract_base_mkdocs; '
+            "from pathlib import Path; extract_base_mkdocs(Path('.'))\""
+        )
         print()
 
     # Find all partial references
     references = find_partial_references(docs_dir)
 
     if not references:
-        print("ℹ️  No partial references found in documentation")
+        print("INFO: No partial references found in documentation")
         return 0
 
     print(f"📝 Found {len(references)} partial reference(s)")

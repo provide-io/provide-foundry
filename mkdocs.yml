@@ -1,12 +1,12 @@
 site_name: Provide Foundry Documentation
 site_url: https://foundry.provide.io
 site_description: Comprehensive documentation for the Provide Foundry collection of Python tools and frameworks
-repo_url: https://github.com/provide-io/provide-io
-repo_name: provide-io/provide-io
-edit_uri: edit/main/provide-foundry/docs/
+repo_url: https://github.com/provide-io/provide-foundry
+repo_name: provide-io/provide-foundry
+edit_uri: edit/main/docs/
 
 # Development server configuration
-dev_addr: '127.0.0.1:8000'
+dev_addr: '127.0.0.1:11000'
 
 # Use standard docs directory for foundry-specific content
 docs_dir: docs
@@ -17,7 +17,7 @@ strict: false
 
 theme:
   name: material
-  custom_dir: .provide/foundry/theme
+  custom_dir: src/provide/foundry/theme
   logo: assets/images/officium-light.svg
   favicon: assets/images/officium-dark.svg
   features:
@@ -67,6 +67,9 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - autolinks
+  - crossrepo-links:
+      enabled: true
+      verbose: false
   - gen-files:
       scripts:
         - scripts/gen_monorepo_ref_pages.py
@@ -74,6 +77,21 @@ plugins:
       nav_file: SUMMARY.md
   - monorepo
   - autorefs
+  - markdown-export:
+      enabled: !ENV [DOCS_MARKDOWN_ENABLED, false]
+      output_dir: site/md
+      include_api_reference: !ENV [DOCS_INCLUDE_API, false]
+      single_file: !ENV [DOCS_SINGLE_FILE, false]
+      single_file_name: FULL.md
+      structure: !ENV [DOCS_STRUCTURE, collapsed]
+      incremental: !ENV [DOCS_INCREMENTAL, true]
+      verbose: !ENV [DOCS_VERBOSE, false]
+  - htmlproofer:
+      enabled: !ENV [HTMLPROOFER_ENABLED, false]
+      raise_error: false
+      raise_error_after_finish: false
+      validate_external_urls: !ENV [HTMLPROOFER_VALIDATE_EXTERNAL, false]
+      validate_rendered_template: true
   - macros:
       include_dir: .provide/foundry/theme/data
       # Custom delimiters to avoid conflicts with GitHub Actions syntax (${{ }})
@@ -88,6 +106,7 @@ plugins:
           paths:
             - ../provide-foundation/src
             - ../provide-testkit/src
+            - ../ci-tooling/src
             - ../flavorpack/src
             - ../pyvider/src
             - ../pyvider-cty/src
@@ -123,16 +142,14 @@ extra_javascript:
   - js/custom.js
 
 extra:
+  generator: false  # Hide "Made with Material for MkDocs"
   version:
     provider: mike
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/provide-io
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/user/provide-io/
   analytics:
     provider: google
     property: !ENV GA_TRACKING_ID
+
+copyright: ©2024-2025 provide.io llc<br/>🛠️ with 💚 and 🦝 on 🌎
 
 markdown_extensions:
   - abbr
@@ -165,7 +182,10 @@ markdown_extensions:
       repo: provide-io
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path:
+        - docs
+        - src/provide/foundry/theme
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -182,12 +202,34 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  # Documentation Section
-  - Documentation:
-      - index.md
+  # Foundry Section
+  - Foundry:
+      - Overview: index.md
+      - Architecture: foundry/architecture.md
+      - Design Principles: foundry/principles.md
+      - Roadmap: foundry/roadmap.md
+
+      # What's Available
+      - Packages:
+          - packages/index.md
+          - 🌐🔧 Workspace: packages/workspace.md
+          - 🧱🏗️ Foundation: packages/foundation.md
+          - 🧪✅ TestKit: packages/testkit.md
+          - 🌶️📦 FlavorPack: packages/flavorpack.md
+          - 🐍🏗️ Pyvider: packages/pyvider.md
+          - 🌊🪢 Pyvider CTY: packages/pyvider-cty.md
+          - 📄⚙️ Pyvider HCL: packages/pyvider-hcl.md
+          - 🔌📞 Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
+          - 🧩🔧 Pyvider Components: packages/pyvider-components.md
+          - 🍽️📖 Plating: packages/plating.md
+          - 🥣🔬 TofuSoup: packages/tofusoup.md
+          - 🔼⚙️ SupSrc: packages/supsrc.md
+          - 🧰🌍 WrkNv: packages/wrknv.md
+
+      # How to Start
       - Getting Started: getting-started.md
 
-      # Guides
+      # Practical Application
       - Guides:
           - guides/index.md
           - Installation: guides/installation.md
@@ -198,57 +240,48 @@ nav:
           - Packaging: guides/packaging.md
           - Provider Development: guides/provider-development.md
 
-      # Package Overviews
-      - Packages:
-          - packages/index.md
-          - Foundation: packages/foundation.md
-          - TestKit: packages/testkit.md
-          - FlavorPack: packages/flavorpack.md
-          - Pyvider: packages/pyvider.md
-          - Pyvider CTY: packages/pyvider-cty.md
-          - Pyvider HCL: packages/pyvider-hcl.md
-          - Pyvider RPC Plugin: packages/pyvider-rpcplugin.md
-          - Pyvider Components: packages/pyvider-components.md
-          - Plating: packages/plating.md
-          - TofuSoup: packages/tofusoup.md
-          - SupSrc: packages/supsrc.md
-          - WrkNv: packages/wrknv.md
+  # Workspace Setup
+  - Workspace: '!include ../provide-workspace/mkdocs.yml'
 
-  # Core Infrastructure - Dropdown section
-  - Core Infrastructure:
+  # Foundation - Dropdown section
+  - Foundation:
+    - foundation/index.md
     - foundation: '!include ../provide-foundation/mkdocs.yml'
     - testkit: '!include ../provide-testkit/mkdocs.yml'
 
-  # Packaging System - Dropdown section
-  - Packaging:
-    - flavorpack: '!include ../flavorpack/mkdocs.yml'
-
   # Pyvider Framework - Dropdown section
   - Pyvider Framework:
+    - pyvider-framework/index.md
     - pyvider: '!include ../pyvider/mkdocs.yml'
     - pyvider-cty: '!include ../pyvider-cty/mkdocs.yml'
     - pyvider-hcl: '!include ../pyvider-hcl/mkdocs.yml'
     - pyvider-rpcplugin: '!include ../pyvider-rpcplugin/mkdocs.yml'
     - pyvider-components: '!include ../pyvider-components/mkdocs.yml'
+    - tofusoup: '!include ../tofusoup/mkdocs.yml'
 
   # Development Tools - Dropdown section
   - Development Tools:
-    - wrknv: '!include ../wrknv/mkdocs.yml'
-    - supsrc: '!include ../supsrc/mkdocs.yml'
-    - tofusoup: '!include ../tofusoup/mkdocs.yml'
+    - development-tools/index.md
+    - ci-tooling: '!include ../ci-tooling/mkdocs.yml'
+    - flavorpack: '!include ../flavorpack/mkdocs.yml'
     - plating: '!include ../plating/mkdocs.yml'
+    - supsrc: '!include ../supsrc/mkdocs.yml'
+    - wrknv: '!include ../wrknv/mkdocs.yml'
 
-  # Foundry Information
-  - Foundry:
-    - foundry/index.md
-    - Architecture: foundry/architecture.md
-    - Design Principles: foundry/principles.md
-    - Roadmap: foundry/roadmap.md
+  # Terraform Providers - Dropdown section
+  - Terraform Providers:
+    - terraform-providers/index.md
+    - terraform-provider-pyvider: '!include ../terraform-provider-pyvider/mkdocs.yml'
+    - terraform-provider-tofusoup: '!include ../terraform-provider-tofusoup/mkdocs.yml'
 
-  # - API Reference:
-  #   - api/index.md
+# Hooks for custom build-time processing
+hooks:
+  - src/provide/foundry/theme/hooks/version_hook.py
+  - src/provide/foundry/theme/hooks/nav_filter_hook.py
+  - src/provide/foundry/theme/hooks/terraform_provider.py
 
 # Watch configuration - monorepo plugin handles watching included projects
 watch:
   - docs/
   - src/provide/foundry/theme/
+  - .provide/foundry/theme/

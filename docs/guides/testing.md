@@ -137,9 +137,15 @@ class TestResourceSchema(TestCase):
         """Test attribute type definitions."""
         schema = ServerResource.get_schema()
 
-        self.assertEqual(schema.attributes["name"].type, CtyString)
-        self.assertEqual(schema.attributes["port"].type, CtyNumber)
-        self.assertEqual(schema.attributes["enabled"].type, CtyBool)
+        # Verify attributes exist in the schema
+        self.assertIn("name", schema.attributes)
+        self.assertIn("port", schema.attributes)
+        self.assertIn("enabled", schema.attributes)
+
+        # Verify attribute properties
+        self.assertTrue(schema.attributes["name"].required)
+        self.assertEqual(schema.attributes["port"].default, 8080)
+        self.assertEqual(schema.attributes["enabled"].default, True)
 
     def test_validation_rules(self):
         """Test custom validation rules."""
@@ -721,6 +727,6 @@ jobs:
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
+- **[Provider Development Guide](provider-development/)** - Building providers with Pyvider
 - **[API Reference](../provide-testkit/reference/)** - Complete testing framework API
-- **[Packaging Guide](packaging.md)** - Preparing providers for distribution
+- **[Packaging Guide](packaging/)** - Preparing providers for distribution
