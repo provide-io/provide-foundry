@@ -13,7 +13,7 @@ Developing Terraform providers with Pyvider involves understanding the provider 
 - Python 3.11 or higher
 - Understanding of Terraform concepts
 - Familiarity with the target API or service
-- Development environment setup (see [Installation Guide](installation.md))
+- Development environment setup (see [Installation Guide](installation/))
 
 ### Project Setup
 
@@ -40,26 +40,28 @@ uv sync --extra dev
 from pyvider.providers import register_provider, BaseProvider
 from pyvider.resources import register_resource, BaseResource
 from pyvider.data_sources import register_data_source, BaseDataSource
-from pyvider.schema import Attribute, Block
-from pyvider.cty import CtyString, CtyNumber, CtyBool
+from pyvider.schema import s_provider, s_resource, s_data_source, a_str, a_num, a_bool, a_list, b_block
 from provide.foundation import logger
 
 @register_provider("myservice")
 class MyServiceProvider(BaseProvider):
     """Terraform provider for MyService API."""
 
-    # Provider configuration
-    api_url: CtyString = Attribute(
-        description="MyService API base URL",
-        required=True,
-        default="https://api.myservice.com"
-    )
-
-    api_key: CtyString = Attribute(
-        description="API key for authentication",
-        required=True,
-        sensitive=True
-    )
+    @classmethod
+    def get_schema(cls):
+        """Define provider configuration schema."""
+        return s_provider({
+            "api_url": a_str(
+                description="MyService API base URL",
+                required=True,
+                default="https://api.myservice.com"
+            ),
+            "api_key": a_str(
+                description="API key for authentication",
+                required=True,
+                sensitive=True
+            )
+        })
 
     def configure(self, config):
         """Configure the provider client."""
@@ -79,39 +81,39 @@ class MyServiceProvider(BaseProvider):
 class ServerResource(BaseResource):
     """Manages a MyService server instance."""
 
-    # Required attributes
-    name: CtyString = Attribute(
-        description="Server name",
-        required=True
-    )
-
-    # Optional attributes with defaults
-    size: CtyString = Attribute(
-        description="Server size",
-        default="small",
-        validation=lambda x: x in ["small", "medium", "large"]
-    )
-
-    region: CtyString = Attribute(
-        description="Deployment region",
-        required=True
-    )
-
-    # Computed attributes
-    id: CtyString = Attribute(
-        description="Server ID",
-        computed=True
-    )
-
-    status: CtyString = Attribute(
-        description="Server status",
-        computed=True
-    )
-
-    created_at: CtyString = Attribute(
-        description="Creation timestamp",
-        computed=True
-    )
+    @classmethod
+    def get_schema(cls):
+        """Define resource schema."""
+        return s_resource({
+            # Required attributes
+            "name": a_str(
+                description="Server name",
+                required=True
+            ),
+            # Optional attributes with defaults
+            "size": a_str(
+                description="Server size",
+                default="small",
+                validation=lambda x: x in ["small", "medium", "large"]
+            ),
+            "region": a_str(
+                description="Deployment region",
+                required=True
+            ),
+            # Computed attributes
+            "id": a_str(
+                description="Server ID",
+                computed=True
+            ),
+            "status": a_str(
+                description="Server status",
+                computed=True
+            ),
+            "created_at": a_str(
+                description="Creation timestamp",
+                computed=True
+            )
+        })
 
     def create(self, config):
         """Create a new server."""
@@ -187,23 +189,26 @@ class ServerResource(BaseResource):
 class ImageDataSource(BaseDataSource):
     """Fetch information about available server images."""
 
-    # Filter attributes
-    name_filter: CtyString = Attribute(
-        description="Filter images by name pattern",
-        required=False
-    )
-
-    os_type: CtyString = Attribute(
-        description="Operating system type",
-        required=False,
-        validation=lambda x: x in ["linux", "windows"]
-    )
-
-    # Computed attributes
-    images: CtyList = Attribute(
-        description="List of matching images",
-        computed=True
-    )
+    @classmethod
+    def get_schema(cls):
+        """Define data source schema."""
+        return s_data_source({
+            # Filter attributes
+            "name_filter": a_str(
+                description="Filter images by name pattern",
+                required=False
+            ),
+            "os_type": a_str(
+                description="Operating system type",
+                required=False,
+                validation=lambda x: x in ["linux", "windows"]
+            ),
+            # Computed attributes
+            "images": a_list(
+                description="List of matching images",
+                computed=True
+            )
+        })
 
     def read(self, config):
         """Fetch image data."""
@@ -237,29 +242,33 @@ class ImageDataSource(BaseDataSource):
 class ApplicationResource(BaseResource):
     """Application with complex configuration."""
 
-    # Nested block configuration
-    database: Block = Block(
-        description="Database configuration",
-        required=False,
-        max_items=1,
-        attributes={
-            "host": CtyString(required=True),
-            "port": CtyNumber(default=5432),
-            "name": CtyString(required=True),
-            "ssl_enabled": CtyBool(default=True)
-        }
-    )
-
-    # Repeated blocks
-    environment_variables: Block = Block(
-        description="Environment variables",
-        required=False,
-        attributes={
-            "name": CtyString(required=True),
-            "value": CtyString(required=True),
-            "sensitive": CtyBool(default=False)
-        }
-    )
+    @classmethod
+    def get_schema(cls):
+        """Define resource schema with nested blocks."""
+        return s_resource({
+            # Nested block configuration
+            "database": b_block(
+                description="Database configuration",
+                required=False,
+                max_items=1,
+                attributes={
+                    "host": a_str(required=True),
+                    "port": a_num(default=5432),
+                    "name": a_str(required=True),
+                    "ssl_enabled": a_bool(default=True)
+                }
+            ),
+            # Repeated blocks
+            "environment_variables": b_block(
+                description="Environment variables",
+                required=False,
+                attributes={
+                    "name": a_str(required=True),
+                    "value": a_str(required=True),
+                    "sensitive": a_bool(default=False)
+                }
+            )
+        })
 ```
 
 ### State Migration
@@ -290,8 +299,13 @@ from pyvider.validation import ValidationError
 class DatabaseResource(BaseResource):
     """Database with custom validation."""
 
-    name: CtyString = Attribute(required=True)
-    backup_retention_days: CtyNumber = Attribute(default=7)
+    @classmethod
+    def get_schema(cls):
+        """Define database resource schema."""
+        return s_resource({
+            "name": a_str(required=True),
+            "backup_retention_days": a_num(default=7)
+        })
 
     def validate(self, config):
         """Custom validation logic."""
@@ -481,8 +495,8 @@ with mock_api_response("create_server", {"id": "test-123"}):
 
 ## Related Documentation
 
-- **[Testing Guide](testing.md)** - Comprehensive testing strategies
-- **[Packaging Guide](packaging.md)** - Building and distributing providers
+- **[Testing Guide](testing/)** - Comprehensive testing strategies
+- **[Packaging Guide](packaging/)** - Building and distributing providers
 - **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation
 
 ## Community Resources

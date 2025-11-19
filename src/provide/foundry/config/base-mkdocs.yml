@@ -6,6 +6,7 @@
 theme:
   name: material
   language: en
+  custom_dir: .provide/foundry/theme
 
   # Color Palette (with light/dark mode toggle)
   palette:
@@ -33,8 +34,8 @@ theme:
     code: Roboto Mono
 
   # Logo
-  logo: .provide/foundry/theme/assets/images/officium-light.svg
-  favicon: .provide/foundry/theme/assets/images/officium-dark.svg
+  logo: assets/images/officium-light.svg
+  favicon: assets/images/officium-dark.svg
 
   # Material theme features
   features:
@@ -113,6 +114,19 @@ plugins:
             members_order: source
             inherited_members: true
 
+  - htmlproofer:
+      # Warn only for local development, can be overridden in CI
+      raise_error: false
+      # Exclude common patterns that cause false positives
+      raise_error_excludes:
+        - "*localhost*"
+        - "*127.0.0.1*"
+        - "*example.com*"
+        - "*example.org*"
+      # Validation options
+      validate_rendered_template: true
+      validate_external_urls: false  # External links checked separately in CI
+
 # Markdown Extensions
 markdown_extensions:
   # Python Markdown
@@ -171,16 +185,19 @@ markdown_extensions:
 # Extra CSS
 # Projects reference centralized theme from provide-foundry namespace package
 extra_css:
-  - .provide/foundry/theme/css/provide-theme.css
-  - .provide/foundry/theme/css/termynal.css
+  - css/provide-theme.css
+  - css/termynal.css
   - css/extra.css  # Project-specific overrides
 
 # Extra JavaScript
 extra_javascript:
   - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - .provide/foundry/theme/js/mermaid-init.js
-  - .provide/foundry/theme/js/termynal.js
-  - .provide/foundry/theme/js/custom.js
+  - js/mermaid-init.js
+  - js/termynal.js
+  - js/custom.js
+
+# Copyright Footer
+copyright: ©2024-2025 provide.io llc<br/>🛠️ with 💚 and 🦝 on 🌎
 
 # Validation
 validation:

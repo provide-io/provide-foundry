@@ -19,8 +19,8 @@ The fastest way to get started is to set up the entire foundry using our unified
 
 ```bash
 # Clone the workspace repository
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 
 # Set up the unified development environment
 uv sync --extra all --extra dev
@@ -255,13 +255,24 @@ log.info("Application started", version="1.0.0")
 The foundry emphasizes type safety throughout:
 
 ```python
-from pyvider.cty import CtyString, CtyNumber
+from pyvider.schema import a_str, a_num, a_bool
+from attrs import define
 
-# Type-safe configuration
+# Type-safe configuration with schema
+@define
 class Config:
-    name: CtyString
-    port: CtyNumber
-    enabled: bool = True  # Modern Python typing
+    name: str  # Type hints for IDE support
+    port: int
+    enabled: bool = True
+
+    @classmethod
+    def get_schema(cls):
+        """Define schema using factory functions."""
+        return {
+            "name": a_str(required=True),
+            "port": a_num(required=True),
+            "enabled": a_bool(default=True)
+        }
 ```
 
 ### 3. Testing
@@ -302,19 +313,19 @@ Now that you have the foundry set up, explore these guides:
 
 <div class="grid cards" markdown>
 
--   :material-terraform:{ .lg } **[Building Providers](guides/provider-development.md)**
+-   :material-terraform:{ .lg } **[Building Providers](guides/provider-development/)**
 
     Learn to create comprehensive Terraform providers with resources, data sources, and functions.
 
--   :material-package:{ .lg } **[Packaging Applications](guides/packaging.md)**
+-   :material-package:{ .lg } **[Packaging Applications](guides/packaging/)**
 
     Use flavorpack to create self-contained, portable executable packages.
 
--   :material-test-tube:{ .lg } **[Testing Strategy](guides/testing.md)**
+-   :material-test-tube:{ .lg } **[Testing Strategy](guides/testing/)**
 
     Implement comprehensive testing with unit, integration, and conformance tests.
 
--   :material-book:{ .lg } **[Documentation](guides/documentation.md)**
+-   :material-book:{ .lg } **[Documentation](guides/documentation/)**
 
     Generate beautiful documentation for your providers and tools.
 

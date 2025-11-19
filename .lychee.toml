@@ -1,0 +1,101 @@
+# Lychee link checker configuration for provide-foundry
+# Documentation: https://lychee.cli.rs/#/usage/config
+
+# Maximum number of concurrent network requests
+max_concurrency = 64
+
+# Maximum number of retries per link
+max_retries = 3
+
+# Timeout per request in seconds
+timeout = 30
+
+# User agent string
+user_agent = "Mozilla/5.0 (compatible; lychee/provide-foundry-docs)"
+
+# Accept these HTTP status codes as valid
+accept = [200, 204, 301, 302, 307, 308, 429]
+
+# Include verbosity in output
+verbose = false
+
+# Don't check email addresses (mailto: links)
+exclude_mail = true
+
+# Exclude specific URLs and patterns
+exclude = [
+    # Localhost and development URLs
+    "http://localhost*",
+    "http://127.0.0.1*",
+    "https://127.0.0.1*",
+
+    # Private/internal URLs
+    "http://0.0.0.0*",
+
+    # Temporary or variable URLs
+    "file:///*",
+
+    # Known false positives or rate-limited sites
+    "https://github.com/.*/issues/new",
+    "https://github.com/.*/pulls",
+
+    # Development server addresses from mkdocs.yml
+    "http://127.0.0.1:8000*",
+    "http://127.0.0.1:8001*",
+    "http://127.0.0.1:11000*",
+    "http://127.0.0.1:11001*",
+    "http://127.0.0.1:11002*",
+    "http://127.0.0.1:11003*",
+    "http://127.0.0.1:11004*",
+    "http://127.0.0.1:11005*",
+    "http://127.0.0.1:11006*",
+    "http://127.0.0.1:11007*",
+    "http://127.0.0.1:11008*",
+    "http://127.0.0.1:11009*",
+    "http://127.0.0.1:11010*",
+
+    # Google Analytics (these require specific cookies/auth)
+    "https://analytics.google.com/*",
+    "https://www.googletagmanager.com/*",
+
+    # Social media profile URLs that may require auth
+    "https://twitter.com/*",
+    "https://www.linkedin.com/in/*",
+]
+
+# Exclude specific file patterns
+exclude_path = [
+    # Exclude build artifacts
+    "site/",
+    "build/",
+    "dist/",
+    ".venv/",
+    "workenv/",
+    ".git/",
+    "node_modules/",
+
+    # Exclude cache and temp directories
+    ".pytest_cache/",
+    ".mypy_cache/",
+    ".ruff_cache/",
+    "__pycache__/",
+
+    # Exclude specific files that may have template variables
+    ".provide/",
+]
+
+# Only check specific file extensions
+include = [
+    "**/*.md",
+    "**/*.html",
+    "**/*.rst",
+]
+
+# Remap URLs (useful for redirects or moved content)
+# [remap]
+# Example: "https://example.com/old" = "https://example.com/new"
+
+# Custom headers for specific domains
+# [[headers]]
+# pattern = "https://github.com/*"
+# "Authorization" = "Bearer ${GITHUB_TOKEN}"

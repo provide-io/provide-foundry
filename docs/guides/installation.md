@@ -30,8 +30,8 @@ Install the entire foundry as a unified workspace:
 
 ```bash
 # Clone the workspace repository
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 
 # Set up the unified development environment
 uv sync --extra all --extra dev
@@ -72,8 +72,8 @@ uv add wrknv flavorpack
 
 ```bash
 # Clone the repository
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 
 # Verify structure
 ls -la
@@ -119,8 +119,8 @@ python -m pytest tests/integration/test_installation.py -v
 For active development on foundry packages:
 
 ```bash
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 
 # Development installation with all extras
 uv sync --extra all --extra dev --extra testing
@@ -175,7 +175,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.cargo/bin:$PATH"
 
 # Clone and install foundry
-RUN git clone https://github.com/provide-io/provide-workenv.git /workspace
+RUN git clone https://github.com/provide-io/provide-workspace.git /workspace
 WORKDIR /workspace
 RUN uv sync --extra all
 
@@ -207,8 +207,8 @@ xcode-select --install
 brew install git python@3.11 uv
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 uv sync --extra all --extra dev
 source .venv/bin/activate
 ```
@@ -236,8 +236,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.cargo/env
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 uv sync --extra all --extra dev
 source .venv/bin/activate
 ```
@@ -257,8 +257,8 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.bashrc
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workenv.git
-cd provide-workenv
+git clone https://github.com/provide-io/provide-workspace.git
+cd provide-workspace
 uv sync --extra all --extra dev
 source .venv/bin/activate
 ```
@@ -434,8 +434,8 @@ If you encounter issues:
 
 After successful installation:
 
-1. **[Provider Development](provider-development.md)** - Build your first provider
-2. **[Testing Guide](testing.md)** - Learn testing best practices
+1. **[Provider Development](provider-development/)** - Build your first provider
+2. **[Testing Guide](testing/)** - Learn testing best practices
 
 ---
 

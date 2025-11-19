@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from importlib.metadata import version
+from provide.foundation.utils.versioning import get_version
 
-__version__ = version("provide-foundry")
+__version__ = get_version("provide-foundry", caller_file=__file__)
 
 __all__ = ["__version__"]

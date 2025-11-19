@@ -32,7 +32,7 @@ The documentation system uses a modern, DRY approach with shared configuration:
   - Install: `uv pip install -e .` for editable development
 - **Monorepo Plugin** - Automatic aggregation of all project documentation
 - **Auto-Generated API Docs** - Build-time generation using mkdocs-gen-files
-- **Shared Makefile** (`Makefile.docs.inc`) - Standardized build targets
+- **Canonical Makefile** (`Makefile.provider.tmpl`) - Standardized provider Makefile template
 
 ### Building the Documentation
 
@@ -42,19 +42,24 @@ cd provide-foundry
 uv sync
 
 # Serve documentation locally (all projects)
-make docs-serve
+we docs serve
 # or: uv run mkdocs serve
 
 # Build complete documentation site
-make docs-build
+we docs build
 # or: uv run mkdocs build --clean
 
 # Validate documentation (strict mode)
-make docs-validate
-# or: uv run mkdocs build --strict
+uv run mkdocs build --strict
 
 # Clean documentation artifacts
-make docs-clean
+we docs clean
+
+# Check links (fast, internal only)
+we docs links check
+
+# Check all links including external
+we docs links external
 ```
 
 ### Building Individual Project Documentation
@@ -65,10 +70,11 @@ Each project can build documentation independently:
 # Navigate to any project
 cd ../pyvider
 
-# Use shared Makefile targets
-make docs-build    # Build documentation
-make docs-serve    # Serve locally on project's port
-make docs-clean    # Clean artifacts
+# Use wrknv tasks
+we docs build      # Build documentation
+we docs serve      # Serve locally
+we docs clean      # Clean artifacts
+we docs links check # Check links
 
 # Or use mkdocs directly
 uv run mkdocs build
@@ -81,7 +87,7 @@ uv run mkdocs serve
 provide-foundry/                    # Documentation hub
 ├── base-mkdocs.yml                # Shared configuration (inherited by all projects)
 ├── mkdocs.yml                     # Documentation site configuration
-├── Makefile.docs.inc              # Shared documentation targets
+├── Makefile.provider.tmpl         # Canonical provider Makefile template
 ├── scripts/
 │   └── gen_ref_pages.py          # Shared API doc generator
 ├── src/provide/foundry/           # Namespace package
@@ -100,7 +106,7 @@ provide-foundry/                    # Documentation hub
 Individual Projects:
 provide-foundation/
 ├── mkdocs.yml                     # Inherits from base-mkdocs.yml
-├── Makefile                       # Includes Makefile.docs.inc
+├── Makefile                       # Standard project Makefile
 └── docs/                          # Project-specific docs
     ├── index.md
     ├── guides/
@@ -160,13 +166,36 @@ The provide.io ecosystem follows a layered architecture:
    dev_addr: '127.0.0.1:8XXX'  # Use unique port
    ```
 
-2. **Include shared Makefile targets** in your Makefile:
-   ```makefile
-   # Include shared documentation targets from provide-foundry
-   include ../provide-foundry/Makefile.docs.inc
+2. **Extract standardized task definitions** to wrknv.toml:
+   ```python
+   # Extract canonical wrknv.toml for Python library projects
+   from provide.foundry.config import extract_python_wrknv_tasks
+   from pathlib import Path
+
+   # Fresh extraction (no merge)
+   extract_python_wrknv_tasks(Path('.'), merge=False)
+
+   # Or merge with existing wrknv.toml (preserves custom tasks/config)
+   extract_python_wrknv_tasks(Path('.'), merge=True)
    ```
 
-3. **Configure API documentation** by adding gen-files plugin:
+   The template provides standardized tasks for all Python projects:
+   - Testing: `test`, `test.unit`, `test.integration`, `test.coverage`, `test.parallel`
+   - Quality: `lint`, `format`, `typecheck`, `quality`
+   - Build: `build`, `clean`
+   - Docs: `docs.build`, `docs.serve`, `docs.clean`, `docs.links.check`
+   - Development: `dev.setup`, `dev.test`, `dev.check`
+   - CI/CD: `ci`, `ci.test`, `ci.quality`
+
+3. **Include shared Makefile targets** (DEPRECATED - use wrknv.toml instead):
+   ```python
+   # Extract canonical Makefile for terraform-provider-* projects
+   from provide.foundry.config import extract_makefile_provider
+   from pathlib import Path
+   extract_makefile_provider(Path('.'))
+   ```
+
+4. **Configure API documentation** by adding gen-files plugin:
    ```yaml
    plugins:
      - gen-files:

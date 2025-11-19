@@ -343,3 +343,85 @@ code, pre, kbd, samp,
 .md-typeset .twemoji {
     vertical-align: middle;
 }
+
+/* ========================================================================== */
+/* ANNOUNCEMENT BANNER - AI-GENERATED CONTENT & VERSION STATUS */
+/* ========================================================================== */
+
+/* Custom announcement banner for AI-generated content and version status */
+.md-banner {
+    position: sticky;
+    top: 0;
+    z-index: 61; /* Above content, below header */
+    background-color: var(--md-default-bg-color);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 0.875rem;
+}
+
+.md-banner--warning {
+    background-color: #fff3cd;
+    border-bottom-color: #ffc107;
+    color: #856404;
+}
+
+/* Dark mode variant */
+[data-md-color-scheme="slate"] .md-banner--warning {
+    background-color: #33290a;
+    border-bottom-color: #665200;
+    color: #ffdb70;
+}
+
+.md-banner__inner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-family: var(--md-text-font);
+}
+
+.md-banner__status {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.md-banner__message {
+    flex: 1;
+}
+
+.md-banner__message a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: opacity 200ms ease;
+}
+
+.md-banner__message a:hover {
+    opacity: 0.8;
+}
+
+/* Ensure banner doesn't interfere with header */
+.md-header {
+    position: sticky;
+    z-index: 62;
+}
+
+/* Adjust content padding when banner is present */
+body:has(.md-banner) .md-content {
+    padding-top: 0;
+}
+
+/* ========================================================================== */
+/* FOOTER CUSTOMIZATION */
+/* ========================================================================== */
+
+/* Center the copyright text */
+.md-copyright {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* Ensure the copyright highlight is also centered */
+.md-copyright__highlight {
+    display: block !important;
+    text-align: center !important;
+}

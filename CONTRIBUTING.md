@@ -154,6 +154,172 @@ Examples:
 - `fix(testkit): resolve fixture cleanup issue`
 - `docs(foundation): add logging configuration guide`
 
+## 🔨 Build System Standards
+
+### Makefiles Over Scripts
+
+All Python library projects in the ecosystem use **standardized Makefiles** for development tasks. Custom shell scripts are only allowed for specific cases.
+
+#### Core Principle
+
+**Use Makefiles, not shell scripts, for common development tasks.**
+
+#### Why Makefiles?
+
+✅ **Consistency**: Same commands work across all projects (`make test`, `make lint`, etc.)
+✅ **Discoverability**: `make help` shows all available targets
+✅ **Dependencies**: Make handles target dependencies elegantly
+✅ **Standards**: Industry-standard build tool
+✅ **Maintenance**: Single source of truth (template + custom targets)
+
+#### Standard Makefile Targets
+
+All Python library projects have these standard targets:
+
+**Setup & Environment**:
+- `make setup` - Initialize development environment (uv sync)
+
+**Testing** (8 targets):
+- `make test` - Run all tests
+- `make test-parallel` - Run tests in parallel
+- `make test-verbose` - Run tests with verbose output
+- `make test-unit` - Run only unit tests
+- `make test-integration` - Run only integration tests
+- `make coverage` - Run tests with coverage report (with line-by-line coverage)
+- `make coverage-xml` - Generate XML coverage report for CI systems
+
+**Mutation Testing** (4 targets):
+- `make mutation-run` - Run mutation testing with mutmut
+- `make mutation-results` - Show mutation testing results
+- `make mutation-browse` - Open interactive mutation browser
+- `make mutation-clean` - Clean mutation testing artifacts
+
+**Code Quality** (7 targets):
+- `make lint` - Run linter (ruff check)
+- `make lint-fix` - Run linter with auto-fix
+- `make format` - Format code with ruff
+- `make format-check` - Check formatting without modifying
+- `make typecheck` - Run type checker (mypy)
+- `make quality` - Run lint + typecheck
+- `make quality-all` - Run all quality checks including tests
+
+**Build & Package** (5 targets):
+- `make build` - Build package
+- `make install` - Install in development mode
+- `make uninstall` - Uninstall package
+- `make lock` - Update dependency lock file
+- `make version` - Show package version
+
+**Documentation** (4 targets):
+- `make docs-setup` - Extract base-mkdocs.yml from foundry
+- `make docs-build` - Build documentation
+- `make docs-serve` - Serve documentation locally
+- `make docs-clean` - Clean documentation artifacts
+
+**CI/CD** (3 targets):
+- `make ci-test` - Run tests with coverage for CI
+- `make ci-quality` - Run all quality checks for CI
+- `make ci-all` - Run full CI pipeline
+
+**Development Shortcuts** (3 targets):
+- `make dev-setup` - Alias for setup
+- `make dev-test` - Quick test run (parallel)
+- `make dev-check` - Quick quality check
+
+**Clean**:
+- `make clean` - Clean all build artifacts and caches
+
+### When Shell Scripts Are Allowed
+
+Scripts are **only** allowed if they meet one of these criteria:
+
+1. **Templated from foundry**: Extracted via `extract_*_script()` functions
+   - Examples: `validate_examples.sh`, `clean_artifacts.sh` (for Terraform providers)
+
+2. **Truly unique functionality**: Not duplicating Make targets
+   - Examples: `test-registry-url-alignment.sh` (plating), `build.sh` (flavorpack helpers)
+
+### When Scripts Are NOT Allowed
+
+❌ **Never create scripts that duplicate Makefile targets**:
+- NO: `scripts/test.sh` (use `make test`)
+- NO: `scripts/setup.sh` (use `make setup`)
+- NO: `scripts/docs-serve.sh` (use `make docs-serve`)
+- NO: `scripts/quality.sh` (use `make quality`)
+
+### Adding Custom Targets
+
+If your project needs custom functionality, **add it to the Makefile**, not as a separate script.
+
+#### Example: Adding Custom Targets
+
+```makefile
+# ==============================================================================
+# 🎨 Project-Specific Targets (Custom)
+# ==============================================================================
+
+custom-build: ## Build project-specific artifacts
+	@echo '$(BLUE)Building custom artifacts...$(NC)'
+	./build-custom-thing.sh
+	@echo '$(GREEN)✓ Custom build complete$(NC)'
+
+custom-validate: ## Validate project-specific things
+	@echo '$(BLUE)Validating...$(NC)'
+	python tools/validate.py
+	@echo '$(GREEN)✓ Validation complete$(NC)'
+```
+
+**Best practices**:
+- Add custom section with clear header
+- Update `.PHONY` declaration
+- Use template color variables (`$(BLUE)`, `$(GREEN)`, etc.)
+- Add `##` comments for help integration
+- Organize related targets into sections
+
+### Getting the Standard Makefile
+
+For new Python library projects:
+
+```python
+from provide.foundry.config import extract_python_makefile
+from pathlib import Path
+
+# Extract to current directory
+extract_python_makefile(Path('.'))
+```
+
+Or via command line:
+```bash
+python -c "from provide.foundry.config import extract_python_makefile; from pathlib import Path; extract_python_makefile(Path('.'))"
+```
+
+### Examples in the Ecosystem
+
+**Standard template only** (10 projects):
+- provide-foundation, provide-testkit, pyvider, pyvider-cty, pyvider-hcl, pyvider-rpcplugin, wrknv, tofusoup, supsrc, plating
+
+**Standard + custom targets** (2 projects):
+- **pyvider-components**: Adds plating documentation generation targets
+- **flavorpack**: Adds PSPF validation, build helpers, and release management targets
+
+### Migration from Scripts
+
+If you find scripts that duplicate Makefile functionality:
+
+1. **Verify**: Check if script functionality exists in Makefile
+2. **Test**: Ensure Make target works correctly
+3. **Remove**: Delete the redundant script
+4. **Update docs**: Change documentation to reference Make targets
+
+Example:
+```bash
+# Before
+./scripts/test.sh
+
+# After
+make test
+```
+
 ## 🏗 Package-Specific Guidelines
 
 ### Foundation Layer (provide-*)
