@@ -11,13 +11,13 @@ This is the documentation hub for the provide.io ecosystem. For development:
 uv sync
 
 # Serve docs locally for development
-we run docs.serve
+we docs serve
 
 # Build complete documentation
-we run docs.build
+we docs build
 
 # Clean documentation artifacts
-we run docs.clean
+we docs clean
 ```
 
 ## Environment Management
@@ -67,24 +67,25 @@ This repository aggregates documentation from all ecosystem packages using:
 ### Documentation Commands
 
 ```bash
-we run docs.serve       # Development server with auto-reload
-we run docs.build       # Production build
-we run docs.validate    # Validate links and structure
+we docs serve       # Development server with auto-reload
+we docs build       # Production build
+we docs validate    # Validate links and structure
 ```
 
 ### Maintenance Commands
 
 ```bash
-we run dev.setup     # Sync dependencies
-we run dev.check     # Format, lint, typecheck
-we run clean         # Clean artifacts
+we dev status       # Check which projects are available
+we dev update       # Pull latest from all projects
+we cache clean-all  # Clean all caches (UV, Python, etc.)
+we clean deep       # Deep clean with confirmation
 ```
 
 ### Testing Commands
 
 ```bash
-we run test          # Run test suite
-we run test.coverage # Run tests with coverage
+we test build       # Test documentation build
+we test projects    # Test individual project builds
 ```
 
 ## Code Standards
