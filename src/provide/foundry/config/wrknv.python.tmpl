@@ -79,15 +79,15 @@ find . -type f -name '*.pyo' -delete 2>/dev/null || true
 # ==============================================================================
 
 [tasks.docs]
-_default = "python scripts/docs_serve.py"
+_default = "python .provide/foundry/scripts/docs_serve.py"
 setup = "python -c \"from provide.foundry.config import extract_base_mkdocs; from pathlib import Path; extract_base_mkdocs(Path('.'))\""
-build = "python scripts/docs_preflight.py && mkdocs build"
+build = "python .provide/foundry/scripts/docs_preflight.py && mkdocs build"
 clean = "rm -rf site .provide"
-preflight = "python scripts/docs_preflight.py"
-validate = "python scripts/docs_validate.py"
+preflight = "python .provide/foundry/scripts/docs_preflight.py"
+validate = "python .provide/foundry/scripts/docs_validate.py"
 
 [tasks.docs.serve]
-run = "python scripts/docs_serve.py"
+run = "python .provide/foundry/scripts/docs_serve.py"
 timeout = 604800.0  # 1 week - effectively no timeout for development server
 
 [tasks.docs.links]
