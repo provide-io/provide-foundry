@@ -238,17 +238,26 @@ ci-all: ci-quality ci-test build ## Run full CI pipeline
 # 📚 Documentation
 # ==============================================================================
 
-docs-setup:
+docs-setup: ## Extract documentation theme and configuration
+	@echo '$(BLUE)Extracting documentation assets...$(NC)'
 	@python -c "from provide.foundry.config import extract_base_mkdocs; from pathlib import Path; extract_base_mkdocs(Path('.'))"
+	@echo '$(GREEN)✓ Documentation assets extracted$(NC)'
 
-docs-build: docs-setup
-	@mkdocs build
+docs-preflight: ## Check if documentation is ready to build
+	@python scripts/docs_preflight.py
 
-docs-serve: docs-setup
-	@mkdocs serve
+docs-build: ## Build documentation static site
+	@echo '$(BLUE)Building documentation...$(NC)'
+	@python scripts/docs_preflight.py && mkdocs build
+	@echo '$(GREEN)✓ Documentation built in site/$(NC)'
 
-docs-clean:
+docs-serve: ## Serve documentation with live reload (smart port detection)
+	@python scripts/docs_serve.py
+
+docs-clean: ## Clean documentation build artifacts
+	@echo '$(BLUE)Cleaning documentation artifacts...$(NC)'
 	@rm -rf site .provide
+	@echo '$(GREEN)✓ Documentation artifacts removed$(NC)'
 
 # ==============================================================================
 # 🔗 Link Checking
