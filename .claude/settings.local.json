@@ -3,12 +3,20 @@
     "allow": [
       "Bash(for proj in */)",
       "Bash(do proj=$proj%/ if [ -d $proj/scripts ])",
-      "Bash(then echo '📁 $proj/scripts:' ls -1 $proj/scripts/)"
-    ],
-    "additionalDirectories": [
-      "/Users/tim/code/gh/provide-io"
+      "Bash(then echo '📁 $proj/scripts:' ls -1 $proj/scripts/)",
+      "Bash(do proj_name=\"$dir%/\")",
+      "Bash(if [ -d \"$proj_name/.provide/foundry\" ])",
+      "Bash(then echo \"$proj_name: HAS\")",
+      "Bash(else echo \"$proj_name: MISSING\")",
+      "Bash(for proj in pyvider wrknv terraform-provider-pyvider terraform-provider-tofusoup tofusoup pyvider-components provide-foundation provide-testkit)",
+      "Bash(then grep \"hooks:\" \"$proj/mkdocs.yml\")",
+      "Bash(else echo \"No mkdocs.yml\")",
+      "Bash(md5sum:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/Users/tim/code/gh/provide-io"
+    ]
   }
 }
