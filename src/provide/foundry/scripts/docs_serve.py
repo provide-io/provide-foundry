@@ -1,16 +1,13 @@
 #!/usr/bin/env python
-# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 """Serve documentation with automatic port detection."""
 
 from __future__ import annotations
 
-from pathlib import Path
 import re
 import socket
 import subprocess
 import sys
+from pathlib import Path
 
 
 def find_available_port(start_port: int = 11000) -> int:
@@ -23,15 +20,15 @@ def find_available_port(start_port: int = 11000) -> int:
         except OSError:
             continue
 
-    raise RuntimeError(f"No available ports in range {start_port}-{start_port + 100}")
+    raise RuntimeError(
+        f"No available ports in range {start_port}-{start_port + 100}"
+    )
 
 
 def main() -> int:
     """Serve documentation with smart port detection."""
-    # Run preflight check - use script's directory to find sibling script
-    script_dir = Path(__file__).parent
-    preflight_script = script_dir / "docs_preflight.py"
-    result = subprocess.run([sys.executable, str(preflight_script)])
+    # Run preflight check
+    result = subprocess.run([sys.executable, "scripts/docs_preflight.py"])
     if result.returncode != 0:
         return 1
 

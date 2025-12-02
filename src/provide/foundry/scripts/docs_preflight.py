@@ -1,13 +1,10 @@
 #!/usr/bin/env python
-# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 """Pre-flight checks for documentation builds."""
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 def check_docs_ready() -> tuple[bool, list[str]]:
@@ -62,7 +59,7 @@ def auto_setup() -> bool:
         try:
             from provide.foundry.config import extract_base_mkdocs
 
-            extract_base_mkdocs(Path())
+            extract_base_mkdocs(Path("."))
             print("  ✅ Setup complete!")
             return True
         except Exception as e:
@@ -83,7 +80,7 @@ def main() -> int:
         print()
         print("Manual setup:")
         print("  1. Run: uv sync")
-        print("  2. Run: we run docs.setup")
+        print("  2. Run: make docs-setup")
         return 1
 
 
