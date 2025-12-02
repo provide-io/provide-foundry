@@ -13,7 +13,8 @@
       "Bash(else echo \"No mkdocs.yml\")",
       "Bash(md5sum:*)",
       "Bash(/Users/tim/.local/bin/we docs build:*)",
-      "Bash(/Users/tim/code/gh/provide-io/provide-foundry/.venv/bin/python:*)"
+      "Bash(/Users/tim/code/gh/provide-io/provide-foundry/.venv/bin/python:*)",
+      "Bash(.venv/bin/python:*)"
     ],
     "deny": [],
     "ask": [],
