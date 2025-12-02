@@ -112,10 +112,10 @@ def inject_global_partials(
 
     Args:
         docs_dir: Directory containing documentation files
-        partials_dir: Directory for project-specific mkdocs overrides (docs/_partials/)
+        partials_dir: Directory containing global partials (checked first)
         dry_run: If True, only print what would be changed
         file_pattern: Pattern to match files (default: "*.tmpl.md", can also use "*.md")
-        fallback_partials_dir: Foundry defaults (.provide/foundry/docs/_partials/)
+        fallback_partials_dir: Fallback directory if partials not found in partials_dir
 
     Returns:
         Number of files processed
@@ -163,11 +163,7 @@ def main() -> int:
     script_dir = Path(__file__).parent
     project_root = script_dir.parent
 
-    # Partials hierarchy for mkdocs documentation:
-    # 1. docs/_partials/ - project-specific overrides (checked first)
-    # 2. .provide/foundry/docs/_partials/ - foundry defaults (fallback)
-    # NOTE: plating/partials/ is for Terraform docs only, NEVER used here
-    project_partials_dir = project_root / "docs" / "_partials"
+    # Foundry partials (centralized source, used as fallback)
     foundry_partials_dir = project_root / ".provide" / "foundry" / "docs" / "_partials"
 
     # Parse arguments
@@ -186,8 +182,9 @@ def main() -> int:
             print("🔧 Processing Provider Guides")
             print("=" * 60)
             print(f"🔍 Scanning for guides in: {provider_guides_dir}")
-            print(f"📚 Project overrides: {project_partials_dir}")
-            print(f"📚 Foundry defaults: {foundry_partials_dir}")
+            print(f"📚 Using partials from: {provider_partials_dir}")
+            if foundry_partials_dir.exists():
+                print(f"📚 Fallback partials from: {foundry_partials_dir}")
             print()
 
             if not foundry_partials_dir.exists():
@@ -196,10 +193,10 @@ def main() -> int:
 
             files_changed = inject_global_partials(
                 provider_guides_dir,
-                project_partials_dir,
+                provider_partials_dir,
                 dry_run,
                 file_pattern="*.md",
-                fallback_partials_dir=foundry_partials_dir,
+                fallback_partials_dir=foundry_partials_dir if foundry_partials_dir.exists() else None,
             )
             total_files_changed += files_changed
             print()
@@ -213,11 +210,18 @@ def main() -> int:
             print("🔧 Processing Component Documentation")
             print("=" * 60)
             print(f"🔍 Scanning for docs in: {docs_dir}")
-            print(f"📚 Project overrides: {project_partials_dir}")
-            print(f"📚 Foundry defaults: {foundry_partials_dir}")
+            print(f"📚 Using partials from: {partials_dir}")
+            if foundry_partials_dir.exists():
+                print(f"📚 Fallback partials from: {foundry_partials_dir}")
             print()
 
-            files_changed = inject_global_partials(docs_dir, partials_dir, dry_run, file_pattern="*.md")
+            files_changed = inject_global_partials(
+                docs_dir,
+                partials_dir,
+                dry_run,
+                file_pattern="*.md",
+                fallback_partials_dir=foundry_partials_dir if foundry_partials_dir.exists() else None,
+            )
             total_files_changed += files_changed
             print()
 
@@ -236,13 +240,14 @@ if __name__ == "__main__":
     sys.exit(main())
 
 
-def _load_global_partials(primary_dir: Path, fallback_dir: Path | None = None) -> tuple[str, str]:
+def _load_global_partials(partials_dir: Path, fallback_dir: Path | None = None) -> tuple[str, str]:
     """Return the contents of the global header and footer partials.
 
-    Checks primary_dir first (project overrides), then fallback_dir (foundry defaults).
+    Checks partials_dir first, then fallback_dir if files not found.
+    This allows project-specific overrides while using centralized defaults.
     """
-    header = _read_partial_with_fallback("_global_header.md", primary_dir, fallback_dir)
-    footer = _read_partial_with_fallback("_global_footer.md", primary_dir, fallback_dir)
+    header = _read_partial_with_fallback("_global_header.md", partials_dir, fallback_dir)
+    footer = _read_partial_with_fallback("_global_footer.md", partials_dir, fallback_dir)
     return header, footer
 
 
