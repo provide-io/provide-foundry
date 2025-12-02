@@ -108,6 +108,26 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
                     partials_dst / partial.name,
                 )
 
+    # Copy CSS files from theme to docs/css (for projects to use)
+    css_src = theme_dst / "css"
+    css_dst = target_path / "docs" / "css"
+    if css_src.exists():
+        css_dst.parent.mkdir(parents=True, exist_ok=True)
+        if css_dst.exists():
+            shutil.rmtree(css_dst)
+        shutil.copytree(css_src, css_dst)
+        # Create empty extra.css for project-specific overrides
+        (css_dst / "extra.css").touch(exist_ok=True)
+
+    # Copy JS files from theme to docs/js (for projects to use)
+    js_src = theme_dst / "js"
+    js_dst = target_path / "docs" / "js"
+    if js_src.exists():
+        js_dst.parent.mkdir(parents=True, exist_ok=True)
+        if js_dst.exists():
+            shutil.rmtree(js_dst)
+        shutil.copytree(js_src, js_dst)
+
     return base_mkdocs_dst
 
 
