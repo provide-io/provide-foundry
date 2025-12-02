@@ -21,7 +21,9 @@
       "Bash(deptry:*)",
       "Bash(ruff format:*)",
       "Bash(uv sync:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(pytest tests -x -q --tb=short:*)",
+      "Bash(pytest:*)"
     ],
     "deny": [],
     "ask": [],
