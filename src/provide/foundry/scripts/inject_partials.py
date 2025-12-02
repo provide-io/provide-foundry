@@ -217,17 +217,7 @@ def main() -> int:
             print(f"📚 Foundry defaults: {foundry_partials_dir}")
             print()
 
-            if not foundry_partials_dir.exists():
-                print("⚠️  Foundry partials not found. Run 'we run docs.setup' first.")
-                return 1
-
-            files_changed = inject_global_partials(
-                docs_dir,
-                project_partials_dir,
-                dry_run,
-                file_pattern="*.md",
-                fallback_partials_dir=foundry_partials_dir,
-            )
+            files_changed = inject_global_partials(docs_dir, partials_dir, dry_run, file_pattern="*.md")
             total_files_changed += files_changed
             print()
 
