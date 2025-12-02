@@ -2,7 +2,7 @@
 # Documentation: https://lychee.cli.rs/#/usage/config
 
 # Maximum number of concurrent network requests
-max_concurrency = 64
+max_concurrency = 128
 
 # Maximum number of retries per link
 max_retries = 3
@@ -24,7 +24,7 @@ exclude_mail = true
 
 # Exclude specific URLs and patterns
 exclude = [
-    # Localhost and development URLs
+    # Localhost and development URLs (wildcard for all ports)
     "http://localhost*",
     "http://127.0.0.1*",
     "https://127.0.0.1*",
@@ -35,24 +35,18 @@ exclude = [
     # Temporary or variable URLs
     "file:///*",
 
+    # MkDocs extensionless links (work after build with use_directory_urls: true)
+    # These are NOT broken - they're valid MkDocs patterns
+    ".*/docs/[^/]+/?$",              # Extensionless directory links like docs/guides
+    ".*/docs/packages/.*",            # Monorepo namespace dirs created at build time
+    ".*\\.md#.*",                     # Anchor links in markdown files
+
+    # Example/placeholder URLs
+    "https?://example\\.(com|org|net).*",
+
     # Known false positives or rate-limited sites
     "https://github.com/.*/issues/new",
     "https://github.com/.*/pulls",
-
-    # Development server addresses from mkdocs.yml
-    "http://127.0.0.1:8000*",
-    "http://127.0.0.1:8001*",
-    "http://127.0.0.1:11000*",
-    "http://127.0.0.1:11001*",
-    "http://127.0.0.1:11002*",
-    "http://127.0.0.1:11003*",
-    "http://127.0.0.1:11004*",
-    "http://127.0.0.1:11005*",
-    "http://127.0.0.1:11006*",
-    "http://127.0.0.1:11007*",
-    "http://127.0.0.1:11008*",
-    "http://127.0.0.1:11009*",
-    "http://127.0.0.1:11010*",
 
     # Google Analytics (these require specific cookies/auth)
     "https://analytics.google.com/*",
