@@ -1,13 +1,10 @@
 #!/usr/bin/env python
-# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 """Validate documentation standardization across all projects."""
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 def check_project_standardization(project_path: Path) -> dict:
@@ -21,7 +18,7 @@ def check_project_standardization(project_path: Path) -> dict:
     # Check 2: Has .provide/foundry/
     provide_dir = project_path / ".provide" / "foundry"
     if not provide_dir.exists():
-        issues.append("Missing .provide/foundry/ (run we run docs.setup)")
+        issues.append("Missing .provide/foundry/ (run make docs-setup)")
     else:
         # Check extracted files are present
         required = [
@@ -38,12 +35,10 @@ def check_project_standardization(project_path: Path) -> dict:
     mkdocs_yml = project_path / "mkdocs.yml"
     if mkdocs_yml.exists():
         content = mkdocs_yml.read_text()
-        # provide-foundation is known to not use INHERIT - that's OK
-        if (
-            "INHERIT: .provide/foundry/base-mkdocs.yml" not in content
-            and project_path.name != "provide-foundation"
-        ):
-            issues.append("mkdocs.yml doesn't use INHERIT directive")
+        if "INHERIT: .provide/foundry/base-mkdocs.yml" not in content:
+            # provide-foundation is known to not use INHERIT - that's OK
+            if project_path.name != "provide-foundation":
+                issues.append("mkdocs.yml doesn't use INHERIT directive")
     else:
         issues.append("Missing mkdocs.yml")
 
@@ -67,7 +62,7 @@ def check_project_standardization(project_path: Path) -> dict:
 
 def main() -> int:
     """Check all projects in workspace."""
-    workspace = Path(__file__).resolve().parent.parent.parent
+    workspace = Path("/Users/tim/code/gh/provide-io")
 
     # Get all projects with mkdocs.yml
     projects = sorted(workspace.glob("*/mkdocs.yml"))
