@@ -17,7 +17,6 @@ from contextlib import suppress
 from pathlib import Path
 
 import mkdocs_gen_files
-
 from provide.foundation import logger
 
 

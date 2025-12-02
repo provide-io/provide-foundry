@@ -35,10 +35,12 @@ def check_project_standardization(project_path: Path) -> dict:
     mkdocs_yml = project_path / "mkdocs.yml"
     if mkdocs_yml.exists():
         content = mkdocs_yml.read_text()
-        if "INHERIT: .provide/foundry/base-mkdocs.yml" not in content:
-            # provide-foundation is known to not use INHERIT - that's OK
-            if project_path.name != "provide-foundation":
-                issues.append("mkdocs.yml doesn't use INHERIT directive")
+        # provide-foundation is known to not use INHERIT - that's OK
+        if (
+            "INHERIT: .provide/foundry/base-mkdocs.yml" not in content
+            and project_path.name != "provide-foundation"
+        ):
+            issues.append("mkdocs.yml doesn't use INHERIT directive")
     else:
         issues.append("Missing mkdocs.yml")
 

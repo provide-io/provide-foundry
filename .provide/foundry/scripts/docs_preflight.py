@@ -59,7 +59,7 @@ def auto_setup() -> bool:
         try:
             from provide.foundry.config import extract_base_mkdocs
 
-            extract_base_mkdocs(Path("."))
+            extract_base_mkdocs(Path())
             print("  ✅ Setup complete!")
             return True
         except Exception as e:
