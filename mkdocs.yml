@@ -281,6 +281,7 @@ nav:
 
 # Hooks for custom build-time processing
 hooks:
+  - src/provide/foundry/theme/hooks/global_partials_hook.py
   - src/provide/foundry/theme/hooks/version_hook.py
   - src/provide/foundry/theme/hooks/nav_filter_hook.py
   - src/provide/foundry/theme/hooks/terraform_provider.py
