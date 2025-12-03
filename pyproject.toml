@@ -68,6 +68,9 @@ version = {file = "VERSION"}
     "*.py",
     "_partials/*.md",
 ]
+"provide.foundry.scripts" = [
+    "*.py",
+]
 "provide.foundry.theme" = [
     "assets/**/*",
     "data/**/*",
