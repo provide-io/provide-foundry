@@ -124,9 +124,7 @@ class TestCollapsedStructure:
         assert "roadmap/index.md" in plugin.renamed_files
         assert plugin.renamed_files["roadmap/index.md"] == "roadmap.md"
 
-    def test_preserve_multi_file_directory(
-        self, plugin: MarkdownExportPlugin, temp_dir: Path
-    ) -> None:
+    def test_preserve_multi_file_directory(self, plugin: MarkdownExportPlugin, temp_dir: Path) -> None:
         """Test preserving directories with multiple files."""
         # Setup directory with multiple files
         (temp_dir / "guides").mkdir()
@@ -239,9 +237,7 @@ class TestCrossReferenceUpdates:
         assert "](guide/concepts.md)" in content
         assert "](guide/concepts/)" not in content
 
-    def test_update_multiple_links_in_file(
-        self, plugin: MarkdownExportPlugin, temp_dir: Path
-    ) -> None:
+    def test_update_multiple_links_in_file(self, plugin: MarkdownExportPlugin, temp_dir: Path) -> None:
         """Test updating multiple links in one file."""
         # Setup renamed files
         plugin.renamed_files = {
@@ -311,9 +307,7 @@ class TestAPIManifest:
         assert "api/server/index.md" in content
         assert "api/index.md" in content
 
-    def test_api_manifest_with_collapsed_paths(
-        self, plugin: MarkdownExportPlugin, temp_dir: Path
-    ) -> None:
+    def test_api_manifest_with_collapsed_paths(self, plugin: MarkdownExportPlugin, temp_dir: Path) -> None:
         """Test API manifest with collapsed structure."""
         plugin.output_path = temp_dir
         plugin.api_files = [
