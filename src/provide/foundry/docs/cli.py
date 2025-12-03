@@ -202,9 +202,7 @@ def main(
     pout("")
 
     # Process all files
-    total_changes, files_changed, errors = _process_all_files(
-        markdown_files, dry_run=dry_run, verbose=verbose
-    )
+    total_changes, files_changed, errors = _process_all_files(markdown_files, dry_run=dry_run, verbose=verbose)
 
     # Print summary
     _print_summary(len(markdown_files), files_changed, total_changes, errors, dry_run=dry_run)

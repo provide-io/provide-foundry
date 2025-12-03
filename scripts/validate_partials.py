@@ -52,9 +52,7 @@ def validate_references(project_root: Path, references: list[tuple[Path, str, in
 
         if not partial_path.exists():
             relative_md = md_file.relative_to(project_root)
-            errors.append(
-                f"{relative_md}:{line_num}: Referenced partial '{partial_ref}' does not exist"
-            )
+            errors.append(f"{relative_md}:{line_num}: Referenced partial '{partial_ref}' does not exist")
 
     return errors
 

@@ -157,9 +157,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             'href="/pyvider-framework/pyvider-rpcplugin/': 'href="/pyvider-rpcplugin/',
             'href="/pyvider-framework/pyvider-components/': 'href="/pyvider-components/',
             'href="/pyvider-framework/tofusoup/': 'href="/tofusoup/',
-            (
-                'href="/pyvider-framework/terraform-provider-pyvider/'
-            ): 'href="/terraform-provider-pyvider/',
+            ('href="/pyvider-framework/terraform-provider-pyvider/'): 'href="/terraform-provider-pyvider/',
             'href="/foundation/foundation/': 'href="/provide-foundation/',
             'href="/foundation/testkit/': 'href="/provide-testkit/',
             'href="/development-tools/flavorpack/': 'href="/flavorpack/',
