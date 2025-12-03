@@ -34,6 +34,11 @@ def _find_partials_dir(config: dict[str, Any]) -> Path | None:
     if foundry_partials.exists():
         return foundry_partials
 
+    # Special case for provide-foundry source tree
+    src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
+    if src_foundry_partials.exists():
+        return src_foundry_partials
+
     return None
 
 
