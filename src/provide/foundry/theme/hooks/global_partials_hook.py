@@ -10,58 +10,51 @@ This hook:
 
 from __future__ import annotations
 
-import logging
 import re
 from pathlib import Path
 from typing import Any
 
-log = logging.getLogger("mkdocs.plugins.global_partials")
-
 # Cache for partial contents
 _header_content: str | None = None
 _footer_content: str | None = None
-_debug_logged: bool = False
 
 
 def _find_partials_dir(config: dict[str, Any]) -> Path | None:
-    """Find the partials directory, checking project overrides first, then foundry defaults."""
-    global _debug_logged
+    """Find the partials directory, checking project overrides first, then foundry defaults.
 
-    docs_dir = Path(config.get("docs_dir", "docs"))
-    project_root = docs_dir.parent
-
-    if not _debug_logged:
-        log.warning(f"[global_partials] docs_dir={docs_dir}, project_root={project_root}")
+    NOTE: When mkdocs-monorepo is used, docs_dir points to a temp directory.
+    We must use config_file_path to find the actual project root.
+    """
+    # Get actual project root from config file path (not docs_dir which may be temp)
+    config_file = config.get("config_file_path")
+    if config_file:
+        project_root = Path(config_file).parent
+    else:
+        # Fallback for non-monorepo builds
+        docs_dir = Path(config.get("docs_dir", "docs"))
+        project_root = docs_dir.parent
 
     # Check project-specific overrides first
     project_partials = project_root / "docs" / "_partials"
     if project_partials.exists():
-        if not _debug_logged:
-            log.warning(f"[global_partials] Found project partials: {project_partials}")
         return project_partials
 
     # Fall back to foundry defaults (extracted via we docs setup)
     foundry_partials = project_root / ".provide" / "foundry" / "docs" / "_partials"
     if foundry_partials.exists():
-        if not _debug_logged:
-            log.warning(f"[global_partials] Found foundry partials: {foundry_partials}")
         return foundry_partials
 
     # Special case for provide-foundry source tree
     src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
     if src_foundry_partials.exists():
-        if not _debug_logged:
-            log.warning(f"[global_partials] Found src foundry partials: {src_foundry_partials}")
         return src_foundry_partials
 
-    if not _debug_logged:
-        log.warning(f"[global_partials] NO partials dir found! Checked: {project_partials}, {foundry_partials}, {src_foundry_partials}")
     return None
 
 
 def _load_partials(config: dict[str, Any]) -> tuple[str, str]:
     """Load global header and footer content."""
-    global _header_content, _footer_content, _debug_logged
+    global _header_content, _footer_content
 
     if _header_content is not None and _footer_content is not None:
         return _header_content, _footer_content
@@ -70,7 +63,6 @@ def _load_partials(config: dict[str, Any]) -> tuple[str, str]:
     if partials_dir is None:
         _header_content = ""
         _footer_content = ""
-        _debug_logged = True
         return _header_content, _footer_content
 
     header_file = partials_dir / "_global_header.md"
@@ -78,10 +70,6 @@ def _load_partials(config: dict[str, Any]) -> tuple[str, str]:
 
     _header_content = header_file.read_text(encoding="utf-8").strip() if header_file.exists() else ""
     _footer_content = footer_file.read_text(encoding="utf-8").strip() if footer_file.exists() else ""
-
-    if not _debug_logged:
-        log.warning(f"[global_partials] Loaded header ({len(_header_content)} chars), footer ({len(_footer_content)} chars)")
-        _debug_logged = True
 
     return _header_content, _footer_content
 
