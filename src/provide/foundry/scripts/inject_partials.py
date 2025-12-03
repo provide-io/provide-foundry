@@ -101,7 +101,6 @@ def inject_global_partials(
     partials_dir: Path,
     dry_run: bool = False,
     file_pattern: str = "*.tmpl.md",
-    fallback_partials_dir: Path | None = None,
 ) -> int:
     """Inject global partials into documentation files.
 
@@ -112,10 +111,9 @@ def inject_global_partials(
 
     Args:
         docs_dir: Directory containing documentation files
-        partials_dir: Directory containing global partials (checked first)
+        partials_dir: Directory containing global partials (from .provide/foundry/docs/_partials/)
         dry_run: If True, only print what would be changed
         file_pattern: Pattern to match files (default: "*.tmpl.md", can also use "*.md")
-        fallback_partials_dir: Fallback directory if partials not found in partials_dir
 
     Returns:
         Number of files processed
@@ -125,7 +123,7 @@ def inject_global_partials(
         print(f"⚠️  No documentation files found in {docs_dir}")
         return 0
 
-    global_header_content, global_footer_content = _load_global_partials(partials_dir, fallback_partials_dir)
+    global_header_content, global_footer_content = _load_global_partials(partials_dir)
     manual_pattern = re.compile(r"\{\{\s*global\(['\"]([^'\"]+)['\"]\)\s*\}\}")
     files_changed = 0
 
@@ -163,7 +161,8 @@ def main() -> int:
     script_dir = Path(__file__).parent
     project_root = script_dir.parent
 
-    # Foundry partials (centralized source, used as fallback)
+    # Foundry partials (centralized source for mkdocs documentation)
+    # NOTE: This is completely separate from plating/partials/ which is for Terraform docs
     foundry_partials_dir = project_root / ".provide" / "foundry" / "docs" / "_partials"
 
     # Parse arguments
@@ -182,21 +181,18 @@ def main() -> int:
             print("🔧 Processing Provider Guides")
             print("=" * 60)
             print(f"🔍 Scanning for guides in: {provider_guides_dir}")
-            print(f"📚 Using partials from: {provider_partials_dir}")
-            if foundry_partials_dir.exists():
-                print(f"📚 Fallback partials from: {foundry_partials_dir}")
+            print(f"📚 Using partials from: {foundry_partials_dir}")
             print()
 
             if not foundry_partials_dir.exists():
-                print("⚠️  Foundry partials not found. Run 'we run docs.setup' first.")
+                print("⚠️  Foundry partials not found. Run 'we docs setup' first.")
                 return 1
 
             files_changed = inject_global_partials(
                 provider_guides_dir,
-                provider_partials_dir,
+                foundry_partials_dir,
                 dry_run,
                 file_pattern="*.md",
-                fallback_partials_dir=foundry_partials_dir if foundry_partials_dir.exists() else None,
             )
             total_files_changed += files_changed
             print()
@@ -210,17 +206,18 @@ def main() -> int:
             print("🔧 Processing Component Documentation")
             print("=" * 60)
             print(f"🔍 Scanning for docs in: {docs_dir}")
-            print(f"📚 Using partials from: {partials_dir}")
-            if foundry_partials_dir.exists():
-                print(f"📚 Fallback partials from: {foundry_partials_dir}")
+            print(f"📚 Using partials from: {foundry_partials_dir}")
             print()
+
+            if not foundry_partials_dir.exists():
+                print("⚠️  Foundry partials not found. Run 'we docs setup' first.")
+                return 1
 
             files_changed = inject_global_partials(
                 docs_dir,
-                partials_dir,
+                foundry_partials_dir,
                 dry_run,
                 file_pattern="*.md",
-                fallback_partials_dir=foundry_partials_dir if foundry_partials_dir.exists() else None,
             )
             total_files_changed += files_changed
             print()
@@ -240,27 +237,11 @@ if __name__ == "__main__":
     sys.exit(main())
 
 
-def _load_global_partials(partials_dir: Path, fallback_dir: Path | None = None) -> tuple[str, str]:
-    """Return the contents of the global header and footer partials.
-
-    Checks partials_dir first, then fallback_dir if files not found.
-    This allows project-specific overrides while using centralized defaults.
-    """
-    header = _read_partial_with_fallback("_global_header.md", partials_dir, fallback_dir)
-    footer = _read_partial_with_fallback("_global_footer.md", partials_dir, fallback_dir)
+def _load_global_partials(partials_dir: Path) -> tuple[str, str]:
+    """Return the contents of the global header and footer partials."""
+    header = _read_partial(partials_dir / "_global_header.md")
+    footer = _read_partial(partials_dir / "_global_footer.md")
     return header, footer
-
-
-def _read_partial_with_fallback(filename: str, primary_dir: Path, fallback_dir: Path | None) -> str:
-    """Read a partial file, checking primary dir first, then fallback."""
-    primary_path = primary_dir / filename
-    if primary_path.exists():
-        return primary_path.read_text(encoding="utf-8").strip()
-    if fallback_dir:
-        fallback_path = fallback_dir / filename
-        if fallback_path.exists():
-            return fallback_path.read_text(encoding="utf-8").strip()
-    return ""
 
 
 def _read_partial(path: Path) -> str:
