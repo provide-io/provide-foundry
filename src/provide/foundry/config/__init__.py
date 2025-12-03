@@ -108,6 +108,27 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
                     partials_dst / partial.name,
                 )
 
+    # Extract scripts (docs helper scripts)
+    scripts_src = files("provide.foundry.scripts")
+    scripts_dst = provide_foundry_dir / "scripts"
+
+    # Remove existing scripts directory if present
+    if scripts_dst.exists():
+        shutil.rmtree(scripts_dst)
+
+    # Copy scripts directory
+    scripts_dst.mkdir(parents=True, exist_ok=True)
+    if hasattr(scripts_src, "__fspath__"):
+        for script in Path(scripts_src.__fspath__()).glob("*.py"):
+            shutil.copy2(script, scripts_dst / script.name)
+    else:
+        for script in scripts_src.iterdir():
+            if script.name.endswith(".py"):
+                shutil.copy2(
+                    Path(str(script)) if hasattr(script, "__fspath__") else str(script),
+                    scripts_dst / script.name,
+                )
+
     # Copy CSS files from theme to docs/css (for projects to use)
     css_src = theme_dst / "css"
     css_dst = target_path / "docs" / "css"
