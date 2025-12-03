@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 """
 MkDocs hook to inject global header and footer into all pages.
 
@@ -13,8 +10,8 @@ This hook:
 
 from __future__ import annotations
 
-from pathlib import Path
 import re
+from pathlib import Path
 from typing import Any
 
 # Cache for partial contents
@@ -23,32 +20,16 @@ _footer_content: str | None = None
 
 
 def _find_partials_dir(config: dict[str, Any]) -> Path | None:
-    """Find the partials directory, checking project overrides first, then foundry defaults.
-
-    NOTE: When mkdocs-monorepo is used, docs_dir points to a temp directory.
-    We must use config_file_path to find the actual project root.
-    """
-    # Get actual project root from config file path (not docs_dir which may be temp)
-    config_file = config.get("config_file_path")
-    if config_file:
-        project_root = Path(config_file).parent
-    else:
-        # Fallback for non-monorepo builds
-        docs_dir = Path(config.get("docs_dir", "docs"))
-        project_root = docs_dir.parent
+    """Find the partials directory, checking project overrides first, then foundry defaults."""
+    docs_dir = Path(config.get("docs_dir", "docs"))
+    project_root = docs_dir.parent
 
     # Check project-specific overrides first
     project_partials = project_root / "docs" / "_partials"
     if project_partials.exists():
         return project_partials
 
-    # Special case for provide-foundry source tree (canonical source)
-    # Check this BEFORE .provide/ since source is authoritative for provide-foundry
-    src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
-    if src_foundry_partials.exists():
-        return src_foundry_partials
-
-    # Fall back to foundry defaults (extracted via we run docs.setup)
+    # Fall back to foundry defaults (extracted via we docs setup)
     foundry_partials = project_root / ".provide" / "foundry" / "docs" / "_partials"
     if foundry_partials.exists():
         return foundry_partials
@@ -78,81 +59,6 @@ def _load_partials(config: dict[str, Any]) -> tuple[str, str]:
     return _header_content, _footer_content
 
 
-def _find_header_insert_position(markdown: str, heading_end_pos: int) -> int:
-    """Find the position to insert header after skipping admonitions and description.
-
-    Skips past empty lines, admonition blocks (!!!), and description text
-    that immediately follow the heading.
-
-    Args:
-        markdown: The full markdown content
-        heading_end_pos: Position where the heading ends
-
-    Returns:
-        The position where header should be inserted
-    """
-    remaining = markdown[heading_end_pos:]
-    lines = remaining.split("\n")
-    i = 0
-
-    while i < len(lines):
-        line = lines[i]
-        stripped = line.strip()
-
-        # Skip empty lines
-        if not stripped:
-            i += 1
-            continue
-
-        # Check for admonition block (!!!)
-        if stripped.startswith("!!!"):
-            i = _skip_admonition_block(lines, i + 1)
-            continue
-
-        # Check for heading (stop here, insert before it)
-        if stripped.startswith("#"):
-            break
-
-        # Found a description line - skip it and insert after
-        i += 1
-        break
-
-    # Calculate insert position based on lines consumed
-    return heading_end_pos + len("\n".join(lines[:i])) + (1 if i > 0 else 0)
-
-
-def _skip_admonition_block(lines: list[str], start_idx: int) -> int:
-    """Skip all lines belonging to an admonition block.
-
-    Args:
-        lines: List of lines from the markdown
-        start_idx: Index to start scanning (after the !!! line)
-
-    Returns:
-        Index of the first line after the admonition block
-    """
-    i = start_idx
-    while i < len(lines):
-        next_line = lines[i]
-        # Admonition content is indented or is an empty line within the block
-        if next_line.startswith(("    ", "\t")) or not next_line.strip():
-            if not next_line.strip():
-                # Look ahead to see if next non-empty line is still indented
-                lookahead = i + 1
-                while lookahead < len(lines) and not lines[lookahead].strip():
-                    lookahead += 1
-                if lookahead < len(lines) and lines[lookahead].startswith(("    ", "\t")):
-                    i += 1
-                    continue
-                # End of admonition block
-                break
-            i += 1
-        else:
-            # Non-indented line - end of admonition
-            break
-    return i
-
-
 def on_page_markdown(
     markdown: str,
     page: Any,
@@ -172,20 +78,30 @@ def on_page_markdown(
     skip_footer = meta.get("skip_global_footer", False)
 
     # Skip if already has header/footer injected (idempotency)
-    has_header = "AI-Generated Content" in markdown or "<!-- global-header -->" in markdown
+    has_header = "POC (proof-of-concept)" in markdown or "<!-- global-header -->" in markdown
     has_footer = "<!-- global-footer -->" in markdown
 
     # Inject header after first heading if not skipped and not already present
     if header_content and not skip_header and not has_header:
+        # Find first heading (# Title)
         heading_match = re.search(r"^# .+$", markdown, re.MULTILINE)
         if heading_match:
-            insert_pos = _find_header_insert_position(markdown, heading_match.end())
+            insert_pos = heading_match.end()
+            # Skip past any immediate description line (non-heading, non-empty)
+            remaining = markdown[insert_pos:]
+            lines = remaining.split("\n")
+            for i, line in enumerate(lines):
+                stripped = line.strip()
+                if stripped and not stripped.startswith("#"):
+                    # Found description, insert after it
+                    insert_pos += len("\n".join(lines[: i + 1])) + 1
+                    break
+                elif stripped.startswith("#"):
+                    # Hit another heading, insert here
+                    break
+
             header_block = f"\n\n<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n"
             markdown = markdown[:insert_pos] + header_block + markdown[insert_pos:]
-        else:
-            # No heading found - prepend header at the very beginning
-            header_block = f"<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n\n"
-            markdown = header_block + markdown
 
     # Append footer if not skipped and not already present
     if footer_content and not skip_footer and not has_footer:
