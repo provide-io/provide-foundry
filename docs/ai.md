@@ -2,15 +2,15 @@
 skip_global_header: true
 ---
 
-# AI Disclosure
+# 🤖 AI Disclosure
 
 Parts of this documentation were generated with AI. Much of it has not yet undergone full human review. A complete audit is in progress, and this notice will remain until that work is finished.
 
-## Why This Matters
+## ⚠️ Why This Matters
 
 AI-assisted drafting accelerates documentation, but it can introduce errors, inconsistencies, or overly verbose/overly brief sections. Until every page has been verified by maintainers, consider the docs a mix of draft and near-final content.
 
-## Where AI Was Used
+## 📝 Where AI Was Used
 
 AI assisted with:
 
@@ -21,7 +21,7 @@ AI assisted with:
 
 These drafts act as placeholders for upcoming human-reviewed versions.
 
-## What's Not AI-Generated
+## 🏗️ What's Not AI-Generated
 
 The actual system architecture, standards, schemas, protocols, capabilities, and design decisions were created, tested, and validated by humans — not by AI.
 
@@ -37,7 +37,7 @@ The docs may be catching up, but the underlying system is not guesswork.
 !!! note "Intentionally designed?"
     "Guesswork" is not really an accurate word here. The system was intentionally designed — but this sentence was written by AI, so take it with a grain of salt.
 
-## What to Expect
+## 🔍 What to Expect
 
 Because many pages have not yet been audited, you may encounter:
 
@@ -49,9 +49,9 @@ Because many pages have not yet been audited, you may encounter:
 6. **Terminology drift** — Slight naming inconsistencies or invented phrasing.
 7. **Incorrect assumptions about intent** — The AI occasionally documents how it thinks things work.
 8. **Temporal confusion** — References to past, future, or speculative versions.
-9. **Length volatility** — Sections that are unexpectedly short next to sections that are far too long.
+9. **Unexpected emojis** — Decorative icons appearing where they arguably shouldn't. 🎯
 
-## The Audit Plan
+## 📋 The Audit Plan
 
 We are systematically reviewing all content to:
 
@@ -63,7 +63,7 @@ We are systematically reviewing all content to:
 
 This is a progressive effort and will continue as the project grows.
 
-## If You Spot an Issue
+## 🐛 If You Spot an Issue
 
 Reports are genuinely helpful. If something looks incorrect, outdated, or unclear, please:
 
@@ -72,7 +72,7 @@ Reports are genuinely helpful. If something looks incorrect, outdated, or unclea
 
 Even small corrections meaningfully improve documentation quality.
 
-## Our Commitment
+## 🤝 Our Commitment
 
 This disclosure stays in place until the full audit is complete and we're confident the documentation accurately reflects the system.
 
