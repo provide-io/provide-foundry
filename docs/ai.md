@@ -34,6 +34,9 @@ In other words:
 
 The docs may be catching up, but the underlying system is not guesswork.
 
+!!! note "Intentionally designed?"
+    "Guesswork" is not really an accurate word here. The system was intentionally designed — but this sentence was written by AI, so take it with a grain of salt.
+
 ## What to Expect
 
 Because many pages have not yet been audited, you may encounter:
