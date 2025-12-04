@@ -49,7 +49,7 @@ Because many pages have not yet been audited, you may encounter:
 6. **Terminology drift** — Slight naming inconsistencies or invented phrasing.
 7. **Incorrect assumptions about intent** — The AI occasionally documents how it thinks things work.
 8. **Temporal confusion** — References to past, future, or speculative versions.
-9. **Unexpected emojis** — Decorative icons appearing where they arguably shouldn't. 🎯
+9. **Unexpected emojis, Capitalization, and punctuation;** — Decorative icons, Inconsistent Casing, and punctuation choices appearing where they arguably shouldn't. 🎯
 
 ## 📋 The Audit Plan
 
