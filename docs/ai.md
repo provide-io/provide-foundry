@@ -2,77 +2,53 @@
 skip_global_header: true
 ---
 
-# 🤖 AI Disclosure
+# AI-Generated Documentation
 
-Parts of this documentation were generated with AI. Much of it has not yet undergone full human review. A complete audit is in progress, and this notice will remain until that work is finished.
+This page explains how AI is used in the Provide Foundry documentation and what that means for readers.
 
-## ⚠️ Why This Matters
+## What Does "AI-Generated" Mean?
 
-AI-assisted drafting accelerates documentation, but it can introduce errors, inconsistencies, or overly verbose/overly brief sections. Until every page has been verified by maintainers, consider the docs a mix of draft and near-final content.
+Much of the documentation across the Provide Foundry ecosystem was created with significant assistance from AI language models (primarily Claude). This includes:
 
-## 📝 Where AI Was Used
+- API reference documentation
+- Conceptual explanations
+- Code examples
+- Tutorials and guides
 
-AI assisted with:
+## Why Are We Disclosing This?
 
-- Draft explanations and descriptions
-- Early versions of examples and snippets
-- Tutorial outlines
-- Initial structure and wording
+Transparency matters. We want you to know:
 
-These drafts act as placeholders for intended human-reviewed versions.
+1. **Content may contain errors** - AI-generated text can include inaccuracies, outdated information, or misunderstandings of the codebase
+2. **We're actively auditing** - Documentation is being reviewed and corrected by human maintainers
+3. **Your feedback helps** - If you spot an issue, please let us know
 
-## 🏗️ What's Not AI-Generated
+## Our Review Process
 
-The actual system architecture, standards, schemas, protocols, capabilities, and design decisions were created, tested, and validated by humans — not by AI.
+All AI-generated documentation goes through:
 
-In other words:
+1. **Initial Generation** - AI assists with drafting based on source code and existing docs
+2. **Technical Review** - Maintainers verify accuracy against actual implementation
+3. **Ongoing Audit** - Continuous improvement as issues are discovered
 
-- The architecture is intentional, not AI-improvised.
-- The standards and conventions across the ecosystem were co-designed and agreed upon by maintainers.
-- The core behaviors of the system are fully implemented and verified.
-- Only the documentation describing these decisions may still contain AI artifacts.
+## How to Report Issues
 
-The docs may be catching up, but the underlying system is not guesswork.
+Found something incorrect or confusing?
 
-!!! note "Intentionally designed?" "Guesswork" is not really an accurate word here. The system was intentionally designed — but this sentence was written by AI, so take it with a grain of salt.
+- **GitHub Issues**: [Report a documentation issue](https://github.com/provide-io/provide-foundry/issues/new?labels=documentation)
+- **Pull Requests**: Contributions are welcome
 
-## 🔍 What to Expect
+## What We're Working On
 
-Because many pages have not yet been audited, you may encounter:
+- Completing technical audits of all auto-generated content
+- Adding more human-written conceptual documentation
+- Improving code examples with tested, working code
+- Expanding tutorials with real-world use cases
 
-1. **Hallucinations** — Confident claims about features or behavior that don't actually exist.
-1. **Overconfident explanations** — Statements delivered with precision, accuracy pending.
-1. **Missing edge cases** — Happy-path documentation without the unhappy-path realities.
-1. **Examples that almost work** — Technically adjacent to correct, but not quite runnable.
-1. **Omissions** — Missing context or implementation details.
-1. **Terminology drift** — Slight naming inconsistencies or invented phrasing.
-1. **Incorrect assumptions about intent** — The AI occasionally documents how it thinks things work.
-1. **Temporal confusion** — References to past, future, or speculative versions.
-1. **Unexpected emojis, Capitalization, and punctuation;** — Decorative icons, Inconsistent Casing, and punctuation choices appearing where they arguably shouldn't. 🎯
+## Our Commitment
 
-## 📋 The Audit Plan
+We're committed to maintaining high-quality documentation. The AI disclosure warning will remain until we've completed our audit process and are confident in the accuracy of the content.
 
-We are systematically reviewing all content to:
+---
 
-- Verify accuracy against real implementation
-- Remove or correct AI-generated inaccuracies
-- Replace draft examples with tested, working code
-- Add missing context, rationale, and architectural reasoning
-- Ensure consistent terminology and standards throughout the ecosystem
-
-This is a progressive effort and will continue as the project grows.
-
-## 🐛 If You Spot an Issue
-
-Reports are genuinely helpful. If something looks incorrect, outdated, or unclear, please:
-
-- [File a GitHub issue](https://github.com/provide-io/provide-foundry/issues/new?labels=documentation)
-- Submit a pull request with a fix
-
-Even small corrections meaningfully improve documentation quality.
-
-## 🤝 Our Commitment
-
-This disclosure stays in place until the full audit is complete and we're confident the documentation accurately reflects the system.
-
-Until then, assume some sections may still show signs of their AI-assisted origins — but the architecture beneath them is intentional, implemented, and validated.
+*Last updated: December 2025*
