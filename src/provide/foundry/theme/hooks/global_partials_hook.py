@@ -39,15 +39,16 @@ def _find_partials_dir(config: dict[str, Any]) -> Path | None:
     if project_partials.exists():
         return project_partials
 
+    # Special case for provide-foundry source tree (canonical source)
+    # Check this BEFORE .provide/ since source is authoritative for provide-foundry
+    src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
+    if src_foundry_partials.exists():
+        return src_foundry_partials
+
     # Fall back to foundry defaults (extracted via we docs setup)
     foundry_partials = project_root / ".provide" / "foundry" / "docs" / "_partials"
     if foundry_partials.exists():
         return foundry_partials
-
-    # Special case for provide-foundry source tree
-    src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
-    if src_foundry_partials.exists():
-        return src_foundry_partials
 
     return None
 
@@ -93,7 +94,7 @@ def on_page_markdown(
     skip_footer = meta.get("skip_global_footer", False)
 
     # Skip if already has header/footer injected (idempotency)
-    has_header = "POC (proof-of-concept)" in markdown or "<!-- global-header -->" in markdown
+    has_header = "AI-Generated Content" in markdown or "<!-- global-header -->" in markdown
     has_footer = "<!-- global-footer -->" in markdown
 
     # Inject header after first heading if not skipped and not already present
