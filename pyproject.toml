@@ -111,3 +111,6 @@ warn_return_any = true
 warn_unused_configs = true
 exclude = ["workenv", ".venv", "build", "dist", "site"]
 
+
+[tool.bandit]
+exclude_dirs = [".venv", "tests", "workenv"]
