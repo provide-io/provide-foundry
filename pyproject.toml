@@ -10,7 +10,9 @@ dynamic = ["version"]
 description = "Shared documentation infrastructure for provide.io ecosystem"
 authors = [
     {name = "Tim Perkins", email = "code@tim.life"},
-    {name = "provide.io maintainers"},
+]
+maintainers = [
+    {name = "provide.io", email = "code@provide.io"},
 ]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -25,7 +27,6 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "provide-testkit[standard,build,docs]",
     "tomli>=2.2.1",
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.7.1",
