@@ -50,7 +50,7 @@ crossrepo-links = "provide.foundry.mkdocs_plugins.crossrepo_links:CrossRepoLinks
 markdown-export = "provide.foundry.mkdocs_plugins.markdown_export:MarkdownExportPlugin"
 
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=75.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
