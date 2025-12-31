@@ -6,8 +6,8 @@ For programmatic use, import from `provide.foundry.docs.link_fixer` instead.
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
+import sys
 
 import click
 

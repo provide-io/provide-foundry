@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import shutil
-import tomllib
 from importlib.resources import files
 from pathlib import Path
+import shutil
+import tomllib
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:

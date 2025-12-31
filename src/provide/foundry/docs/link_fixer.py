@@ -18,8 +18,8 @@ Examples:
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
+import re
 from typing import TYPE_CHECKING
 
 from provide.foundation import perr, pout
