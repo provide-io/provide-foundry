@@ -122,11 +122,11 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
         for script in Path(scripts_src.__fspath__()).glob("*.py"):
             shutil.copy2(script, scripts_dst / script.name)
     else:
-        for script in scripts_src.iterdir():
-            if script.name.endswith(".py"):
+        for item in scripts_src.iterdir():
+            if item.name.endswith(".py"):
                 shutil.copy2(
-                    Path(str(script)) if hasattr(script, "__fspath__") else str(script),
-                    scripts_dst / script.name,
+                    Path(str(item)) if hasattr(item, "__fspath__") else str(item),
+                    scripts_dst / item.name,
                 )
 
     # Copy CSS files from theme to docs/css (for projects to use)
