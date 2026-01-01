@@ -4,6 +4,10 @@
 # Documentation hub for the provide.io ecosystem
 #
 
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "provide-foundry"
 dynamic = ["version"]
@@ -29,6 +33,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
+    "provide-foundation",
     "tomli>=2.2.1",
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.7.1",
@@ -53,10 +58,6 @@ Issues = "https://foundry.provide.io/provide-foundry/issues"
 [project.entry-points."mkdocs.plugins"]
 crossrepo-links = "provide.foundry.mkdocs_plugins.crossrepo_links:CrossRepoLinksPlugin"
 markdown-export = "provide.foundry.mkdocs_plugins.markdown_export:MarkdownExportPlugin"
-
-[build-system]
-requires = ["setuptools>=75.0", "wheel"]
-build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = {find = {where = ["src"]}}
