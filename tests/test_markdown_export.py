@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-import tempfile
 from collections.abc import Generator
 from pathlib import Path
+import tempfile
 from unittest.mock import Mock, patch
 
-import pytest
 from mkdocs.config import Config
 from mkdocs.structure.files import File
 from mkdocs.structure.pages import Page
+import pytest
 
 from provide.foundry.mkdocs_plugins.markdown_export import MarkdownExportPlugin
 

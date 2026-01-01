@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
+import sys
 
 
 def check_project_standardization(project_path: Path) -> dict:

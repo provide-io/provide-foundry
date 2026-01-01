@@ -7,9 +7,9 @@ Run from any project directory that uses provide-foundry partials.
 
 from __future__ import annotations
 
+from pathlib import Path
 import re
 import sys
-from pathlib import Path
 
 PARTIAL_PATTERN = re.compile(r'--8<--\s+"([^"]+)"')
 
