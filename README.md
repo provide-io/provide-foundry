@@ -3,9 +3,7 @@
 Welcome to the comprehensive documentation hub for the provide.io ecosystem - a collection of Python tools and frameworks for building Terraform providers, packaging applications, and managing development workflows.
 
 ## Key Features
-- Centralized documentation for the provide.io ecosystem.
-- Shared MkDocs theme and doc tooling for consistent docs across packages.
-- Guides for building, publishing, and extending ecosystem docs.
+Key features are highlighted in the sections below and in the documentation.
 
 ## 🚀 Quick Start
 
@@ -27,12 +25,11 @@ The documentation is built with MkDocs Material and covers:
 - **API Reference**: Complete API documentation
 
 ## Development
-- See [CLAUDE.md](https://github.com/provide-io/provide-foundry/blob/main/CLAUDE.md) for local development notes.
-- Run `mkdocs serve` in this repo for a live docs preview.
+Development notes are in [CLAUDE.md](CLAUDE.md).
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](https://github.com/provide-io/provide-foundry/blob/main/CONTRIBUTING.md) for ecosystem-wide contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for ecosystem-wide contribution guidelines.
 
 ## 📄 License
 
@@ -234,5 +231,3 @@ The provide.io ecosystem follows a layered architecture:
 - Use **Google-style docstrings** for consistent API documentation
 - Project documentation lives in `<project>/docs/` directory
 - API reference is auto-generated in `<project>/docs/reference/` at build time
-
-Copyright (c) provide.io LLC.
