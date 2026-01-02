@@ -1,6 +1,6 @@
 # Announcement Banner System
 
-The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (pre-release/stable). Some APIs may change during the pre-release series.
+The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (pre-release/stable).
 
 ## Features
 
@@ -15,6 +15,7 @@ The shared theme includes an announcement banner system for marking AI-generated
 
 The `hooks/version_hook.py` reads your project's `VERSION` file and automatically determines status:
 
+- **Alpha**: Versions like `0.0.x-0` or `0.0.1000-0`
 - **Pre-release**: Versions like `0.x.y` or `1.0.0-beta.1`
 - **Stable**: Versions like `1.0.0` and above
 
