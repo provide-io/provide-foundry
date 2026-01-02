@@ -1,10 +1,10 @@
 # Announcement Banner System
 
-The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (alpha/beta/stable).
+The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (pre-release/stable).
 
 ## Features
 
-- **Automatic version detection**: Reads `VERSION` file and displays alpha/beta status
+- **Automatic version detection**: Reads `VERSION` file and displays pre-release status
 - **AI-generated content notice**: Shows warning banner on all pages by default
 - **Per-page control**: Use frontmatter to mark pages as audited and hide the banner
 - **Responsive design**: Works on mobile and desktop with light/dark mode support
@@ -16,7 +16,7 @@ The shared theme includes an announcement banner system for marking AI-generated
 The `hooks/version_hook.py` reads your project's `VERSION` file and automatically determines status:
 
 - **Alpha**: Versions like `0.0.x-0` or `0.0.1000-0`
-- **Beta**: Versions like `0.x.y` or `1.0.0-beta.1`
+- **Pre-release**: Versions like `0.x.y` or `1.0.0-beta.1`
 - **Stable**: Versions like `1.0.0` and above
 
 ### 2. Default Banner
