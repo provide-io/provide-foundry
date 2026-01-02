@@ -19,7 +19,7 @@ AI assisted with:
 - Tutorial outlines
 - Initial structure and wording
 
-These drafts act as placeholders for upcoming human-reviewed versions.
+These drafts act as placeholders for intended human-reviewed versions.
 
 ## 🏗️ What's Not AI-Generated
 
