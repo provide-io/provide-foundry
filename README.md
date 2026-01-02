@@ -230,4 +230,4 @@ The provide.io ecosystem follows a layered architecture:
 - Project documentation lives in `<project>/docs/` directory
 - API reference is auto-generated in `<project>/docs/reference/` at build time
 
-Copyright (c) Provide.io LLC.
+Copyright (c) provide.io LLC.
