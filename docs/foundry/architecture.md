@@ -478,4 +478,4 @@ The architecture supports cloud-native deployment:
 
 ______________________________________________________________________
 
-Continue exploring the foundry with our [design principles](principles.md) or see how this architecture applies in practice with our [development guides](../guides/index.md).
+Continue exploring the foundry with our [design principles](principles/) or see how this architecture applies in practice with our [development guides](../guides/index/).
