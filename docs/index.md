@@ -361,4 +361,4 @@ Security is built into the foundry at multiple levels:
 
 ______________________________________________________________________
 
-Ready to dive deeper? Explore our [architecture guide](foundry/architecture.md) or learn about our [design principles](foundry/principles.md).
+Ready to dive deeper? Explore our [architecture guide](foundry/architecture/), learn about our [design principles](foundry/principles/), or check out the [roadmap](foundry/roadmap/) for what we're exploring next.

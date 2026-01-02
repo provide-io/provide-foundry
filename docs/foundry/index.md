@@ -66,8 +66,9 @@ The comprehensive Foundry documentation has been consolidated into the [main doc
 
 For detailed explorations of specific aspects of the Foundry:
 
-- **[Architecture Guide](architecture.md)** - Detailed technical architecture and design patterns
-- **[Design Principles](principles.md)** - Philosophy and decision-making framework
+- **[Architecture Guide](architecture/)** - Detailed technical architecture and design patterns
+- **[Design Principles](principles/)** - Philosophy and decision-making framework
+- **[Roadmap](roadmap/)** - Exploratory priorities and evolving milestones
 
 ______________________________________________________________________
 
