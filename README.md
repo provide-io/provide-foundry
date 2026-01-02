@@ -3,7 +3,9 @@
 Welcome to the comprehensive documentation hub for the provide.io ecosystem - a collection of Python tools and frameworks for building Terraform providers, packaging applications, and managing development workflows.
 
 ## Key Features
-Key features are highlighted in the sections below and in the documentation.
+- Centralized documentation for the provide.io ecosystem.
+- Shared MkDocs theme and doc tooling for consistent docs across packages.
+- Guides for building, publishing, and extending ecosystem docs.
 
 ## 🚀 Quick Start
 
@@ -25,7 +27,8 @@ The documentation is built with MkDocs Material and covers:
 - **API Reference**: Complete API documentation
 
 ## Development
-Development notes are in [CLAUDE.md](CLAUDE.md).
+- See [CLAUDE.md](CLAUDE.md) for local development notes.
+- Run `mkdocs serve` in this repo for a live docs preview.
 
 ## 🤝 Contributing
 
