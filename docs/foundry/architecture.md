@@ -432,9 +432,9 @@ class CustomTransport(TransportBase):
         pass
 ```
 
-## Future Considerations
+## Potential Considerations
 
-The architecture is designed to support future enhancements:
+The architecture is designed to support potential enhancements:
 
 ### Microservices Support
 
