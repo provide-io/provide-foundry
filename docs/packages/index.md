@@ -223,11 +223,11 @@ source .venv/bin/activate
 
 The foundry uses semantic versioning with coordinated releases:
 
-| Release | Foundation | Framework | Tools | Status      |
-| ------- | ---------- | --------- | ----- | ----------- |
-| 0.1.x   | 0.1.x      | 0.0.x     | 0.0.x | Current     |
-| 0.2.x   | 0.2.x      | 0.1.x     | 0.1.x | Exploratory |
-| 1.0.x   | 1.0.x      | 1.0.x     | 1.0.x | Exploratory |
+| Release | Foundation | Framework | Tools | Status |
+|---------|------------|-----------|--------|---------|
+| 0.1.x   | 0.1.x     | 0.0.x     | 0.0.x  | Current |
+| 0.2.x   | 0.2.x     | 0.1.x     | 0.1.x  | Exploratory |
+| 1.0.x   | 1.0.x     | 1.0.x     | 1.0.x  | Exploratory |
 
 ### Compatibility Matrix
 
@@ -275,4 +275,4 @@ All packages maintain high test coverage:
 
 ______________________________________________________________________
 
-Ready to dive deeper? Start with the [foundation layer](foundation.md) or jump to the [framework overview](pyvider.md) if you're building Terraform providers.
+Ready to dive deeper? Start with the [foundation layer](foundation/) or jump to the [framework overview](pyvider/) if you're building Terraform providers.
