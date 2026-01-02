@@ -455,7 +455,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync --all-groups
+        uv sync --extra dev
 
     - name: Build provider
       run: |
@@ -737,6 +737,6 @@ pre-commit autoupdate
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
-- **[Testing Guide](testing.md)** - Comprehensive testing strategies
-- **[API Reference](https://foundry.provide.io/pyvider/api/)** - Complete Pyvider API documentation
+- **[Provider Development Guide](provider-development/)** - Building providers with Pyvider
+- **[Testing Guide](testing/)** - Comprehensive testing strategies
+- **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation
