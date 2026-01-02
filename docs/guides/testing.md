@@ -649,7 +649,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync --all-groups
+        uv sync --extra dev
 
     - name: Run unit tests
       run: |
@@ -727,6 +727,6 @@ jobs:
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
-- **[API Reference](https://foundry.provide.io/provide-testkit/api/)** - Complete testing framework API
-- **[Packaging Guide](packaging.md)** - Preparing providers for distribution
+- **[Provider Development Guide](provider-development/)** - Building providers with Pyvider
+- **[API Reference](../provide-testkit/reference/)** - Complete testing framework API
+- **[Packaging Guide](packaging/)** - Preparing providers for distribution
