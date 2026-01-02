@@ -4,7 +4,7 @@ The official reference implementation Terraform provider built with the Pyvider 
 
 ## Overview
 
-`terraform-provider-pyvider` is the canonical example provider for the Pyvider framework. It showcases how to build production-ready Terraform providers using pyvider-components and the full Pyvider ecosystem.
+`terraform-provider-pyvider` is the canonical example provider for the Pyvider framework. It showcases how to build production-focused Terraform providers using pyvider-components and the full Pyvider ecosystem.
 
 ### Key Features
 

@@ -171,7 +171,7 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
 - **Status**: Current development focus
 
 ### v0.2.x Series (Q1 2025)
-- **Performance**: Production-ready performance
+- **Performance**: Production-focused performance
 - **Reliability**: Enterprise-grade reliability
 - **Documentation**: Comprehensive documentation
 - **Testing**: Full test coverage
