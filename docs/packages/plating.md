@@ -20,7 +20,7 @@ This tool helps maintain consistent, accurate documentation for providers by gen
 ## Installation
 
 ```bash
-uv add plating
+uv tool install plating
 ```
 
 ## Documentation

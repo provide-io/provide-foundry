@@ -20,7 +20,7 @@ This tool is particularly useful for automated documentation updates, CI/CD work
 ## Installation
 
 ```bash
-uv add supsrc
+uv tool install supsrc
 ```
 
 ## Documentation
