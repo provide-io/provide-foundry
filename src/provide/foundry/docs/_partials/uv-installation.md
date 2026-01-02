@@ -19,6 +19,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
     ```bash
     # Using the install script
     curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Or using pip (fallback)
+    curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 
 === "Windows"
@@ -26,6 +29,9 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
     ```powershell
     # Using PowerShell
     powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+    # Or using pip (fallback)
+    curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 
 **Verify Installation:**

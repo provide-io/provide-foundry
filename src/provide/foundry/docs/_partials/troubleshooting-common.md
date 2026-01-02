@@ -85,8 +85,8 @@ uv sync
 # macOS: Install certificates
 /Applications/Python\ 3.11/Install\ Certificates.command
 
-# Update certifi with uv
-uv add --upgrade certifi
+# Or use pip to update certifi
+uv uv add --upgrade certifi
 ```
 
 #### Slow Installation
