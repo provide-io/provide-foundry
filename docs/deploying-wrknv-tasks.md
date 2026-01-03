@@ -310,7 +310,7 @@ When modifying templates:
 
 **Solution:** Ensure provide-foundry is installed in the environment:
 ```bash
-uv sync  # or pip install -e /path/to/provide-foundry
+uv sync  # or uv pip install -e /path/to/provide-foundry
 ```
 
 ### "Permission denied" when extracting

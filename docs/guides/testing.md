@@ -648,7 +648,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install uv
+        curl -LsSf https://astral.sh/uv/install.sh | sh
         uv sync --extra dev
 
     - name: Run unit tests

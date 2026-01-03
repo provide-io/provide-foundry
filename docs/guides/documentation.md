@@ -447,7 +447,7 @@ Brief description of what the project does and its main benefits.
 
 ```bash
 # Installation
-pip install project-name
+uv add project-name
 
 # Basic usage
 from project import MainClass
@@ -749,7 +749,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install mkdocs mkdocs-material mkdocstrings[python]
+        uv tool install mkdocs
+        uv tool install mkdocs-material
+        uv tool install mkdocstrings[python]
 
     - name: Generate API docs
       run: python scripts/generate_docs.py
@@ -793,7 +795,7 @@ mkdocs:
 
 ```bash
 # Install mike for versioning
-pip install mike
+uv tool install mike
 
 # Deploy version
 mike deploy --push --update-aliases 1.0 latest

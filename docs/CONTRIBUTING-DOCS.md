@@ -208,7 +208,7 @@ Before submitting documentation changes:
 2. **Check for broken links**:
    ```bash
    # Install link checker
-   pip install mkdocs-linkcheck
+   uv add mkdocs-linkcheck
 
    # Run check
    mkdocs build --strict --verbose
