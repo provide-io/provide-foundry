@@ -11,7 +11,7 @@ Welcome to the comprehensive documentation hub for the provide.io ecosystem - a 
 
 ```bash
 # Set up the entire ecosystem
-cd /REDACTED_ABS_PATH
+cd /path/to/provide-io
 uv sync --extra all --extra dev
 source .venv/bin/activate
 ```
