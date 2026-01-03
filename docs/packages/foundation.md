@@ -4,7 +4,7 @@ A comprehensive Python foundation library for building robust applications with 
 
 ## Overview
 
-`provide-foundation` serves as the core infrastructure layer for the entire provide.io ecosystem. It provides essential cross-cutting concerns that all framework and tool packages depend on, including structured logging with OpenTelemetry integration, type-safe configuration management, and common utilities for building production-ready Python applications.
+`provide-foundation` serves as the core infrastructure layer for the entire provide.io ecosystem. It provides essential cross-cutting concerns that all framework and tool packages depend on, including structured logging with OpenTelemetry integration, type-safe configuration management, and common utilities for building production-focused Python applications.
 
 This package is designed to be lightweight yet comprehensive, offering the fundamental capabilities needed for telemetry, observability, and application configuration without imposing heavy dependencies or opinions on application architecture.
 
