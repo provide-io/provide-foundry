@@ -2,6 +2,11 @@
 
 Welcome to the comprehensive documentation hub for the provide.io ecosystem - a collection of Python tools and frameworks for building Terraform providers, packaging applications, and managing development workflows.
 
+## Key Features
+- Centralized documentation for the provide.io ecosystem.
+- Shared MkDocs theme and doc tooling for consistent docs across packages.
+- Guides for building, publishing, and extending ecosystem docs.
+
 ## 🚀 Quick Start
 
 ```bash
@@ -20,6 +25,18 @@ The documentation is built with MkDocs Material and covers:
 - **Packages**: Individual package documentation
 - **Guides**: Cross-package integration guides
 - **API Reference**: Complete API documentation
+
+## Development
+- See [CLAUDE.md](https://github.com/provide-io/provide-foundry/blob/main/CLAUDE.md) for local development notes.
+- Run `mkdocs serve` in this repo for a live docs preview.
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](https://github.com/provide-io/provide-foundry/blob/main/CONTRIBUTING.md) for ecosystem-wide contribution guidelines.
+
+## 📄 License
+
+All packages in the provide.io ecosystem are licensed under Apache-2.0 unless otherwise specified.
 
 ## 🛠 Building Documentation
 
@@ -116,23 +133,23 @@ provide-foundation/
 ## 📦 Ecosystem Packages
 
 ### Foundation Layer
-- **[provide-foundation](../provide-foundation/)** - Core telemetry and logging infrastructure
-- **[provide-testkit](../provide-testkit/)** - Testing utilities and fixtures
+- **[provide-foundation](https://github.com/provide-io/provide-foundation)** - Core telemetry and logging infrastructure
+- **[provide-testkit](https://github.com/provide-io/provide-testkit)** - Testing utilities and fixtures
 
 ### Pyvider Framework
-- **[pyvider](../pyvider/)** - Core Terraform provider framework
-- **[pyvider-cty](../pyvider-cty/)** - CTY type system implementation
-- **[pyvider-hcl](../pyvider-hcl/)** - HCL parsing with CTY integration
-- **[pyvider-rpcplugin](../pyvider-rpcplugin/)** - gRPC plugin protocol implementation
-- **[pyvider-components](../pyvider-components/)** - Standard components library
-- **[terraform-provider-pyvider](../terraform-provider-pyvider/)** - Official Pyvider provider
+- **[pyvider](https://github.com/provide-io/pyvider)** - Core Terraform provider framework
+- **[pyvider-cty](https://github.com/provide-io/pyvider-cty)** - CTY type system implementation
+- **[pyvider-hcl](https://github.com/provide-io/pyvider-hcl)** - HCL parsing with CTY integration
+- **[pyvider-rpcplugin](https://github.com/provide-io/pyvider-rpcplugin)** - gRPC plugin protocol implementation
+- **[pyvider-components](https://github.com/provide-io/pyvider-components)** - Standard components library
+- **[terraform-provider-pyvider](https://github.com/provide-io/terraform-provider-pyvider)** - Official Pyvider provider
 
 ### Tools & Utilities
-- **[flavorpack](../flavorpack/)** - PSPF packaging system for executable bundles
-- **[wrknv](../wrknv/)** - Work environment management
-- **[plating](../plating/)** - Documentation generation for providers
-- **[tofusoup](../tofusoup/)** - Cross-language conformance testing
-- **[supsrc](../supsrc/)** - Automated Git commit/push utility
+- **[flavorpack](https://github.com/provide-io/flavorpack)** - PSPF packaging system for executable bundles
+- **[wrknv](https://github.com/provide-io/wrknv)** - Work environment management
+- **[plating](https://github.com/provide-io/plating)** - Documentation generation for providers
+- **[tofusoup](https://github.com/provide-io/tofusoup)** - Cross-language conformance testing
+- **[supsrc](https://github.com/provide-io/supsrc)** - Automated Git commit/push utility
 
 ## 🏗 Architecture
 
@@ -213,10 +230,4 @@ The provide.io ecosystem follows a layered architecture:
 - Project documentation lives in `<project>/docs/` directory
 - API reference is auto-generated in `<project>/docs/reference/` at build time
 
-## 🤝 Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for ecosystem-wide contribution guidelines.
-
-## 📄 License
-
-All packages in the provide.io ecosystem are licensed under Apache-2.0 unless otherwise specified.
+Copyright (c) Provide.io LLC.
