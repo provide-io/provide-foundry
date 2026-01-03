@@ -232,8 +232,8 @@ The foundry uses semantic versioning with coordinated releases:
 | Release | Foundation | Framework | Tools | Status |
 |---------|------------|-----------|--------|---------|
 | 0.1.x   | 0.1.x     | 0.0.x     | 0.0.x  | Current |
-| 0.2.x   | 0.2.x     | 0.1.x     | 0.1.x  | Planned |
-| 1.0.x   | 1.0.x     | 1.0.x     | 1.0.x  | Future  |
+| 0.2.x   | 0.2.x     | 0.1.x     | 0.1.x  | Exploratory |
+| 1.0.x   | 1.0.x     | 1.0.x     | 1.0.x  | Exploratory |
 
 ### Compatibility Matrix
 
