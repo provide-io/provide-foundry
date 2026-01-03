@@ -454,7 +454,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install uv
+        curl -LsSf https://astral.sh/uv/install.sh | sh
         uv sync --extra dev
 
     - name: Build provider
@@ -498,7 +498,7 @@ uv build
 uv publish --token $PYPI_TOKEN
 
 # Install from PyPI
-pip install terraform-provider-myservice
+uv add terraform-provider-myservice
 ```
 
 ## Terraform Registry Publishing

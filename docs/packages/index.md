@@ -196,7 +196,7 @@ uv add pyvider-cty
 uv add pyvider
 
 # Packaging tools
-uv add flavorpack
+uv tool install flavorpack
 ```
 
 ### Framework Installation

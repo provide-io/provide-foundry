@@ -20,7 +20,7 @@ The tool helps developers maintain consistent development environments and autom
 ## Installation
 
 ```bash
-uv add wrknv
+uv tool install wrknv
 ```
 
 ## Documentation

@@ -55,7 +55,8 @@ uv add provide-foundation provide-testkit
 uv add pyvider pyvider-cty pyvider-hcl
 
 # Tool packages
-uv add wrknv flavorpack
+uv tool install wrknv
+uv tool install flavorpack
 ```
 
 ## Detailed Installation
@@ -142,7 +143,8 @@ For using foundry packages in your projects:
 # Install specific packages
 uv add provide-foundation[all]
 uv add pyvider[all]
-uv add wrknv flavorpack
+uv tool install wrknv
+uv tool install flavorpack
 
 # Or install everything
 uv add \

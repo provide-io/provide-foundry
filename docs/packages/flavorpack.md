@@ -20,7 +20,7 @@ The package format is designed for secure distribution of executable bundles wit
 ## Installation
 
 ```bash
-uv add flavorpack
+uv tool install flavorpack
 ```
 
 ## Documentation

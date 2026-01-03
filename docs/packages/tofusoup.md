@@ -20,7 +20,7 @@ This testing framework is essential for verifying that Python-based Pyvider prov
 ## Installation
 
 ```bash
-uv add tofusoup
+uv tool install tofusoup
 ```
 
 ## Documentation
