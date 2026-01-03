@@ -68,7 +68,7 @@ For detailed explorations of specific aspects of the Foundry:
 
 - **[Architecture Guide](architecture/)** - Detailed technical architecture and design patterns
 - **[Design Principles](principles/)** - Philosophy and decision-making framework
-- **[Roadmap](roadmap/)** - Future plans and development timeline
+- **[Roadmap](roadmap/)** - Exploratory priorities and evolving milestones
 
 ---
 

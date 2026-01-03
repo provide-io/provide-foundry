@@ -1,11 +1,11 @@
 # Foundry Roadmap
 
-The Provide Foundry is actively developed with a clear roadmap focused on stability, performance, and developer experience. This document outlines our planned development phases and key milestones.
+The Provide Foundry is actively developed with a clear roadmap focused on stability, performance, and developer experience. This document outlines exploratory development phases and non-binding milestones. Timelines are illustrative and may change or be removed.
 
 ## Current Status: Foundation Phase
 
 **Status**: Active Development
-**Timeline**: Q4 2024 - Q1 2025
+**Target Window (Exploratory)**: Q4 2024 - Q1 2025
 **Focus**: Core infrastructure and framework stability
 
 ### Recently Completed ✅
@@ -28,7 +28,7 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
 - **Cross-Platform**: Windows support validation
 - **CI/CD**: Automated testing and release pipelines
 
-## Phase 2: Stability & Performance (Q1-Q2 2025)
+## Phase 2: Stability & Performance (exploratory timing)
 
 **Focus**: Production readiness and performance optimization
 
@@ -80,7 +80,7 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
   - Runtime performance improvements
   - Security scanning integration
 
-## Phase 3: Ecosystem Expansion (Q2-Q3 2025)
+## Phase 3: Ecosystem Expansion (exploratory timing)
 
 **Focus**: Expanding the foundry with additional tools and integrations
 
@@ -125,7 +125,7 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
   - Performance monitoring
   - Error aggregation
 
-## Phase 4: Enterprise & Scale (Q3-Q4 2025)
+## Phase 4: Enterprise & Scale (exploratory timing)
 
 **Focus**: Enterprise features and large-scale deployment support
 
@@ -171,7 +171,7 @@ The Provide Foundry is actively developed with a clear roadmap focused on stabil
 - **Status**: Current development focus
 
 ### v0.2.x Series (Q1 2025)
-- **Performance**: Production-ready performance
+- **Performance**: Production-focused performance
 - **Reliability**: Enterprise-grade reliability
 - **Documentation**: Comprehensive documentation
 - **Testing**: Full test coverage
@@ -244,6 +244,6 @@ This roadmap is a living document that evolves based on:
 
 ---
 
-The Provide Foundry roadmap reflects our commitment to building the most powerful, reliable, and developer-friendly tools for Terraform provider development. We're excited about the journey ahead and welcome your participation in shaping the future of the foundry.
+The Provide Foundry roadmap reflects our intent to build reliable, developer-friendly tools for Terraform provider development. We're excited about the journey ahead and welcome your participation in shaping the future of the foundry.
 
 **Stay updated**: Watch the [provide-io/provide-io](https://github.com/provide-io/provide-io) repository for the latest developments and milestone updates.
