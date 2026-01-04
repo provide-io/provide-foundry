@@ -14,7 +14,7 @@ Thank you for your interest in contributing to the provide.io ecosystem! This gu
 
 ```bash
 # Clone and set up the entire ecosystem
-cd /REDACTED_ABS_PATH
+cd /Users/tim/code/gh/provide-io
 uv sync --all-groups
 source .venv/bin/activate
 ```

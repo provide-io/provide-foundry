@@ -20,9 +20,9 @@ The fastest way to get started is to install the packages you need:
 # Install core packages
 uv add provide-foundation pyvider
 
-# Or install tools
-uv tool install flavorpack
-uv tool install wrknv
+# Set up the unified development environment
+uv sync --all-groups
+source .venv/bin/activate
 ```
 
 !!! success "Verification" Verify your setup by running: `bash     python -c "import provide, pyvider; print('✅ Foundry ready!')"     `
@@ -326,5 +326,15 @@ If you run into issues:
 1. **Search issues**: Look for existing solutions on GitHub
 1. **Ask questions**: Use GitHub Discussions for help
 1. **Report bugs**: Create detailed issue reports
+
+## Examples Repository
+
+Explore complete examples in the [examples repository](https://github.com/provide-io/examples):
+
+- Simple providers
+- Complex multi-resource providers
+- Integration with external APIs
+- Testing strategies
+- Documentation examples
 
 Happy building! 🚀
