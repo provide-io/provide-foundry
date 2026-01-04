@@ -185,7 +185,7 @@ def main() -> int:
             print()
 
             if not foundry_partials_dir.exists():
-                print("⚠️  Foundry partials not found. Run 'we docs setup' first.")
+                print("⚠️  Foundry partials not found. Run 'we run docs.setup' first.")
                 return 1
 
             files_changed = inject_global_partials(
@@ -210,7 +210,7 @@ def main() -> int:
             print()
 
             if not foundry_partials_dir.exists():
-                print("⚠️  Foundry partials not found. Run 'we docs setup' first.")
+                print("⚠️  Foundry partials not found. Run 'we run docs.setup' first.")
                 return 1
 
             files_changed = inject_global_partials(
