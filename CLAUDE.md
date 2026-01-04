@@ -11,19 +11,19 @@ This is the documentation hub for the provide.io ecosystem. For development:
 uv sync
 
 # Serve docs locally for development
-we docs serve
+we run docs.serve
 
 # Build complete documentation
-we docs build
+we run docs.build
 
 # Clean documentation artifacts
-we docs clean
+we run docs.clean
 ```
 
 ## Environment Management
 
 The ecosystem uses `uv` for package management and `env.sh` scripts for environment setup. Always use:
-- `uv sync --extra all --extra dev` in parent directory for full ecosystem setup
+- `uv sync` in parent directory for full ecosystem setup
 - Individual project `env.sh` scripts for isolated development
 - Workenv directories (not `.venv`) for virtual environments
 
@@ -61,9 +61,9 @@ This repository aggregates documentation from all ecosystem packages using:
 
 ### Documentation Commands
 ```bash
-we docs serve       # Development server with auto-reload
-we docs build       # Production build
-we docs validate    # Validate links and structure
+we run docs.serve       # Development server with auto-reload
+we run docs.build       # Production build
+we run docs.validate    # Validate links and structure
 ```
 
 ### Maintenance Commands
@@ -96,5 +96,5 @@ Projects are interconnected:
 - Tools can depend on both Foundation and Framework layers
 - All packages use unified workspace configuration in parent `pyproject.toml`
 
-When making changes that affect multiple packages, test the entire ecosystem build with `uv sync --extra all --extra dev` in the parent directory.
+When making changes that affect multiple packages, test the entire ecosystem build with `uv sync` in the parent directory.
 - do not use pkill when kill mkdocs

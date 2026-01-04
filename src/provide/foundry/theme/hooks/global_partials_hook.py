@@ -45,7 +45,7 @@ def _find_partials_dir(config: dict[str, Any]) -> Path | None:
     if src_foundry_partials.exists():
         return src_foundry_partials
 
-    # Fall back to foundry defaults (extracted via we docs setup)
+    # Fall back to foundry defaults (extracted via we run docs.setup)
     foundry_partials = project_root / ".provide" / "foundry" / "docs" / "_partials"
     if foundry_partials.exists():
         return foundry_partials

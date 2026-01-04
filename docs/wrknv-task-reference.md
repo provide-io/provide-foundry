@@ -188,22 +188,22 @@ Composite task that runs:
 
 ## Documentation
 
-### `we docs`
-**Alias:** `we docs serve`
+### `we run docs`
+**Default:** `docs.serve`
 
 Serve documentation locally (default action).
 
 ```bash
-we docs
+we run docs
 # or explicitly:
-we docs serve
+we run docs.serve
 ```
 
-#### `we docs setup`
+#### `we run docs.setup`
 Extract base MkDocs configuration from provide-foundry.
 
 ```bash
-we docs setup
+we run docs.setup
 ```
 
 Extracts to `.provide/foundry/`:
@@ -212,29 +212,29 @@ Extracts to `.provide/foundry/`:
 - Documentation partials
 - Generation scripts
 
-#### `we docs build`
+#### `we run docs.build`
 Build documentation site.
 
 ```bash
-we docs build
+we run docs.build
 ```
 
 Builds to `site/` directory.
 
-#### `we docs serve`
+#### `we run docs.serve`
 Serve documentation locally with auto-reload.
 
 ```bash
-we docs serve
+we run docs.serve
 ```
 
 Typically serves on `http://127.0.0.1:8000/`
 
-#### `we docs clean`
+#### `we run docs.clean`
 Remove documentation build artifacts.
 
 ```bash
-we docs clean
+we run docs.clean
 ```
 
 Removes `site/` and `.provide/` directories.
@@ -243,15 +243,13 @@ Removes `site/` and `.provide/` directories.
 
 ## Link Checking
 
-### `we docs links`
-**Alias:** `we docs links check`
+### `we run docs.links.check`
+**Default:** `docs.links.check`
 
 Check internal documentation links (fast).
 
 ```bash
-we docs links
-# or explicitly:
-we docs links check
+we run docs.links.check
 ```
 
 Uses lychee to validate:
@@ -263,20 +261,20 @@ Uses lychee to validate:
 
 **Performance:** <1 second for internal links
 
-#### `we docs links local`
-Same as `we docs links check` - check internal links only.
+#### `we run docs.links.local`
+Same as `we run docs.links.check` - check internal links only.
 
 ```bash
-we docs links local
+we run docs.links.local
 ```
 
 Runs offline mode (no external URL checking).
 
-#### `we docs links external`
+#### `we run docs.links.external`
 Check all links including external URLs.
 
 ```bash
-we docs links external
+we run docs.links.external
 ```
 
 **Performance:** 2-5 minutes depending on network
