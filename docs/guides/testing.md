@@ -649,7 +649,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync --extra dev
+        uv sync --all-groups
 
     - name: Run unit tests
       run: |
