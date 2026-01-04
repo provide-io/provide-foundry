@@ -11,8 +11,8 @@ Welcome to the comprehensive documentation hub for the provide.io ecosystem - a 
 
 ```bash
 # Set up the entire ecosystem
-cd /path/to/provide-io
-uv sync
+cd /path/to/provide-workspace
+uv sync --all-groups
 source .venv/bin/activate
 ```
 
