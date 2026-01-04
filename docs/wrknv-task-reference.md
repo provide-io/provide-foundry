@@ -233,8 +233,6 @@ we run docs.serve
 Typically serves on `http://127.0.0.1:11000/`
 
 #### `we run docs.clean`
-
-#### `we run docs.clean`
 Remove documentation build artifacts.
 
 ```bash
