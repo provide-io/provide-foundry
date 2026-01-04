@@ -68,16 +68,15 @@ we run docs.validate    # Validate links and structure
 
 ### Maintenance Commands
 ```bash
-we dev status       # Check which projects are available
-we dev update       # Pull latest from all projects
-we cache clean-all  # Clean all caches (UV, Python, etc.)
-we clean deep       # Deep clean with confirmation
+we run dev.setup     # Sync dependencies
+we run dev.check     # Format, lint, typecheck
+we run clean         # Clean artifacts
 ```
 
 ### Testing Commands
 ```bash
-we test build       # Test documentation build
-we test projects    # Test individual project builds
+we run test          # Run test suite
+we run test.coverage # Run tests with coverage
 ```
 
 ## Code Standards
