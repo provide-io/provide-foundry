@@ -3,7 +3,7 @@
 ## Quick Start (30 seconds)
 
 ```bash
-make docs-serve    # or: we docs serve
+make docs-serve    # or: we run docs.serve
 ```
 
 Open: http://127.0.0.1:11000 (for provide-foundry)

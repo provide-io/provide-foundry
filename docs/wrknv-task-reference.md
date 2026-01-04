@@ -200,7 +200,6 @@ ______________________________________________________________________
 ## Documentation
 
 ### `we run docs`
-
 **Default:** `docs.serve`
 
 Serve documentation locally (default action).
@@ -212,7 +211,6 @@ we run docs.serve
 ```
 
 #### `we run docs.setup`
-
 Extract base MkDocs configuration from provide-foundry.
 
 ```bash
@@ -227,7 +225,6 @@ Extracts to `.provide/foundry/`:
 - Generation scripts
 
 #### `we run docs.build`
-
 Build documentation site.
 
 ```bash
@@ -237,7 +234,6 @@ we run docs.build
 Builds to `site/` directory.
 
 #### `we run docs.serve`
-
 Serve documentation locally with auto-reload.
 
 ```bash
@@ -248,6 +244,7 @@ Typically serves on `http://127.0.0.1:11000/`
 
 #### `we run docs.clean`
 
+#### `we run docs.clean`
 Remove documentation build artifacts.
 
 ```bash
@@ -261,7 +258,6 @@ ______________________________________________________________________
 ## Link Checking
 
 ### `we run docs.links.check`
-
 **Default:** `docs.links.check`
 
 Check internal documentation links (fast).
@@ -281,7 +277,6 @@ Uses lychee to validate:
 **Performance:** \<1 second for internal links
 
 #### `we run docs.links.local`
-
 Same as `we run docs.links.check` - check internal links only.
 
 ```bash
@@ -291,7 +286,6 @@ we run docs.links.local
 Runs offline mode (no external URL checking).
 
 #### `we run docs.links.external`
-
 Check all links including external URLs.
 
 ```bash
