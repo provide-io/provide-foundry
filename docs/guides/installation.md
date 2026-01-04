@@ -34,7 +34,7 @@ git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
 
 # Set up the unified development environment
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 
 # Verify installation
@@ -81,7 +81,7 @@ ls -la
 # Should show all package directories: provide-foundation, pyvider, wrknv, etc.
 
 # Set up unified development environment
-uv sync --extra all --extra dev
+uv sync --all-groups
 
 # Activate environment
 source .venv/bin/activate
@@ -124,7 +124,7 @@ git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
 
 # Development installation with all extras
-uv sync --extra all --extra dev --extra testing
+uv sync --all-groups
 
 # Install pre-commit hooks
 pre-commit install
@@ -179,7 +179,7 @@ ENV PATH="/root/.cargo/bin:$PATH"
 # Clone and install foundry
 RUN git clone https://github.com/provide-io/provide-workspace.git /workspace
 WORKDIR /workspace
-RUN uv sync --extra all
+RUN uv sync --all-groups
 
 # Set up environment
 ENV VIRTUAL_ENV=/workspace/.venv
@@ -211,7 +211,7 @@ brew install git python@3.11 uv
 # Clone and setup
 git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 
@@ -240,7 +240,7 @@ source $HOME/.cargo/env
 # Clone and setup
 git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 
@@ -261,7 +261,7 @@ source ~/.bashrc
 # Clone and setup
 git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 

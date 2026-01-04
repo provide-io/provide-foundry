@@ -221,7 +221,7 @@ git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
 
 # Install all packages in editable mode
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 

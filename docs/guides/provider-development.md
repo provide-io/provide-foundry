@@ -29,7 +29,7 @@ plating create python-terraform-provider \
   --author "Your Name"
 
 # Install dependencies
-uv sync --extra dev
+uv sync --all-groups
 ```
 
 ## Provider Architecture

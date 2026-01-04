@@ -13,7 +13,7 @@ Thank you for your interest in contributing to the provide.io ecosystem! This gu
 ```bash
 # Clone and set up the entire ecosystem
 cd /Users/tim/code/gh/provide-io
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 
@@ -26,7 +26,7 @@ The provide.io ecosystem is organized as a monorepo with the following structure
 ```
 provide-io/
 ├── pyproject.toml              # Workspace configuration
-├── provide-ecosystem/          # Documentation hub
+├── provide-foundry/            # Documentation hub
 │   └── docs/                  # Unified documentation
 ├── provide-foundation/         # Core infrastructure
 ├── provide-testkit/           # Testing utilities

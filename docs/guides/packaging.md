@@ -174,7 +174,7 @@ markers = [
 
 ```bash
 # Install in development mode
-uv sync --extra dev
+uv sync --all-groups
 
 # Run tests
 uv run pytest
@@ -455,7 +455,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync --extra dev
+        uv sync --all-groups
 
     - name: Build provider
       run: |
