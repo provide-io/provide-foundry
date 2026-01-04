@@ -10,7 +10,7 @@ Key features are highlighted in the sections below and in the documentation.
 ```bash
 # Set up the entire ecosystem
 cd /path/to/provide-io
-uv sync --extra all --extra dev
+uv sync
 source .venv/bin/activate
 ```
 
