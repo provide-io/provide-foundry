@@ -44,7 +44,6 @@ we run test
 **Subtasks:**
 
 #### `we run test.parallel`
-
 Run tests in parallel using pytest-xdist.
 
 ```bash
@@ -54,7 +53,6 @@ we run test.parallel
 Equivalent to: `uv run pytest -n auto`
 
 #### `we run test.verbose`
-
 Run tests with verbose output.
 
 ```bash
@@ -64,7 +62,6 @@ we run test.verbose
 Equivalent to: `uv run pytest -vvv`
 
 #### `we run test.unit`
-
 Run only unit tests (requires pytest markers).
 
 ```bash
@@ -74,7 +71,6 @@ we run test.unit
 Equivalent to: `uv run pytest -m unit`
 
 #### `we run test.integration`
-
 Run only integration tests (requires pytest markers).
 
 ```bash
@@ -96,7 +92,6 @@ we run test.coverage
 Coverage report is generated in `htmlcov/` directory.
 
 #### `we run test.coverage.xml`
-
 Run tests with XML coverage output (for CI).
 
 ```bash
@@ -112,7 +107,6 @@ ______________________________________________________________________
 ### Linting
 
 #### `we run lint`
-
 Run ruff linter to check code quality.
 
 ```bash
@@ -122,7 +116,6 @@ we run lint
 Equivalent to: `uv run ruff check .`
 
 #### `we run lint.fix`
-
 Run linter with auto-fix enabled.
 
 ```bash
@@ -134,7 +127,6 @@ Fixes automatically fixable issues.
 ### Formatting
 
 #### `we run format`
-
 Format code using ruff formatter.
 
 ```bash
@@ -144,7 +136,6 @@ we run format
 Modifies files in-place.
 
 #### `we run format.check`
-
 Check code formatting without modifying files.
 
 ```bash
@@ -156,7 +147,6 @@ Returns non-zero exit code if formatting needed.
 ### Type Checking
 
 #### `we run typecheck`
-
 Run mypy type checker on source code.
 
 ```bash
