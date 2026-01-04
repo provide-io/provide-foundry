@@ -29,7 +29,13 @@ def _find_partials_dir(config: dict[str, Any]) -> Path | None:
     if project_partials.exists():
         return project_partials
 
-    # Fall back to foundry defaults (extracted via we docs setup)
+    # Special case for provide-foundry source tree (canonical source)
+    # Check this BEFORE .provide/ since source is authoritative for provide-foundry
+    src_foundry_partials = project_root / "src" / "provide" / "foundry" / "docs" / "_partials"
+    if src_foundry_partials.exists():
+        return src_foundry_partials
+
+    # Fall back to foundry defaults (extracted via we run docs.setup)
     foundry_partials = project_root / ".provide" / "foundry" / "docs" / "_partials"
     if foundry_partials.exists():
         return foundry_partials
