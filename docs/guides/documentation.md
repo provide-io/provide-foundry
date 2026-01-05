@@ -464,12 +464,9 @@ result = instance.main_method()
 ## Next Steps
 
 <!-- - Installation Guide (getting-started/installation/) -->
-
 <!-- - User Guide (guides/user-guide/) -->
-
 - API Reference (reference/api/)
-
-````
+```
 
 #### Tutorial Structure
 
@@ -518,14 +515,10 @@ This creates the following structure:
 ## What's Next?
 
 Now that you've built your first application, try these next steps:
-
 <!-- - Advanced Tutorial (advanced-tutorial/) -->
-
 <!-- - Deployment Guide (../guides/deployment/) -->
-
 - API Reference (../reference/api/)
-
-````
+```
 
 ## Documentation Automation
 
