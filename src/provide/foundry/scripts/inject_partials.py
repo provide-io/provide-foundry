@@ -27,7 +27,7 @@ from typing import Any
 try:
     import yaml
 except ImportError:
-    print("❌ Error: PyYAML not installed. Run: uv pip install pyyaml")
+    print("❌ Error: PyYAML not installed. Run: uv add pyyaml")
     sys.exit(1)
 
 
