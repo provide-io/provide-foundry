@@ -157,10 +157,10 @@ test
 
 ```bash
 # Run a simple task
-we test
+we run test
 
 # Run nested task
-we docs links check
+we run docs.links.check
 
 # Show task info
 we run test --info
@@ -213,7 +213,7 @@ local = "lychee --offline ..."
 2. **Discoverable**: `we tasks` shows all available tasks
 3. **No extraction needed**: wrknv.toml is source-controlled, not generated
 4. **Cleaner syntax**: TOML vs Make
-5. **Better UX**: `we test` vs `make test`
+5. **Better UX**: `we run test` vs `make test`
 
 ## Migration from Makefiles
 
@@ -249,8 +249,8 @@ make test
 make lint
 
 # After
-we test
-we lint
+we run test
+we run lint
 ```
 
 ## Verification Script

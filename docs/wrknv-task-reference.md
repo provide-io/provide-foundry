@@ -9,7 +9,6 @@ Complete reference for all standard tasks provided by the wrknv.python.tmpl temp
 we tasks
 
 # Run a task
-we <task>
 we run <task>
 
 # Task information
@@ -34,67 +33,65 @@ we run <task> --dry-run
 
 ## Testing
 
-### `we test`
-**Alias:** `we run test`
+### `we run test`
 
 Run all tests using pytest.
 
 ```bash
-we test
+we run test
 ```
 
 **Subtasks:**
 
-#### `we test parallel`
+#### `we run test.parallel`
 Run tests in parallel using pytest-xdist.
 
 ```bash
-we test parallel
+we run test.parallel
 ```
 
 Equivalent to: `uv run pytest -n auto`
 
-#### `we test verbose`
+#### `we run test.verbose`
 Run tests with verbose output.
 
 ```bash
-we test verbose
+we run test.verbose
 ```
 
 Equivalent to: `uv run pytest -vvv`
 
-#### `we test unit`
+#### `we run test.unit`
 Run only unit tests (requires pytest markers).
 
 ```bash
-we test unit
+we run test.unit
 ```
 
 Equivalent to: `uv run pytest -m unit`
 
-#### `we test integration`
+#### `we run test.integration`
 Run only integration tests (requires pytest markers).
 
 ```bash
-we test integration
+we run test.integration
 ```
 
 Equivalent to: `uv run pytest -m integration`
 
 ### Coverage
 
-#### `we test coverage`
-**Alias:** `we run test.coverage`
+#### `we run test.coverage`
 
 Run tests with coverage report (HTML + terminal).
 
 ```bash
-we test coverage
+we run test.coverage
 ```
 
 Coverage report is generated in `htmlcov/` directory.
 
-#### `we test coverage xml`
+#### `we run test.coverage.xml`
 Run tests with XML coverage output (for CI).
 
 ```bash
@@ -109,51 +106,51 @@ Generates `coverage.xml` for CI systems.
 
 ### Linting
 
-#### `we lint`
+#### `we run lint`
 Run ruff linter to check code quality.
 
 ```bash
-we lint
+we run lint
 ```
 
 Equivalent to: `uv run ruff check .`
 
-#### `we lint fix`
+#### `we run lint.fix`
 Run linter with auto-fix enabled.
 
 ```bash
-we lint fix
+we run lint.fix
 ```
 
 Fixes automatically fixable issues.
 
 ### Formatting
 
-#### `we format`
+#### `we run format`
 Format code using ruff formatter.
 
 ```bash
-we format
+we run format
 ```
 
 Modifies files in-place.
 
-#### `we format check`
+#### `we run format.check`
 Check code formatting without modifying files.
 
 ```bash
-we format check
+we run format.check
 ```
 
 Returns non-zero exit code if formatting needed.
 
 ### Type Checking
 
-#### `we typecheck`
+#### `we run typecheck`
 Run mypy type checker on source code.
 
 ```bash
-we typecheck
+we run typecheck
 ```
 
 Equivalent to: `uv run mypy src/`
@@ -188,22 +185,22 @@ Composite task that runs:
 
 ## Documentation
 
-### `we docs`
-**Alias:** `we docs serve`
+### `we run docs`
+**Default:** `docs.serve`
 
 Serve documentation locally (default action).
 
 ```bash
-we docs
+we run docs
 # or explicitly:
-we docs serve
+we run docs.serve
 ```
 
-#### `we docs setup`
+#### `we run docs.setup`
 Extract base MkDocs configuration from provide-foundry.
 
 ```bash
-we docs setup
+we run docs.setup
 ```
 
 Extracts to `.provide/foundry/`:
@@ -212,29 +209,29 @@ Extracts to `.provide/foundry/`:
 - Documentation partials
 - Generation scripts
 
-#### `we docs build`
+#### `we run docs.build`
 Build documentation site.
 
 ```bash
-we docs build
+we run docs.build
 ```
 
 Builds to `site/` directory.
 
-#### `we docs serve`
+#### `we run docs.serve`
 Serve documentation locally with auto-reload.
 
 ```bash
-we docs serve
+we run docs.serve
 ```
 
 Typically serves on `http://127.0.0.1:8000/`
 
-#### `we docs clean`
+#### `we run docs.clean`
 Remove documentation build artifacts.
 
 ```bash
-we docs clean
+we run docs.clean
 ```
 
 Removes `site/` and `.provide/` directories.
@@ -243,15 +240,13 @@ Removes `site/` and `.provide/` directories.
 
 ## Link Checking
 
-### `we docs links`
-**Alias:** `we docs links check`
+### `we run docs.links.check`
+**Default:** `docs.links.check`
 
 Check internal documentation links (fast).
 
 ```bash
-we docs links
-# or explicitly:
-we docs links check
+we run docs.links.check
 ```
 
 Uses lychee to validate:
@@ -263,20 +258,20 @@ Uses lychee to validate:
 
 **Performance:** <1 second for internal links
 
-#### `we docs links local`
-Same as `we docs links check` - check internal links only.
+#### `we run docs.links.local`
+Same as `we run docs.links.check` - check internal links only.
 
 ```bash
-we docs links local
+we run docs.links.local
 ```
 
 Runs offline mode (no external URL checking).
 
-#### `we docs links external`
+#### `we run docs.links.external`
 Check all links including external URLs.
 
 ```bash
-we docs links external
+we run docs.links.external
 ```
 
 **Performance:** 2-5 minutes depending on network
@@ -402,7 +397,7 @@ Quick test run (parallel mode).
 we dev test
 ```
 
-Equivalent to: `we test parallel`
+Equivalent to: `we run test.parallel`
 
 ### `we dev check`
 Quick quality check (format + lint + typecheck).

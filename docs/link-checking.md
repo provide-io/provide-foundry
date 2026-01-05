@@ -35,11 +35,11 @@ docker pull lycheeverse/lychee
 
 ```bash
 # Check internal links only (fast - recommended for local development)
-we docs links check
+we run docs.links.check
 # or: make links-check (legacy Makefile projects)
 
 # Check all links including external URLs (slow)
-we docs links external
+we run docs.links.external
 # or: make links-check-external (legacy)
 
 # Show available tasks
@@ -54,19 +54,19 @@ we tasks
 
 ### Performance
 
-**Local offline checking** (`we docs links check`):
+**Local offline checking** (`we run docs.links.check`):
 - Execution time: <1 second
 - Checks only internal documentation links
 - No network requests made
 
-**External link checking** (`we docs links external`):
+**External link checking** (`we run docs.links.external`):
 - Execution time: ~1-5 seconds (depending on network and link count)
 - Validates all external URLs with HTTP requests
 - Respects rate limiting (429 responses accepted)
 
 ### Expected "Errors" (Not Actually Broken)
 
-When running `we docs links check`, you may see ~206 errors for:
+When running `we run docs.links.check`, you may see ~206 errors for:
 
 1. **Extensionless link references** (e.g., `docs/guides/installation` instead of `docs/guides/installation.md`)
    - MkDocs allows links without `.md` extensions when `use_directory_urls: true`
@@ -75,7 +75,7 @@ When running `we docs links check`, you may see ~206 errors for:
    - **These work correctly on the live site!**
 
 2. **Monorepo package directories** (e.g., `docs/pyvider`, `docs/flavorpack`)
-   - These directories only exist after `we docs build` runs
+   - These directories only exist after `we run docs.build` runs
    - The mkdocs-monorepo plugin creates them during the build
    - They will be validated by mkdocs-htmlproofer-plugin
 
@@ -125,7 +125,7 @@ plugins:
 ```bash
 # Enable HTML proofer for comprehensive validation
 export HTMLPROOFER_ENABLED=true
-we docs build
+we run docs.build
 ```
 
 ## Continuous Integration
@@ -220,7 +220,7 @@ External sites may rate-limit requests:
 External link validation can be slow:
 
 **Solution**:
-- Use `we docs links check` (internal only) for local development
+- Use `we run docs.links.check` (internal only) for local development
 - External checks run in CI automatically
 - Disable with `HTMLPROOFER_VALIDATE_EXTERNAL=false`
 
@@ -232,8 +232,8 @@ Anchor validation may fail for dynamically generated content:
 
 ## Best Practices
 
-1. **Local Development**: Use `we docs links check` (fast, internal only)
-2. **Before Committing**: Run `we docs links check` to catch broken internal links
+1. **Local Development**: Use `we run docs.links.check` (fast, internal only)
+2. **Before Committing**: Run `we run docs.links.check` to catch broken internal links
 3. **CI Validation**: Let GitHub Actions handle comprehensive external link checking
 4. **Document Changes**: Update `.lychee.toml` exclusions with comments explaining why
 

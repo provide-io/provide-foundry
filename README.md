@@ -12,7 +12,7 @@ Welcome to the comprehensive documentation hub for the provide.io ecosystem - a 
 ```bash
 # Set up the entire ecosystem
 cd /path/to/provide-io
-uv sync --extra all --extra dev
+uv sync
 source .venv/bin/activate
 ```
 
@@ -59,24 +59,24 @@ cd provide-foundry
 uv sync
 
 # Serve documentation locally (all projects)
-we docs serve
+we run docs.serve
 # or: uv run mkdocs serve
 
 # Build complete documentation site
-we docs build
+we run docs.build
 # or: uv run mkdocs build --clean
 
 # Validate documentation (strict mode)
 uv run mkdocs build --strict
 
 # Clean documentation artifacts
-we docs clean
+we run docs.clean
 
 # Check links (fast, internal only)
-we docs links check
+we run docs.links.check
 
 # Check all links including external
-we docs links external
+we run docs.links.external
 ```
 
 ### Building Individual Project Documentation
@@ -88,10 +88,10 @@ Each project can build documentation independently:
 cd ../pyvider
 
 # Use wrknv tasks
-we docs build      # Build documentation
-we docs serve      # Serve locally
-we docs clean      # Clean artifacts
-we docs links check # Check links
+we run docs.build       # Build documentation
+we run docs.serve       # Serve locally
+we run docs.clean       # Clean artifacts
+we run docs.links.check # Check links
 
 # Or use mkdocs directly
 uv run mkdocs build

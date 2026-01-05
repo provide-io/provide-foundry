@@ -23,7 +23,7 @@ git clone https://github.com/provide-io/provide-workspace.git
 cd provide-workspace
 
 # Set up the unified development environment
-uv sync --extra all --extra dev
+uv sync --all-groups
 source .venv/bin/activate
 ```
 
