@@ -649,7 +649,7 @@ jobs:
     - name: Install dependencies
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        uv sync --extra dev
+        uv sync --all-groups
 
     - name: Run unit tests
       run: |
@@ -670,7 +670,7 @@ jobs:
       env:
         TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
       run: |
-        uv sync --extra dev
+        uv sync --all-groups
         source .venv/bin/activate
         pytest tests/integration/ --test-env=integration
 
@@ -690,7 +690,7 @@ jobs:
       env:
         ACCEPTANCE_API_KEY: ${{ secrets.ACCEPTANCE_API_KEY }}
       run: |
-        uv sync --extra dev
+        uv sync --all-groups
         source .venv/bin/activate
         pytest tests/acceptance/ --test-env=acceptance
 ```
