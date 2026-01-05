@@ -784,8 +784,7 @@ build:
 python:
   install:
     - requirements: docs/requirements.txt
-    - method: pip
-      path: .
+    - path: .
 
 mkdocs:
   configuration: mkdocs.yml
