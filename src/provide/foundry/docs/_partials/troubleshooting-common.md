@@ -85,7 +85,7 @@ uv sync
 # macOS: Install certificates
 /Applications/Python\ 3.11/Install\ Certificates.command
 
-# Or use pip to update certifi
+# Update certifi with uv
 uv add --upgrade certifi
 ```
 
