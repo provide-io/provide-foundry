@@ -52,7 +52,7 @@ These tools are designed to work together throughout the development process:
 
   Automated continuous integration and delivery with GitHub Actions, reusable workflows, and pre-commit hooks.
 
-  [:octicons-arrow-right-24: Explore CI/CD Tooling](https://github.com/provide-io/ci-tooling)
+    [:octicons-arrow-right-24: Explore CI/CD Tooling](../packages/ci-tooling.md)
 
 - :material-package: **Flavorpack**
 
@@ -60,7 +60,7 @@ These tools are designed to work together throughout the development process:
 
   Secure executable packaging system using PSPF/2025 for single-file Python application distribution.
 
-  [:octicons-arrow-right-24: Explore Flavorpack](../packages/flavorpack.md)
+    [:octicons-arrow-right-24: Explore FlavorPack](../packages/flavorpack.md)
 
 - :material-briefcase: **WrkNv**
 
@@ -68,7 +68,7 @@ These tools are designed to work together throughout the development process:
 
   Work environment management and toolchain automation for Python projects.
 
-  [:octicons-arrow-right-24: Explore WrkNv](../packages/wrknv.md)
+    [:octicons-arrow-right-24: Explore WrkNv](../packages/wrknv.md)
 
 - :material-git: **SupSrc**
 
@@ -76,7 +76,7 @@ These tools are designed to work together throughout the development process:
 
   Automated Git workflow and commit management with smart automation.
 
-  [:octicons-arrow-right-24: Explore SupSrc](../packages/supsrc.md)
+    [:octicons-arrow-right-24: Explore SupSrc](../packages/supsrc.md)
 
 - :material-file-document-multiple: **Plating**
 
@@ -84,6 +84,6 @@ These tools are designed to work together throughout the development process:
 
   Documentation and code generation templates for boilerplate creation.
 
-  [:octicons-arrow-right-24: Explore Plating](../packages/plating.md)
+    [:octicons-arrow-right-24: Explore Plating](../packages/plating.md)
 
 </div>
