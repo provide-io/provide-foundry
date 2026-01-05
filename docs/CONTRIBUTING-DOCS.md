@@ -251,7 +251,7 @@ Link to other docs using relative paths:
 See [Getting Started](getting-started.md)
 
 <!-- Link to another project (in monorepo) -->
-See [Foundation Guide](../provide-foundation/getting-started/installation/)
+See [Foundation Guide](https://foundry.provide.io/provide-foundation/getting-started/installation/)
 ```
 
 ## Commit Guidelines

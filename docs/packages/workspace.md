@@ -43,7 +43,7 @@ source .venv/bin/activate
 
 ## Documentation
 
-For detailed setup instructions, architecture overview, and development workflows, see the [Workspace documentation](../../provide-workspace/docs/index.md).
+For detailed setup instructions, architecture overview, and development workflows, see the [Workspace documentation](https://foundry.provide.io/provide-workspace/).
 
 ## Repository
 
