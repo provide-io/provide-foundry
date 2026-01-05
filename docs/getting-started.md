@@ -212,8 +212,8 @@ plating render              # Generate provider docs
 mkdocs serve               # Serve docs locally
 
 # Environment management
-wrknv sync                 # Sync environment
-uv sync      # Activate environment
+wrknv tools sync          # Sync tool versions
+source .venv/bin/activate # Activate environment
 
 # Packaging
 flavor pack                # Create executable package

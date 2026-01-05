@@ -3,7 +3,7 @@
 ## Quick Start (30 seconds)
 
 ```bash
-make docs-serve    # or: we run docs.serve
+we run docs.serve
 ```
 
 Open: http://127.0.0.1:11000 (for provide-foundry)
@@ -17,9 +17,9 @@ That's it! The first run will automatically:
 
 ```bash
 # Development
-make docs-serve     # Serve with live reload
-make docs-build     # Build static site
-make docs-clean     # Clean artifacts
+we run docs.serve     # Serve with live reload
+we run docs.build     # Build static site
+we run docs.clean     # Clean artifacts
 
 # Validation
 python scripts/docs_validate.py verify-config      # Validate mkdocs.yml files
@@ -27,7 +27,7 @@ python scripts/validate_partials.py                # Validate partial references
 python scripts/validate_standardization.py         # Check standardization
 
 # Maintenance
-make docs-setup     # Re-extract theme/config (rarely needed)
+we run docs.setup     # Re-extract theme/config (rarely needed)
 ```
 
 ## Port Registry
@@ -72,13 +72,13 @@ Normally automatic, but if needed manually:
 uv sync
 
 # Extract documentation assets
-make docs-setup
+we run docs.setup
 ```
 
 ## Troubleshooting
 
 ### Build fails with "cannot find base-mkdocs.yml"
-**Fix:** `make docs-setup`
+**Fix:** `we run docs.setup`
 
 **Explanation:** Documentation theme and configuration need to be extracted from the `provide-foundry` package to `.provide/foundry/` before building.
 
@@ -122,11 +122,11 @@ All projects inherit from shared base configuration:
 - **Shared partials:** `.provide/foundry/docs/_partials/` (reusable documentation snippets)
 - **API generator:** `.provide/foundry/gen_ref_pages.py`
 
-When you run `make docs-setup`, these are extracted from the `provide-foundry` package.
+When you run `we run docs.setup`, these are extracted from the `provide-foundry` package.
 
 ### How Documentation Builds Work
 
-1. **Extraction** (`make docs-setup`):
+1. **Extraction** (`we run docs.setup`):
    - Copies theme assets from installed `provide-foundry` package
    - Creates `.provide/foundry/` directory structure
    - Extracts base configuration, partials, and scripts
@@ -136,14 +136,14 @@ When you run `make docs-setup`, these are extracted from the `provide-foundry` p
    - Projects override only: site_name, site_url, repo_url, dev_addr, navigation
    - All theme, plugins, and markdown extensions come from base config
 
-3. **Building** (`make docs-build`):
+3. **Building** (`we run docs.build`):
    - MkDocs loads base config + project overrides
    - Processes markdown with extensions (code highlighting, admonitions, etc.)
    - Generates API docs using mkdocstrings
    - Applies theme and custom CSS/JS
    - Outputs static HTML to `site/`
 
-4. **Serving** (`make docs-serve`):
+4. **Serving** (`we run docs.serve`):
    - Starts development server on project's assigned port
    - Watches files for changes and auto-rebuilds
    - Provides live reload in browser
@@ -176,10 +176,10 @@ See:
 
 | Command | Purpose |
 |---------|---------|
-| `make docs-serve` | Start dev server with live reload |
-| `make docs-build` | Build static HTML site |
-| `make docs-clean` | Remove build artifacts |
-| `make docs-setup` | Extract theme/config (rarely needed) |
+| `we run docs.serve` | Start dev server with live reload |
+| `we run docs.build` | Build static HTML site |
+| `we run docs.clean` | Remove build artifacts |
+| `we run docs.setup` | Extract theme/config (rarely needed) |
 | `python scripts/docs_validate.py verify-config` | Validate configurations |
 | `python scripts/validate_standardization.py` | Check project compliance |
 

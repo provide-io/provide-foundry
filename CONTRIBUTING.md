@@ -211,10 +211,10 @@ All Python library projects have these standard targets:
 - `make version` - Show package version
 
 **Documentation** (4 targets):
-- `make docs-setup` - Extract base-mkdocs.yml from foundry
-- `make docs-build` - Build documentation
-- `make docs-serve` - Serve documentation locally
-- `make docs-clean` - Clean documentation artifacts
+- `we run docs.setup` - Extract base-mkdocs.yml from foundry
+- `we run docs.build` - Build documentation
+- `we run docs.serve` - Serve documentation locally
+- `we run docs.clean` - Clean documentation artifacts
 
 **CI/CD** (3 targets):
 - `make ci-test` - Run tests with coverage for CI
@@ -244,7 +244,7 @@ Scripts are **only** allowed if they meet one of these criteria:
 ❌ **Never create scripts that duplicate Makefile targets**:
 - NO: `scripts/test.sh` (use `make test`)
 - NO: `scripts/setup.sh` (use `make setup`)
-- NO: `scripts/docs-serve.sh` (use `make docs-serve`)
+- NO: `scripts/docs-serve.sh` (use `we run docs.serve`)
 - NO: `scripts/quality.sh` (use `make quality`)
 
 ### Adding Custom Targets
