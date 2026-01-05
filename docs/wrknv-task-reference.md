@@ -359,7 +359,7 @@ Install package in development/editable mode.
 we run pkg.install
 ```
 
-Equivalent to: `uv add --editable .`
+Equivalent to: `uv pip install -e .`
 
 #### `we pkg uninstall`
 
