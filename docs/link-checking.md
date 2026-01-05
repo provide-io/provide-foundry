@@ -275,4 +275,4 @@ max_concurrency = 32  # Reduced from 64
 
 - [lychee Documentation](https://lychee.cli.rs/)
 - [mkdocs-htmlproofer-plugin](https://github.com/manuzhang/mkdocs-htmlproofer-plugin)
-- [GitHub Actions Workflow](.github/workflows/links.yml)
+- [GitHub Actions Workflow](../.github/workflows/links.yml)
