@@ -46,7 +46,7 @@ The documentation system uses a modern, DRY approach with shared configuration:
 
 - **Shared Base Configuration** (`base-mkdocs.yml`) - Common theme, plugins, and extensions
 - **Centralized Theme** (`src/provide/foundry/theme/`) - Namespace package with CSS, JavaScript, and assets
-  - Install: `uv add --editable .` for editable development
+  - Install: `uv pip install -e .` for editable development
 - **Monorepo Plugin** - Automatic aggregation of all project documentation
 - **Auto-Generated API Docs** - Build-time generation using mkdocs-gen-files
 - **Canonical Makefile** (`Makefile.provider.tmpl`) - Standardized provider Makefile template
