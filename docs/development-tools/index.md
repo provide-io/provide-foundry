@@ -52,7 +52,7 @@ These tools are designed to work together throughout the development process:
 
   Automated continuous integration and delivery with GitHub Actions, reusable workflows, and pre-commit hooks.
 
-    [:octicons-arrow-right-24: Explore CI/CD Tooling](https://github.com/provide-io/ci-tooling)
+    [:octicons-arrow-right-24: Explore CI/CD Tooling](../packages/ci-tooling.md)
 
 - :material-package: **Flavorpack**
 
