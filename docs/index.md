@@ -1,7 +1,7 @@
 # Welcome to the Provide Foundry
 
 !!! warning "Pre-release"
-    This documentation covers a pre-release. APIs and features may change, and some documented or roadmap items are exploratory and may change or be removed.
+    This documentation covers a pre-release. APIs and features may change, and some documented items are exploratory and may change or be removed.
 
 
 The Provide Foundry is a comprehensive collection of Python tools and frameworks designed to make building Terraform providers, packaging applications, and managing development workflows both powerful and enjoyable.
@@ -365,4 +365,4 @@ Security is built into the foundry at multiple levels:
 
 ---
 
-Ready to dive deeper? Explore our [architecture guide](foundry/architecture/), learn about our [design principles](foundry/principles/), or check out the [roadmap](foundry/roadmap/) for what we're exploring next.
+Ready to dive deeper? Explore our [architecture guide](foundry/architecture/) or learn about our [design principles](foundry/principles/).
