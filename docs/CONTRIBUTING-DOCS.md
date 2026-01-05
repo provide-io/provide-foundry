@@ -248,7 +248,7 @@ Link to other docs using relative paths:
 
 ```markdown
 <!-- Link within same project -->
-See [Quick Start](../getting-started/quick-start/)
+See [Getting Started](../getting-started.md)
 
 <!-- Link to another project (in monorepo) -->
 See [Foundation Guide](../provide-foundation/getting-started/installation/)
