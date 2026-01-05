@@ -37,7 +37,7 @@ Include a partial using the `--8<--` syntax from `pymdownx.snippets`:
 --8<-- ".provide/foundry/docs/_partials/python-requirements.md"
 ```
 
-**Important**: The path starts with `.provide/foundry/` which is where the files are extracted when you run `make docs-setup` or when provide-foundry is installed.
+**Important**: The path starts with `.provide/foundry/` which is where the files are extracted when you run `we run docs.setup` or when provide-foundry is installed.
 
 ### When to Use Partials
 
@@ -75,7 +75,7 @@ EOF
 # Add to provide-foundry/src/provide/foundry/docs/_partials/README.md
 
 # The partial will be packaged and extracted to .provide/foundry/docs/_partials/
-# when other projects run make docs-setup
+# when other projects run we run docs.setup
 ```
 
 ## Documentation Standards
@@ -217,7 +217,7 @@ Before submitting documentation changes:
 3. **Review rendered output**:
    ```bash
    mkdocs serve
-   # Open http://127.0.0.1:8000
+   # Open http://127.0.0.1:11000
    ```
 
 ## Common Documentation Tasks

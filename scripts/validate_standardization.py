@@ -18,7 +18,7 @@ def check_project_standardization(project_path: Path) -> dict:
     # Check 2: Has .provide/foundry/
     provide_dir = project_path / ".provide" / "foundry"
     if not provide_dir.exists():
-        issues.append("Missing .provide/foundry/ (run make docs-setup)")
+        issues.append("Missing .provide/foundry/ (run we run docs.setup)")
     else:
         # Check extracted files are present
         required = [
