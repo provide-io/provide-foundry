@@ -69,7 +69,7 @@ The provider includes examples of:
 
 ## Documentation
 
-<!-- See the [Provider Tour](https://foundry.provide.io/pyvider-components/guides/provider-tour/) --> and [Build Your Own](https://foundry.provide.io/pyvider-components/guides/build-your-own/) guides for detailed walkthroughs.
+See the [Build Your Own](https://foundry.provide.io/pyvider-components/guides/build-your-own/) guide for a detailed walkthrough.
 
 ## Related Packages
 
