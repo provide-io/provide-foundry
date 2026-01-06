@@ -109,12 +109,42 @@ def on_page_markdown(
             lines = remaining.split("\n")
             for i, line in enumerate(lines):
                 stripped = line.strip()
-                if stripped and not stripped.startswith("#"):
-                    # Found description, insert after it
-                    insert_pos += len("\n".join(lines[: i + 1])) + 1
-                    break
-                elif stripped.startswith("#"):
-                    # Hit another heading, insert here
+
+                # Skip empty lines
+                if not stripped:
+                    i += 1
+                    continue
+
+                # Check for admonition block (!!!)
+                if stripped.startswith("!!!"):
+                    # Skip the admonition header line
+                    i += 1
+                    # Skip all subsequent indented lines (admonition content)
+                    while i < len(lines):
+                        next_line = lines[i]
+                        # Admonition content is indented (starts with spaces/tabs)
+                        # or is an empty line within the block
+                        if next_line.startswith(("    ", "\t")) or not next_line.strip():
+                            # Check if empty line is followed by non-indented content
+                            if not next_line.strip():
+                                # Look ahead to see if next non-empty line is still indented
+                                lookahead = i + 1
+                                while lookahead < len(lines) and not lines[lookahead].strip():
+                                    lookahead += 1
+                                if lookahead < len(lines) and lines[lookahead].startswith(("    ", "\t")):
+                                    i += 1
+                                    continue
+                                else:
+                                    # End of admonition block
+                                    break
+                            i += 1
+                        else:
+                            # Non-indented line - end of admonition
+                            break
+                    continue
+
+                # Check for heading (stop here, insert before it)
+                if stripped.startswith("#"):
                     break
 
             header_block = f"\n\n<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n"
