@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 """
 MkDocs hook to fix navigation URLs for monorepo included projects.
 
@@ -76,16 +73,12 @@ def _process_nav_item(item: Any, current_prefix: str | None) -> None:
     if new_prefix and hasattr(item, "url") and item.url:
         url = item.url
         # Only prefix if it's a relative URL that doesn't already have the prefix
-        # and doesn't look like an already-prefixed sub-project path
-        if (
-            not url.startswith("/")
-            and not url.startswith("http")
-            and not url.startswith(f"{new_prefix}/")
-            and not any(url.startswith(f"{p}/") for p in MONOREPO_SECTIONS.values())
-        ):
-            new_url = f"{new_prefix}/{url}"
-            item.url = new_url
-            log.debug(f"Prefixed nav URL: {url} -> {new_url}")
+        if not url.startswith("/") and not url.startswith("http") and not url.startswith(f"{new_prefix}/"):
+            # Check if this looks like a sub-project path (not already prefixed)
+            if not any(url.startswith(f"{p}/") for p in MONOREPO_SECTIONS.values()):
+                new_url = f"{new_prefix}/{url}"
+                item.url = new_url
+                log.debug(f"Prefixed nav URL: {url} -> {new_url}")
 
     # Process children recursively
     if hasattr(item, "children") and item.children:
