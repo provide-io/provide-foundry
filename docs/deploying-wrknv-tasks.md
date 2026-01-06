@@ -337,8 +337,8 @@ git checkout HEAD -- wrknv.toml  # Restore if needed
 
 ## Related Documentation
 
-- [wrknv Task Reference](wrknv-task-reference/) - Complete task documentation
-- [Link Checking Guide](link-checking/) - Link validation with wrknv
+- [wrknv Task Reference](wrknv-task-reference.md) - Complete task documentation
+- [Link Checking Guide](link-checking.md) - Link validation with wrknv
 
 ## Questions or Issues
 

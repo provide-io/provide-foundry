@@ -727,6 +727,6 @@ jobs:
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development/)** - Building providers with Pyvider
+- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
 - **[API Reference](../provide-testkit/reference/)** - Complete testing framework API
-- **[Packaging Guide](packaging/)** - Preparing providers for distribution
+- **[Packaging Guide](packaging.md)** - Preparing providers for distribution

@@ -13,7 +13,7 @@ Developing Terraform providers with Pyvider involves understanding the provider 
 - Python 3.11 or higher
 - Understanding of Terraform concepts
 - Familiarity with the target API or service
-- Development environment setup (see [Installation Guide](installation/))
+- Development environment setup (see [Installation Guide](installation.md))
 
 ### Project Setup
 
@@ -495,8 +495,8 @@ with mock_api_response("create_server", {"id": "test-123"}):
 
 ## Related Documentation
 
-- **[Testing Guide](testing/)** - Comprehensive testing strategies
-- **[Packaging Guide](packaging/)** - Building and distributing providers
+- **[Testing Guide](testing.md)** - Comprehensive testing strategies
+- **[Packaging Guide](packaging.md)** - Building and distributing providers
 - **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation
 
 ## Community Resources

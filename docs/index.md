@@ -58,7 +58,7 @@ Use the Provide Foundry when you:
 
     Get up and running with your first provider.
 
-    [:octicons-arrow-right-24: Getting Started](getting-started/)
+    [:octicons-arrow-right-24: Getting Started](getting-started.md)
 
 -   :material-school:{ .lg .middle } **Learn Best Practices**
 
@@ -173,29 +173,29 @@ graph TB
 
 The foundation provides core infrastructure that all other packages build upon:
 
-- **[provide-foundation](packages/foundation/)**: Structured logging, error handling, configuration
-- **[provide-testkit](packages/testkit/)**: Testing utilities, fixtures, and test infrastructure
+- **[provide-foundation](packages/foundation.md)**: Structured logging, error handling, configuration
+- **[provide-testkit](packages/testkit.md)**: Testing utilities, fixtures, and test infrastructure
 
 ### Framework Layer
 
 The Pyvider framework enables building Terraform providers in Python:
 
-- **[pyvider](packages/pyvider/)**: Core framework with provider, resource, and data source abstractions
-- **[pyvider-cty](packages/pyvider-cty/)**: Implementation of Terraform's CTY type system
-- **[pyvider-hcl](packages/pyvider-hcl/)**: HCL parsing and generation with CTY integration
-- **[pyvider-rpcplugin](packages/pyvider-rpcplugin/)**: Terraform plugin protocol implementation
-- **[pyvider-components](packages/pyvider-components/)**: Standard library of components
-- **[terraform-provider-pyvider](packages/terraform-provider-pyvider/)**: Meta-package demonstrating the framework
+- **[pyvider](packages/pyvider.md)**: Core framework with provider, resource, and data source abstractions
+- **[pyvider-cty](packages/pyvider-cty.md)**: Implementation of Terraform's CTY type system
+- **[pyvider-hcl](packages/pyvider-hcl.md)**: HCL parsing and generation with CTY integration
+- **[pyvider-rpcplugin](packages/pyvider-rpcplugin.md)**: Terraform plugin protocol implementation
+- **[pyvider-components](packages/pyvider-components.md)**: Standard library of components
+- **[terraform-provider-pyvider](packages/terraform-provider-pyvider.md)**: Meta-package demonstrating the framework
 
 ### Tools Layer
 
 Development and deployment tools that enhance the development experience:
 
-- **[flavorpack](packages/flavorpack/)**: Create self-contained executable packages
-- **[wrknv](packages/wrknv/)**: Development environment management
-- **[plating](packages/plating/)**: Documentation generation for Terraform providers
-- **[tofusoup](packages/tofusoup/)**: Cross-language conformance testing
-- **[supsrc](packages/supsrc/)**: Automated Git workflow management
+- **[flavorpack](packages/flavorpack.md)**: Create self-contained executable packages
+- **[wrknv](packages/wrknv.md)**: Development environment management
+- **[plating](packages/plating.md)**: Documentation generation for Terraform providers
+- **[tofusoup](packages/tofusoup.md)**: Cross-language conformance testing
+- **[supsrc](packages/supsrc.md)**: Automated Git workflow management
 
 ## Data Flow
 
@@ -365,4 +365,4 @@ Security is built into the foundry at multiple levels:
 
 ---
 
-Ready to dive deeper? Explore our [architecture guide](foundry/architecture/) or learn about our [design principles](foundry/principles/).
+Ready to dive deeper? Explore our [architecture guide](foundry/architecture.md) or learn about our [design principles](foundry/principles.md).

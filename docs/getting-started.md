@@ -313,19 +313,19 @@ Now that you have the foundry set up, explore these guides:
 
 <div class="grid cards" markdown>
 
--   :material-terraform:{ .lg } **[Building Providers](guides/provider-development/)**
+-   :material-terraform:{ .lg } **[Building Providers](guides/provider-development.md)**
 
     Learn to create comprehensive Terraform providers with resources, data sources, and functions.
 
--   :material-package:{ .lg } **[Packaging Applications](guides/packaging/)**
+-   :material-package:{ .lg } **[Packaging Applications](guides/packaging.md)**
 
     Use flavorpack to create self-contained, portable executable packages.
 
--   :material-test-tube:{ .lg } **[Testing Strategy](guides/testing/)**
+-   :material-test-tube:{ .lg } **[Testing Strategy](guides/testing.md)**
 
     Implement comprehensive testing with unit, integration, and conformance tests.
 
--   :material-book:{ .lg } **[Documentation](guides/documentation/)**
+-   :material-book:{ .lg } **[Documentation](guides/documentation.md)**
 
     Generate beautiful documentation for your providers and tools.
 

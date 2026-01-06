@@ -439,5 +439,5 @@ uv build
 ---
 
 **Related Guides:**
-- [IDE Setup Guide](ide-setup/) - Configure your development environment
-- [Testing Patterns Guide](testing-patterns/) - Testing strategies across projects
+- [IDE Setup Guide](ide-setup.md) - Configure your development environment
+- [Testing Patterns Guide](testing-patterns.md) - Testing strategies across projects

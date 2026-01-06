@@ -436,8 +436,8 @@ If you encounter issues:
 
 After successful installation:
 
-1. **[Provider Development](provider-development/)** - Build your first provider
-2. **[Testing Guide](testing/)** - Learn testing best practices
+1. **[Provider Development](provider-development.md)** - Build your first provider
+2. **[Testing Guide](testing.md)** - Learn testing best practices
 
 ---
 

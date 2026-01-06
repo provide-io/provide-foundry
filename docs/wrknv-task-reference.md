@@ -543,8 +543,8 @@ working_dir = "./docs"
 
 ## Related Documentation
 
-- [Deploying wrknv Tasks](deploying-wrknv-tasks/) - How to deploy these tasks
-- [Link Checking Guide](link-checking/) - Link validation details
+- [Deploying wrknv Tasks](deploying-wrknv-tasks.md) - How to deploy these tasks
+- [Link Checking Guide](link-checking.md) - Link validation details
 - [wrknv Documentation](../wrknv/README/) - Full wrknv user guide
 
 ## Customizing Tasks

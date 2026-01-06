@@ -737,6 +737,6 @@ pre-commit autoupdate
 
 ## Related Documentation
 
-- **[Provider Development Guide](provider-development/)** - Building providers with Pyvider
-- **[Testing Guide](testing/)** - Comprehensive testing strategies
+- **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
+- **[Testing Guide](testing.md)** - Comprehensive testing strategies
 - **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation

@@ -533,10 +533,10 @@ async def test_with_retry():
 - [pytest Documentation](https://docs.pytest.org/)
 - [pytest-asyncio Documentation](https://pytest-asyncio.readthedocs.io/)
 - [Coverage.py Documentation](https://coverage.readthedocs.io/)
-- [provide-testkit API Reference](../packages/testkit/)
+- [provide-testkit API Reference](../packages/testkit.md)
 
 ---
 
 **Related Guides:**
-- [Development Workflow Guide](development-workflow/) - Daily development patterns
-- [IDE Setup Guide](ide-setup/) - Configure testing in your IDE
+- [Development Workflow Guide](development-workflow.md) - Daily development patterns
+- [IDE Setup Guide](ide-setup.md) - Configure testing in your IDE

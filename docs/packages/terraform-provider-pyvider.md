@@ -73,7 +73,7 @@ The provider includes examples of:
 
 ## Related Packages
 
-- [pyvider](pyvider/) - Core framework
-- [pyvider-components](pyvider-components/) - Component library
-- [plating](plating/) - Documentation and code generation
-- [flavorpack](flavorpack/) - Binary packaging system
+- [pyvider](pyvider.md) - Core framework
+- [pyvider-components](pyvider-components.md) - Component library
+- [plating](plating.md) - Documentation and code generation
+- [flavorpack](flavorpack.md) - Binary packaging system
