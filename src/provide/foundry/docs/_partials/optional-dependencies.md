@@ -8,9 +8,6 @@ This project supports optional dependency groups for specific features.
 # Using uv (recommended)
 uv add "{{PACKAGE_NAME}}[extra_name]"
 
-# Using pip
-uv add {{PACKAGE_NAME}}[extra_name]
-
 # Multiple extras
 uv add {{PACKAGE_NAME}}[extra1,extra2]
 
@@ -33,8 +30,8 @@ The specific extras available depend on the project. Use `{{COMMAND_NAME}} --hel
 **Checking Installed Extras:**
 ```bash
 # Show package with dependencies
-pip show {{PACKAGE_NAME}}
+uv pip show {{PACKAGE_NAME}}
 
 # List all installed packages
-pip list
+uv pip list
 ```

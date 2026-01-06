@@ -29,7 +29,7 @@ The ecosystem uses `uv` for package management and `env.sh` scripts for environm
 
 ## Architecture Overview
 
-The provide.io ecosystem is a multi-package Python workspace with three layers:
+The provide.io ecosystem is a multi-package Python workspace with four layers:
 
 ### Foundation Layer
 - **provide-foundation**: Core telemetry, logging, and infrastructure utilities
