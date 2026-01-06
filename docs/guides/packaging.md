@@ -739,4 +739,4 @@ pre-commit autoupdate
 
 - **[Provider Development Guide](provider-development.md)** - Building providers with Pyvider
 - **[Testing Guide](testing.md)** - Comprehensive testing strategies
-- **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation
+- **[API Reference](https://foundry.provide.io/pyvider/api/)** - Complete Pyvider API documentation

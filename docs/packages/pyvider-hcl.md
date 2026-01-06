@@ -24,7 +24,7 @@ uv add pyvider-hcl
 
 ## Documentation
 
-For parsing guides, API reference, and integration examples, see the [Pyvider HCL documentation](../pyvider-hcl/).
+For parsing guides, API reference, and integration examples, see the [Pyvider HCL documentation](https://foundry.provide.io/pyvider-hcl/).
 
 ## Repository
 

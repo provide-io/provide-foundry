@@ -25,7 +25,7 @@ uv tool install tofusoup
 
 ## Documentation
 
-For test suite reference, testing guides, and conformance specifications, see the [TofuSoup documentation](../tofusoup/).
+For test suite reference, testing guides, and conformance specifications, see the [TofuSoup documentation](https://foundry.provide.io/tofusoup/).
 
 ## Repository
 

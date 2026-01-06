@@ -31,7 +31,7 @@ uv add provide-testkit[all]        # All extras
 
 ## Documentation
 
-For detailed API documentation, fixture reference, and testing guides, see the [TestKit documentation](../testkit/).
+For detailed API documentation, fixture reference, and testing guides, see the [TestKit documentation](https://foundry.provide.io/provide-testkit/).
 
 ## Repository
 

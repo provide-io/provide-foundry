@@ -25,7 +25,7 @@ uv tool install flavorpack
 
 ## Documentation
 
-For detailed packaging guides, CLI reference, and format specification, see the [FlavorPack documentation](../flavorpack/).
+For detailed packaging guides, CLI reference, and format specification, see the [FlavorPack documentation](https://foundry.provide.io/flavorpack/).
 
 ## Repository
 

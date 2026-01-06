@@ -497,7 +497,7 @@ with mock_api_response("create_server", {"id": "test-123"}):
 
 - **[Testing Guide](testing.md)** - Comprehensive testing strategies
 - **[Packaging Guide](packaging.md)** - Building and distributing providers
-- **[API Reference](../pyvider/reference/)** - Complete Pyvider API documentation
+- **[API Reference](https://foundry.provide.io/pyvider/api/)** - Complete Pyvider API documentation
 
 ## Community Resources
 

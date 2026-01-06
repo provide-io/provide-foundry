@@ -43,11 +43,11 @@ Tools for managing the complete provide.io ecosystem development environment.
 
 <div class="grid cards" markdown>
 
--   **[provide-workspace](provide-workspace/)**
+-   **[provide-workspace](https://foundry.provide.io/provide-workspace/)**
 
     Workspace manager that coordinates all 13+ ecosystem repositories for unified development with single-command setup.
 
-    [:octicons-arrow-right-24: Learn more](provide-workspace/)
+    [:octicons-arrow-right-24: Learn more](https://foundry.provide.io/provide-workspace/)
 
 </div>
 
