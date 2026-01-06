@@ -15,6 +15,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 import re
+import tempfile
 from pathlib import Path
 from typing import ClassVar
 
@@ -28,92 +29,6 @@ log = logging.getLogger("mkdocs.plugins.crossrepo_links")
 
 # Get the actual system temp directory (respects TMPDIR env var)
 _TEMP_DIR = tempfile.gettempdir()
-
-# ---------------------------------------------------------------------------
-# Pre-compiled regex patterns (avoids re-compilation on every call)
-# ---------------------------------------------------------------------------
-
-# Strip .md extensions from relative markdown links
-_RE_MD_STRIP_MARKDOWN = re.compile(r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))")
-
-# Strip .md extensions from HTML href attributes
-_RE_MD_STRIP_HTML = re.compile(r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")')
-
-# Temp-path patterns (compiled once at module load)
-_temp_dir_no_slash = _TEMP_DIR.lstrip("/")
-_temp_escaped = re.escape(_temp_dir_no_slash)
-_relative_prefix = r"(?:\.\./)*"
-
-_RE_TEMP_PATH_MARKDOWN = re.compile(
-    r"\[([^\]]+)\]\("
-    + _relative_prefix
-    + r"/?"
-    + _temp_escaped
-    + r"[/\\]"
-    + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"
-    + r"([^)]+)"
-    + r"\)"
-)
-
-_RE_TEMP_PATH_HTML = re.compile(
-    r'href="'
-    + _relative_prefix
-    + r"/?"
-    + _temp_escaped
-    + r"[/\\]"
-    + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"
-    + r'([^"]+)"'
-)
-
-# Package names that should be accessible at root level
-_PACKAGES: list[str] = [
-    "provide-foundation",
-    "provide-testkit",
-    "pyvider",
-    "pyvider-cty",
-    "pyvider-hcl",
-    "pyvider-rpcplugin",
-    "pyvider-components",
-    "terraform-provider-pyvider",
-    "terraform-provider-tofusoup",
-    "tofusoup",
-    "flavorpack",
-    "wrknv",
-    "supsrc",
-    "plating",
-]
-
-# Single alternation regex for all package markdown links (relative → root)
-# Combines 28 individual patterns into ONE pass over the text.
-_PKG_ALTERNATION = "|".join(re.escape(p) for p in _PACKAGES)
-
-_RE_PKG_MD_COMBINED = re.compile(rf"\[([^\]]+)\]\((?:\.\./)?({_PKG_ALTERNATION})(/[^\)]*)?\)")
-
-_RE_PKG_HTML_COMBINED = re.compile(rf'href="(?:\.\./)?({_PKG_ALTERNATION})(/[^"]*)?"')
-
-# Nested path mappings for markdown links
-_NESTED_MAPPINGS: dict[str, str] = {
-    "/pyvider-framework/pyvider/": "/pyvider/",
-    "/pyvider-framework/pyvider-cty/": "/pyvider-cty/",
-    "/pyvider-framework/pyvider-hcl/": "/pyvider-hcl/",
-    "/pyvider-framework/pyvider-rpcplugin/": "/pyvider-rpcplugin/",
-    "/pyvider-framework/pyvider-components/": "/pyvider-components/",
-    "/pyvider-framework/tofusoup/": "/tofusoup/",
-    "/pyvider-framework/terraform-provider-pyvider/": "/terraform-provider-pyvider/",
-    "/pyvider-framework/terraform-provider-tofusoup/": "/terraform-provider-tofusoup/",
-    "/foundation/foundation/": "/provide-foundation/",
-    "/foundation/testkit/": "/provide-testkit/",
-    "/development-tools/flavorpack/": "/flavorpack/",
-    "/development-tools/wrknv/": "/wrknv/",
-    "/development-tools/supsrc/": "/supsrc/",
-    "/development-tools/plating/": "/plating/",
-}
-
-# Single alternation regex for nested path fixups (14 patterns → 1 pass).
-# Build a reverse lookup: escaped nested prefix → root replacement.
-_NESTED_LOOKUP: dict[str, str] = {nested.lstrip("/"): root for nested, root in _NESTED_MAPPINGS.items()}
-_NESTED_ALTERNATION = "|".join(re.escape(k) for k in _NESTED_LOOKUP)
-_RE_NESTED_MD_COMBINED = re.compile(rf"\[([^\]]+)\]\(/({_NESTED_ALTERNATION})([^\)]*)\)")
 
 
 class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
