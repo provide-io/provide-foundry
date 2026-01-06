@@ -37237,7 +37237,7 @@
 2. Terraform is initialized (<code>terraform init</code>)
 3. Provider name matches in Terraform config
 4. Provider is in the correct directory</p>
-<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/plating/troubleshooting/#provider-not-found-error">Troubleshooting</a>.</p>
+<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/plating/troubleshooting/#provider-not-found-error">Troubleshooting</a>.</p>
 <h3 id="why-isnt-my-resource-updating">Why isn't my resource updating?<a class="headerlink" href="#why-isnt-my-resource-updating" title="Permanent link">&para;</a></h3>
 <p>Ensure you implemented <code>_update_apply()</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_update_apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
@@ -37245,7 +37245,7 @@
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">update_resource</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">ctx</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="k">return</span> <span class="n">updated_state</span><span class="p">,</span> <span class="kc">None</span>
 </span></code></pre></div>
-<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/plating/troubleshooting/#resource-update-not-applied">Troubleshooting</a>.</p>
+<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/plating/troubleshooting/#resource-update-not-applied">Troubleshooting</a>.</p>
 <h3 id="why-isnt-drift-being-detected">Why isn't drift being detected?<a class="headerlink" href="#why-isnt-drift-being-detected" title="Permanent link">&para;</a></h3>
 <p>Implement <code>read()</code> correctly - it must fetch <strong>current</strong> state, not return cached state:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctx</span><span class="p">):</span>
@@ -37253,7 +37253,7 @@
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">current</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="k">return</span> <span class="n">State</span><span class="p">(</span><span class="o">**</span><span class="n">current</span><span class="p">)</span>  <span class="c1"># Return current, not ctx.state!</span>
 </span></code></pre></div>
-<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/plating/troubleshooting/#state-drift-not-detected">Troubleshooting</a>.</p>
+<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/plating/troubleshooting/#state-drift-not-detected">Troubleshooting</a>.</p>
 <h3 id="why-is-my-provider-crashing">Why is my provider crashing?<a class="headerlink" href="#why-is-my-provider-crashing" title="Permanent link">&para;</a></h3>
 <p>Common causes:
 1. Unhandled exceptions
@@ -37265,7 +37265,7 @@
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYVIDER_LOG_LEVEL</span><span class="o">=</span>DEBUG
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>terraform<span class="w"> </span>apply<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>debug.log
 </span></code></pre></div>
-<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/plating/troubleshooting/#provider-crashes-on-apply">Troubleshooting</a>.</p>
+<p>See <a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/plating/troubleshooting/#provider-crashes-on-apply">Troubleshooting</a>.</p>
 <h2 id="advanced-questions">Advanced Questions<a class="headerlink" href="#advanced-questions" title="Permanent link">&para;</a></h2>
 <h3 id="can-i-use-capabilities">Can I use capabilities?<a class="headerlink" href="#can-i-use-capabilities" title="Permanent link">&para;</a></h3>
 <p>Capabilities are experimental. For production, use:
@@ -37362,7 +37362,7 @@
 <li><a href="getting-started/quick-start/">Quick Start Guide</a></li>
 <li><a href="tutorials/intermediate-provider/">Tutorial: HTTP API Provider</a></li>
 <li><a href="guides/production/best-practices/">Best Practices</a></li>
-<li><a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/plating/troubleshooting/">Troubleshooting Guide</a></li>
+<li><a href="../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/plating/troubleshooting/">Troubleshooting Guide</a></li>
 <li><a href="api/index/">API Reference</a></li>
 </ul>
 <hr />

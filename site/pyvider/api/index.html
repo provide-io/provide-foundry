@@ -36346,36 +36346,36 @@ Some APIs may change during the pre-release series.</p>
 <p>If you're contributing to Pyvider or building advanced integrations, the API reference documents internal interfaces. However, note that internal APIs are subject to change.</p>
 <h2 id="api-modules">API Modules<a class="headerlink" href="#api-modules" title="Permanent link">&para;</a></h2>
 <h3 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h3>
-<h4 id="cli"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/flavorpack/guide/usage/cli/">CLI</a><a class="headerlink" href="#cli" title="Permanent link">&para;</a></h4>
+<h4 id="cli"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/flavorpack/guide/usage/cli/">CLI</a><a class="headerlink" href="#cli" title="Permanent link">&para;</a></h4>
 <p>Command-line interface for the <code>pyvider</code> command. Includes commands for component management, configuration, installation, and provider service launching.</p>
 <p><strong>Key commands:</strong> <code>provide</code>, <code>components list</code>, <code>config show</code>, <code>install</code>, <code>launch-context</code></p>
-<h4 id="common"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/flavorpack/troubleshooting/common/">Common</a><a class="headerlink" href="#common" title="Permanent link">&para;</a></h4>
+<h4 id="common"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/flavorpack/troubleshooting/common/">Common</a><a class="headerlink" href="#common" title="Permanent link">&para;</a></h4>
 <p>Shared utilities, configuration management, encryption, and context handling used across all modules.</p>
 <p><strong>Key exports:</strong> <code>PyviderConfig</code>, <code>OperationContext</code>, <code>LaunchContext</code>, encryption utilities</p>
-<h4 id="hub"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider/api/hub/">Hub</a><a class="headerlink" href="#hub" title="Permanent link">&para;</a></h4>
+<h4 id="hub"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider/api/hub/">Hub</a><a class="headerlink" href="#hub" title="Permanent link">&para;</a></h4>
 <p>Component registry and discovery system. Manages registration and lifecycle of all provider components.</p>
 <p><strong>Key exports:</strong> <code>ComponentRegistry</code>, <code>ComponentDiscovery</code>, validators</p>
 <h3 id="component-types">Component Types<a class="headerlink" href="#component-types" title="Permanent link">&para;</a></h3>
 <h4 id="providers"><a href="providers/index/">Providers</a><a class="headerlink" href="#providers" title="Permanent link">&para;</a></h4>
 <p>Provider implementation, configuration, and capabilities.</p>
 <p><strong>Key exports:</strong> <code>BaseProvider</code>, <code>ProviderMetadata</code>, <code>@register_provider</code>, <code>ProviderContext</code></p>
-<h4 id="resources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_acs1bh02/provide-foundation/reference/provide/foundation/errors/resources/">Resources</a><a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
+<h4 id="resources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_p488_akh/provide-foundation/reference/provide/foundation/errors/resources/">Resources</a><a class="headerlink" href="#resources" title="Permanent link">&para;</a></h4>
 <p>Resource components with full CRUD lifecycle management.</p>
 <p><strong>Key exports:</strong> <code>BaseResource</code>, <code>ResourceContext</code>, <code>@register_resource</code>, <code>PrivateState</code></p>
-<h4 id="data-sources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider/api/data_sources/">Data Sources</a><a class="headerlink" href="#data-sources" title="Permanent link">&para;</a></h4>
+<h4 id="data-sources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider/api/data_sources/">Data Sources</a><a class="headerlink" href="#data-sources" title="Permanent link">&para;</a></h4>
 <p>Read-only data source components for querying existing infrastructure.</p>
 <p><strong>Key exports:</strong> <code>BaseDataSource</code>, <code>@register_data_source</code></p>
-<h4 id="functions"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider/api/functions/">Functions</a><a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<h4 id="functions"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider/api/functions/">Functions</a><a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
 <p>Provider functions for data transformation and computation.</p>
 <p><strong>Key exports:</strong> <code>BaseFunction</code>, <code>@register_function</code>, function adapters</p>
-<h4 id="ephemeral-resources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider/api/ephemerals/">Ephemeral Resources</a><a class="headerlink" href="#ephemeral-resources" title="Permanent link">&para;</a></h4>
+<h4 id="ephemeral-resources"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider/api/ephemerals/">Ephemeral Resources</a><a class="headerlink" href="#ephemeral-resources" title="Permanent link">&para;</a></h4>
 <p>Short-lived resources with open/renew/close lifecycle (e.g., temporary credentials, connections).</p>
 <p><strong>Key exports:</strong> <code>BaseEphemeralResource</code>, <code>@register_ephemeral_resource</code>, <code>EphemeralResourceContext</code></p>
 <h3 id="type-system-validation">Type System &amp; Validation<a class="headerlink" href="#type-system-validation" title="Permanent link">&para;</a></h3>
 <h4 id="schema"><a href="schema/index/">Schema</a><a class="headerlink" href="#schema" title="Permanent link">&para;</a></h4>
 <p>Type-safe schema definition system with factory functions for attributes, blocks, and validators.</p>
 <p><strong>Key exports:</strong> <code>s_resource()</code>, <code>s_data_source()</code>, <code>s_provider()</code>, <code>a_str()</code>, <code>a_num()</code>, <code>b_list()</code>, etc.</p>
-<h4 id="exceptions"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_acs1bh02/flavorpack/reference/flavor/exceptions/">Exceptions</a><a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h4>
+<h4 id="exceptions"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_p488_akh/flavorpack/reference/flavor/exceptions/">Exceptions</a><a class="headerlink" href="#exceptions" title="Permanent link">&para;</a></h4>
 <p>Comprehensive exception hierarchy for error handling and diagnostics.</p>
 <p><strong>Key exports:</strong> <code>PyviderError</code>, <code>ResourceError</code>, <code>ProviderError</code>, <code>ValidationError</code>, <code>SchemaError</code></p>
 <h3 id="data-handling">Data Handling<a class="headerlink" href="#data-handling" title="Permanent link">&para;</a></h3>
@@ -36390,7 +36390,7 @@ Some APIs may change during the pre-release series.</p>
 <p>Terraform Plugin Protocol v6 implementation and gRPC handlers.</p>
 <p><strong>Note:</strong> This is an internal module. Provider developers should use high-level component APIs instead.</p>
 <h3 id="observability">Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h3>
-<h4 id="observability_1"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider/api/observability/">Observability</a><a class="headerlink" href="#observability_1" title="Permanent link">&para;</a></h4>
+<h4 id="observability_1"><a href="../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider/api/observability/">Observability</a><a class="headerlink" href="#observability_1" title="Permanent link">&para;</a></h4>
 <p>Built-in metrics for monitoring provider operations, resource lifecycle, and performance.</p>
 <p><strong>Key exports:</strong> <code>resource_create_total</code>, <code>handler_duration</code>, <code>function_calls</code>, etc. (33+ metrics)</p>
 <h2 id="public-vs-internal-apis">Public vs Internal APIs<a class="headerlink" href="#public-vs-internal-apis" title="Permanent link">&para;</a></h2>
