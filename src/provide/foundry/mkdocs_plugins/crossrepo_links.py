@@ -15,7 +15,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 import re
-import tempfile
+from pathlib import Path
 from typing import ClassVar
 
 from mkdocs.config import config_options
@@ -124,7 +124,23 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         ("verbose", config_options.Type(bool, default=False)),
     )
 
-    PACKAGES: ClassVar[list[str]] = _PACKAGES
+    # Package names that should be accessible at root level
+    PACKAGES: ClassVar[list[str]] = [
+        "provide-foundation",
+        "provide-testkit",
+        "pyvider",
+        "pyvider-cty",
+        "pyvider-hcl",
+        "pyvider-rpcplugin",
+        "pyvider-components",
+        "terraform-provider-pyvider",
+        "terraform-provider-tofusoup",
+        "tofusoup",
+        "flavorpack",
+        "wrknv",
+        "supsrc",
+        "plating",
+    ]
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
         """Initialize plugin with config."""
@@ -223,17 +239,55 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         transform_count = 0
 
-        # Fix leaked temp directory paths from mkdocs-monorepo
-        markdown, count = self._fix_temp_paths(markdown, page.file.src_path)
-        transform_count += count
+        # Pattern 0: Strip .md extensions from relative links
+        # MkDocs with use_directory_urls: true expects clean paths without .md
+        # Matches: [text](path/to/file.md) but NOT external URLs, images, or anchors
+        # Convert: [text](../guide.md) → [text](../guide/)
+        # Convert: [text](./installation.md) → [text](./installation/)
+        # Convert: [text](file.md#anchor) → [text](file/#anchor)
+        md_link_pattern = r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
+        md_link_replacement = r"[\1](\2/\3)"
+
+        new_markdown, md_count = re.subn(md_link_pattern, md_link_replacement, markdown)
+        if md_count > 0:
+            transform_count += md_count
+            if self.config.get("verbose"):
+                log.debug(f"Stripped .md extension from {md_count} links")
+        markdown = new_markdown
+
+        # Pattern 1: Transform relative links like ../package-name/
+        # Matches: [text](../package-name/...)
+        for package in self.PACKAGES:
+            # Handle various relative link patterns
+            patterns = [
+                # ../package/ or ../package/path
+                (rf"\[([^\]]+)\]\(\.\./({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
+                # Just package/ (relative to current)
+                (rf"\[([^\]]+)\]\(({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
+            ]
 
         # Strip .md extensions from relative links
         markdown, count = self._strip_md_extensions(markdown)
         transform_count += count
 
-        # Transform relative package links to root-level paths
-        markdown, count = self._transform_package_links(markdown)
-        transform_count += count
+        # Pattern 2: Fix nested paths to root paths
+        # Transform /pyvider-framework/pyvider/ → /pyvider/
+        nested_mappings = {
+            "/pyvider-framework/pyvider/": "/pyvider/",
+            "/pyvider-framework/pyvider-cty/": "/pyvider-cty/",
+            "/pyvider-framework/pyvider-hcl/": "/pyvider-hcl/",
+            "/pyvider-framework/pyvider-rpcplugin/": "/pyvider-rpcplugin/",
+            "/pyvider-framework/pyvider-components/": "/pyvider-components/",
+            "/pyvider-framework/tofusoup/": "/tofusoup/",
+            "/pyvider-framework/terraform-provider-pyvider/": "/terraform-provider-pyvider/",
+            "/pyvider-framework/terraform-provider-tofusoup/": "/terraform-provider-tofusoup/",
+            "/foundation/foundation/": "/provide-foundation/",
+            "/foundation/testkit/": "/provide-testkit/",
+            "/development-tools/flavorpack/": "/flavorpack/",
+            "/development-tools/wrknv/": "/wrknv/",
+            "/development-tools/supsrc/": "/supsrc/",
+            "/development-tools/plating/": "/plating/",
+        }
 
         # Fix nested paths to root paths
         markdown, count = self._fix_nested_paths(markdown)
@@ -267,12 +321,13 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         if not self.config.get("enabled", True):
             return html
 
-        # Fix leaked temp directory paths in HTML
-        html = self._fix_temp_paths_html(html, page.file.src_path)
-
         # Strip .md extensions from HTML links (backup for any that slip through)
         # Matches: href="path/to/file.md" but NOT external URLs
-        html = _RE_MD_STRIP_HTML.sub(r'href="\1/\2"', html)
+        html = re.sub(
+            r'href="(?!https?://|#)([^"]+?)\.md(#[^"]*)?(")',
+            r'href="\1/\2"',
+            html,
+        )
 
         # Additional HTML-level transformations if needed
         # This can catch links that weren't in markdown format
@@ -293,6 +348,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             'href="/pyvider-framework/pyvider-components/': 'href="/pyvider-components/',
             'href="/pyvider-framework/tofusoup/': 'href="/tofusoup/',
             ('href="/pyvider-framework/terraform-provider-pyvider/'): 'href="/terraform-provider-pyvider/',
+            ('href="/pyvider-framework/terraform-provider-tofusoup/'): 'href="/terraform-provider-tofusoup/',
             'href="/foundation/foundation/': 'href="/provide-foundation/',
             'href="/foundation/testkit/': 'href="/provide-testkit/',
             'href="/development-tools/flavorpack/': 'href="/flavorpack/',
@@ -316,12 +372,13 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         if not self.config.get("enabled", True):
             return output
 
-        # Fix leaked temp directory paths in full page HTML
-        output = self._fix_temp_paths_html(output, page.file.src_path)
-
         # Strip .md extensions from ALL links in full page HTML (including nav)
         # This catches nav links that on_page_content doesn't see
-        output = _RE_MD_STRIP_HTML.sub(r'href="\1/\2"', output)
+        output = re.sub(
+            r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
+            r'href="\1/\2"',
+            output,
+        )
 
         return output
 
@@ -338,7 +395,8 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             if filepath.exists():
                 content = filepath.read_text(encoding="utf-8")
                 # Strip .md extensions from links
-                new_content = _RE_MD_STRIP_HTML.sub(
+                new_content = re.sub(
+                    r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
                     r'href="\1/\2"',
                     content,
                 )
