@@ -303,7 +303,7 @@ cd /path/to/dependency-project
 uv build
 
 cd /path/to/consuming-project
-uv add --editable /path/to/dependency-project
+uv pip install -e /path/to/dependency-project
 ```
 
 ## Documentation Workflow
@@ -372,7 +372,7 @@ which python
 python -c "import sys; print(sys.prefix)"
 
 # Reinstall in editable mode
-uv add --editable .
+uv pip install -e .
 ```
 
 ### Type Checking Errors After Update
