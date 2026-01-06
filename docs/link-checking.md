@@ -66,15 +66,9 @@ we tasks
 
 ### Expected "Errors" (Not Actually Broken)
 
-When running `we run docs.links.check`, you may see ~206 errors for:
+When running `we run docs.links.check`, you may see errors for:
 
-1. **Extensionless link references** (e.g., `docs/guides/installation` instead of `docs/guides/installation.md`)
-   - MkDocs allows links without `.md` extensions when `use_directory_urls: true`
-   - During build, MkDocs converts these to proper HTML paths
-   - Lychee checks raw filesystem and expects exact file paths
-   - **These work correctly on the live site!**
-
-2. **Monorepo package directories** (e.g., `docs/pyvider`, `docs/flavorpack`)
+1. **Monorepo package directories** (e.g., `docs/pyvider`, `docs/flavorpack`)
    - These directories only exist after `we run docs.build` runs
    - The mkdocs-monorepo plugin creates them during the build
    - They will be validated by mkdocs-htmlproofer-plugin
@@ -85,7 +79,7 @@ When running `we run docs.links.check`, you may see ~206 errors for:
 [ERROR] file:///Users/.../docs/packages/pyvider | Cannot find file
 ```
 
-**Bottom line**: If you see ~206 errors but the files exist with `.md` extensions, your documentation is correct! These errors are expected and don't affect the rendered site.
+**Bottom line**: These errors are expected and don't affect the rendered site.
 
 **Production validation**: The live site (https://foundry.provide.io) achieves 99.2% link success rate (911 OK / 918 total).
 
@@ -281,4 +275,4 @@ max_concurrency = 32  # Reduced from 64
 
 - [lychee Documentation](https://lychee.cli.rs/)
 - [mkdocs-htmlproofer-plugin](https://github.com/manuzhang/mkdocs-htmlproofer-plugin)
-- [GitHub Actions Workflow](.github/workflows/links.yml)
+- [GitHub Actions Workflow](../.github/workflows/links.yml)

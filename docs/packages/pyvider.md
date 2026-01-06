@@ -29,7 +29,7 @@ uv add pyvider[all]
 
 ## Documentation
 
-For detailed guides, API reference, and provider development tutorials, see the [Pyvider documentation](../pyvider/).
+For detailed guides, API reference, and provider development tutorials, see the [Pyvider documentation](https://foundry.provide.io/pyvider/).
 
 ## Repository
 

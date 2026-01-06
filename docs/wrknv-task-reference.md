@@ -545,7 +545,7 @@ working_dir = "./docs"
 
 - [Deploying wrknv Tasks](deploying-wrknv-tasks.md) - How to deploy these tasks
 - [Link Checking Guide](link-checking.md) - Link validation details
-- [wrknv Documentation](../wrknv/README/) - Full wrknv user guide
+- [wrknv Documentation](https://foundry.provide.io/wrknv/) - Full wrknv user guide
 
 ## Customizing Tasks
 

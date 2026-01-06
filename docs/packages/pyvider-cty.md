@@ -25,7 +25,7 @@ uv add pyvider-cty
 
 ## Documentation
 
-For detailed API reference, type system documentation, and usage examples, see the [Pyvider CTY documentation](../pyvider-cty/).
+For detailed API reference, type system documentation, and usage examples, see the [Pyvider CTY documentation](https://foundry.provide.io/pyvider-cty/).
 
 ## Repository
 

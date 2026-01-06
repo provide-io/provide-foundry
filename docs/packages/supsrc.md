@@ -25,7 +25,7 @@ uv tool install supsrc
 
 ## Documentation
 
-For configuration guides, rule syntax, and usage examples, see the [SupSrc documentation](../supsrc/).
+For configuration guides, rule syntax, and usage examples, see the [SupSrc documentation](https://foundry.provide.io/supsrc/).
 
 ## Repository
 

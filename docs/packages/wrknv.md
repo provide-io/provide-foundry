@@ -25,7 +25,7 @@ uv tool install wrknv
 
 ## Documentation
 
-For setup guides, configuration reference, and usage examples, see the [WrkNv documentation](../wrknv/).
+For setup guides, configuration reference, and usage examples, see the [WrkNv documentation](https://foundry.provide.io/wrknv/).
 
 ## Repository
 

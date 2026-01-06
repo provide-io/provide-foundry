@@ -49,7 +49,7 @@ provider "pyvider" {
 # Clone and setup
 git clone https://github.com/provide-io/terraform-provider-pyvider
 cd terraform-provider-pyvider
-source env.sh
+uv sync
 
 # Run tests
 uv run pytest
@@ -69,7 +69,7 @@ The provider includes examples of:
 
 ## Documentation
 
-<!-- See the [Provider Tour](../pyvider-components/guides/provider-tour/) --> and [Build Your Own](../pyvider-components/guides/build-your-own/) guides for detailed walkthroughs.
+See the [Build Your Own](https://foundry.provide.io/pyvider-components/guides/build-your-own/) guide for a detailed walkthrough.
 
 ## Related Packages
 

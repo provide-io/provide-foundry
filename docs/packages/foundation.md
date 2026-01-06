@@ -29,7 +29,7 @@ uv add provide-foundation[all]
 
 ## Documentation
 
-For detailed API documentation, usage examples, and guides, see the [Foundation documentation](../foundation/).
+For detailed API documentation, usage examples, and guides, see the [Foundation documentation](https://foundry.provide.io/provide-foundation/).
 
 ## Repository
 

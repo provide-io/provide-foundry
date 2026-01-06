@@ -24,7 +24,7 @@ uv add pyvider-components
 
 ## Documentation
 
-For component reference, usage patterns, and examples, see the [Pyvider Components documentation](../pyvider-components/).
+For component reference, usage patterns, and examples, see the [Pyvider Components documentation](https://foundry.provide.io/pyvider-components/).
 
 ## Repository
 

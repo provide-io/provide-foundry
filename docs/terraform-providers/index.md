@@ -66,7 +66,7 @@ Terraform providers integrate seamlessly with the ecosystem:
 
     Reference Terraform provider implementation showcasing Pyvider framework capabilities and best practices.
 
-    [:octicons-arrow-right-24: Explore Pyvider Provider](../terraform-provider-pyvider/)
+    [:octicons-arrow-right-24: Explore Pyvider Provider](https://foundry.provide.io/terraform-provider-pyvider/)
 
 -   :material-test-tube: **TofuSoup Provider**
 
@@ -74,6 +74,6 @@ Terraform providers integrate seamlessly with the ecosystem:
 
     Infrastructure testing and conformance provider for validating Terraform configurations.
 
-    [:octicons-arrow-right-24: Explore TofuSoup Provider](../terraform-provider-tofusoup/)
+    [:octicons-arrow-right-24: Explore TofuSoup Provider](https://foundry.provide.io/terraform-provider-tofusoup/)
 
 </div>

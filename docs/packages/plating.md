@@ -25,7 +25,7 @@ uv tool install plating
 
 ## Documentation
 
-For usage guides, template reference, and customization options, see the [Plating documentation](../plating/).
+For usage guides, template reference, and customization options, see the [Plating documentation](https://foundry.provide.io/plating/).
 
 ## Repository
 

@@ -25,7 +25,7 @@ uv add pyvider-rpcplugin
 
 ## Documentation
 
-For protocol details, integration guides, and API reference, see the [Pyvider RPC Plugin documentation](../pyvider-rpcplugin/).
+For protocol details, integration guides, and API reference, see the [Pyvider RPC Plugin documentation](https://foundry.provide.io/pyvider-rpcplugin/).
 
 ## Repository
 

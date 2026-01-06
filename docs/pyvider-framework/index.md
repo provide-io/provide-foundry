@@ -77,7 +77,7 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     Core framework for building Terraform providers in Python with full protocol support.
 
-    [:octicons-arrow-right-24: Explore Pyvider](pyvider/)
+    [:octicons-arrow-right-24: Explore Pyvider](../packages/pyvider.md)
 
 -   :material-code-braces: **Pyvider CTY**
 
@@ -85,7 +85,7 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     Python bindings for Terraform's CTY type system, enabling type-safe data handling.
 
-    [:octicons-arrow-right-24: Explore CTY](pyvider-cty/)
+    [:octicons-arrow-right-24: Explore CTY](../packages/pyvider-cty.md)
 
 -   :material-file-code: **Pyvider HCL**
 
@@ -93,7 +93,7 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     HCL parsing and manipulation for Terraform configuration processing.
 
-    [:octicons-arrow-right-24: Explore HCL](pyvider-hcl/)
+    [:octicons-arrow-right-24: Explore HCL](../packages/pyvider-hcl.md)
 
 -   :material-api: **Pyvider RPC Plugin**
 
@@ -101,7 +101,7 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     gRPC plugin protocol implementation for Terraform provider communication.
 
-    [:octicons-arrow-right-24: Explore RPC Plugin](pyvider-rpcplugin/)
+    [:octicons-arrow-right-24: Explore RPC Plugin](../packages/pyvider-rpcplugin.md)
 
 -   :material-package-variant: **Pyvider Components**
 
@@ -109,7 +109,7 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     Reusable provider components, patterns, and utilities for common use cases.
 
-    [:octicons-arrow-right-24: Explore Components](pyvider-components/)
+    [:octicons-arrow-right-24: Explore Components](../packages/pyvider-components.md)
 
 -   :material-test-tube: **TofuSoup**
 
@@ -117,6 +117,6 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
     Cross-language conformance testing framework for Terraform and OpenTofu providers.
 
-    [:octicons-arrow-right-24: Explore TofuSoup](tofusoup/)
+    [:octicons-arrow-right-24: Explore TofuSoup](../packages/tofusoup.md)
 
 </div>
