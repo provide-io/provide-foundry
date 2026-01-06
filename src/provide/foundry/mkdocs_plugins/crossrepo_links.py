@@ -10,9 +10,9 @@ Transforms links to use root-level package paths:
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 import re
 import tempfile
-from pathlib import Path
 from typing import ClassVar
 
 from mkdocs.config import config_options
@@ -60,6 +60,52 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         log.info(f"CrossRepoLinks plugin initialized for {len(self.PACKAGES)} packages")
         return config
 
+    def _fix_temp_paths(self, text: str, page_path: str) -> tuple[str, int]:
+        """Fix leaked temp directory paths in links.
+
+        The mkdocs-monorepo plugin copies docs to a temp directory during build.
+        Sometimes relative links get resolved to absolute paths pointing to that
+        temp directory, which then leak into the final output.
+
+        This detects paths containing the temp directory and strips it.
+        """
+        count = 0
+
+        # Build pattern to match temp dir paths
+        # Escape the temp dir for regex and handle both forward and back slashes
+        temp_escaped = re.escape(_TEMP_DIR)
+        # Also match relative paths that climb up to the temp dir
+        relative_prefix = r"(?:\.\./)*"
+
+        # Pattern for markdown links: [text](url_with_temp_path)
+        # Captures: (1) link text, (2) path after temp dir including docs_xxx/ prefix
+        pattern = (
+            r"\[([^\]]+)\]\("  # [text](
+            + relative_prefix
+            + temp_escaped
+            + r"[/\\]"  # temp dir path
+            + r"docs_[a-zA-Z0-9_]+[/\\]"  # docs_xxxxx/ (monorepo temp subdir)
+            + r"([^)]+)"  # actual path (captured)
+            + r"\)"  # closing )
+        )
+
+        def replace_temp_path(match: re.Match[str]) -> str:
+            nonlocal count
+            link_text = match.group(1)
+            actual_path = match.group(2)
+            # Ensure path starts with /
+            if not actual_path.startswith("/"):
+                actual_path = "/" + actual_path
+            count += 1
+            return f"[{link_text}]({actual_path})"
+
+        text = re.sub(pattern, replace_temp_path, text)
+
+        if count > 0:
+            log.warning(f"Fixed {count} leaked temp directory paths in {page_path}")
+
+        return text, count
+
     def on_page_markdown(
         self,
         markdown: str,
@@ -73,6 +119,10 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         # Count transformations for logging
         transform_count = 0
+
+        # Pattern -1: Fix leaked temp directory paths from mkdocs-monorepo
+        markdown, temp_count = self._fix_temp_paths(markdown, page.file.src_path)
+        transform_count += temp_count
 
         # Pattern 0: Strip .md extensions from relative links
         # MkDocs with use_directory_urls: true expects clean paths without .md
@@ -147,6 +197,25 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         return markdown
 
+    def _fix_temp_paths_html(self, html: str, page_path: str) -> str:
+        """Fix leaked temp directory paths in HTML href attributes."""
+        temp_escaped = re.escape(_TEMP_DIR)
+        relative_prefix = r"(?:\.\./)*"
+
+        # Pattern for HTML href attributes with temp paths
+        pattern = (
+            r'href="' + relative_prefix + temp_escaped + r"[/\\]" + r"docs_[a-zA-Z0-9_]+[/\\]" + r'([^"]+)"'
+        )
+
+        def replace_temp_href(match: re.Match[str]) -> str:
+            actual_path = match.group(1)
+            if not actual_path.startswith("/"):
+                actual_path = "/" + actual_path
+            log.warning(f"Fixed leaked temp href in {page_path}")
+            return f'href="{actual_path}"'
+
+        return re.sub(pattern, replace_temp_href, html)
+
     def on_page_content(
         self,
         html: str,
@@ -157,6 +226,9 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """Optional: Transform HTML links after markdown rendering."""
         if not self.config.get("enabled", True):
             return html
+
+        # Fix leaked temp directory paths in HTML
+        html = self._fix_temp_paths_html(html, page.file.src_path)
 
         # Strip .md extensions from HTML links (backup for any that slip through)
         # Matches: href="path/to/file.md" but NOT external URLs
@@ -212,6 +284,9 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """Transform the full HTML output including navigation."""
         if not self.config.get("enabled", True):
             return output
+
+        # Fix leaked temp directory paths in full page HTML
+        output = self._fix_temp_paths_html(output, page.file.src_path)
 
         # Strip .md extensions from ALL links in full page HTML (including nav)
         # This catches nav links that on_page_content doesn't see
