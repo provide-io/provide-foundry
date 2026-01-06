@@ -104,18 +104,60 @@ def on_page_markdown(
         header_block = f"<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n\n"
         if heading_match:
             insert_pos = heading_match.end()
-            # Skip past any immediate description line (non-heading, non-empty)
+            # Skip past any immediate content blocks after the heading
+            # This includes: empty lines, admonitions (!!!), and description text
             remaining = markdown[insert_pos:]
             lines = remaining.split("\n")
-            for i, line in enumerate(lines):
+            i = 0
+            while i < len(lines):
+                line = lines[i]
                 stripped = line.strip()
-                if stripped and not stripped.startswith("#"):
-                    # Found description, insert after it
-                    insert_pos += len("\n".join(lines[: i + 1])) + 1
+
+                # Skip empty lines
+                if not stripped:
+                    i += 1
+                    continue
+
+                # Check for admonition block (!!!)
+                if stripped.startswith("!!!"):
+                    # Skip the admonition header line
+                    i += 1
+                    # Skip all subsequent indented lines (admonition content)
+                    while i < len(lines):
+                        next_line = lines[i]
+                        # Admonition content is indented (starts with spaces/tabs)
+                        # or is an empty line within the block
+                        if next_line.startswith("    ") or next_line.startswith("\t") or not next_line.strip():
+                            # Check if empty line is followed by non-indented content
+                            if not next_line.strip():
+                                # Look ahead to see if next non-empty line is still indented
+                                lookahead = i + 1
+                                while lookahead < len(lines) and not lines[lookahead].strip():
+                                    lookahead += 1
+                                if lookahead < len(lines) and (
+                                    lines[lookahead].startswith("    ") or lines[lookahead].startswith("\t")
+                                ):
+                                    i += 1
+                                    continue
+                                else:
+                                    # End of admonition block
+                                    break
+                            i += 1
+                        else:
+                            # Non-indented line - end of admonition
+                            break
+                    continue
+
+                # Check for heading (stop here, insert before it)
+                if stripped.startswith("#"):
                     break
-                elif stripped.startswith("#"):
-                    # Hit another heading, insert here
-                    break
+
+                # Found a description line - skip it and insert after
+                i += 1
+                break
+
+            # Calculate insert position based on lines consumed
+            insert_pos += len("\n".join(lines[:i])) + (1 if i > 0 else 0)
 
             header_block = f"\n\n<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n"
             markdown = markdown[:insert_pos] + header_block + markdown[insert_pos:]
