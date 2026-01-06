@@ -57,17 +57,17 @@ The foundation layer provides core infrastructure that all other packages build 
 
 <div class="grid cards" markdown>
 
--   **[provide-foundation](foundation/)**
+-   **[provide-foundation](foundation.md)**
 
     Core telemetry and logging infrastructure with emoji-enhanced structured logging, error handling, and configuration management.
 
-    [:octicons-arrow-right-24: Learn more](foundation/)
+    [:octicons-arrow-right-24: Learn more](foundation.md)
 
--   **[provide-testkit](testkit/)**
+-   **[provide-testkit](testkit.md)**
 
     Comprehensive testing utilities and fixtures organized by domain (file, process, transport, crypto) for the entire foundry.
 
-    [:octicons-arrow-right-24: Learn more](testkit/)
+    [:octicons-arrow-right-24: Learn more](testkit.md)
 
 </div>
 
@@ -77,41 +77,41 @@ The framework layer implements the core abstractions for building Terraform prov
 
 <div class="grid cards" markdown>
 
--   **[pyvider](pyvider/)**
+-   **[pyvider](pyvider.md)**
 
     Core framework for building Terraform providers with decorators for providers, resources, data sources, and functions.
 
-    [:octicons-arrow-right-24: Learn more](pyvider/)
+    [:octicons-arrow-right-24: Learn more](pyvider.md)
 
--   **[pyvider-cty](pyvider-cty/)**
+-   **[pyvider-cty](pyvider-cty.md)**
 
     Complete implementation of Terraform's CTY type system with Python-native APIs and cross-language compatibility.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-cty/)
+    [:octicons-arrow-right-24: Learn more](pyvider-cty.md)
 
--   **[pyvider-hcl](pyvider-hcl/)**
+-   **[pyvider-hcl](pyvider-hcl.md)**
 
     HCL parsing and generation with CTY integration for processing Terraform configuration files.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-hcl/)
+    [:octicons-arrow-right-24: Learn more](pyvider-hcl.md)
 
--   **[pyvider-rpcplugin](pyvider-rpcplugin/)**
+-   **[pyvider-rpcplugin](pyvider-rpcplugin.md)**
 
     High-performance gRPC implementation of the Terraform plugin protocol with transport abstraction and security features.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-rpcplugin/)
+    [:octicons-arrow-right-24: Learn more](pyvider-rpcplugin.md)
 
--   **[pyvider-components](pyvider-components/)**
+-   **[pyvider-components](pyvider-components.md)**
 
     Standard library of components including resources, data sources, and functions for common use cases.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-components/)
+    [:octicons-arrow-right-24: Learn more](pyvider-components.md)
 
--   **[terraform-provider-pyvider](terraform-provider-pyvider/)**
+-   **[terraform-provider-pyvider](terraform-provider-pyvider.md)**
 
     Official Pyvider provider demonstrating the framework capabilities and providing utility components.
 
-    [:octicons-arrow-right-24: Learn more](terraform-provider-pyvider/)
+    [:octicons-arrow-right-24: Learn more](terraform-provider-pyvider.md)
 
 </div>
 
@@ -121,35 +121,35 @@ The tools layer provides development and deployment utilities that enhance the d
 
 <div class="grid cards" markdown>
 
--   **[flavorpack](flavorpack/)**
+-   **[flavorpack](flavorpack.md)**
 
     Progressive Secure Package Format (PSPF) implementation for creating self-contained, portable executable packages.
 
-    [:octicons-arrow-right-24: Learn more](flavorpack/)
+    [:octicons-arrow-right-24: Learn more](flavorpack.md)
 
--   **[wrknv](wrknv/)**
+-   **[wrknv](wrknv.md)**
 
     Work environment management tool that generates standardized development environments with tool version management.
 
-    [:octicons-arrow-right-24: Learn more](wrknv/)
+    [:octicons-arrow-right-24: Learn more](wrknv.md)
 
--   **[plating](plating/)**
+-   **[plating](plating.md)**
 
     Documentation generation system for Terraform providers that extracts schemas and generates Terraform Registry-compliant docs.
 
-    [:octicons-arrow-right-24: Learn more](plating/)
+    [:octicons-arrow-right-24: Learn more](plating.md)
 
--   **[tofusoup](tofusoup/)**
+-   **[tofusoup](tofusoup.md)**
 
     Cross-language conformance test suite for OpenTofu tooling with support for multiple harnesses and test types.
 
-    [:octicons-arrow-right-24: Learn more](tofusoup/)
+    [:octicons-arrow-right-24: Learn more](tofusoup.md)
 
--   **[supsrc](supsrc/)**
+-   **[supsrc](supsrc.md)**
 
     Automated Git commit/push utility that monitors filesystem events and performs Git operations based on configurable rules.
 
-    [:octicons-arrow-right-24: Learn more](supsrc/)
+    [:octicons-arrow-right-24: Learn more](supsrc.md)
 
 </div>
 
@@ -277,4 +277,4 @@ All packages maintain high test coverage:
 
 ---
 
-Ready to dive deeper? Start with the [foundation layer](foundation/) or jump to the [framework overview](pyvider/) if you're building Terraform providers.
+Ready to dive deeper? Start with the [foundation layer](foundation.md) or jump to the [framework overview](pyvider.md) if you're building Terraform providers.

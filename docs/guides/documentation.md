@@ -880,6 +880,6 @@ if __name__ == "__main__":
 
 ## Related Documentation
 
-- **[Installation Guide](installation/)** - Setting up development environment
-- **[Testing Guide](testing/)** - Testing documentation and code
-- **[Packaging Guide](packaging/)** - Publishing documentation with packages
+- **[Installation Guide](installation.md)** - Setting up development environment
+- **[Testing Guide](testing.md)** - Testing documentation and code
+- **[Packaging Guide](packaging.md)** - Publishing documentation with packages

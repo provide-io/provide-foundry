@@ -358,5 +358,5 @@ PyCharm:
 ---
 
 **Next Steps:**
-- [Development Workflow Guide](development-workflow/) - Day-to-day development patterns
-- [Testing Patterns Guide](testing-patterns/) - Testing strategies across projects
+- [Development Workflow Guide](development-workflow.md) - Day-to-day development patterns
+- [Testing Patterns Guide](testing-patterns.md) - Testing strategies across projects
