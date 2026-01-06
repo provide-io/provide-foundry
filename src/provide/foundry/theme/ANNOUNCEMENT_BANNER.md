@@ -1,6 +1,6 @@
 # Announcement Banner System
 
-The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (pre-release/stable). Some documented items are exploratory and may change or be removed.
+The shared theme includes an announcement banner system for marking AI-generated content and displaying version status (pre-release/stable). Some APIs may change during the pre-release series.
 
 ## Features
 
