@@ -1,12 +1,12 @@
 # Architecture
 
-The Provide Foundry is built on a three-layer architecture that promotes separation of concerns, maintainability, and extensibility. This document provides a deep dive into the architectural decisions, patterns, and principles that guide the foundry.
+The Provide Foundry is built on a four-layer architecture that promotes separation of concerns, maintainability, and extensibility. This document provides a deep dive into the architectural decisions, patterns, and principles that guide the foundry.
 
 ## Overview
 
 ```mermaid
 graph TB
-    subgraph "Applications"
+    subgraph "Applications Layer"
         APP1[Terraform Providers]
         APP2[CLI Tools]
         APP3[Web Services]
