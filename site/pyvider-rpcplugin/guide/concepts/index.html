@@ -36073,7 +36073,7 @@ The plugin architecture separates concerns between the **Host Application** (you
 <li><strong>Handshake Process</strong> - Multi-phase negotiation including magic cookie authentication, protocol negotiation, and service discovery</li>
 <li><strong>Foundation Integration</strong> - Seamless integration with provide.foundation for logging, configuration, and cryptography</li>
 </ol>
-<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider-rpcplugin/guide/concepts/architecture-and-handshake/">RPC Architecture &amp; Handshake</a></p>
+<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider-rpcplugin/guide/concepts/architecture-and-handshake/">RPC Architecture &amp; Handshake</a></p>
 <h3 id="transport-layer">🌐 Transport Layer<a class="headerlink" href="#transport-layer" title="Permanent link">&para;</a></h3>
 <p>Communication happens over different transport mechanisms:</p>
 <div class="transport-badge unix">Unix Sockets</div>
@@ -36090,7 +36090,7 @@ The plugin architecture separates concerns between the **Host Application** (you
 <li><strong>Platforms</strong>: Linux, macOS, Windows</li>
 <li><strong>Performance</strong>: ~35,000 msg/sec (localhost)</li>
 </ul>
-<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider-rpcplugin/guide/concepts/transports/">Transports</a></p>
+<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider-rpcplugin/guide/concepts/transports/">Transports</a></p>
 <h3 id="protocol-definition">📋 Protocol Definition<a class="headerlink" href="#protocol-definition" title="Permanent link">&para;</a></h3>
 <p><code>RPCPluginProtocol</code> defines the interface between host and plugin using Protocol Buffers:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyProtocol</span><span class="p">(</span><span class="n">RPCPluginProtocol</span><span class="p">):</span>
@@ -36102,7 +36102,7 @@ The plugin architecture separates concerns between the **Host Application** (you
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add your service implementation to the gRPC server&quot;&quot;&quot;</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">my_pb2_grpc</span><span class="o">.</span><span class="n">add_MyServiceServicer_to_server</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_acs1bh02/flavorpack/reference/flavor/psp/protocols/">Protocols</a></p>
+<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_p488_akh/flavorpack/reference/flavor/psp/protocols/">Protocols</a></p>
 <h3 id="security-model">🔒 Security Model<a class="headerlink" href="#security-model" title="Permanent link">&para;</a></h3>
 <p>Multi-layered security approach:</p>
 <ul>
@@ -36110,7 +36110,7 @@ The plugin architecture separates concerns between the **Host Application** (you
 <li><strong>Magic Cookie Authentication</strong> - Shared secret passed via environment variable</li>
 <li><strong>Mutual TLS (mTLS)</strong> - Certificate-based authentication and encrypted communication</li>
 </ul>
-<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/flavorpack/guide/concepts/security/">Security Model</a></p>
+<p><strong>Learn more:</strong> <a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/flavorpack/guide/concepts/security/">Security Model</a></p>
 <h2 id="configuration-architecture">Configuration Architecture<a class="headerlink" href="#configuration-architecture" title="Permanent link">&para;</a></h2>
 <p>Pyvider RPC Plugin uses <a href="https://foundation.provide.io">provide.foundation</a> for configuration:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyvider.rpcplugin.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">rpcplugin_config</span>
@@ -36157,25 +36157,25 @@ The plugin architecture separates concerns between the **Host Application** (you
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 2v6h2v3H5c-1.11 0-2 .89-2 2v3H1v6h6v-6H5v-3h6v3H9v6h6v-6h-2v-3h6v3h-2v6h6v-6h-2v-3c0-1.11-.89-2-2-2h-6V8h2V2z"/></svg></span> <strong>RPC Architecture &amp; Handshake</strong></p>
 <hr />
 <p>Complete RPC architecture with secure handshake protocol</p>
-<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider-rpcplugin/guide/concepts/architecture-and-handshake/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Learn Architecture</a></p>
+<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider-rpcplugin/guide/concepts/architecture-and-handshake/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Learn Architecture</a></p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21 9-4-4v3h-7v2h7v3M7 11l-4 4 4 4v-3h7v-2H7z"/></svg></span> <strong>Transports</strong></p>
 <hr />
 <p>Understanding Unix sockets vs TCP and when to use each</p>
-<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/pyvider-rpcplugin/guide/concepts/transports/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Explore Transports</a></p>
+<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/pyvider-rpcplugin/guide/concepts/transports/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Explore Transports</a></p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 7H5a2 2 0 0 0-2 2v8h2v-4h2v4h2V9a2 2 0 0 0-2-2m0 4H5V9h2m7-2h-4v10h2v-4h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2m0 4h-2V9h2m6 0v6h1v2h-4v-2h1V9h-1V7h4v2Z"/></svg></span> <strong>Protocols</strong></p>
 <hr />
 <p>How to define and implement RPC protocols with gRPC</p>
-<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_acs1bh02/flavorpack/reference/flavor/psp/protocols/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Define Protocols</a></p>
+<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/mkdocs_gen_files_p488_akh/flavorpack/reference/flavor/psp/protocols/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Define Protocols</a></p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></span> <strong>Security Model</strong></p>
 <hr />
 <p>Comprehensive security including mTLS, magic cookies, and isolation</p>
-<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_qleq99dz/flavorpack/guide/concepts/security/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Secure Plugins</a></p>
+<p><a href="../../../../../../../../../var/folders/sg/wy47gw996f78fznt898m8x540000gn/T/docs_pcnk4r3x/flavorpack/guide/concepts/security/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Secure Plugins</a></p>
 </li>
 </ul>
 </div>
