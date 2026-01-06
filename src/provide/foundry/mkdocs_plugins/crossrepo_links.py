@@ -84,13 +84,14 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         # Pattern for markdown links: [text](url_with_temp_path)
         # Captures: (1) link text, (2) path after temp dir including docs_xxx/ prefix
         # Handles both absolute (/var/...) and relative (../../../var/...) paths
+        # Catches both monorepo (docs_xxx/) and gen-files (mkdocs_gen_files_xxx/) temp dirs
         pattern = (
             r"\[([^\]]+)\]\("  # [text](
             + relative_prefix
             + r"/?"  # Optional leading slash (absolute vs relative)
             + temp_escaped
             + r"[/\\]"  # separator after temp dir
-            + r"docs_[a-zA-Z0-9_]+[/\\]"  # docs_xxxxx/ (monorepo temp subdir)
+            + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"  # temp subdir (monorepo or gen-files)
             + r"([^)]+)"  # actual path (captured)
             + r"\)"  # closing )
         )
@@ -197,13 +198,14 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         # Pattern for HTML href attributes with temp paths
         # Handles both absolute (/var/...) and relative (../../../var/...) paths
+        # Catches both monorepo (docs_xxx/) and gen-files (mkdocs_gen_files_xxx/) temp dirs
         pattern = (
             r'href="'
             + relative_prefix
             + r"/?"  # Optional leading slash
             + temp_escaped
             + r"[/\\]"
-            + r"docs_[a-zA-Z0-9_]+[/\\]"
+            + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"  # temp subdir
             + r'([^"]+)"'
         )
 
