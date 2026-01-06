@@ -91,7 +91,7 @@ EOF
 **❌ Never Recommend:**
 - ~~pyenv~~ (use `uv python install` instead)
 - ~~virtualenv~~ (use `uv venv` or `python -m venv`)
-- ~~pip~~ as the primary tool (UV only)
+- Use UV as the primary tool (no legacy installers)
 
 ### Markdown Style
 
