@@ -303,7 +303,7 @@ cd /path/to/dependency-project
 uv build
 
 cd /path/to/consuming-project
-uv pip install -e /path/to/dependency-project
+uv add --editable /path/to/dependency-project
 ```
 
 ## Documentation Workflow
@@ -355,7 +355,7 @@ uv sync
 
 ```bash
 # Check for version conflicts
-uv pip list | grep PACKAGE
+uv run python -c "import importlib.metadata as m; print(m.version('package-name'))"
 
 # Downgrade if needed
 uv add "package-name<2.0.0"
@@ -372,7 +372,7 @@ which python
 python -c "import sys; print(sys.prefix)"
 
 # Reinstall in editable mode
-uv pip install -e .
+uv add --editable .
 ```
 
 ### Type Checking Errors After Update

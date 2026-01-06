@@ -87,7 +87,7 @@ uv sync --all-groups
 source .venv/bin/activate
 
 # Verify all packages are installed
-uv pip list | grep -E "(provide|pyvider|wrknv|flavorpack)"
+uv run python -c "import importlib.metadata as m; [print(f'{n}: {m.version(n)}') for n in ('provide-foundation','pyvider','wrknv','flavorpack')]"
 ```
 
 ### Step 4: Verification
