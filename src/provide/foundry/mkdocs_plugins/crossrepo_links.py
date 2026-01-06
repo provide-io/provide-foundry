@@ -16,7 +16,6 @@ import logging
 from pathlib import Path
 import re
 import tempfile
-from pathlib import Path
 from typing import ClassVar
 
 from mkdocs.config import config_options
@@ -75,71 +74,40 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """
         count = 0
 
+        # Build pattern to match temp dir paths
+        # Escape the temp dir for regex and handle both forward and back slashes
+        temp_escaped = re.escape(_TEMP_DIR)
+        # Also match relative paths that climb up to the temp dir
+        relative_prefix = r"(?:\.\./)*"
+
+        # Pattern for markdown links: [text](url_with_temp_path)
+        # Captures: (1) link text, (2) path after temp dir including docs_xxx/ prefix
+        pattern = (
+            r"\[([^\]]+)\]\("  # [text](
+            + relative_prefix
+            + temp_escaped
+            + r"[/\\]"  # temp dir path
+            + r"docs_[a-zA-Z0-9_]+[/\\]"  # docs_xxxxx/ (monorepo temp subdir)
+            + r"([^)]+)"  # actual path (captured)
+            + r"\)"  # closing )
+        )
+
         def replace_temp_path(match: re.Match[str]) -> str:
             nonlocal count
             link_text = match.group(1)
             actual_path = match.group(2)
+            # Ensure path starts with /
             if not actual_path.startswith("/"):
                 actual_path = "/" + actual_path
             count += 1
             return f"[{link_text}]({actual_path})"
 
-        text = _RE_TEMP_PATH_MARKDOWN.sub(replace_temp_path, text)
+        text = re.sub(pattern, replace_temp_path, text)
 
         if count > 0:
             log.warning(f"Fixed {count} leaked temp directory paths in {page_path}")
 
         return text, count
-
-    def _strip_md_extensions(self, markdown: str) -> tuple[str, int]:
-        """Strip .md extensions from relative markdown links.
-
-        MkDocs with use_directory_urls: true expects clean paths without .md.
-        Convert: [text](../guide.md) → [text](../guide/)
-        Convert: [text](file.md#anchor) → [text](file/#anchor)
-        """
-        replacement = r"[\1](\2/\3)"
-        new_markdown, count = _RE_MD_STRIP_MARKDOWN.subn(replacement, markdown)
-        if count > 0 and self.config.get("verbose"):
-            log.debug(f"Stripped .md extension from {count} links")
-        return new_markdown, count
-
-    def _transform_package_links(self, markdown: str) -> tuple[str, int]:
-        """Transform relative package links to root-level paths.
-
-        Matches: [text](../package-name/...) → [text](/package-name/...)
-        Uses a single alternation regex instead of per-package loops.
-        """
-
-        def _replace_pkg_md(match: re.Match[str]) -> str:
-            link_text = match.group(1)
-            pkg_name = match.group(2)
-            suffix = match.group(3) or ""
-            return f"[{link_text}](/{pkg_name}{suffix})"
-
-        markdown, total_count = _RE_PKG_MD_COMBINED.subn(_replace_pkg_md, markdown)
-        if total_count > 0 and self.config.get("verbose"):
-            log.debug(f"Transformed {total_count} package links")
-        return markdown, total_count
-
-    def _fix_nested_paths(self, markdown: str) -> tuple[str, int]:
-        """Fix nested paths to root paths.
-
-        Transform /pyvider-framework/pyvider/ → /pyvider/
-        Uses a single alternation regex instead of per-mapping loops.
-        """
-
-        def _replace_nested(match: re.Match[str]) -> str:
-            link_text = match.group(1)
-            nested_key = match.group(2)  # e.g. "pyvider-framework/pyvider/"
-            suffix = match.group(3) or ""
-            root = _NESTED_LOOKUP[nested_key]
-            return f"[{link_text}]({root}{suffix})"
-
-        markdown, total_count = _RE_NESTED_MD_COMBINED.subn(_replace_nested, markdown)
-        if total_count > 0 and self.config.get("verbose"):
-            log.debug(f"Transformed {total_count} nested paths")
-        return markdown, total_count
 
     def on_page_markdown(
         self,
@@ -153,6 +121,10 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             return markdown
 
         transform_count = 0
+
+        # Pattern -1: Fix leaked temp directory paths from mkdocs-monorepo
+        markdown, temp_count = self._fix_temp_paths(markdown, page.file.src_path)
+        transform_count += temp_count
 
         # Pattern 0: Strip .md extensions from relative links
         # MkDocs with use_directory_urls: true expects clean paths without .md
@@ -215,6 +187,13 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
     def _fix_temp_paths_html(self, html: str, page_path: str) -> str:
         """Fix leaked temp directory paths in HTML href attributes."""
+        temp_escaped = re.escape(_TEMP_DIR)
+        relative_prefix = r"(?:\.\./)*"
+
+        # Pattern for HTML href attributes with temp paths
+        pattern = (
+            r'href="' + relative_prefix + temp_escaped + r"[/\\]" + r"docs_[a-zA-Z0-9_]+[/\\]" + r'([^"]+)"'
+        )
 
         def replace_temp_href(match: re.Match[str]) -> str:
             actual_path = match.group(1)
@@ -223,7 +202,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             log.warning(f"Fixed leaked temp href in {page_path}")
             return f'href="{actual_path}"'
 
-        return _RE_TEMP_PATH_HTML.sub(replace_temp_href, html)
+        return re.sub(pattern, replace_temp_href, html)
 
     def on_page_content(
         self,
@@ -235,6 +214,9 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """Optional: Transform HTML links after markdown rendering."""
         if not self.config.get("enabled", True):
             return html
+
+        # Fix leaked temp directory paths in HTML
+        html = self._fix_temp_paths_html(html, page.file.src_path)
 
         # Strip .md extensions from HTML links (backup for any that slip through)
         # Matches: href="path/to/file.md" but NOT external URLs
@@ -286,6 +268,9 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """Transform the full HTML output including navigation."""
         if not self.config.get("enabled", True):
             return output
+
+        # Fix leaked temp directory paths in full page HTML
+        output = self._fix_temp_paths_html(output, page.file.src_path)
 
         # Strip .md extensions from ALL links in full page HTML (including nav)
         # This catches nav links that on_page_content doesn't see
