@@ -75,18 +75,21 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         count = 0
 
         # Build pattern to match temp dir paths
-        # Escape the temp dir for regex and handle both forward and back slashes
-        temp_escaped = re.escape(_TEMP_DIR)
+        # Strip leading slash for relative path matching (../../../var/folders/... has no leading /)
+        temp_dir_no_slash = _TEMP_DIR.lstrip("/")
+        temp_escaped = re.escape(temp_dir_no_slash)
         # Also match relative paths that climb up to the temp dir
         relative_prefix = r"(?:\.\./)*"
 
         # Pattern for markdown links: [text](url_with_temp_path)
         # Captures: (1) link text, (2) path after temp dir including docs_xxx/ prefix
+        # Handles both absolute (/var/...) and relative (../../../var/...) paths
         pattern = (
             r"\[([^\]]+)\]\("  # [text](
             + relative_prefix
+            + r"/?"  # Optional leading slash (absolute vs relative)
             + temp_escaped
-            + r"[/\\]"  # temp dir path
+            + r"[/\\]"  # separator after temp dir
             + r"docs_[a-zA-Z0-9_]+[/\\]"  # docs_xxxxx/ (monorepo temp subdir)
             + r"([^)]+)"  # actual path (captured)
             + r"\)"  # closing )
@@ -187,12 +190,21 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
     def _fix_temp_paths_html(self, html: str, page_path: str) -> str:
         """Fix leaked temp directory paths in HTML href attributes."""
-        temp_escaped = re.escape(_TEMP_DIR)
+        # Strip leading slash for relative path matching (../../../var/folders/... has no leading /)
+        temp_dir_no_slash = _TEMP_DIR.lstrip("/")
+        temp_escaped = re.escape(temp_dir_no_slash)
         relative_prefix = r"(?:\.\./)*"
 
         # Pattern for HTML href attributes with temp paths
+        # Handles both absolute (/var/...) and relative (../../../var/...) paths
         pattern = (
-            r'href="' + relative_prefix + temp_escaped + r"[/\\]" + r"docs_[a-zA-Z0-9_]+[/\\]" + r'([^"]+)"'
+            r'href="'
+            + relative_prefix
+            + r"/?"  # Optional leading slash
+            + temp_escaped
+            + r"[/\\]"
+            + r"docs_[a-zA-Z0-9_]+[/\\]"
+            + r'([^"]+)"'
         )
 
         def replace_temp_href(match: re.Match[str]) -> str:
