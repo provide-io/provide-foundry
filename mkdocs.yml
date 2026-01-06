@@ -284,6 +284,7 @@ hooks:
   - src/provide/foundry/theme/hooks/version_hook.py
   - src/provide/foundry/theme/hooks/nav_filter_hook.py
   - src/provide/foundry/theme/hooks/terraform_provider.py
+  - src/provide/foundry/theme/hooks/monorepo_nav_fix.py
 
 # Watch configuration - monorepo plugin handles watching included projects
 watch:
