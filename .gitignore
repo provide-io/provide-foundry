@@ -224,7 +224,6 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site
 .markdown-export.cache
 
 # mypy
