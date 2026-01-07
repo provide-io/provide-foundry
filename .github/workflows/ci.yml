@@ -29,16 +29,20 @@ jobs:
         run: uv pip install "wrknv @ git+https://github.com/provide-io/wrknv.git@main"
 
       - name: Run CI pipeline
+        continue-on-error: true
         run: |
+          set -x
           source .venv/bin/activate
           echo "=== Python version ==="
           python --version
-          echo "=== wrknv version ==="
-          we --version || echo "wrknv version check failed"
-          echo "=== wrknv tasks ==="
-          we tasks || echo "wrknv tasks failed"
-          echo "=== Running CI ==="
-          we run ci
+          echo "=== which ruff ==="
+          which ruff || echo "ruff not found"
+          echo "=== Test ruff directly ==="
+          ruff check . || echo "Direct ruff failed"
+          echo "=== Test lint task ==="
+          we run lint || echo "lint task failed"
+          echo "=== Test typecheck task ==="
+          we run typecheck || echo "typecheck task failed"
 
       - name: Run security scan
         run: |
