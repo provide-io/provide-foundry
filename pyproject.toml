@@ -165,6 +165,7 @@ ignore_missing_imports = true
 
 [tool.bandit]
 exclude_dirs = [".venv", "tests", "workenv"]
+skips = ["B603"]  # subprocess_without_shell_equals_true - trusted executables
 
 [dependency-groups]
 dev = [
