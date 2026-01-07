@@ -28,7 +28,12 @@ jobs:
       - name: Run CI pipeline
         run: |
           source .venv/bin/activate
-          we run ci
+          echo "=== Running quality checks ==="
+          we run quality || { echo "quality failed"; exit 1; }
+          echo "=== Running tests ==="
+          we run test || { echo "test failed"; exit 1; }
+          echo "=== Running build ==="
+          we run build || { echo "build failed"; exit 1; }
 
       - name: Run security scan
         run: |
