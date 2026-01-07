@@ -217,7 +217,6 @@ nav:
       # What's Available
       - Packages:
           - packages/index.md
-          - 🌐🔧 Workspace: packages/workspace.md
           - 🧱🏗️ Foundation: packages/foundation.md
           - 🧪✅ TestKit: packages/testkit.md
           - 🌶️📦 FlavorPack: packages/flavorpack.md
@@ -244,9 +243,6 @@ nav:
           - Documentation: guides/documentation.md
           - Packaging: guides/packaging.md
           - Provider Development: guides/provider-development.md
-
-  # Workspace Setup
-  - Workspace: '!include ../provide-workspace/mkdocs.yml'
 
   # Foundation - Dropdown section
   - Foundation:
