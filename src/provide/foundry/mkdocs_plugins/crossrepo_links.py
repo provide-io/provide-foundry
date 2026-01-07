@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import logging
 import re
+from pathlib import Path
 from typing import ClassVar
 
 from mkdocs.config import config_options
@@ -40,6 +41,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         "pyvider-rpcplugin",
         "pyvider-components",
         "terraform-provider-pyvider",
+        "terraform-provider-tofusoup",
         "tofusoup",
         "flavorpack",
         "wrknv",
@@ -67,6 +69,22 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         # Count transformations for logging
         transform_count = 0
+
+        # Pattern 0: Strip .md extensions from relative links
+        # MkDocs with use_directory_urls: true expects clean paths without .md
+        # Matches: [text](path/to/file.md) but NOT external URLs, images, or anchors
+        # Convert: [text](../guide.md) → [text](../guide/)
+        # Convert: [text](./installation.md) → [text](./installation/)
+        # Convert: [text](file.md#anchor) → [text](file/#anchor)
+        md_link_pattern = r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
+        md_link_replacement = r"[\1](\2/\3)"
+
+        new_markdown, md_count = re.subn(md_link_pattern, md_link_replacement, markdown)
+        if md_count > 0:
+            transform_count += md_count
+            if self.config.get("verbose"):
+                log.debug(f"Stripped .md extension from {md_count} links")
+        markdown = new_markdown
 
         # Pattern 1: Transform relative links like ../package-name/
         # Matches: [text](../package-name/...)
@@ -97,6 +115,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             "/pyvider-framework/pyvider-components/": "/pyvider-components/",
             "/pyvider-framework/tofusoup/": "/tofusoup/",
             "/pyvider-framework/terraform-provider-pyvider/": "/terraform-provider-pyvider/",
+            "/pyvider-framework/terraform-provider-tofusoup/": "/terraform-provider-tofusoup/",
             "/foundation/foundation/": "/provide-foundation/",
             "/foundation/testkit/": "/provide-testkit/",
             "/development-tools/flavorpack/": "/flavorpack/",
@@ -135,6 +154,14 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         if not self.config.get("enabled", True):
             return html
 
+        # Strip .md extensions from HTML links (backup for any that slip through)
+        # Matches: href="path/to/file.md" but NOT external URLs
+        html = re.sub(
+            r'href="(?!https?://|#)([^"]+?)\.md(#[^"]*)?(")',
+            r'href="\1/\2"',
+            html,
+        )
+
         # Additional HTML-level transformations if needed
         # This can catch links that weren't in markdown format
 
@@ -158,6 +185,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             'href="/pyvider-framework/pyvider-components/': 'href="/pyvider-components/',
             'href="/pyvider-framework/tofusoup/': 'href="/tofusoup/',
             ('href="/pyvider-framework/terraform-provider-pyvider/'): 'href="/terraform-provider-pyvider/',
+            ('href="/pyvider-framework/terraform-provider-tofusoup/'): 'href="/terraform-provider-tofusoup/',
             'href="/foundation/foundation/': 'href="/provide-foundation/',
             'href="/foundation/testkit/': 'href="/provide-testkit/',
             'href="/development-tools/flavorpack/': 'href="/flavorpack/',
@@ -170,6 +198,48 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             html = html.replace(old_href, new_href)
 
         return html
+
+    def on_post_page(
+        self,
+        output: str,
+        page: Page,
+        config: MkDocsConfig,
+    ) -> str:
+        """Transform the full HTML output including navigation."""
+        if not self.config.get("enabled", True):
+            return output
+
+        # Strip .md extensions from ALL links in full page HTML (including nav)
+        # This catches nav links that on_page_content doesn't see
+        output = re.sub(
+            r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
+            r'href="\1/\2"',
+            output,
+        )
+
+        return output
+
+    def on_post_build(self, config: MkDocsConfig) -> None:
+        """Process special files like 404.html after build completes."""
+        if not self.config.get("enabled", True):
+            return
+
+        site_dir = Path(config["site_dir"])
+        special_files = ["404.html"]
+
+        for filename in special_files:
+            filepath = site_dir / filename
+            if filepath.exists():
+                content = filepath.read_text(encoding="utf-8")
+                # Strip .md extensions from links
+                new_content = re.sub(
+                    r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
+                    r'href="\1/\2"',
+                    content,
+                )
+                if new_content != content:
+                    filepath.write_text(new_content, encoding="utf-8")
+                    log.info(f"Processed .md links in {filename}")
 
 
 # For hook-style usage (alternative to plugin)
