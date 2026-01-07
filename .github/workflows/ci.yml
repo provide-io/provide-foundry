@@ -1,12 +1,13 @@
 # CI workflow for Python projects
 # Uses wrknv tasks for consistency between local and CI environments.
-name: CI
+name: ⚙️ Continuous Integration
 
 on:
   push:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
 
 jobs:
   ci:
