@@ -31,14 +31,7 @@ jobs:
       - name: Run CI pipeline
         run: |
           source .venv/bin/activate
-          echo "=== Ruff lint ==="
-          ruff check . || { echo "ruff lint failed"; exit 1; }
-          echo "=== MyPy typecheck ==="
-          mypy src/ || { echo "mypy failed"; exit 1; }
-          echo "=== Running tests ==="
-          pytest || { echo "pytest failed"; exit 1; }
-          echo "=== Running build ==="
-          uv build || { echo "build failed"; exit 1; }
+          we run ci
 
       - name: Run security scan
         run: |

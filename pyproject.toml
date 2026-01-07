@@ -189,4 +189,5 @@ dev = [
     "ruff>=0.9.0",
     "mypy>=1.14.0",
     "bandit>=1.8.0",
+    "types-PyYAML>=6.0.0",
 ]
