@@ -127,16 +127,14 @@ def on_page_markdown(
                         next_line = lines[i]
                         # Admonition content is indented (starts with spaces/tabs)
                         # or is an empty line within the block
-                        if next_line.startswith("    ") or next_line.startswith("\t") or not next_line.strip():
+                        if next_line.startswith(("    ", "\t")) or not next_line.strip():
                             # Check if empty line is followed by non-indented content
                             if not next_line.strip():
                                 # Look ahead to see if next non-empty line is still indented
                                 lookahead = i + 1
                                 while lookahead < len(lines) and not lines[lookahead].strip():
                                     lookahead += 1
-                                if lookahead < len(lines) and (
-                                    lines[lookahead].startswith("    ") or lines[lookahead].startswith("\t")
-                                ):
+                                if lookahead < len(lines) and lines[lookahead].startswith(("    ", "\t")):
                                     i += 1
                                     continue
                                 else:
