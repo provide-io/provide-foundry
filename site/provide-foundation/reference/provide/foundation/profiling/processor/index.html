@@ -34555,7 +34555,9 @@
 
 
 <a href="#provide.foundation.profiling.processor.ProfilingProcessor" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ProfilingProcessor</span><span class="p">(</span><span class="n">sample_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_PROFILING_SAMPLE_RATE</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">ProfilingProcessor</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">sample_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_PROFILING_SAMPLE_RATE</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -34677,7 +34679,9 @@ print(f"Processing {metrics.messages_per_second:.0f} msg/sec")</p>
 
 
 <a href="#provide.foundation.profiling.processor.ProfilingProcessor.__call__" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">__call__</span><span class="p">(</span><span class="n">logger</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">event_dict</span><span class="p">:</span> <span class="n">EventDict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">structlog</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">EventDict</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">__call__</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">logger</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">event_dict</span><span class="p">:</span> <span class="n">EventDict</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">structlog</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">EventDict</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
