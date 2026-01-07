@@ -31,6 +31,13 @@ jobs:
       - name: Run CI pipeline
         run: |
           source .venv/bin/activate
+          echo "=== Python version ==="
+          python --version
+          echo "=== wrknv version ==="
+          we --version || echo "wrknv version check failed"
+          echo "=== wrknv tasks ==="
+          we tasks || echo "wrknv tasks failed"
+          echo "=== Running CI ==="
           we run ci
 
       - name: Run security scan
