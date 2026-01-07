@@ -110,61 +110,44 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         return text, count
 
-    def on_page_markdown(
-        self,
-        markdown: str,
-        page: Page,
-        config: MkDocsConfig,
-        files: Files,
-    ) -> str:
-        """Transform links in raw markdown before rendering."""
-        if not self.config.get("enabled", True):
-            return markdown
+    def _strip_md_extensions(self, markdown: str) -> tuple[str, int]:
+        """Strip .md extensions from relative markdown links.
 
-        # Count transformations for logging
-        transform_count = 0
+        MkDocs with use_directory_urls: true expects clean paths without .md.
+        Convert: [text](../guide.md) → [text](../guide/)
+        Convert: [text](file.md#anchor) → [text](file/#anchor)
+        """
+        pattern = r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
+        replacement = r"[\1](\2/\3)"
+        new_markdown, count = re.subn(pattern, replacement, markdown)
+        if count > 0 and self.config.get("verbose"):
+            log.debug(f"Stripped .md extension from {count} links")
+        return new_markdown, count
 
-        # Pattern -1: Fix leaked temp directory paths from mkdocs-monorepo
-        markdown, temp_count = self._fix_temp_paths(markdown, page.file.src_path)
-        transform_count += temp_count
+    def _transform_package_links(self, markdown: str) -> tuple[str, int]:
+        """Transform relative package links to root-level paths.
 
-        # Pattern 0: Strip .md extensions from relative links
-        # MkDocs with use_directory_urls: true expects clean paths without .md
-        # Matches: [text](path/to/file.md) but NOT external URLs, images, or anchors
-        # Convert: [text](../guide.md) → [text](../guide/)
-        # Convert: [text](./installation.md) → [text](./installation/)
-        # Convert: [text](file.md#anchor) → [text](file/#anchor)
-        md_link_pattern = r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
-        md_link_replacement = r"[\1](\2/\3)"
-
-        new_markdown, md_count = re.subn(md_link_pattern, md_link_replacement, markdown)
-        if md_count > 0:
-            transform_count += md_count
-            if self.config.get("verbose"):
-                log.debug(f"Stripped .md extension from {md_count} links")
-        markdown = new_markdown
-
-        # Pattern 1: Transform relative links like ../package-name/
-        # Matches: [text](../package-name/...)
+        Matches: [text](../package-name/...) → [text](/package-name/...)
+        """
+        total_count = 0
         for package in self.PACKAGES:
-            # Handle various relative link patterns
             patterns = [
-                # ../package/ or ../package/path
                 (rf"\[([^\]]+)\]\(\.\./({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
-                # Just package/ (relative to current)
                 (rf"\[([^\]]+)\]\(({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
             ]
-
             for pattern, replacement in patterns:
-                new_markdown, count = re.subn(pattern, replacement, markdown)
+                markdown, count = re.subn(pattern, replacement, markdown)
                 if count > 0:
-                    transform_count += count
+                    total_count += count
                     if self.config.get("verbose"):
                         log.debug(f"Transformed {count} links for package {package}")
-                markdown = new_markdown
+        return markdown, total_count
 
-        # Pattern 2: Fix nested paths to root paths
-        # Transform /pyvider-framework/pyvider/ → /pyvider/
+    def _fix_nested_paths(self, markdown: str) -> tuple[str, int]:
+        """Fix nested paths to root paths.
+
+        Transform /pyvider-framework/pyvider/ → /pyvider/
+        """
         nested_mappings = {
             "/pyvider-framework/pyvider/": "/pyvider/",
             "/pyvider-framework/pyvider-cty/": "/pyvider-cty/",
@@ -181,20 +164,45 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             "/development-tools/supsrc/": "/supsrc/",
             "/development-tools/plating/": "/plating/",
         }
-
+        total_count = 0
         for nested_path, root_path in nested_mappings.items():
             pattern = rf"\[([^\]]+)\]\({re.escape(nested_path)}([^\)]*)\)"
             replacement = rf"[\1]({root_path}\2)"
-            new_markdown, count = re.subn(pattern, replacement, markdown)
+            markdown, count = re.subn(pattern, replacement, markdown)
             if count > 0:
-                transform_count += count
+                total_count += count
                 if self.config.get("verbose"):
                     log.debug(f"Transformed {count} nested paths: {nested_path} → {root_path}")
-            markdown = new_markdown
+        return markdown, total_count
 
-        # Pattern 3: Fix broken ecosystem.md specific patterns
-        # The ecosystem.md file has many links like [Pyvider](../pyvider/)
-        # that should become [Pyvider](/pyvider/)
+    def on_page_markdown(
+        self,
+        markdown: str,
+        page: Page,
+        config: MkDocsConfig,
+        files: Files,
+    ) -> str:
+        """Transform links in raw markdown before rendering."""
+        if not self.config.get("enabled", True):
+            return markdown
+
+        transform_count = 0
+
+        # Fix leaked temp directory paths from mkdocs-monorepo
+        markdown, count = self._fix_temp_paths(markdown, page.file.src_path)
+        transform_count += count
+
+        # Strip .md extensions from relative links
+        markdown, count = self._strip_md_extensions(markdown)
+        transform_count += count
+
+        # Transform relative package links to root-level paths
+        markdown, count = self._transform_package_links(markdown)
+        transform_count += count
+
+        # Fix nested paths to root paths
+        markdown, count = self._fix_nested_paths(markdown)
+        transform_count += count
 
         if transform_count > 0:
             log.info(f"Transformed {transform_count} links in {page.file.src_path}")

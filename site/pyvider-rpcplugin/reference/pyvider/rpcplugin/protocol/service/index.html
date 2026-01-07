@@ -34742,7 +34742,10 @@ version here.</p>
   </span>
 
 <a href="#pyvider.rpcplugin.protocol.service.GRPCBrokerService.StartStream" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">StartStream</span><span class="p">(</span><span class="n">request_iterator</span><span class="p">:</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">],</span> <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">,</span> <span class="n">ConnInfo</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">]</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">StartStream</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">request_iterator</span><span class="p">:</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">],</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">,</span> <span class="n">ConnInfo</span><span class="p">],</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">ConnInfo</span><span class="p">]</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -35023,7 +35026,9 @@ messages to manage subchannels for additional services or callbacks.</p>
 
 
 <a href="#pyvider.rpcplugin.protocol.service.GRPCControllerService" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">GRPCControllerService</span><span class="p">(</span><span class="n">shutdown_event</span><span class="p">:</span> <span class="n">Event</span><span class="p">,</span> <span class="n">stdio_service</span><span class="p">:</span> <span class="n">GRPCStdioService</span><span class="p">)</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">GRPCControllerService</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">shutdown_event</span><span class="p">:</span> <span class="n">Event</span><span class="p">,</span> <span class="n">stdio_service</span><span class="p">:</span> <span class="n">GRPCStdioService</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -35140,7 +35145,9 @@ Specifically, it handles the Shutdown RPC to gracefully terminate the plugin.</p
   </span>
 
 <a href="#pyvider.rpcplugin.protocol.service.GRPCControllerService.Shutdown" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Shutdown</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">Empty</span><span class="p">,</span> <span class="n">Empty</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">CEmpty</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">Shutdown</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">request</span><span class="p">:</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">Empty</span><span class="p">,</span> <span class="n">Empty</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CEmpty</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -35343,7 +35350,10 @@ and then initiates the process termination.</p>
   </span>
 
 <a href="#pyvider.rpcplugin.protocol.service.GRPCStdioService.StreamStdio" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">StreamStdio</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Empty</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">Empty</span><span class="p">,</span> <span class="n">StdioData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">StdioData</span><span class="p">]</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">StreamStdio</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">request</span><span class="p">:</span> <span class="n">Empty</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">context</span><span class="p">:</span> <span class="n">ServicerContext</span><span class="p">[</span><span class="n">Empty</span><span class="p">,</span> <span class="n">StdioData</span><span class="p">],</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">StdioData</span><span class="p">]</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -35733,7 +35743,9 @@ network setup or IPC channel creation.</p>
 
 
 <a href="#pyvider.rpcplugin.protocol.service.register_protocol_service" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">register_protocol_service</span><span class="p">(</span><span class="n">server</span><span class="p">:</span> <span class="n">Server</span><span class="p">,</span> <span class="n">shutdown_event</span><span class="p">:</span> <span class="n">Event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">register_protocol_service</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">server</span><span class="p">:</span> <span class="n">Server</span><span class="p">,</span> <span class="n">shutdown_event</span><span class="p">:</span> <span class="n">Event</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">

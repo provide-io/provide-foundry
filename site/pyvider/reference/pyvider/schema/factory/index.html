@@ -34751,7 +34751,9 @@
 
 
 <a href="#pyvider.schema.factory.a_null" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">a_null</span><span class="p">(</span><span class="n">schema_builder</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="n">PvsSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CtyValue</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">a_null</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">schema_builder</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="n">PvsSchema</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CtyValue</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -34796,7 +34798,9 @@
 
 
 <a href="#pyvider.schema.factory.a_unknown" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">a_unknown</span><span class="p">(</span><span class="n">schema_builder</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="n">PvsSchema</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CtyValue</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">a_unknown</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">schema_builder</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="n">PvsSchema</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CtyValue</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
@@ -34841,7 +34845,11 @@
 
 
 <a href="#pyvider.schema.factory.s_function" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">s_function</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PvsAttribute</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">return_type</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">variadic_parameter</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PvsSchema</span>
+<div class="language-python doc-signature highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">s_function</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">parameters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">PvsAttribute</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">return_type</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">variadic_parameter</span><span class="p">:</span> <span class="n">PvsAttribute</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PvsSchema</span>
 </span></code></pre></div>
 
     <div class="doc doc-contents ">
