@@ -75,6 +75,81 @@ def _load_partials(config: dict[str, Any]) -> tuple[str, str]:
     return _header_content, _footer_content
 
 
+def _find_header_insert_position(markdown: str, heading_end_pos: int) -> int:
+    """Find the position to insert header after skipping admonitions and description.
+
+    Skips past empty lines, admonition blocks (!!!), and description text
+    that immediately follow the heading.
+
+    Args:
+        markdown: The full markdown content
+        heading_end_pos: Position where the heading ends
+
+    Returns:
+        The position where header should be inserted
+    """
+    remaining = markdown[heading_end_pos:]
+    lines = remaining.split("\n")
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+
+        # Skip empty lines
+        if not stripped:
+            i += 1
+            continue
+
+        # Check for admonition block (!!!)
+        if stripped.startswith("!!!"):
+            i = _skip_admonition_block(lines, i + 1)
+            continue
+
+        # Check for heading (stop here, insert before it)
+        if stripped.startswith("#"):
+            break
+
+        # Found a description line - skip it and insert after
+        i += 1
+        break
+
+    # Calculate insert position based on lines consumed
+    return heading_end_pos + len("\n".join(lines[:i])) + (1 if i > 0 else 0)
+
+
+def _skip_admonition_block(lines: list[str], start_idx: int) -> int:
+    """Skip all lines belonging to an admonition block.
+
+    Args:
+        lines: List of lines from the markdown
+        start_idx: Index to start scanning (after the !!! line)
+
+    Returns:
+        Index of the first line after the admonition block
+    """
+    i = start_idx
+    while i < len(lines):
+        next_line = lines[i]
+        # Admonition content is indented or is an empty line within the block
+        if next_line.startswith(("    ", "\t")) or not next_line.strip():
+            if not next_line.strip():
+                # Look ahead to see if next non-empty line is still indented
+                lookahead = i + 1
+                while lookahead < len(lines) and not lines[lookahead].strip():
+                    lookahead += 1
+                if lookahead < len(lines) and lines[lookahead].startswith(("    ", "\t")):
+                    i += 1
+                    continue
+                # End of admonition block
+                break
+            i += 1
+        else:
+            # Non-indented line - end of admonition
+            break
+    return i
+
+
 def on_page_markdown(
     markdown: str,
     page: Any,
@@ -99,69 +174,14 @@ def on_page_markdown(
 
     # Inject header after first heading if not skipped and not already present
     if header_content and not skip_header and not has_header:
-        # Find first heading (# Title)
         heading_match = re.search(r"^# .+$", markdown, re.MULTILINE)
-        header_block = f"<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n\n"
         if heading_match:
-            insert_pos = heading_match.end()
-            # Skip past any immediate content blocks after the heading
-            # This includes: empty lines, admonitions (!!!), and description text
-            remaining = markdown[insert_pos:]
-            lines = remaining.split("\n")
-            i = 0
-            while i < len(lines):
-                line = lines[i]
-                stripped = line.strip()
-
-                # Skip empty lines
-                if not stripped:
-                    i += 1
-                    continue
-
-                # Check for admonition block (!!!)
-                if stripped.startswith("!!!"):
-                    # Skip the admonition header line
-                    i += 1
-                    # Skip all subsequent indented lines (admonition content)
-                    while i < len(lines):
-                        next_line = lines[i]
-                        # Admonition content is indented (starts with spaces/tabs)
-                        # or is an empty line within the block
-                        if next_line.startswith(("    ", "\t")) or not next_line.strip():
-                            # Check if empty line is followed by non-indented content
-                            if not next_line.strip():
-                                # Look ahead to see if next non-empty line is still indented
-                                lookahead = i + 1
-                                while lookahead < len(lines) and not lines[lookahead].strip():
-                                    lookahead += 1
-                                if lookahead < len(lines) and lines[lookahead].startswith(("    ", "\t")):
-                                    i += 1
-                                    continue
-                                else:
-                                    # End of admonition block
-                                    break
-                            i += 1
-                        else:
-                            # Non-indented line - end of admonition
-                            break
-                    continue
-
-                # Check for heading (stop here, insert before it)
-                if stripped.startswith("#"):
-                    break
-
-                # Found a description line - skip it and insert after
-                i += 1
-                break
-
-            # Calculate insert position based on lines consumed
-            insert_pos += len("\n".join(lines[:i])) + (1 if i > 0 else 0)
-
+            insert_pos = _find_header_insert_position(markdown, heading_match.end())
             header_block = f"\n\n<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n"
             markdown = markdown[:insert_pos] + header_block + markdown[insert_pos:]
         else:
-            # No heading found (e.g., auto-generated API reference pages)
-            # Prepend header at the very beginning
+            # No heading found - prepend header at the very beginning
+            header_block = f"<!-- global-header -->\n{header_content}\n<!-- /global-header -->\n\n"
             markdown = header_block + markdown
 
     # Append footer if not skipped and not already present
