@@ -16,8 +16,8 @@ user_agent = "Mozilla/5.0 (compatible; lychee/provide-foundry-docs)"
 # Accept these HTTP status codes as valid
 accept = [200, 204, 301, 302, 307, 308, 429]
 
-# Include verbosity in output
-verbose = false
+# Verbosity level (quiet, info, debug, trace)
+# verbose = "info"
 
 # Don't check email addresses (mailto: links)
 exclude_mail = true
