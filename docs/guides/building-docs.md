@@ -168,10 +168,7 @@ This creates one unified documentation site at http://127.0.0.1:11000 with:
 
 ## Advanced Usage
 
-See:
-
-- [Contributing to Documentation](../CONTRIBUTING-DOCS.md) - Standards and best practices
-- [Link Checking Reference](../link-checking.md) - Understanding lychee and link validation
+See [Link Checking Reference](../link-checking.md) for understanding lychee and link validation.
 
 ## Quick Reference
 
@@ -188,5 +185,4 @@ See:
 
 1. Check this guide first
 2. Run `python scripts/validate_standardization.py` to diagnose issues
-3. See [CONTRIBUTING-DOCS.md](../CONTRIBUTING-DOCS.md) for detailed documentation standards
-4. Ask in #documentation channel
+3. Ask in #documentation channel
