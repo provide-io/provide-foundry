@@ -431,8 +431,8 @@ which flavor && echo "✅ flavorpack installed" || echo "❌ flavorpack missing"
 If you encounter issues:
 
 1. **Check the logs** - Look for error messages in terminal output
-1. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-foundry/issues) for known solutions
-1. **Ask for help** - Create a new issue with:
+2. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-foundry/issues) for known solutions
+3. **Ask for help** - Create a new issue with:
    - Your platform and Python version
    - Complete error messages
    - Steps to reproduce
