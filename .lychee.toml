@@ -16,11 +16,10 @@ user_agent = "Mozilla/5.0 (compatible; lychee/provide-foundry-docs)"
 # Accept these HTTP status codes as valid
 accept = [200, 204, 301, 302, 307, 308, 429]
 
-# Include verbosity in output
-verbose = false
+# Verbosity level (quiet, info, debug, trace)
+# verbose = "info"
 
-# Don't check email addresses (mailto: links)
-exclude_mail = true
+# Email checking is disabled by default (use --include-mail to enable)
 
 # Exclude specific URLs and patterns
 exclude = [
@@ -78,12 +77,7 @@ exclude_path = [
     ".provide/",
 ]
 
-# Only check specific file extensions
-include = [
-    "**/*.md",
-    "**/*.html",
-    "**/*.rst",
-]
+# File types to check are specified via CLI args
 
 # Remap URLs (useful for redirects or moved content)
 # [remap]

@@ -37,20 +37,6 @@ graph TB
     class FP,WE,PL,TS,SS tools
 ```
 
-## 🧰 Workspace Management
-
-Tools for managing the complete provide.io ecosystem development environment.
-
-<div class="grid cards" markdown>
-
--   **[provide-workspace](https://foundry.provide.io/provide-workspace/)**
-
-    Workspace manager that coordinates all 13+ ecosystem repositories for unified development with single-command setup.
-
-    [:octicons-arrow-right-24: Learn more](https://foundry.provide.io/provide-workspace/)
-
-</div>
-
 ## 🏛️ Foundation Layer
 
 The foundation layer provides core infrastructure that all other packages build upon.
