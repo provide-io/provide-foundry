@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Fix markdown links to use directory URLs instead of .md extensions.
 
 This module provides library functions to convert markdown links from `.md` format

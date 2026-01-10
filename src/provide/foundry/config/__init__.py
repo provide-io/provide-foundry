@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Configuration and resource access for provide-foundry shared documentation assets."""
 
 from __future__ import annotations

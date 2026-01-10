@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Validate that partial references in documentation are correct.
 
 This script checks that all partial includes (--8<-- syntax) point to existing files.

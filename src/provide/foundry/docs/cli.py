@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Command-line interface for markdown link fixer.
 
 This module provides the Click-based CLI for fixing markdown links.
