@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 """Shared documentation infrastructure for provide.io ecosystem."""
 
 from __future__ import annotations
