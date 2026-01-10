@@ -30,7 +30,7 @@ Install the entire foundry as a unified workspace:
 
 ```bash
 # Clone the workspace repository
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 
 # Set up the unified development environment
@@ -73,7 +73,7 @@ uv tool install flavorpack
 
 ```bash
 # Clone the repository
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 
 # Verify structure
@@ -120,7 +120,7 @@ python -m pytest tests/integration/test_installation.py -v
 For active development on foundry packages:
 
 ```bash
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 
 # Development installation with all extras
@@ -177,7 +177,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.cargo/bin:$PATH"
 
 # Clone and install foundry
-RUN git clone https://github.com/provide-io/provide-workspace.git /workspace
+RUN git clone https://github.com/provide-io/provide-foundry.git /workspace
 WORKDIR /workspace
 RUN uv sync --all-groups
 
@@ -209,7 +209,7 @@ xcode-select --install
 brew install git python@3.11 uv
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 uv sync --all-groups
 source .venv/bin/activate
@@ -238,7 +238,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.cargo/env
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 uv sync --all-groups
 source .venv/bin/activate
@@ -259,7 +259,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.bashrc
 
 # Clone and setup
-git clone https://github.com/provide-io/provide-workspace.git
+git clone https://github.com/provide-io/provide-foundry.git
 cd provide-workspace
 uv sync --all-groups
 source .venv/bin/activate
@@ -425,7 +425,7 @@ which flavor && echo "✅ flavorpack installed" || echo "❌ flavorpack missing"
 If you encounter issues:
 
 1. **Check the logs** - Look for error messages in terminal output
-2. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-io/issues)
+2. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-foundry/issues) for known solutions
 3. **Ask for help** - Create a new issue with:
    - Your platform and Python version
    - Complete error messages

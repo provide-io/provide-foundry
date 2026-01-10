@@ -15,25 +15,16 @@ Before you start, ensure you have:
 
 ## Quick Setup
 
-The fastest way to get started is to set up the entire foundry using our unified workspace:
+The fastest way to get started is to install the packages you need:
 
 ```bash
-# Clone the workspace repository
-git clone https://github.com/provide-io/provide-workspace.git
-cd provide-workspace
+# Install core packages
+uv add provide-foundation pyvider
 
-# Set up the unified development environment
-uv sync --all-groups
-source .venv/bin/activate
+# Or install tools
+uv tool install flavorpack
+uv tool install wrknv
 ```
-
-This single command:
-
-- ✅ Installs UV package manager (if needed)
-- ✅ Creates a unified virtual environment
-- ✅ Installs all 13 foundry packages in editable mode
-- ✅ Includes all development tools (ruff, mypy, pytest, etc.)
-- ✅ Sets up proper dependency resolution between packages
 
 !!! success "Verification"
     Verify your setup by running:
@@ -339,15 +330,5 @@ If you run into issues:
 2. **Search issues**: Look for existing solutions on GitHub
 3. **Ask questions**: Use GitHub Discussions for help
 4. **Report bugs**: Create detailed issue reports
-
-## Examples Repository
-
-Explore complete examples in the [examples repository](https://github.com/provide-io/examples):
-
-- Simple providers
-- Complex multi-resource providers
-- Integration with external APIs
-- Testing strategies
-- Documentation examples
 
 Happy building! 🚀
