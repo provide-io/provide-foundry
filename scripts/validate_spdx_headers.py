@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 """Validate that all Python source files have SPDX copyright headers.
@@ -55,10 +55,7 @@ def should_skip(file_path: Path) -> bool:
             return True
 
     # Skip nearly empty __init__.py files
-    if is_nearly_empty(file_path):
-        return True
-
-    return False
+    return bool(is_nearly_empty(file_path))
 
 
 def find_python_files(root: Path) -> list[Path]:
