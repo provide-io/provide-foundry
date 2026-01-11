@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 """Add SPDX copyright headers to Python files.
@@ -19,7 +19,7 @@ from typing import Tuple
 
 
 HEADER_LINES = [
-    "# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.",
+    "# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.",
     "# SPDX-License-Identifier: Apache-2.0",
 ]
 
@@ -44,10 +44,8 @@ def check_header_correctness(content: str) -> Tuple[bool, str]:
     if not has_spdx or not has_license:
         return False, "Missing SPDX tags or incorrect license"
 
-    # Check year and company
+    # Check company name
     copyright_line = next((l for l in lines if 'SPDX-FileCopyrightText' in l), '')
-    if '2025' not in copyright_line:
-        return False, "Incorrect year (not 2025)"
     if 'provide.io llc' not in copyright_line:
         return False, "Incorrect company name"
 
