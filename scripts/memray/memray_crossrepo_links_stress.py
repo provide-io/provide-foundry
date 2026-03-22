@@ -5,7 +5,6 @@ Exercises the regex-heavy link transformation pipeline that runs on every
 documentation page during mkdocs builds: temp-path fixing, .md stripping,
 package link transforms, and nested path resolution.
 """
-
 import os
 
 os.environ.setdefault("LOG_LEVEL", "ERROR")
@@ -71,9 +70,7 @@ def main() -> None:
             total_transforms += c1 + c2 + c3
 
     total_pages = CYCLES * PAGES_PER_CYCLE
-    print(
-        f"crossrepo_links stress complete: {CYCLES} cycles, {total_pages} pages, {total_transforms} transforms"
-    )
+    print(f"crossrepo_links stress complete: {CYCLES} cycles, {total_pages} pages, {total_transforms} transforms")
 
 
 if __name__ == "__main__":
