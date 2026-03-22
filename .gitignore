@@ -402,3 +402,6 @@ ai_studio_code.sh
 # Synced theme files (source: provide-foundry/shared-theme/)
 docs/.shared-theme/
 .plating/
+
+# Local act CI config (machine-specific)
+.actrc
