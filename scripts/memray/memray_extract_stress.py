@@ -4,6 +4,7 @@
 Exercises extract_base_mkdocs and extract_python_wrknv_tasks — the core
 shutil.copytree / file-copy chains that run on every docs setup.
 """
+
 import os
 
 os.environ.setdefault("LOG_LEVEL", "ERROR")
