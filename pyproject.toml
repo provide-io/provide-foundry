@@ -33,7 +33,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "provide-foundation",
+    "provide-foundation>=0.3.21",
     "tomli>=2.2.1",
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.7.1",
