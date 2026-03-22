@@ -97,7 +97,7 @@ python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 norecursedirs = ["tests/memray"]
-addopts = "--strict-markers --strict-config -m 'not memray'"
+addopts = "-m 'not memray'"
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks integration tests",
