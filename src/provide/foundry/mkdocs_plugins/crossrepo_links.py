@@ -29,6 +29,105 @@ log = logging.getLogger("mkdocs.plugins.crossrepo_links")
 # Get the actual system temp directory (respects TMPDIR env var)
 _TEMP_DIR = tempfile.gettempdir()
 
+# ---------------------------------------------------------------------------
+# Pre-compiled regex patterns (avoids re-compilation on every call)
+# ---------------------------------------------------------------------------
+
+# Strip .md extensions from relative markdown links
+_RE_MD_STRIP_MARKDOWN = re.compile(
+    r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
+)
+
+# Strip .md extensions from HTML href attributes
+_RE_MD_STRIP_HTML = re.compile(
+    r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")'
+)
+
+# Temp-path patterns (compiled once at module load)
+_temp_dir_no_slash = _TEMP_DIR.lstrip("/")
+_temp_escaped = re.escape(_temp_dir_no_slash)
+_relative_prefix = r"(?:\.\./)*"
+
+_RE_TEMP_PATH_MARKDOWN = re.compile(
+    r"\[([^\]]+)\]\("
+    + _relative_prefix
+    + r"/?"
+    + _temp_escaped
+    + r"[/\\]"
+    + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"
+    + r"([^)]+)"
+    + r"\)"
+)
+
+_RE_TEMP_PATH_HTML = re.compile(
+    r'href="'
+    + _relative_prefix
+    + r"/?"
+    + _temp_escaped
+    + r"[/\\]"
+    + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"
+    + r'([^"]+)"'
+)
+
+# Package names that should be accessible at root level
+_PACKAGES: list[str] = [
+    "provide-foundation",
+    "provide-testkit",
+    "pyvider",
+    "pyvider-cty",
+    "pyvider-hcl",
+    "pyvider-rpcplugin",
+    "pyvider-components",
+    "terraform-provider-pyvider",
+    "terraform-provider-tofusoup",
+    "tofusoup",
+    "flavorpack",
+    "wrknv",
+    "supsrc",
+    "plating",
+]
+
+# Single alternation regex for all package markdown links (relative → root)
+# Combines 28 individual patterns into ONE pass over the text.
+_PKG_ALTERNATION = "|".join(re.escape(p) for p in _PACKAGES)
+
+_RE_PKG_MD_COMBINED = re.compile(
+    rf"\[([^\]]+)\]\((?:\.\./)?({_PKG_ALTERNATION})(/[^\)]*)?\)"
+)
+
+_RE_PKG_HTML_COMBINED = re.compile(
+    rf'href="(?:\.\./)?({_PKG_ALTERNATION})(/[^"]*)?"'
+)
+
+# Nested path mappings for markdown links
+_NESTED_MAPPINGS: dict[str, str] = {
+    "/pyvider-framework/pyvider/": "/pyvider/",
+    "/pyvider-framework/pyvider-cty/": "/pyvider-cty/",
+    "/pyvider-framework/pyvider-hcl/": "/pyvider-hcl/",
+    "/pyvider-framework/pyvider-rpcplugin/": "/pyvider-rpcplugin/",
+    "/pyvider-framework/pyvider-components/": "/pyvider-components/",
+    "/pyvider-framework/tofusoup/": "/tofusoup/",
+    "/pyvider-framework/terraform-provider-pyvider/": "/terraform-provider-pyvider/",
+    "/pyvider-framework/terraform-provider-tofusoup/": "/terraform-provider-tofusoup/",
+    "/foundation/foundation/": "/provide-foundation/",
+    "/foundation/testkit/": "/provide-testkit/",
+    "/development-tools/flavorpack/": "/flavorpack/",
+    "/development-tools/wrknv/": "/wrknv/",
+    "/development-tools/supsrc/": "/supsrc/",
+    "/development-tools/plating/": "/plating/",
+}
+
+# Single alternation regex for nested path fixups (14 patterns → 1 pass).
+# Build a reverse lookup: escaped nested prefix → root replacement.
+_NESTED_LOOKUP: dict[str, str] = {
+    nested.lstrip("/"): root for nested, root in _NESTED_MAPPINGS.items()
+}
+_NESTED_ALTERNATION = "|".join(re.escape(k) for k in _NESTED_LOOKUP)
+_RE_NESTED_MD_COMBINED = re.compile(
+    rf"\[([^\]]+)\]\(/({_NESTED_ALTERNATION})([^\)]*)\)"
+)
+
+
 
 class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
     """Plugin to transform cross-repository links to root-level paths."""
@@ -38,23 +137,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         ("verbose", config_options.Type(bool, default=False)),
     )
 
-    # Package names that should be accessible at root level
-    PACKAGES: ClassVar[list[str]] = [
-        "provide-foundation",
-        "provide-testkit",
-        "pyvider",
-        "pyvider-cty",
-        "pyvider-hcl",
-        "pyvider-rpcplugin",
-        "pyvider-components",
-        "terraform-provider-pyvider",
-        "terraform-provider-tofusoup",
-        "tofusoup",
-        "flavorpack",
-        "wrknv",
-        "supsrc",
-        "plating",
-    ]
+    PACKAGES: ClassVar[list[str]] = _PACKAGES
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
         """Initialize plugin with config."""
@@ -74,39 +157,16 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """
         count = 0
 
-        # Build pattern to match temp dir paths
-        # Strip leading slash for relative path matching (../../../REDACTED_TMP has no leading /)
-        temp_dir_no_slash = _TEMP_DIR.lstrip("/")
-        temp_escaped = re.escape(temp_dir_no_slash)
-        # Also match relative paths that climb up to the temp dir
-        relative_prefix = r"(?:\.\./)*"
-
-        # Pattern for markdown links: [text](url_with_temp_path)
-        # Captures: (1) link text, (2) path after temp dir including docs_xxx/ prefix
-        # Handles both absolute (/var/...) and relative (../../../var/...) paths
-        # Catches both monorepo (docs_xxx/) and gen-files (mkdocs_gen_files_xxx/) temp dirs
-        pattern = (
-            r"\[([^\]]+)\]\("  # [text](
-            + relative_prefix
-            + r"/?"  # Optional leading slash (absolute vs relative)
-            + temp_escaped
-            + r"[/\\]"  # separator after temp dir
-            + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"  # temp subdir (monorepo or gen-files)
-            + r"([^)]+)"  # actual path (captured)
-            + r"\)"  # closing )
-        )
-
         def replace_temp_path(match: re.Match[str]) -> str:
             nonlocal count
             link_text = match.group(1)
             actual_path = match.group(2)
-            # Ensure path starts with /
             if not actual_path.startswith("/"):
                 actual_path = "/" + actual_path
             count += 1
             return f"[{link_text}]({actual_path})"
 
-        text = re.sub(pattern, replace_temp_path, text)
+        text = _RE_TEMP_PATH_MARKDOWN.sub(replace_temp_path, text)
 
         if count > 0:
             log.warning(f"Fixed {count} leaked temp directory paths in {page_path}")
@@ -120,9 +180,8 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         Convert: [text](../guide.md) → [text](../guide/)
         Convert: [text](file.md#anchor) → [text](file/#anchor)
         """
-        pattern = r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
         replacement = r"[\1](\2/\3)"
-        new_markdown, count = re.subn(pattern, replacement, markdown)
+        new_markdown, count = _RE_MD_STRIP_MARKDOWN.subn(replacement, markdown)
         if count > 0 and self.config.get("verbose"):
             log.debug(f"Stripped .md extension from {count} links")
         return new_markdown, count
@@ -131,51 +190,37 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
         """Transform relative package links to root-level paths.
 
         Matches: [text](../package-name/...) → [text](/package-name/...)
+        Uses a single alternation regex instead of per-package loops.
         """
-        total_count = 0
-        for package in self.PACKAGES:
-            patterns = [
-                (rf"\[([^\]]+)\]\(\.\./({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
-                (rf"\[([^\]]+)\]\(({re.escape(package)}/?[^\)]*)\)", r"[\1](/\2)"),
-            ]
-            for pattern, replacement in patterns:
-                markdown, count = re.subn(pattern, replacement, markdown)
-                if count > 0:
-                    total_count += count
-                    if self.config.get("verbose"):
-                        log.debug(f"Transformed {count} links for package {package}")
+
+        def _replace_pkg_md(match: re.Match[str]) -> str:
+            link_text = match.group(1)
+            pkg_name = match.group(2)
+            suffix = match.group(3) or ""
+            return f"[{link_text}](/{pkg_name}{suffix})"
+
+        markdown, total_count = _RE_PKG_MD_COMBINED.subn(_replace_pkg_md, markdown)
+        if total_count > 0 and self.config.get("verbose"):
+            log.debug(f"Transformed {total_count} package links")
         return markdown, total_count
 
     def _fix_nested_paths(self, markdown: str) -> tuple[str, int]:
         """Fix nested paths to root paths.
 
         Transform /pyvider-framework/pyvider/ → /pyvider/
+        Uses a single alternation regex instead of per-mapping loops.
         """
-        nested_mappings = {
-            "/pyvider-framework/pyvider/": "/pyvider/",
-            "/pyvider-framework/pyvider-cty/": "/pyvider-cty/",
-            "/pyvider-framework/pyvider-hcl/": "/pyvider-hcl/",
-            "/pyvider-framework/pyvider-rpcplugin/": "/pyvider-rpcplugin/",
-            "/pyvider-framework/pyvider-components/": "/pyvider-components/",
-            "/pyvider-framework/tofusoup/": "/tofusoup/",
-            "/pyvider-framework/terraform-provider-pyvider/": "/terraform-provider-pyvider/",
-            "/pyvider-framework/terraform-provider-tofusoup/": "/terraform-provider-tofusoup/",
-            "/foundation/foundation/": "/provide-foundation/",
-            "/foundation/testkit/": "/provide-testkit/",
-            "/development-tools/flavorpack/": "/flavorpack/",
-            "/development-tools/wrknv/": "/wrknv/",
-            "/development-tools/supsrc/": "/supsrc/",
-            "/development-tools/plating/": "/plating/",
-        }
-        total_count = 0
-        for nested_path, root_path in nested_mappings.items():
-            pattern = rf"\[([^\]]+)\]\({re.escape(nested_path)}([^\)]*)\)"
-            replacement = rf"[\1]({root_path}\2)"
-            markdown, count = re.subn(pattern, replacement, markdown)
-            if count > 0:
-                total_count += count
-                if self.config.get("verbose"):
-                    log.debug(f"Transformed {count} nested paths: {nested_path} → {root_path}")
+
+        def _replace_nested(match: re.Match[str]) -> str:
+            link_text = match.group(1)
+            nested_key = match.group(2)  # e.g. "pyvider-framework/pyvider/"
+            suffix = match.group(3) or ""
+            root = _NESTED_LOOKUP[nested_key]
+            return f"[{link_text}]({root}{suffix})"
+
+        markdown, total_count = _RE_NESTED_MD_COMBINED.subn(_replace_nested, markdown)
+        if total_count > 0 and self.config.get("verbose"):
+            log.debug(f"Transformed {total_count} nested paths")
         return markdown, total_count
 
     def on_page_markdown(
@@ -214,23 +259,6 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
     def _fix_temp_paths_html(self, html: str, page_path: str) -> str:
         """Fix leaked temp directory paths in HTML href attributes."""
-        # Strip leading slash for relative path matching (../../../REDACTED_TMP has no leading /)
-        temp_dir_no_slash = _TEMP_DIR.lstrip("/")
-        temp_escaped = re.escape(temp_dir_no_slash)
-        relative_prefix = r"(?:\.\./)*"
-
-        # Pattern for HTML href attributes with temp paths
-        # Handles both absolute (/var/...) and relative (../../../var/...) paths
-        # Catches both monorepo (docs_xxx/) and gen-files (mkdocs_gen_files_xxx/) temp dirs
-        pattern = (
-            r'href="'
-            + relative_prefix
-            + r"/?"  # Optional leading slash
-            + temp_escaped
-            + r"[/\\]"
-            + r"(?:docs_|mkdocs_gen_files_)[a-zA-Z0-9_]+[/\\]"  # temp subdir
-            + r'([^"]+)"'
-        )
 
         def replace_temp_href(match: re.Match[str]) -> str:
             actual_path = match.group(1)
@@ -239,7 +267,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             log.warning(f"Fixed leaked temp href in {page_path}")
             return f'href="{actual_path}"'
 
-        return re.sub(pattern, replace_temp_href, html)
+        return _RE_TEMP_PATH_HTML.sub(replace_temp_href, html)
 
     def on_page_content(
         self,
@@ -257,25 +285,17 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         # Strip .md extensions from HTML links (backup for any that slip through)
         # Matches: href="path/to/file.md" but NOT external URLs
-        html = re.sub(
-            r'href="(?!https?://|#)([^"]+?)\.md(#[^"]*)?(")',
-            r'href="\1/\2"',
-            html,
-        )
+        html = _RE_MD_STRIP_HTML.sub(r'href="\1/\2"', html)
 
         # Additional HTML-level transformations if needed
         # This can catch links that weren't in markdown format
 
-        for package in self.PACKAGES:
-            # Transform href="../package/" to href="/package/"
-            pattern = rf'href="\.\./({re.escape(package)}/?[^"]*)"'
-            replacement = r'href="/\1"'
-            html = re.sub(pattern, replacement, html)
+        def _replace_pkg_html(match: re.Match[str]) -> str:
+            pkg_name = match.group(1)
+            suffix = match.group(2) or ""
+            return f'href="/{pkg_name}{suffix}"'
 
-            # Transform relative package links
-            pattern = rf'href="({re.escape(package)}/?[^"]*)"'
-            replacement = r'href="/\1"'
-            html = re.sub(pattern, replacement, html)
+        html = _RE_PKG_HTML_COMBINED.sub(_replace_pkg_html, html)
 
         # Fix nested paths in HTML
         html_mappings: dict[str, str] = {
@@ -315,11 +335,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
         # Strip .md extensions from ALL links in full page HTML (including nav)
         # This catches nav links that on_page_content doesn't see
-        output = re.sub(
-            r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
-            r'href="\1/\2"',
-            output,
-        )
+        output = _RE_MD_STRIP_HTML.sub(r'href="\1/\2"', output)
 
         return output
 
@@ -336,8 +352,7 @@ class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             if filepath.exists():
                 content = filepath.read_text(encoding="utf-8")
                 # Strip .md extensions from links
-                new_content = re.sub(
-                    r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")',
+                new_content = _RE_MD_STRIP_HTML.sub(
                     r'href="\1/\2"',
                     content,
                 )

@@ -108,3 +108,8 @@ pre-commit = "if ! command -v pre-commit >/dev/null 2>&1; then\n  echo \"Install
 
 [tasks.security]
 _default = "bandit -r src/ -c pyproject.toml"
+
+[tasks.memray]
+_default = "pytest tests/memray -m memray --no-header -q"
+stress-extract = "python scripts/memray/memray_extract_stress.py"
+stress-crossrepo = "python scripts/memray/memray_crossrepo_links_stress.py"
