@@ -97,6 +97,7 @@ markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks integration tests",
     "unit: marks unit tests",
+    "memray: marks memray allocation stress tests",
 ]
 
 [tool.ruff]

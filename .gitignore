@@ -405,3 +405,6 @@ docs/.shared-theme/
 
 # Local act CI config (machine-specific)
 .actrc
+
+# Memray profiling output
+memray-output/
