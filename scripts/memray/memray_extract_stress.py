@@ -4,13 +4,14 @@
 Exercises extract_base_mkdocs and extract_python_wrknv_tasks — the core
 shutil.copytree / file-copy chains that run on every docs setup.
 """
+
 import os
 
 os.environ.setdefault("LOG_LEVEL", "ERROR")
 
+from pathlib import Path
 import shutil
 import tempfile
-from pathlib import Path
 
 CYCLES = 50
 
@@ -23,7 +24,7 @@ def main() -> None:
         extract_base_mkdocs(Path(tmp))
 
     # Stress: repeated extraction cycles into fresh temp dirs
-    for i in range(CYCLES):
+    for _i in range(CYCLES):
         tmp = tempfile.mkdtemp(prefix="foundry_stress_")
         try:
             extract_base_mkdocs(Path(tmp))

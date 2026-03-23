@@ -34,14 +34,10 @@ _TEMP_DIR = tempfile.gettempdir()
 # ---------------------------------------------------------------------------
 
 # Strip .md extensions from relative markdown links
-_RE_MD_STRIP_MARKDOWN = re.compile(
-    r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))"
-)
+_RE_MD_STRIP_MARKDOWN = re.compile(r"\[([^\]]+)\]\((?!https?://|#)([^)]+?)\.md(#[^)]*)?(\))")
 
 # Strip .md extensions from HTML href attributes
-_RE_MD_STRIP_HTML = re.compile(
-    r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")'
-)
+_RE_MD_STRIP_HTML = re.compile(r'href="(?!https?://|#|mailto:)([^"]+?)\.md(#[^"]*)?(")')
 
 # Temp-path patterns (compiled once at module load)
 _temp_dir_no_slash = _TEMP_DIR.lstrip("/")
@@ -91,13 +87,9 @@ _PACKAGES: list[str] = [
 # Combines 28 individual patterns into ONE pass over the text.
 _PKG_ALTERNATION = "|".join(re.escape(p) for p in _PACKAGES)
 
-_RE_PKG_MD_COMBINED = re.compile(
-    rf"\[([^\]]+)\]\((?:\.\./)?({_PKG_ALTERNATION})(/[^\)]*)?\)"
-)
+_RE_PKG_MD_COMBINED = re.compile(rf"\[([^\]]+)\]\((?:\.\./)?({_PKG_ALTERNATION})(/[^\)]*)?\)")
 
-_RE_PKG_HTML_COMBINED = re.compile(
-    rf'href="(?:\.\./)?({_PKG_ALTERNATION})(/[^"]*)?"'
-)
+_RE_PKG_HTML_COMBINED = re.compile(rf'href="(?:\.\./)?({_PKG_ALTERNATION})(/[^"]*)?"')
 
 # Nested path mappings for markdown links
 _NESTED_MAPPINGS: dict[str, str] = {
@@ -119,14 +111,9 @@ _NESTED_MAPPINGS: dict[str, str] = {
 
 # Single alternation regex for nested path fixups (14 patterns → 1 pass).
 # Build a reverse lookup: escaped nested prefix → root replacement.
-_NESTED_LOOKUP: dict[str, str] = {
-    nested.lstrip("/"): root for nested, root in _NESTED_MAPPINGS.items()
-}
+_NESTED_LOOKUP: dict[str, str] = {nested.lstrip("/"): root for nested, root in _NESTED_MAPPINGS.items()}
 _NESTED_ALTERNATION = "|".join(re.escape(k) for k in _NESTED_LOOKUP)
-_RE_NESTED_MD_COMBINED = re.compile(
-    rf"\[([^\]]+)\]\(/({_NESTED_ALTERNATION})([^\)]*)\)"
-)
-
+_RE_NESTED_MD_COMBINED = re.compile(rf"\[([^\]]+)\]\(/({_NESTED_ALTERNATION})([^\)]*)\)")
 
 
 class CrossRepoLinksPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
