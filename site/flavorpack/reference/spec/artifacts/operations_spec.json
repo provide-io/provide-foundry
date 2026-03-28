@@ -3,14 +3,14 @@
   "description": "PSPF/2025 Operation Chain Specification",
   "max_operations_per_chain": 8,
   "packing_format": "64-bit little-endian, 8 operations × 8 bits each",
-  
+
   "operations": {
     "0x00": {
       "name": "OP_NONE",
       "category": "none",
       "description": "No operation"
     },
-    
+
     "bundle": {
       "0x01": {"name": "OP_TAR", "description": "TAR archive"},
       "0x02": {"name": "OP_TAR_SORTED", "description": "Sorted TAR archive"},
@@ -28,7 +28,7 @@
       "0x0E": {"name": "OP_BUNDLE_RESERVED_E", "description": "Reserved"},
       "0x0F": {"name": "OP_BUNDLE_RESERVED_F", "description": "Reserved"}
     },
-    
+
     "compression": {
       "0x10": {"name": "OP_GZIP", "description": "Gzip compression"},
       "0x11": {"name": "OP_GZIP_FAST", "description": "Gzip fast compression"},
@@ -54,7 +54,7 @@
       "0x25": {"name": "OP_PPM", "description": "PPM compression"},
       "0x26": {"name": "OP_PPMD", "description": "PPMd compression"}
     },
-    
+
     "encryption": {
       "0x30": {"name": "OP_AES128_GCM", "description": "AES-128 GCM encryption"},
       "0x31": {"name": "OP_AES256_GCM", "description": "AES-256 GCM encryption"},
@@ -77,7 +77,7 @@
       "0x42": {"name": "OP_AGE", "description": "Age encryption"},
       "0x43": {"name": "OP_PGP", "description": "PGP encryption"}
     },
-    
+
     "encoding": {
       "0x50": {"name": "OP_BASE64", "description": "Base64 encoding"},
       "0x51": {"name": "OP_BASE64_URL", "description": "Base64 URL encoding"},
@@ -91,7 +91,7 @@
       "0x59": {"name": "OP_PUNYCODE", "description": "Punycode encoding"},
       "0x5A": {"name": "OP_PERCENT", "description": "Percent encoding"}
     },
-    
+
     "hash": {
       "0x70": {"name": "OP_SHA256", "description": "SHA-256 hash"},
       "0x71": {"name": "OP_SHA512", "description": "SHA-512 hash"},
@@ -110,7 +110,7 @@
       "0x7E": {"name": "OP_CRC32", "description": "CRC32 checksum"},
       "0x7F": {"name": "OP_CRC64", "description": "CRC64 checksum"}
     },
-    
+
     "signature": {
       "0x90": {"name": "OP_ED25519_SIGN", "description": "Ed25519 signature"},
       "0x91": {"name": "OP_RSA_PSS", "description": "RSA-PSS signature"},
@@ -122,7 +122,7 @@
       "0x97": {"name": "OP_HMAC_SHA256", "description": "HMAC-SHA256"},
       "0x98": {"name": "OP_HMAC_SHA512", "description": "HMAC-SHA512"}
     },
-    
+
     "transform": {
       "0xB0": {"name": "OP_SPLIT", "description": "Split operation"},
       "0xB1": {"name": "OP_MERGE", "description": "Merge operation"},
@@ -130,12 +130,12 @@
       "0xB3": {"name": "OP_DELTA", "description": "Delta encoding"},
       "0xB4": {"name": "OP_PATCH", "description": "Patch application"}
     },
-    
+
     "terminal": {
       "0xFF": {"name": "OP_TERMINAL", "description": "Chain terminator"}
     }
   },
-  
+
   "common_chains": [
     {
       "name": "tar.gz",
