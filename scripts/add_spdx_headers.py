@@ -15,8 +15,6 @@ import argparse
 import ast
 from pathlib import Path
 import sys
-from typing import Tuple
-
 
 HEADER_LINES = [
     "# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.",
