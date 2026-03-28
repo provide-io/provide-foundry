@@ -454,11 +454,11 @@
   .feature-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .md-typeset .hero h1 {
     font-size: 1.8rem;
   }
-  
+
   .md-typeset .hero p {
     font-size: 1rem;
   }
@@ -516,7 +516,7 @@
   .md-tabs {
     display: none;
   }
-  
+
   .md-content {
     margin: 0;
     padding: 0;
