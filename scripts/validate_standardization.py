@@ -67,7 +67,7 @@ def check_project_standardization(project_path: Path) -> dict:
 
 def main() -> int:
     """Check all projects in workspace."""
-    workspace = Path("/Users/tim/code/gh/provide-io")
+    workspace = Path(__file__).resolve().parent.parent.parent
 
     # Get all projects with mkdocs.yml
     projects = sorted(workspace.glob("*/mkdocs.yml"))
