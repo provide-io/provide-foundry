@@ -50,10 +50,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://foundry.provide.io/provide-foundry/"
-Documentation = "https://foundry.provide.io/provide-foundry/"
-Repository = "https://foundry.provide.io/provide-foundry/repo"
-Issues = "https://foundry.provide.io/provide-foundry/issues"
+Homepage = "https://foundry.provide.io/"
+Documentation = "https://foundry.provide.io/"
+Repository = "https://github.com/provide-io/provide-foundry"
+Issues = "https://github.com/provide-io/provide-foundry/issues"
 
 [project.entry-points."mkdocs.plugins"]
 crossrepo-links = "provide.foundry.mkdocs_plugins.crossrepo_links:CrossRepoLinksPlugin"
