@@ -154,7 +154,7 @@ extra:
     provider: google
     property: !ENV GA_TRACKING_ID
 
-copyright: ©2024-2025 provide.io llc<br/>🛠️ with 💚 and 🦝 on 🌎
+copyright: ©2024-2026 provide.io llc<br/>🛠️ with 💚 and 🦝 on 🌎
 
 markdown_extensions:
   - abbr
