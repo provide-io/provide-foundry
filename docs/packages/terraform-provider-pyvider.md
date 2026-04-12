@@ -12,7 +12,7 @@ The official reference implementation Terraform provider built with the Pyvider 
 - **🧩 Component Integration**: Demonstrates using pyvider-components library
 - **✅ Best Practices**: Reference implementation following all Pyvider conventions
 - **🧪 Test Coverage**: Extensive test suite showing testing approaches
-- **📦 FlavorPack Integration**: Production binary packaging examples
+- **📦 Flavorpack Integration**: Production binary packaging examples
 - **📖 Rich Documentation**: Complete guides for provider development
 
 ## Purpose
