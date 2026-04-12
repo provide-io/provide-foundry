@@ -309,7 +309,7 @@ def test_with_config(config):
 
 ## Project-Specific Patterns
 
-### FlavorPack Testing
+### Flavorpack Testing
 
 **Use pretaster/taster for PSPF validation:**
 

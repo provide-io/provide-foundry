@@ -219,7 +219,7 @@ nav:
           - packages/index.md
           - 🧱🏗️ Foundation: packages/foundation.md
           - 🧪✅ TestKit: packages/testkit.md
-          - 🌶️📦 FlavorPack: packages/flavorpack.md
+          - 🌶️📦 Flavorpack: packages/flavorpack.md
           - 🐍🏗️ Pyvider: packages/pyvider.md
           - 🌊🪢 Pyvider CTY: packages/pyvider-cty.md
           - 📄⚙️ Pyvider HCL: packages/pyvider-hcl.md

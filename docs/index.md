@@ -7,7 +7,7 @@ The Provide Foundry is a comprehensive collection of Python tools and frameworks
 A unified ecosystem of Python packages for:
 
 - **Building Terraform providers in Python** - The Pyvider Framework brings Python's elegance to infrastructure as code
-- **Packaging applications as secure executables** - FlavorPack creates self-contained binaries from Python applications
+- **Packaging applications as secure executables** - Flavorpack creates self-contained binaries from Python applications
 - **Managing development environments** - WrkNv standardizes tooling and dependencies across projects
 - **Testing and conformance validation** - TofuSoup ensures cross-language compatibility
 - **Documentation generation** - Plating creates beautiful, registry-compliant docs

@@ -45,7 +45,7 @@ Building Terraform providers with Pyvider:
 3. **Add Data Sources**: Define read-only data sources for external data
 4. **Configure Provider**: Set up provider-level configuration and authentication
 5. **Test**: Use TofuSoup for conformance testing
-6. **Package**: Build and distribute using FlavorPack
+6. **Package**: Build and distribute using Flavorpack
 
 ## Provider Integration
 
@@ -54,7 +54,7 @@ Terraform providers integrate seamlessly with the ecosystem:
 - **Foundation**: Uses provide-foundation for logging and telemetry
 - **Pyvider Framework**: Built on pyvider core, cty, hcl, and rpcplugin
 - **Testing**: Validated using provide-testkit and tofusoup
-- **Packaging**: Distributed using FlavorPack secure packaging
+- **Packaging**: Distributed using Flavorpack secure packaging
 
 ## Providers
 
