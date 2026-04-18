@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 # Base MkDocs Configuration for provide.io Ecosystem
 # This file contains shared configuration for all provide.io project documentation.
 # Individual projects should inherit from this using: INHERIT: .provide/foundry/base-mkdocs.yml

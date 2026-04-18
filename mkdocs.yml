@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 provide.io llc. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 site_name: Provide Foundry Documentation
 site_url: https://foundry.provide.io
 site_description: Comprehensive documentation for the Provide Foundry collection of Python tools and frameworks
