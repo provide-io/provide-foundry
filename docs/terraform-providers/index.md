@@ -41,11 +41,11 @@ Each provider is built on the Pyvider framework and provides:
 Building Terraform providers with Pyvider:
 
 1. **Define Resources**: Use Pyvider resource decorators to define resource schemas
-2. **Implement CRUD**: Implement Create, Read, Update, Delete operations
-3. **Add Data Sources**: Define read-only data sources for external data
-4. **Configure Provider**: Set up provider-level configuration and authentication
-5. **Test**: Use TofuSoup for conformance testing
-6. **Package**: Build and distribute using Flavorpack
+1. **Implement CRUD**: Implement Create, Read, Update, Delete operations
+1. **Add Data Sources**: Define read-only data sources for external data
+1. **Configure Provider**: Set up provider-level configuration and authentication
+1. **Test**: Use TofuSoup for conformance testing
+1. **Package**: Build and distribute using Flavorpack
 
 ## Provider Integration
 
@@ -60,20 +60,20 @@ Terraform providers integrate seamlessly with the ecosystem:
 
 <div class="grid cards" markdown>
 
--   :material-terraform: **Pyvider Provider**
+- :material-terraform: **Pyvider Provider**
 
-    ---
+  ______________________________________________________________________
 
-    Reference Terraform provider implementation showcasing Pyvider framework capabilities and best practices.
+  Reference Terraform provider implementation showcasing Pyvider framework capabilities and best practices.
 
-    [:octicons-arrow-right-24: Explore Pyvider Provider](https://foundry.provide.io/terraform-provider-pyvider/)
+  [:octicons-arrow-right-24: Explore Pyvider Provider](https://foundry.provide.io/terraform-provider-pyvider/)
 
--   :material-test-tube: **TofuSoup Provider**
+- :material-test-tube: **TofuSoup Provider**
 
-    ---
+  ______________________________________________________________________
 
-    Infrastructure testing and conformance provider for validating Terraform configurations.
+  Infrastructure testing and conformance provider for validating Terraform configurations.
 
-    [:octicons-arrow-right-24: Explore TofuSoup Provider](https://foundry.provide.io/terraform-provider-tofusoup/)
+  [:octicons-arrow-right-24: Explore TofuSoup Provider](https://foundry.provide.io/terraform-provider-tofusoup/)
 
 </div>

@@ -7,7 +7,7 @@ The provide-foundry documentation uses a two-layer link validation approach to e
 We use two complementary tools for comprehensive link checking:
 
 1. **lychee** - Fast, Rust-based link checker for local development and CI
-2. **mkdocs-htmlproofer-plugin** - MkDocs plugin that validates links during build
+1. **mkdocs-htmlproofer-plugin** - MkDocs plugin that validates links during build
 
 ## Local Link Checking
 
@@ -55,11 +55,13 @@ we tasks
 ### Performance
 
 **Local offline checking** (`we run docs.links.check`):
-- Execution time: <1 second
+
+- Execution time: \<1 second
 - Checks only internal documentation links
 - No network requests made
 
 **External link checking** (`we run docs.links.external`):
+
 - Execution time: ~1-5 seconds (depending on network and link count)
 - Validates all external URLs with HTTP requests
 - Respects rate limiting (429 responses accepted)
@@ -74,6 +76,7 @@ When running `we run docs.links.check`, you may see errors for:
    - They will be validated by mkdocs-htmlproofer-plugin
 
 **Example output showing expected errors**:
+
 ```
 [ERROR] file:///Users/.../docs/guides/installation | Cannot find file
 [ERROR] file:///Users/.../docs/packages/pyvider | Cannot find file
@@ -92,6 +95,7 @@ The `mkdocs-htmlproofer-plugin` can validate links during the documentation buil
 ### What it Validates
 
 When enabled, the plugin checks:
+
 - Internal links between documentation pages
 - Anchor links (#fragments)
 - Template rendering
@@ -146,9 +150,9 @@ Link checking runs automatically in GitHub Actions:
 When broken links are detected:
 
 1. GitHub Action creates an issue automatically
-2. Check the workflow logs for specific broken links
-3. Fix the links in your local branch
-4. Re-run the workflow to verify
+1. Check the workflow logs for specific broken links
+1. Fix the links in your local branch
+1. Re-run the workflow to verify
 
 ## Configuration Files
 
@@ -214,6 +218,7 @@ External sites may rate-limit requests:
 External link validation can be slow:
 
 **Solution**:
+
 - Use `we run docs.links.check` (internal only) for local development
 - External checks run in CI automatically
 - Disable with `HTMLPROOFER_VALIDATE_EXTERNAL=false`
@@ -227,9 +232,9 @@ Anchor validation may fail for dynamically generated content:
 ## Best Practices
 
 1. **Local Development**: Use `we run docs.links.check` (fast, internal only)
-2. **Before Committing**: Run `we run docs.links.check` to catch broken internal links
-3. **CI Validation**: Let GitHub Actions handle comprehensive external link checking
-4. **Document Changes**: Update `.lychee.toml` exclusions with comments explaining why
+1. **Before Committing**: Run `we run docs.links.check` to catch broken internal links
+1. **CI Validation**: Let GitHub Actions handle comprehensive external link checking
+1. **Document Changes**: Update `.lychee.toml` exclusions with comments explaining why
 
 ## Performance
 

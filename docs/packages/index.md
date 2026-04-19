@@ -43,17 +43,17 @@ The foundation layer provides core infrastructure that all other packages build 
 
 <div class="grid cards" markdown>
 
--   **[provide-foundation](foundation.md)**
+- **[provide-foundation](foundation.md)**
 
-    Core telemetry and logging infrastructure with emoji-enhanced structured logging, error handling, and configuration management.
+  Core telemetry and logging infrastructure with emoji-enhanced structured logging, error handling, and configuration management.
 
-    [:octicons-arrow-right-24: Learn more](foundation.md)
+  [:octicons-arrow-right-24: Learn more](foundation.md)
 
--   **[provide-testkit](testkit.md)**
+- **[provide-testkit](testkit.md)**
 
-    Comprehensive testing utilities and fixtures organized by domain (file, process, transport, crypto) for the entire foundry.
+  Comprehensive testing utilities and fixtures organized by domain (file, process, transport, crypto) for the entire foundry.
 
-    [:octicons-arrow-right-24: Learn more](testkit.md)
+  [:octicons-arrow-right-24: Learn more](testkit.md)
 
 </div>
 
@@ -63,41 +63,41 @@ The framework layer implements the core abstractions for building Terraform prov
 
 <div class="grid cards" markdown>
 
--   **[pyvider](pyvider.md)**
+- **[pyvider](pyvider.md)**
 
-    Core framework for building Terraform providers with decorators for providers, resources, data sources, and functions.
+  Core framework for building Terraform providers with decorators for providers, resources, data sources, and functions.
 
-    [:octicons-arrow-right-24: Learn more](pyvider.md)
+  [:octicons-arrow-right-24: Learn more](pyvider.md)
 
--   **[pyvider-cty](pyvider-cty.md)**
+- **[pyvider-cty](pyvider-cty.md)**
 
-    Complete implementation of Terraform's CTY type system with Python-native APIs and cross-language compatibility.
+  Complete implementation of Terraform's CTY type system with Python-native APIs and cross-language compatibility.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-cty.md)
+  [:octicons-arrow-right-24: Learn more](pyvider-cty.md)
 
--   **[pyvider-hcl](pyvider-hcl.md)**
+- **[pyvider-hcl](pyvider-hcl.md)**
 
-    HCL parsing and generation with CTY integration for processing Terraform configuration files.
+  HCL parsing and generation with CTY integration for processing Terraform configuration files.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-hcl.md)
+  [:octicons-arrow-right-24: Learn more](pyvider-hcl.md)
 
--   **[pyvider-rpcplugin](pyvider-rpcplugin.md)**
+- **[pyvider-rpcplugin](pyvider-rpcplugin.md)**
 
-    High-performance gRPC implementation of the Terraform plugin protocol with transport abstraction and security features.
+  High-performance gRPC implementation of the Terraform plugin protocol with transport abstraction and security features.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-rpcplugin.md)
+  [:octicons-arrow-right-24: Learn more](pyvider-rpcplugin.md)
 
--   **[pyvider-components](pyvider-components.md)**
+- **[pyvider-components](pyvider-components.md)**
 
-    Standard library of components including resources, data sources, and functions for common use cases.
+  Standard library of components including resources, data sources, and functions for common use cases.
 
-    [:octicons-arrow-right-24: Learn more](pyvider-components.md)
+  [:octicons-arrow-right-24: Learn more](pyvider-components.md)
 
--   **[terraform-provider-pyvider](terraform-provider-pyvider.md)**
+- **[terraform-provider-pyvider](terraform-provider-pyvider.md)**
 
-    Official Pyvider provider demonstrating the framework capabilities and providing utility components.
+  Official Pyvider provider demonstrating the framework capabilities and providing utility components.
 
-    [:octicons-arrow-right-24: Learn more](terraform-provider-pyvider.md)
+  [:octicons-arrow-right-24: Learn more](terraform-provider-pyvider.md)
 
 </div>
 
@@ -107,35 +107,35 @@ The tools layer provides development and deployment utilities that enhance the d
 
 <div class="grid cards" markdown>
 
--   **[flavorpack](flavorpack.md)**
+- **[flavorpack](flavorpack.md)**
 
-    Progressive Secure Package Format (PSPF) implementation for creating self-contained, portable executable packages.
+  Progressive Secure Package Format (PSPF) implementation for creating self-contained, portable executable packages.
 
-    [:octicons-arrow-right-24: Learn more](flavorpack.md)
+  [:octicons-arrow-right-24: Learn more](flavorpack.md)
 
--   **[wrknv](wrknv.md)**
+- **[wrknv](wrknv.md)**
 
-    Work environment management tool that generates standardized development environments with tool version management.
+  Work environment management tool that generates standardized development environments with tool version management.
 
-    [:octicons-arrow-right-24: Learn more](wrknv.md)
+  [:octicons-arrow-right-24: Learn more](wrknv.md)
 
--   **[plating](plating.md)**
+- **[plating](plating.md)**
 
-    Documentation generation system for Terraform providers that extracts schemas and generates Terraform Registry-compliant docs.
+  Documentation generation system for Terraform providers that extracts schemas and generates Terraform Registry-compliant docs.
 
-    [:octicons-arrow-right-24: Learn more](plating.md)
+  [:octicons-arrow-right-24: Learn more](plating.md)
 
--   **[tofusoup](tofusoup.md)**
+- **[tofusoup](tofusoup.md)**
 
-    Cross-language conformance test suite for OpenTofu tooling with support for multiple harnesses and test types.
+  Cross-language conformance test suite for OpenTofu tooling with support for multiple harnesses and test types.
 
-    [:octicons-arrow-right-24: Learn more](tofusoup.md)
+  [:octicons-arrow-right-24: Learn more](tofusoup.md)
 
--   **[supsrc](supsrc.md)**
+- **[supsrc](supsrc.md)**
 
-    Automated Git commit/push utility that monitors filesystem events and performs Git operations based on configurable rules.
+  Automated Git commit/push utility that monitors filesystem events and performs Git operations based on configurable rules.
 
-    [:octicons-arrow-right-24: Learn more](supsrc.md)
+  [:octicons-arrow-right-24: Learn more](supsrc.md)
 
 </div>
 
@@ -144,12 +144,16 @@ The tools layer provides development and deployment utilities that enhance the d
 Understanding dependencies helps with choosing the right packages for your needs:
 
 ### Zero Dependencies
+
 These packages have minimal external dependencies:
+
 - **pyvider-cty**: Core type system (only msgpack, attrs)
 - **wrknv**: Environment management (minimal dependencies)
 
 ### Foundation Dependencies
+
 These packages build on the foundation layer:
+
 - **pyvider**: Depends on provide-foundation
 - **pyvider-hcl**: Depends on pyvider-cty and provide-foundation
 - **pyvider-rpcplugin**: Depends on provide-foundation
@@ -157,13 +161,17 @@ These packages build on the foundation layer:
 - **supsrc**: Depends on provide-foundation
 
 ### Framework Dependencies
+
 These packages build on the framework layer:
+
 - **pyvider-components**: Depends on pyvider, pyvider-cty, pyvider-rpcplugin
 - **plating**: Depends on pyvider and pyvider-cty
 - **tofusoup**: Optional dependencies on pyvider packages
 
 ### Testing Dependencies
+
 All packages use provide-testkit for testing:
+
 - Provides unified testing utilities
 - Domain-specific fixtures (file, network, crypto, etc.)
 - Integration with pytest and hypothesis
@@ -215,32 +223,33 @@ source .venv/bin/activate
 
 The foundry uses semantic versioning with coordinated releases:
 
-| Release | Foundation | Framework | Tools | Status |
-|---------|------------|-----------|--------|---------|
-| 0.1.x   | 0.1.x     | 0.0.x     | 0.0.x  | Current |
-| 0.2.x   | 0.2.x     | 0.1.x     | 0.1.x  | Exploratory |
-| 1.0.x   | 1.0.x     | 1.0.x     | 1.0.x  | Exploratory |
+| Release | Foundation | Framework | Tools | Status      |
+| ------- | ---------- | --------- | ----- | ----------- |
+| 0.1.x   | 0.1.x      | 0.0.x     | 0.0.x | Current     |
+| 0.2.x   | 0.2.x      | 0.1.x     | 0.1.x | Exploratory |
+| 1.0.x   | 1.0.x      | 1.0.x     | 1.0.x | Exploratory |
 
 ### Compatibility Matrix
 
-| Package | Python | Terraform | Status |
-|---------|--------|-----------|---------|
-| provide-foundation | 3.11+ | N/A | Stable |
-| provide-testkit | 3.11+ | N/A | Alpha |
-| pyvider | 3.11+ | 1.0+ | Alpha |
-| pyvider-cty | 3.11+ | 1.0+ | Alpha |
-| pyvider-hcl | 3.11+ | 1.0+ | Alpha |
-| pyvider-rpcplugin | 3.11+ | 1.0+ | Alpha |
-| pyvider-components | 3.11+ | 1.0+ | Alpha |
-| flavorpack | 3.11+ | N/A | Alpha |
-| wrknv | 3.11+ | N/A | Alpha |
-| plating | 3.11+ | 1.0+ | Alpha |
-| tofusoup | 3.11+ | 1.0+ | Alpha |
-| supsrc | 3.11+ | N/A | Alpha |
+| Package            | Python | Terraform | Status |
+| ------------------ | ------ | --------- | ------ |
+| provide-foundation | 3.11+  | N/A       | Stable |
+| provide-testkit    | 3.11+  | N/A       | Alpha  |
+| pyvider            | 3.11+  | 1.0+      | Alpha  |
+| pyvider-cty        | 3.11+  | 1.0+      | Alpha  |
+| pyvider-hcl        | 3.11+  | 1.0+      | Alpha  |
+| pyvider-rpcplugin  | 3.11+  | 1.0+      | Alpha  |
+| pyvider-components | 3.11+  | 1.0+      | Alpha  |
+| flavorpack         | 3.11+  | N/A       | Alpha  |
+| wrknv              | 3.11+  | N/A       | Alpha  |
+| plating            | 3.11+  | 1.0+      | Alpha  |
+| tofusoup           | 3.11+  | 1.0+      | Alpha  |
+| supsrc             | 3.11+  | N/A       | Alpha  |
 
 ## Package Metrics
 
 ### Lines of Code (Approximate)
+
 - **provide-foundation**: ~15,000 LOC
 - **pyvider**: ~12,000 LOC
 - **pyvider-cty**: ~8,000 LOC
@@ -249,18 +258,21 @@ The foundry uses semantic versioning with coordinated releases:
 - **Other packages**: ~2,000-4,000 LOC each
 
 ### Test Coverage
+
 All packages maintain high test coverage:
+
 - **Target**: >80% coverage
 - **Critical paths**: >95% coverage
 - **Property-based testing**: Where applicable
 - **Integration tests**: Cross-package functionality
 
 ### Documentation Coverage
+
 - **API Reference**: Complete for all public APIs
 - **Examples**: Working examples for all major features
 - **Guides**: Step-by-step tutorials
 - **Architecture**: Design documentation
 
----
+______________________________________________________________________
 
 Ready to dive deeper? Start with the [foundation layer](foundation.md) or jump to the [framework overview](pyvider.md) if you're building Terraform providers.

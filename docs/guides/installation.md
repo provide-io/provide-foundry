@@ -14,13 +14,13 @@ Complete installation guide for the Provide Foundry, covering all platforms and 
 
 ### Platform Support
 
-| Platform | Status | Notes |
-|----------|--------|-------|
-| macOS (Intel) | ✅ Full Support | Recommended |
-| macOS (Apple Silicon) | ✅ Full Support | Recommended |
-| Linux (x86_64) | ✅ Full Support | Ubuntu 20.04+, CentOS 8+ |
-| Windows 11 | ✅ Full Support | WSL2 recommended |
-| Windows 10 | ⚠️ Limited Support | WSL2 required |
+| Platform              | Status             | Notes                    |
+| --------------------- | ------------------ | ------------------------ |
+| macOS (Intel)         | ✅ Full Support    | Recommended              |
+| macOS (Apple Silicon) | ✅ Full Support    | Recommended              |
+| Linux (x86_64)        | ✅ Full Support    | Ubuntu 20.04+, CentOS 8+ |
+| Windows 11            | ✅ Full Support    | WSL2 recommended         |
+| Windows 10            | ⚠️ Limited Support | WSL2 required            |
 
 ## Quick Installation
 
@@ -63,11 +63,11 @@ uv tool install flavorpack
 
 ### Step 1: Install UV Package Manager
 
---8<-- ".provide/foundry/docs/_partials/uv-installation.md"
+--8\<-- ".provide/foundry/docs/\_partials/uv-installation.md"
 
 ### Step 2: Python Version Management
 
---8<-- ".provide/foundry/docs/_partials/python-version-setup.md"
+--8\<-- ".provide/foundry/docs/\_partials/python-version-setup.md"
 
 ### Step 3: Clone and Set Up Foundry
 
@@ -273,46 +273,52 @@ Add foundry tools to your shell:
 
 === "Bash"
 
-    ```bash
-    # Add to ~/.bashrc
-    export PATH="$HOME/.local/bin:$PATH"
+````
+```bash
+# Add to ~/.bashrc
+export PATH="$HOME/.local/bin:$PATH"
 
-    # Optional: Auto-activate when entering foundry projects
-    cd() {
-        builtin cd "$@"
-        if [[ -f "pyproject.toml" && -f ".venv/bin/activate" ]]; then
-            source .venv/bin/activate
-        fi
-    }
-    ```
+# Optional: Auto-activate when entering foundry projects
+cd() {
+    builtin cd "$@"
+    if [[ -f "pyproject.toml" && -f ".venv/bin/activate" ]]; then
+        source .venv/bin/activate
+    fi
+}
+```
+````
 
 === "Zsh"
 
-    ```zsh
-    # Add to ~/.zshrc
-    export PATH="$HOME/.local/bin:$PATH"
+````
+```zsh
+# Add to ~/.zshrc
+export PATH="$HOME/.local/bin:$PATH"
 
-    # Optional: Auto-activation
-    chpwd() {
-        if [[ -f "pyproject.toml" && -f ".venv/bin/activate" ]]; then
-            source .venv/bin/activate
-        fi
-    }
-    ```
+# Optional: Auto-activation
+chpwd() {
+    if [[ -f "pyproject.toml" && -f ".venv/bin/activate" ]]; then
+        source .venv/bin/activate
+    fi
+}
+```
+````
 
 === "Fish"
 
-    ```fish
-    # Add to ~/.config/fish/config.fish
-    set -gx PATH $HOME/.local/bin $PATH
+````
+```fish
+# Add to ~/.config/fish/config.fish
+set -gx PATH $HOME/.local/bin $PATH
 
-    # Optional: Auto-activation
-    function __auto_activate --on-variable PWD
-        if test -f pyproject.toml -a -f .venv/bin/activate
-            source .venv/bin/activate
-        end
+# Optional: Auto-activation
+function __auto_activate --on-variable PWD
+    if test -f pyproject.toml -a -f .venv/bin/activate
+        source .venv/bin/activate
     end
-    ```
+end
+```
+````
 
 ### IDE Configuration
 
@@ -339,10 +345,10 @@ Add foundry tools to your shell:
 #### PyCharm
 
 1. Open the provide-io directory as project
-2. Go to Settings → Project → Python Interpreter
-3. Select "Existing environment"
-4. Choose `.venv/bin/python`
-5. Enable pytest as test runner
+1. Go to Settings → Project → Python Interpreter
+1. Select "Existing environment"
+1. Choose `.venv/bin/python`
+1. Enable pytest as test runner
 
 ## Troubleshooting
 
@@ -425,20 +431,20 @@ which flavor && echo "✅ flavorpack installed" || echo "❌ flavorpack missing"
 If you encounter issues:
 
 1. **Check the logs** - Look for error messages in terminal output
-2. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-foundry/issues) for known solutions
-3. **Ask for help** - Create a new issue with:
+1. **Search issues** - Check [GitHub Issues](https://github.com/provide-io/provide-foundry/issues) for known solutions
+1. **Ask for help** - Create a new issue with:
    - Your platform and Python version
    - Complete error messages
    - Steps to reproduce
-4. **Community support** - Join discussions in GitHub Discussions
+1. **Community support** - Join discussions in GitHub Discussions
 
 ## Next Steps
 
 After successful installation:
 
 1. **[Provider Development](provider-development.md)** - Build your first provider
-2. **[Testing Guide](testing.md)** - Learn testing best practices
+1. **[Testing Guide](testing.md)** - Learn testing best practices
 
----
+______________________________________________________________________
 
 You now have the complete Provide Foundry installed and ready for development!

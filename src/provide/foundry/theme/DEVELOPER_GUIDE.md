@@ -47,10 +47,10 @@ projects/
 ### How It Works
 
 1. **Installation**: `uv pip install -e /path/to/provide-foundry` installs theme as editable package
-2. **Access**: Python code imports `from provide.foundry.theme import THEME_DIR`
-3. **Resolution**: `THEME_DIR` points to the actual theme directory in the installed package
-4. **Configuration**: Projects inherit from `base-mkdocs.yml` which already configures theme paths
-5. **Updates**: Changes to theme files are immediately available to all projects (editable install)
+1. **Access**: Python code imports `from provide.foundry.theme import THEME_DIR`
+1. **Resolution**: `THEME_DIR` points to the actual theme directory in the installed package
+1. **Configuration**: Projects inherit from `base-mkdocs.yml` which already configures theme paths
+1. **Updates**: Changes to theme files are immediately available to all projects (editable install)
 
 ### Namespace Package Implementation
 
@@ -109,6 +109,7 @@ mkdocs serve  # Already sees your changes!
 Projects reference the theme by inheriting from `base-mkdocs.yml`:
 
 **Example project mkdocs.yml**:
+
 ```yaml
 INHERIT: ../provide-foundry/base-mkdocs.yml
 
@@ -120,6 +121,7 @@ site_description: My project documentation
 ```
 
 **Base configuration** (`base-mkdocs.yml`):
+
 ```yaml
 extra_css:
   - !relative $THEME_DIR/stylesheets/provide-theme.css
@@ -144,6 +146,7 @@ The `!relative` tag and `$THEME_DIR` variable are resolved by the configuration 
 **File**: `src/provide/foundry/theme/stylesheets/provide-theme.css`
 
 **Structure**:
+
 ```css
 /* Typography */
 h1, h2, h3 { font-family: 'Chakra Petch', sans-serif; }
@@ -159,6 +162,7 @@ h1, h2, h3 { font-family: 'Chakra Petch', sans-serif; }
 ```
 
 **After making changes**:
+
 ```bash
 # Changes are immediately available
 # Just refresh your browser (Cmd+Shift+R to clear cache)
@@ -175,11 +179,13 @@ mkdocs serve
 ### JavaScript Changes
 
 **Files**:
+
 - `javascripts/termynal.js` - Terminal animation engine (forked from FastAPI)
 - `javascripts/custom.js` - Integration code
 - `javascripts/mermaid-init.js` - Mermaid configuration
 
 **Custom.js Integration**:
+
 ```javascript
 // Initialize Termynal on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -193,11 +199,12 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 
 **Testing JavaScript Changes**:
+
 1. Edit the file in `src/provide/foundry/theme/javascripts/`
-2. Test with `mkdocs serve` in provide-foundry or any project
-3. Open browser console to check for errors
-4. Test terminal animations on actual documentation pages
-5. Changes are immediately available (editable install)
+1. Test with `mkdocs serve` in provide-foundry or any project
+1. Open browser console to check for errors
+1. Test terminal animations on actual documentation pages
+1. Changes are immediately available (editable install)
 
 ### Data Files
 
@@ -206,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
 **Purpose**: Provide dynamic content via mkdocs-macros plugin
 
 **Example** (`contributors.yml`):
+
 ```yaml
 contributors:
   - name: "Developer Name"
@@ -215,6 +223,7 @@ contributors:
 ```
 
 **Usage in Markdown**:
+
 ```markdown
 ## Contributors
 
@@ -285,16 +294,18 @@ done
 **Source**: Forked from FastAPI's implementation (originally by Ines Montani)
 
 **Process**:
+
 1. Finds all `.termy` divs in the page
-2. Parses the console code block inside
-3. Identifies command lines (start with `$`)
-4. Identifies comments (start with `//`)
-5. Identifies progress bars (`---> 100%`)
-6. Animates typing for commands
-7. Shows output instantly
-8. Provides restart and fast-forward controls
+1. Parses the console code block inside
+1. Identifies command lines (start with `$`)
+1. Identifies comments (start with `//`)
+1. Identifies progress bars (`---> 100%`)
+1. Animates typing for commands
+1. Shows output instantly
+1. Provides restart and fast-forward controls
 
 **Syntax**:
+
 ```console
 $ command to type          # Animated input
 // Comment text            # Shows with emoji
@@ -307,6 +318,7 @@ Regular output             # Shown instantly
 **File**: `src/provide/foundry/theme/javascripts/custom.js`
 
 **Configuration Options**:
+
 ```javascript
 new Termynal(element, {
   prefix: '$',           // Command prompt
@@ -325,6 +337,7 @@ new Termynal(element, {
 To add a new line type (like comments `//`):
 
 1. **Update Termynal.js**:
+
 ```javascript
 // In the render method
 if (line.startsWith('// ')) {
@@ -341,6 +354,7 @@ renderComment(text) {
 ```
 
 2. **Update CSS** (`termynal.css`):
+
 ```css
 .termynal-comment {
   color: #6c757d;
@@ -349,6 +363,7 @@ renderComment(text) {
 ```
 
 3. **Test changes**:
+
 ```bash
 # Changes are immediately available via editable install
 mkdocs serve  # Test locally
@@ -447,6 +462,7 @@ The theme uses a consistent 8px-based spacing scale:
 **Cause**: Package not installed or not installed in editable mode
 
 **Solution**:
+
 ```bash
 # Install in editable mode
 cd /path/to/provide-foundry
@@ -463,6 +479,7 @@ python -c "from provide.foundry.theme import THEME_DIR; print(THEME_DIR)"
 **Cause**: Browser cache or server not reloaded
 
 **Solution**:
+
 ```bash
 # Clear browser cache (Cmd+Shift+R / Ctrl+F5)
 
@@ -476,11 +493,13 @@ mkdocs serve
 **Symptom**: Terminal blocks show as static code blocks
 
 **Possible Causes**:
+
 1. Missing `.termy` wrapper div
-2. JavaScript not loaded
-3. Console errors in browser
+1. JavaScript not loaded
+1. Console errors in browser
 
 **Debug Steps**:
+
 ```bash
 # 1. Check theme is installed
 python -c "from provide.foundry.theme import THEME_DIR; print(THEME_DIR)"
@@ -502,6 +521,7 @@ ls $(python -c "from provide.foundry.theme import THEME_DIR; print(THEME_DIR)")/
 **Cause**: Project not inheriting from `base-mkdocs.yml` correctly
 
 **Solution**:
+
 ```yaml
 # In project mkdocs.yml
 INHERIT: ../provide-foundry/base-mkdocs.yml
@@ -560,11 +580,11 @@ rm -rf .test-venv
 When contributing to the shared theme:
 
 1. **Install in editable mode** for development
-2. **Test in provide-foundry** first
-3. **Test in multiple projects** to ensure compatibility
-4. **Check all projects build** with `mkdocs build --strict`
-5. **Document breaking changes** in commit message
-6. **Update this guide** if adding new features
+1. **Test in provide-foundry** first
+1. **Test in multiple projects** to ensure compatibility
+1. **Check all projects build** with `mkdocs build --strict`
+1. **Document breaking changes** in commit message
+1. **Update this guide** if adding new features
 
 ### Commit Guidelines
 
@@ -584,8 +604,6 @@ git commit -m "Update CSS class names (affects all projects)"
 - Review commit history for past changes
 - Ask in the provide.io discussion forum
 
----
+______________________________________________________________________
 
-**Maintained by**: provide.io team
-**Last Updated**: 2025-10-31
-**Related**: [README.md](README.md)
+**Maintained by**: provide.io team **Last Updated**: 2025-10-31 **Related**: [README.md](README.md)

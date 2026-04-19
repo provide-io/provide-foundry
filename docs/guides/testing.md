@@ -11,8 +11,8 @@ Testing is crucial for reliable Terraform providers. This guide covers unit test
 ### Test Pyramid
 
 1. **Unit Tests** (70%): Fast, isolated tests of individual components
-2. **Integration Tests** (20%): Tests with real API interactions
-3. **Acceptance Tests** (10%): Full Terraform workflow tests
+1. **Integration Tests** (20%): Tests with real API interactions
+1. **Acceptance Tests** (10%): Full Terraform workflow tests
 
 ### Test Categories
 

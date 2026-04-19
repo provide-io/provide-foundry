@@ -71,52 +71,52 @@ The framework handles the complexity of Terraform's plugin protocol, allowing yo
 
 <div class="grid cards" markdown>
 
--   :material-language-python: **Pyvider**
+- :material-language-python: **Pyvider**
 
-    ---
+  ______________________________________________________________________
 
-    Core framework for building Terraform providers in Python with full protocol support.
+  Core framework for building Terraform providers in Python with full protocol support.
 
-    [:octicons-arrow-right-24: Explore Pyvider](../packages/pyvider.md)
+  [:octicons-arrow-right-24: Explore Pyvider](../packages/pyvider.md)
 
--   :material-code-braces: **Pyvider CTY**
+- :material-code-braces: **Pyvider CTY**
 
-    ---
+  ______________________________________________________________________
 
-    Python bindings for Terraform's CTY type system, enabling type-safe data handling.
+  Python bindings for Terraform's CTY type system, enabling type-safe data handling.
 
-    [:octicons-arrow-right-24: Explore CTY](../packages/pyvider-cty.md)
+  [:octicons-arrow-right-24: Explore CTY](../packages/pyvider-cty.md)
 
--   :material-file-code: **Pyvider HCL**
+- :material-file-code: **Pyvider HCL**
 
-    ---
+  ______________________________________________________________________
 
-    HCL parsing and manipulation for Terraform configuration processing.
+  HCL parsing and manipulation for Terraform configuration processing.
 
-    [:octicons-arrow-right-24: Explore HCL](../packages/pyvider-hcl.md)
+  [:octicons-arrow-right-24: Explore HCL](../packages/pyvider-hcl.md)
 
--   :material-api: **Pyvider RPC Plugin**
+- :material-api: **Pyvider RPC Plugin**
 
-    ---
+  ______________________________________________________________________
 
-    gRPC plugin protocol implementation for Terraform provider communication.
+  gRPC plugin protocol implementation for Terraform provider communication.
 
-    [:octicons-arrow-right-24: Explore RPC Plugin](../packages/pyvider-rpcplugin.md)
+  [:octicons-arrow-right-24: Explore RPC Plugin](../packages/pyvider-rpcplugin.md)
 
--   :material-package-variant: **Pyvider Components**
+- :material-package-variant: **Pyvider Components**
 
-    ---
+  ______________________________________________________________________
 
-    Reusable provider components, patterns, and utilities for common use cases.
+  Reusable provider components, patterns, and utilities for common use cases.
 
-    [:octicons-arrow-right-24: Explore Components](../packages/pyvider-components.md)
+  [:octicons-arrow-right-24: Explore Components](../packages/pyvider-components.md)
 
--   :material-test-tube: **TofuSoup**
+- :material-test-tube: **TofuSoup**
 
-    ---
+  ______________________________________________________________________
 
-    Cross-language conformance testing framework for Terraform and OpenTofu providers.
+  Cross-language conformance testing framework for Terraform and OpenTofu providers.
 
-    [:octicons-arrow-right-24: Explore TofuSoup](../packages/tofusoup.md)
+  [:octicons-arrow-right-24: Explore TofuSoup](../packages/tofusoup.md)
 
 </div>

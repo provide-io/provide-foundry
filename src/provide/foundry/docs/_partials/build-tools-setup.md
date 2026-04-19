@@ -3,6 +3,7 @@
 Building from source requires standard build tools and compilers.
 
 **Linux:**
+
 ```bash
 # Debian/Ubuntu
 sudo apt update
@@ -17,6 +18,7 @@ sudo apk add build-base make git
 ```
 
 **macOS:**
+
 ```bash
 # Install Xcode Command Line Tools
 xcode-select --install
@@ -27,6 +29,7 @@ gcc --version
 ```
 
 **Windows:**
+
 ```powershell
 # Install Visual Studio Build Tools
 # Download from: https://visualstudio.microsoft.com/downloads/
@@ -37,6 +40,7 @@ gcc --version
 ```
 
 **Verify Build Environment:**
+
 ```bash
 # Check required tools are available
 make --version

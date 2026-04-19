@@ -20,9 +20,9 @@ The official reference implementation Terraform provider built with the Pyvider 
 This provider serves multiple purposes:
 
 1. **Reference Implementation**: Shows how to structure a production provider
-2. **Testing Playground**: Used to validate Pyvider framework features
-3. **Documentation Source**: Provides real-world examples for guides
-4. **Component Showcase**: Demonstrates pyvider-components in action
+1. **Testing Playground**: Used to validate Pyvider framework features
+1. **Documentation Source**: Provides real-world examples for guides
+1. **Component Showcase**: Demonstrates pyvider-components in action
 
 ## Installation
 

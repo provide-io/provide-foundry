@@ -19,10 +19,10 @@ This guide covers documentation strategies, tooling, automation, and best practi
 ### Documentation Types
 
 1. **API Documentation**: Auto-generated from code annotations
-2. **User Guides**: Step-by-step instructions for common tasks
-3. **Tutorials**: Learning-oriented, hands-on examples
-4. **Reference**: Comprehensive information for lookup
-5. **Architecture**: High-level system design and decisions
+1. **User Guides**: Step-by-step instructions for common tasks
+1. **Tutorials**: Learning-oriented, hands-on examples
+1. **Reference**: Comprehensive information for lookup
+1. **Architecture**: High-level system design and decisions
 
 ## Documentation Stack
 
@@ -375,7 +375,7 @@ plugins:
 
 ### API Reference Pages
 
-```markdown
+````markdown
 <!-- docs/reference/api/auth.md -->
 # Authentication API
 
@@ -402,7 +402,7 @@ auth = AuthManager()
 user = auth.authenticate("user@example.com", "password")
 if user:
     print(f"Welcome, {user.name}!")
-```
+````
 
 ### Session Management
 
@@ -417,7 +417,8 @@ if auth.is_session_valid(session.token):
 # Logout
 auth.logout(session.token)
 ```
-```
+
+````
 
 ## Content Guidelines
 
@@ -453,7 +454,7 @@ uv add project-name
 from project import MainClass
 instance = MainClass()
 result = instance.main_method()
-```
+````
 
 ## Use Cases
 
@@ -463,9 +464,12 @@ result = instance.main_method()
 ## Next Steps
 
 <!-- - Installation Guide (getting-started/installation/) -->
+
 <!-- - User Guide (guides/user-guide/) -->
+
 - API Reference (reference/api/)
-```
+
+````
 
 #### Tutorial Structure
 
@@ -492,7 +496,7 @@ First, create a new project directory:
 ```bash
 mkdir my-application
 cd my-application
-```
+````
 
 Now initialize the project:
 
@@ -501,6 +505,7 @@ project-cli init --name="My Application"
 ```
 
 This creates the following structure:
+
 - `src/` - Source code
 - `tests/` - Test files
 - `docs/` - Documentation
@@ -513,10 +518,14 @@ This creates the following structure:
 ## What's Next?
 
 Now that you've built your first application, try these next steps:
+
 <!-- - Advanced Tutorial (advanced-tutorial/) -->
+
 <!-- - Deployment Guide (../guides/deployment/) -->
+
 - API Reference (../reference/api/)
-```
+
+````
 
 ## Documentation Automation
 
@@ -611,11 +620,11 @@ if __name__ == "__main__":
     )
     generator.generate_api_docs()
     generator.generate_cli_docs()
-```
+````
 
 ### Documentation Testing
 
-```python
+````python
 # scripts/test_docs.py
 """Test documentation for accuracy and completeness."""
 
@@ -720,7 +729,7 @@ def test_internal_link(source_file: Path, link: str):
 if __name__ == "__main__":
     test_code_examples()
     test_links()
-```
+````
 
 ## Publishing Documentation
 
@@ -834,9 +843,9 @@ mike list
 ### Documentation-Driven Development
 
 1. **Write Documentation First**: Start with user stories and API design
-2. **Code to Match**: Implement functionality to match documentation
-3. **Keep in Sync**: Update documentation with code changes
-4. **Review Together**: Review documentation and code changes together
+1. **Code to Match**: Implement functionality to match documentation
+1. **Keep in Sync**: Update documentation with code changes
+1. **Review Together**: Review documentation and code changes together
 
 ### Documentation in CI/CD
 

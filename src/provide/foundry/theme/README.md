@@ -78,6 +78,7 @@ src/provide/foundry/theme/
 ## Features
 
 ### Typography
+
 - **Headers (H1-H3)**: Chakra Petch font family (bold, professional)
 - **Smaller headers (H4-H6)**: IBM Plex Serif
 - **Body text**: System font stack for optimal readability
@@ -108,6 +109,7 @@ Build complete! Output: site/
 ````
 
 **Syntax:**
+
 - Lines starting with `$` are animated as typed input
 - Lines starting with `// ` are shown as comments with 💬 emoji
 - `---> 100%` shows an animated progress bar
@@ -122,18 +124,21 @@ Build complete! Output: site/
 ```
 
 ### Interactive Elements
+
 - Smooth hover transitions on all links and navigation
 - Fade-in permalink anchors on header hover
 - Accent color highlights for hover states
 - Terminal animations with restart/fast-forward controls
 
 ### Layout Components
+
 - `.feature-grid` - Responsive grid for feature cards
 - `.feature-card` - Individual feature card with hover effects
 - `.getting-started-grid` - Getting started section layout
 - `.getting-started-card` - Getting started card with CTA button
 
 ### Spacing & Rhythm
+
 - Professional header spacing (2.5rem, 2rem, 1.75rem for H1-H3)
 - Optimal paragraph line-height (1.7)
 - Consistent list and code block spacing
@@ -153,6 +158,7 @@ Use YAML data files to separate content from data:
 ```
 
 **Data files available:**
+
 - `contributors.yml` - Project contributors
 - `sponsors.yml` - Project sponsors
 - `external_links.yml` - External resources
@@ -173,7 +179,7 @@ extra_css:
 
 ### Basic CLI Demo
 
-```markdown
+````markdown
 <div class="termy">
 
 ```console
@@ -185,14 +191,14 @@ $ cd my-project
 $ wrknv status
 Environment: my-project
 Status: active
-```
+````
 
 </div>
 ```
 
 ### With Progress Bar
 
-```markdown
+````markdown
 <div class="termy">
 
 ```console
@@ -200,14 +206,14 @@ $ tofusoup test --all
 // Running conformance tests...
 ---> 100%
 All tests passed! 42/42
-```
+````
 
 </div>
 ```
 
 ### Multi-step Tutorial
 
-```markdown
+````markdown
 <div class="termy">
 
 ```console
@@ -221,7 +227,7 @@ $ uv run pytest
 
 $ uv run python -m my_app
 Hello from my_app!
-```
+````
 
 </div>
 ```
@@ -251,6 +257,7 @@ mkdocs serve  # Check http://127.0.0.1:8009
 ### Why Namespace Package?
 
 The namespace package approach provides:
+
 - **Direct access**: No file copying or syncing required
 - **Editable installs**: `uv pip install -e .` makes changes immediately available
 - **Type safety**: `from provide.foundry.theme import THEME_DIR` is type-checked

@@ -9,9 +9,11 @@ The provide.io ecosystem uses centralized task templates stored in provide-found
 ## Task Templates
 
 The template is located at:
+
 - **`wrknv.python.tmpl`** - For Python library projects
 
 This template provides standardized tasks for:
+
 - Testing (test, test.parallel, test.coverage)
 - Code quality (lint, format, typecheck, quality)
 - Documentation (docs.build, docs.serve, docs.links.check)
@@ -49,15 +51,16 @@ uv run python -c "from provide.foundry.config import extract_python_wrknv_tasks;
 The extraction function intelligently merges tasks:
 
 1. **Existing wrknv.toml**: Tasks from template are merged with existing custom tasks
-2. **Custom tasks preserved**: Your project-specific tasks (like wrknv's "hello" task) are kept
-3. **Standard tasks updated**: Template tasks override existing standard tasks
-4. **Other config preserved**: Project metadata, tools, profiles, workenv settings remain unchanged
+1. **Custom tasks preserved**: Your project-specific tasks (like wrknv's "hello" task) are kept
+1. **Standard tasks updated**: Template tasks override existing standard tasks
+1. **Other config preserved**: Project metadata, tools, profiles, workenv settings remain unchanged
 
 ## Deployment Workflow
 
 ### 1. Update Template in provide-foundry
 
 The template is located at:
+
 ```
 provide-foundry/src/provide/foundry/config/wrknv.python.tmpl
 ```
@@ -67,6 +70,7 @@ Edit the template and commit changes.
 ### 2. Deploy to Core Projects
 
 Currently deployed to 5 core projects:
+
 - provide-foundry
 - wrknv
 - pyvider
@@ -132,6 +136,7 @@ we tasks
 ```
 
 You should see hierarchical task listing:
+
 ```
 docs
 ├── _default (default)
@@ -189,6 +194,7 @@ These custom tasks will be preserved when extracting template updates.
 ## Comparison with Makefiles
 
 ### Before (Makefile approach):
+
 ```makefile
 docs-build: docs-setup
     @mkdocs build
@@ -198,6 +204,7 @@ links-check-local:
 ```
 
 ### After (wrknv tasks):
+
 ```toml
 [tasks.docs]
 build = "uv run mkdocs build"
@@ -209,28 +216,33 @@ local = "lychee --offline ..."
 ```
 
 ### Benefits:
+
 1. **Hierarchical organization**: `docs.links.check` vs `links-check-local`
-2. **Discoverable**: `we tasks` shows all available tasks
-3. **No extraction needed**: wrknv.toml is source-controlled, not generated
-4. **Cleaner syntax**: TOML vs Make
-5. **Better UX**: `we run test` vs `make test`
+1. **Discoverable**: `we tasks` shows all available tasks
+1. **No extraction needed**: wrknv.toml is source-controlled, not generated
+1. **Cleaner syntax**: TOML vs Make
+1. **Better UX**: `we run test` vs `make test`
 
 ## Migration from Makefiles
 
 For projects migrating from Makefiles to wrknv:
 
 ### 1. Extract wrknv tasks
+
 ```bash
 python -c "from provide.foundry.config import extract_python_wrknv_tasks; from pathlib import Path; extract_python_wrknv_tasks(Path('.'))"
 ```
 
 ### 2. Remove Makefile
+
 ```bash
 rm Makefile
 ```
 
 ### 3. Update CI/CD workflows
+
 Replace make commands with `we run`:
+
 ```yaml
 # Before
 - name: Run tests
@@ -242,7 +254,9 @@ Replace make commands with `we run`:
 ```
 
 ### 4. Update README
+
 Change documentation examples from `make` to `we`:
+
 ```markdown
 # Before
 make test
@@ -279,36 +293,37 @@ done
 If you need to roll back changes:
 
 1. **Revert template changes** in provide-foundry
-2. **Re-extract** to affected projects using the deployment methods above
-3. Or **restore from git**: `git checkout wrknv.toml`
+1. **Re-extract** to affected projects using the deployment methods above
+1. Or **restore from git**: `git checkout wrknv.toml`
 
 ## Best Practices
 
 1. **Test templates** in provide-foundry first before deploying
-2. **Document changes** in the template file header comments
-3. **Communicate updates** to the team before mass deployment
-4. **Version control** - commit wrknv.toml updates in each project
-5. **Gradual rollout** - deploy to 1-2 projects first to verify
-6. **Preserve custom tasks** - the merge function protects project-specific tasks
+1. **Document changes** in the template file header comments
+1. **Communicate updates** to the team before mass deployment
+1. **Version control** - commit wrknv.toml updates in each project
+1. **Gradual rollout** - deploy to 1-2 projects first to verify
+1. **Preserve custom tasks** - the merge function protects project-specific tasks
 
 ## Template Update Guidelines
 
 When modifying templates:
 
 1. **Maintain compatibility** - Don't break existing task names
-2. **Use consistent patterns**:
+1. **Use consistent patterns**:
    - Hierarchical tasks: `[tasks.category.subtask]`
    - Default tasks: `_default = "command"`
    - Composite tasks: `run = ["task1", "task2"]`
-3. **Add descriptions** for complex tasks
-4. **Test extraction** - Verify templates extract correctly
-5. **Update documentation** - Document new tasks in this file
+1. **Add descriptions** for complex tasks
+1. **Test extraction** - Verify templates extract correctly
+1. **Update documentation** - Document new tasks in this file
 
 ## Troubleshooting
 
 ### "Module not found: provide.foundry.config"
 
 **Solution:** Ensure provide-foundry is installed in the environment:
+
 ```bash
 uv sync  # or uv pip install -e /path/to/provide-foundry
 ```
@@ -316,6 +331,7 @@ uv sync  # or uv pip install -e /path/to/provide-foundry
 ### "Permission denied" when extracting
 
 **Solution:** Check file permissions:
+
 ```bash
 chmod 644 wrknv.toml
 ```
@@ -323,6 +339,7 @@ chmod 644 wrknv.toml
 ### Template changes not reflected
 
 **Solution:** Ensure you're running extraction from a project with access to the updated provide-foundry package:
+
 ```bash
 uv sync --force
 ```
@@ -330,6 +347,7 @@ uv sync --force
 ### Custom tasks disappeared
 
 **Solution:** The merge function should preserve custom tasks. If lost, restore from git:
+
 ```bash
 git diff wrknv.toml  # Check what changed
 git checkout HEAD -- wrknv.toml  # Restore if needed
@@ -345,8 +363,8 @@ git checkout HEAD -- wrknv.toml  # Restore if needed
 If you encounter issues deploying templates:
 
 1. Check provide-foundry installation
-2. Verify Python path and environment
-3. Check file permissions
-4. Review merge behavior (custom tasks should be preserved)
-5. Consult this documentation
-6. Ask in team channels
+1. Verify Python path and environment
+1. Check file permissions
+1. Review merge behavior (custom tasks should be preserved)
+1. Consult this documentation
+1. Ask in team channels
