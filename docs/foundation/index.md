@@ -47,20 +47,20 @@ Together, these packages ensure consistent patterns across the entire ecosystem 
 
 <div class="grid cards" markdown>
 
--   :material-layers: **Foundation**
+- :material-layers: **Foundation**
 
-    ---
+  ______________________________________________________________________
 
-    Core runtime utilities for telemetry, logging, and configuration that all ecosystem packages depend on.
+  Core runtime utilities for telemetry, logging, and configuration that all ecosystem packages depend on.
 
-    [:octicons-arrow-right-24: Explore Foundation](../packages/foundation.md)
+  [:octicons-arrow-right-24: Explore Foundation](../packages/foundation.md)
 
--   :material-test-tube: **TestKit**
+- :material-test-tube: **TestKit**
 
-    ---
+  ______________________________________________________________________
 
-    Comprehensive testing framework with fixtures and utilities for provider and tool development.
+  Comprehensive testing framework with fixtures and utilities for provider and tool development.
 
-    [:octicons-arrow-right-24: Explore TestKit](../packages/testkit.md)
+  [:octicons-arrow-right-24: Explore TestKit](../packages/testkit.md)
 
 </div>

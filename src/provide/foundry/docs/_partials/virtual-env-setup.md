@@ -30,15 +30,19 @@ uv sync --all-groups
 
 === "macOS/Linux"
 
-    ```bash
-    source .venv/bin/activate
-    ```
+````
+```bash
+source .venv/bin/activate
+```
+````
 
 === "Windows"
 
-    ```powershell
-    .venv\Scripts\activate
-    ```
+````
+```powershell
+.venv\Scripts\activate
+```
+````
 
 **Verify activation:**
 

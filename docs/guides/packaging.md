@@ -506,10 +506,10 @@ uv add terraform-provider-myservice
 ### Registry Preparation
 
 1. **Create GitHub repository** with proper structure
-2. **Tag releases** following semantic versioning
-3. **Sign releases** with GPG key
-4. **Add documentation** in correct format
-5. **Test installation** from GitHub releases
+1. **Tag releases** following semantic versioning
+1. **Sign releases** with GPG key
+1. **Add documentation** in correct format
+1. **Test installation** from GitHub releases
 
 ### Registry Submission
 

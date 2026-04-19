@@ -4,27 +4,33 @@ UV is the recommended package manager for the provide.io ecosystem. It's fast, r
 
 === "macOS"
 
-    ```bash
-    # Using Homebrew (recommended)
-    brew install uv
+````
+```bash
+# Using Homebrew (recommended)
+brew install uv
 
-    # Or using the install script
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    ```
+# Or using the install script
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+````
 
 === "Linux"
 
-    ```bash
-    # Using the install script
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    ```
+````
+```bash
+# Using the install script
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+````
 
 === "Windows"
 
-    ```powershell
-    # Using PowerShell
-    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-    ```
+````
+```powershell
+# Using PowerShell
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+````
 
 **Verify Installation:**
 

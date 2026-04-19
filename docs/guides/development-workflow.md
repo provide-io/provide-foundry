@@ -5,6 +5,7 @@ Common development patterns and workflows across the provide.io ecosystem.
 ## Overview
 
 All projects in the ecosystem follow similar development patterns:
+
 - UV for dependency management
 - pytest for testing
 - Ruff for code quality
@@ -116,6 +117,7 @@ uv build
 ```
 
 **Key considerations:**
+
 - Always use `reset_foundation_setup_for_testing()` in tests
 - Test across multiple Python versions if possible
 - Ensure backward compatibility within major version
@@ -136,6 +138,7 @@ python -c "from PACKAGE_NAME import MODULE; print('✅ Imports working')"
 ```
 
 **Key considerations:**
+
 - Cross-project compatibility (pyvider ecosystem)
 - Integration tests with other pyvider packages
 - Type safety is critical
@@ -260,10 +263,10 @@ git commit -m "refactor: improve code structure"
 ### Pull Request Workflow
 
 1. **Create PR with descriptive title and description**
-2. **Ensure CI passes** (tests, linting, type checking)
-3. **Request review** from maintainers
-4. **Address feedback** in additional commits
-5. **Squash and merge** once approved
+1. **Ensure CI passes** (tests, linting, type checking)
+1. **Request review** from maintainers
+1. **Address feedback** in additional commits
+1. **Squash and merge** once approved
 
 ## Dependency Management
 
@@ -311,10 +314,10 @@ uv pip install -e /path/to/dependency-project
 ### Writing Documentation
 
 1. **Follow existing structure** in `docs/` directory
-2. **Use partials** for common content (see `.provide/foundry/docs/_partials/`)
-3. **Include code examples** with syntax highlighting
-4. **Add cross-references** to related docs
-5. **Test all code examples** before committing
+1. **Use partials** for common content (see `.provide/foundry/docs/_partials/`)
+1. **Include code examples** with syntax highlighting
+1. **Add cross-references** to related docs
+1. **Test all code examples** before committing
 
 ### Building Documentation Locally
 
@@ -414,30 +417,31 @@ uv build
 ## Best Practices
 
 1. **Keep branches small and focused** - Easier to review and merge
-2. **Write tests first** - TDD leads to better design
-3. **Run tests frequently** - Catch issues early
-4. **Format on save** - Keep code consistent automatically
-5. **Use type hints** - Catch errors before runtime
-6. **Document as you code** - Don't leave it for later
-7. **Review your own code** - Catch issues before PR
-8. **Keep dependencies minimal** - Reduce complexity and conflicts
+1. **Write tests first** - TDD leads to better design
+1. **Run tests frequently** - Catch issues early
+1. **Format on save** - Keep code consistent automatically
+1. **Use type hints** - Catch errors before runtime
+1. **Document as you code** - Don't leave it for later
+1. **Review your own code** - Catch issues before PR
+1. **Keep dependencies minimal** - Reduce complexity and conflicts
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| Setup environment | `uv sync` |
-| Run tests | `uv run pytest` |
-| Format code | `uv run ruff format src/ tests/` |
-| Lint code | `uv run ruff check src/ tests/` |
-| Type check | `uv run mypy src/` |
-| Build docs | `mkdocs build` |
-| Serve docs | `mkdocs serve` |
-| Build package | `uv build` |
-| Run pre-commit | `pre-commit run --all-files` |
+| Task              | Command                          |
+| ----------------- | -------------------------------- |
+| Setup environment | `uv sync`                        |
+| Run tests         | `uv run pytest`                  |
+| Format code       | `uv run ruff format src/ tests/` |
+| Lint code         | `uv run ruff check src/ tests/`  |
+| Type check        | `uv run mypy src/`               |
+| Build docs        | `mkdocs build`                   |
+| Serve docs        | `mkdocs serve`                   |
+| Build package     | `uv build`                       |
+| Run pre-commit    | `pre-commit run --all-files`     |
 
----
+______________________________________________________________________
 
 **Related Guides:**
+
 - [IDE Setup Guide](ide-setup.md) - Configure your development environment
 - [Testing Patterns Guide](testing-patterns.md) - Testing strategies across projects

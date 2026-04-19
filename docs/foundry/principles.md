@@ -291,7 +291,7 @@ Different audiences need different documentation:
 - **Reference**: For looking up details
 - **Explanations**: For understanding concepts
 
-```markdown
+````markdown
 <!-- Good: Clear audience targeting -->
 # Tutorial: Your First Provider
 *For developers new to Pyvider*
@@ -305,12 +305,15 @@ This tutorial walks you through creating your first Terraform provider...
 ```python
 class Provider:
     """Base class for all providers."""
-```
+````
 
 <!-- Bad: Mixed audiences -->
+
 # Provider Documentation
+
 This explains providers and also shows how to create them...
-```
+
+````
 
 ## Performance Principles
 
@@ -334,7 +337,7 @@ async def fetch_resource_data(resource_id: str) -> ResourceData:
 def fetch_resource_data(resource_id: str) -> ResourceData:
     response = requests.get(f"/resources/{resource_id}")
     return ResourceData.from_json(response.json())
-```
+````
 
 ### Lazy Initialization
 
@@ -426,7 +429,7 @@ The foundry should evolve gracefully:
 - **Migration Guides**: Help users migrate between versions
 - **Experimental Features**: Mark experimental features clearly
 
----
+______________________________________________________________________
 
 These principles guide every decision in the provide.io foundry. They ensure that the tools remain consistent, maintainable, and enjoyable to use as the foundry grows and evolves.
 

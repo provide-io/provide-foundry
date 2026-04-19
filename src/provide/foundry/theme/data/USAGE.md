@@ -15,9 +15,11 @@ This means GitHub Actions examples like `${{ secrets.TOKEN }}` will render corre
 ## Available Data Files
 
 ### contributors.yml
+
 Information about contributors to the ecosystem.
 
 **Usage Example:**
+
 ```markdown
 ## Contributors
 
@@ -41,9 +43,11 @@ We're grateful to our contributors:
 **Note:** This documentation uses custom Jinja2 delimiters (`{$ $}` for variables) to avoid conflicts with GitHub Actions syntax (`${{ }}`). Block tags still use standard `{% %}` syntax.
 
 ### external_links.yml
+
 Organized external resources and links.
 
 **Usage Example:**
+
 ```markdown
 ## Useful Resources
 
@@ -64,9 +68,11 @@ Organized external resources and links.
 ```
 
 ### people.yml
+
 Team structure and project maintainers.
 
 **Usage Example:**
+
 ```markdown
 ## Core Team
 
@@ -108,9 +114,11 @@ Team structure and project maintainers.
 ```
 
 ### sponsors.yml
+
 Sponsor information and support tiers.
 
 **Usage Example:**
+
 ```markdown
 ## Sponsors
 
@@ -226,9 +234,11 @@ plugins:
 When using the data files, the following variables are available:
 
 **From contributors.yml:**
+
 - `contributors` - List of contributor objects
 
 **From external_links.yml:**
+
 - `official` - Official provide.io links
 - `packages` - PyPI package links
 - `related` - Related technology links
@@ -236,12 +246,14 @@ When using the data files, the following variables are available:
 - `standards` - Standards and specifications
 
 **From people.yml:**
+
 - `core_team` - Core team members
 - `maintainers` - Project maintainers by layer
 - `community_contributors` - Community contributors
 - `acknowledgments` - Acknowledgment sections
 
 **From sponsors.yml:**
+
 - `platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`
 - `individual_supporters`
 - `info` - Sponsorship information and benefits
@@ -249,6 +261,7 @@ When using the data files, the following variables are available:
 ## Examples in Use
 
 See these pages for live examples:
+
 - Foundation documentation: Contributors page
 - Provide Foundry hub: Resources section
 - Project READMEs: Acknowledgments sections

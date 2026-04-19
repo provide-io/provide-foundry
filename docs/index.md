@@ -38,33 +38,33 @@ Use the Provide Foundry when you:
 
 <div class="grid cards" markdown>
 
--   :material-layers:{ .lg .middle } **Understand the Ecosystem**
+- :material-layers:{ .lg .middle } **Understand the Ecosystem**
 
-    Learn the architecture and design principles behind the Foundry.
+  Learn the architecture and design principles behind the Foundry.
 
-    [:octicons-arrow-right-24: Explore Details Below](#design-philosophy)
+  [:octicons-arrow-right-24: Explore Details Below](#design-philosophy)
 
--   :material-package-variant:{ .lg .middle } **Browse Packages**
+- :material-package-variant:{ .lg .middle } **Browse Packages**
 
-    See all available packages and their capabilities.
+  See all available packages and their capabilities.
 
-    [:octicons-arrow-right-24: View Packages](packages/)
+  [:octicons-arrow-right-24: View Packages](packages/)
 
--   :material-rocket-launch:{ .lg .middle } **Start Building**
+- :material-rocket-launch:{ .lg .middle } **Start Building**
 
-    Get up and running with your first provider.
+  Get up and running with your first provider.
 
-    [:octicons-arrow-right-24: Getting Started](getting-started.md)
+  [:octicons-arrow-right-24: Getting Started](getting-started.md)
 
--   :material-school:{ .lg .middle } **Learn Best Practices**
+- :material-school:{ .lg .middle } **Learn Best Practices**
 
-    Deep dive into patterns and workflows.
+  Deep dive into patterns and workflows.
 
-    [:octicons-arrow-right-24: Read Guides](guides/)
+  [:octicons-arrow-right-24: Read Guides](guides/)
 
 </div>
 
----
+______________________________________________________________________
 
 ## Design Philosophy
 
@@ -72,21 +72,21 @@ The foundry is built around core principles that ensure consistency, maintainabi
 
 <div class="grid cards" markdown>
 
--   :material-layers:{ .lg } **Layered Architecture**
+- :material-layers:{ .lg } **Layered Architecture**
 
-    Clear separation between foundation, framework, and tools with well-defined interfaces.
+  Clear separation between foundation, framework, and tools with well-defined interfaces.
 
--   :material-typewriter:{ .lg } **Type Safety First**
+- :material-typewriter:{ .lg } **Type Safety First**
 
-    Comprehensive type annotations using modern Python 3.11+ features throughout.
+  Comprehensive type annotations using modern Python 3.11+ features throughout.
 
--   :material-rocket-launch:{ .lg } **Developer Experience**
+- :material-rocket-launch:{ .lg } **Developer Experience**
 
-    Excellent error messages, comprehensive documentation, and intuitive APIs.
+  Excellent error messages, comprehensive documentation, and intuitive APIs.
 
--   :material-test-tube:{ .lg } **Testing Excellence**
+- :material-test-tube:{ .lg } **Testing Excellence**
 
-    High test coverage with unit, integration, and property-based testing.
+  High test coverage with unit, integration, and property-based testing.
 
 </div>
 
@@ -311,9 +311,9 @@ dependencies = [
 Major releases are coordinated across packages to ensure compatibility:
 
 1. **Planning**: Major changes discussed across affected packages
-2. **Alpha/Beta**: Pre-release versions for testing
-3. **Release Candidates**: Final validation before release
-4. **Coordinated Release**: All packages released together
+1. **Alpha/Beta**: Pre-release versions for testing
+1. **Release Candidates**: Final validation before release
+1. **Coordinated Release**: All packages released together
 
 ## Performance Characteristics
 
@@ -359,6 +359,6 @@ Security is built into the foundry at multiple levels:
 - **Access control**: Principle of least privilege
 - **Audit logging**: Comprehensive activity logging
 
----
+______________________________________________________________________
 
 Ready to dive deeper? Explore our [architecture guide](foundry/architecture.md) or learn about our [design principles](foundry/principles.md).

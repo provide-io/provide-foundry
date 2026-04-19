@@ -3,6 +3,7 @@
 After installation, verify the command-line tool is working:
 
 **1. Check Command Availability:**
+
 ```bash
 # Verify command is in PATH
 which {{COMMAND_NAME}}
@@ -12,12 +13,14 @@ which {{COMMAND_NAME}}
 ```
 
 **2. View Available Commands:**
+
 ```bash
 # Display help and command list
 {{COMMAND_NAME}} --help
 ```
 
 **3. Test Basic Functionality:**
+
 ```bash
 # Run a simple command to verify functionality
 {{COMMAND_NAME}} {{TEST_COMMAND}}

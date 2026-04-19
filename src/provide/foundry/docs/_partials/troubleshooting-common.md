@@ -5,6 +5,7 @@
 **Symptom**: "Python 3.11 or higher required"
 
 **Solution**:
+
 ```bash
 # Check your Python version
 python --version
@@ -19,6 +20,7 @@ uv python pin 3.11
 **Symptom**: `ModuleNotFoundError: No module named 'provide'`
 
 **Solution**:
+
 ```bash
 # Ensure virtual environment is activated
 source .venv/bin/activate  # macOS/Linux
@@ -34,6 +36,7 @@ uv sync
 **Symptom**: Permission errors when installing or running
 
 **Solution**:
+
 ```bash
 # Never use sudo with UV in virtual environments
 # Instead, ensure you own the directory
@@ -48,6 +51,7 @@ uv sync
 **Symptom**: `uv: command not found` or similar
 
 **Solution**:
+
 ```bash
 # Add UV to PATH (add to your shell rc file)
 export PATH="$HOME/.local/bin:$PATH"
@@ -61,6 +65,7 @@ source ~/.zshrc  # or ~/.bashrc
 **Symptom**: Corrupted cache or unexpected behavior
 
 **Solution**:
+
 ```bash
 # Clear UV cache
 uv cache clean
@@ -75,6 +80,7 @@ uv sync
 **Symptom**: Certificate verification errors
 
 **Solution**:
+
 ```bash
 # macOS: Install certificates
 /Applications/Python\ 3.11/Install\ Certificates.command
@@ -88,6 +94,7 @@ uv add --upgrade certifi
 **Symptom**: Package installation is very slow
 
 **Solution**:
+
 ```bash
 # Use UV's parallel installation (default)
 uv sync
