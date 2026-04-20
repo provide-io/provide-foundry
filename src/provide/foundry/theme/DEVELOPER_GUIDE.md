@@ -47,10 +47,10 @@ projects/
 ### How It Works
 
 1. **Installation**: `uv pip install -e /path/to/provide-foundry` installs theme as editable package
-2. **Access**: Python code imports `from provide.foundry.theme import THEME_DIR`
-3. **Resolution**: `THEME_DIR` points to the actual theme directory in the installed package
-4. **Configuration**: Projects inherit from `base-mkdocs.yml` which already configures theme paths
-5. **Updates**: Changes to theme files are immediately available to all projects (editable install)
+1. **Access**: Python code imports `from provide.foundry.theme import THEME_DIR`
+1. **Resolution**: `THEME_DIR` points to the actual theme directory in the installed package
+1. **Configuration**: Projects inherit from `base-mkdocs.yml` which already configures theme paths
+1. **Updates**: Changes to theme files are immediately available to all projects (editable install)
 
 ### Namespace Package Implementation
 

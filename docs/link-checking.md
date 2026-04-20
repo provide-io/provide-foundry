@@ -55,11 +55,13 @@ we tasks
 ### Performance
 
 **Local offline checking** (`we run docs.links.check`):
-- Execution time: <1 second
+
+- Execution time: \<1 second
 - Checks only internal documentation links
 - No network requests made
 
 **External link checking** (`we run docs.links.external`):
+
 - Execution time: ~1-5 seconds (depending on network and link count)
 - Validates all external URLs with HTTP requests
 - Respects rate limiting (429 responses accepted)
@@ -216,6 +218,7 @@ External sites may rate-limit requests:
 External link validation can be slow:
 
 **Solution**:
+
 - Use `we run docs.links.check` (internal only) for local development
 - External checks run in CI automatically
 - Disable with `HTMLPROOFER_VALIDATE_EXTERNAL=false`
@@ -229,9 +232,9 @@ Anchor validation may fail for dynamically generated content:
 ## Best Practices
 
 1. **Local Development**: Use `we run docs.links.check` (fast, internal only)
-2. **Before Committing**: Run `we run docs.links.check` to catch broken internal links
-3. **CI Validation**: Let GitHub Actions handle comprehensive external link checking
-4. **Document Changes**: Update `.lychee.toml` exclusions with comments explaining why
+1. **Before Committing**: Run `we run docs.links.check` to catch broken internal links
+1. **CI Validation**: Let GitHub Actions handle comprehensive external link checking
+1. **Document Changes**: Update `.lychee.toml` exclusions with comments explaining why
 
 ## Performance
 

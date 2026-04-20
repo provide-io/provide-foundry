@@ -125,7 +125,7 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
         for script in Path(scripts_src.__fspath__()).glob("*.py"):
             shutil.copy2(script, scripts_dst / script.name)
     else:
-        for script in scripts_src.iterdir():
+        for script in scripts_src.iterdir():  # type: ignore[assignment]
             if script.name.endswith(".py"):
                 shutil.copy2(
                     Path(str(script)) if hasattr(script, "__fspath__") else str(script),
