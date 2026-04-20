@@ -228,6 +228,7 @@ All Python library projects have these standard targets:
 - `make version` - Show package version
 
 **Documentation** (4 targets):
+
 - `we run docs.setup` - Extract base-mkdocs.yml from foundry
 - `we run docs.build` - Build documentation
 - `we run docs.serve` - Serve documentation locally

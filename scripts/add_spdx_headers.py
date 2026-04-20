@@ -31,7 +31,7 @@ EXCLUDED_PATTERNS = [
 ]
 
 
-def check_header_correctness(content: str) -> Tuple[bool, str]:
+def check_header_correctness(content: str) -> tuple[bool, str]:
     """Check if existing header is correct. Returns (is_correct, issue)."""
     lines = content.split("\n")[:15]
 
@@ -52,7 +52,7 @@ def check_header_correctness(content: str) -> Tuple[bool, str]:
     return True, ""
 
 
-def should_skip_file(file_path: Path) -> Tuple[bool, str]:
+def should_skip_file(file_path: Path) -> tuple[bool, str]:
     """Determine if file should be skipped. Returns (should_skip, reason)."""
     # Check exclusion patterns
     for pattern in EXCLUDED_PATTERNS:
@@ -74,7 +74,7 @@ def has_shebang(content: str) -> bool:
     return content.startswith("#!")
 
 
-def add_header(file_path: Path, dry_run: bool = False, verbose: bool = False) -> Tuple[bool, str]:
+def add_header(file_path: Path, dry_run: bool = False, verbose: bool = False) -> tuple[bool, str]:
     """Add SPDX header to file. Returns (modified, message)."""
     try:
         content = file_path.read_text()

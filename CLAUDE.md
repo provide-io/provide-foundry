@@ -23,6 +23,7 @@ we run docs.clean
 ## Environment Management
 
 The ecosystem uses `uv` for package management and `env.sh` scripts for environment setup. Always use:
+
 - `uv sync` in parent directory for full ecosystem setup
 - Individual project `env.sh` scripts for isolated development
 - Workenv directories (not `.venv`) for virtual environments
@@ -104,4 +105,5 @@ Projects are interconnected:
 - All packages use unified workspace configuration in parent `pyproject.toml`
 
 When making changes that affect multiple packages, test the entire ecosystem build with `uv sync` in the parent directory.
+
 - do not use pkill when kill mkdocs

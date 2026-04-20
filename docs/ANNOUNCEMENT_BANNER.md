@@ -183,8 +183,8 @@ If your project already uses `base-mkdocs.yml` from provide-foundry, the banner 
 For existing documentation:
 
 1. **Leave as-is** - All existing pages will show the banner by default
-2. **Audit gradually** - Add `audited: true` frontmatter as you review pages
-3. **Track progress** - Use `grep -r "audited: true" docs/` to see how many pages are audited
+1. **Audit gradually** - Add `audited: true` frontmatter as you review pages
+1. **Track progress** - Use `grep -r "audited: true" docs/` to see how many pages are audited
 
 ## Workflow Recommendations
 
@@ -227,20 +227,20 @@ reviewer_requested: "Alice"
 ### Banner Not Showing
 
 1. Verify `custom_dir` points to theme overrides
-2. Check that VERSION file exists in project root
-3. Ensure hooks are registered in mkdocs.yml
+1. Check that VERSION file exists in project root
+1. Ensure hooks are registered in mkdocs.yml
 
 ### Banner Shows on Audited Pages
 
 1. Check frontmatter syntax (must be valid YAML)
-2. Ensure `audited: true` (not `audited: "true"` as string)
-3. Clear MkDocs cache: `rm -rf site/`
+1. Ensure `audited: true` (not `audited: "true"` as string)
+1. Clear MkDocs cache: `rm -rf site/`
 
 ### VERSION Not Detected
 
 1. Confirm VERSION file is in same directory as mkdocs.yml parent
-2. Check hook is registered in mkdocs.yml under `hooks:`
-3. Look for errors in build output
+1. Check hook is registered in mkdocs.yml under `hooks:`
+1. Look for errors in build output
 
 ## Related Files
 

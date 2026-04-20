@@ -3,6 +3,7 @@
 Welcome to the comprehensive documentation hub for the provide.io ecosystem - a collection of Python tools and frameworks for building Terraform providers, packaging applications, and managing development workflows.
 
 ## Key Features
+
 Key features are highlighted in the sections below and in the documentation.
 
 ## 🚀 Quick Start
@@ -25,6 +26,7 @@ The documentation is built with MkDocs Material and covers:
 - **API Reference**: Complete API documentation
 
 ## Development
+
 - See [CLAUDE.md](https://github.com/provide-io/provide-foundry/blob/main/CLAUDE.md) for local development notes.
 - Run `mkdocs serve` in this repo for a live docs preview.
 
@@ -131,10 +133,12 @@ provide-foundation/
 ## 📦 Ecosystem Packages
 
 ### Foundation Layer
+
 - **[provide-foundation](https://github.com/provide-io/provide-foundation)** - Core telemetry and logging infrastructure
 - **[provide-testkit](https://github.com/provide-io/provide-testkit)** - Testing utilities and fixtures
 
 ### Pyvider Framework
+
 - **[pyvider](https://github.com/provide-io/pyvider)** - Core Terraform provider framework
 - **[pyvider-cty](https://github.com/provide-io/pyvider-cty)** - CTY type system implementation
 - **[pyvider-hcl](https://github.com/provide-io/pyvider-hcl)** - HCL parsing with CTY integration
@@ -143,6 +147,7 @@ provide-foundation/
 - **[terraform-provider-pyvider](https://github.com/provide-io/terraform-provider-pyvider)** - Official Pyvider provider
 
 ### Tools & Utilities
+
 - **[flavorpack](https://github.com/provide-io/flavorpack)** - PSPF packaging system for executable bundles
 - **[wrknv](https://github.com/provide-io/wrknv)** - Work environment management
 - **[plating](https://github.com/provide-io/plating)** - Documentation generation for providers

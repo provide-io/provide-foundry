@@ -218,10 +218,10 @@ local = "lychee --offline ..."
 ### Benefits:
 
 1. **Hierarchical organization**: `docs.links.check` vs `links-check-local`
-2. **Discoverable**: `we tasks` shows all available tasks
-3. **No extraction needed**: wrknv.toml is source-controlled, not generated
-4. **Cleaner syntax**: TOML vs Make
-5. **Better UX**: `we run test` vs `make test`
+1. **Discoverable**: `we tasks` shows all available tasks
+1. **No extraction needed**: wrknv.toml is source-controlled, not generated
+1. **Cleaner syntax**: TOML vs Make
+1. **Better UX**: `we run test` vs `make test`
 
 ## Migration from Makefiles
 

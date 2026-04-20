@@ -25,11 +25,7 @@ uv tool install flavorpack
 uv tool install wrknv
 ```
 
-!!! success "Verification"
-    Verify your setup by running:
-    ```bash
-    python -c "import provide, pyvider; print('✅ Foundry ready!')"
-    ```
+!!! success "Verification" Verify your setup by running: `bash     python -c "import provide, pyvider; print('✅ Foundry ready!')"     `
 
 ## Your First Terraform Provider
 
