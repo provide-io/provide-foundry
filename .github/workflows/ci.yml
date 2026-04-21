@@ -1,20 +1,21 @@
 # CI workflow for Python projects
 # Uses wrknv tasks for consistency between local and CI environments.
-name: CI
+name: ⚙️ Continuous Integration
 
 on:
   push:
     branches: [main, develop]
   pull_request:
     branches: [main, develop]
+  workflow_dispatch:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: astral-sh/setup-uv@v4
+      - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
@@ -23,6 +24,9 @@ jobs:
 
       - name: Install dependencies
         run: uv sync --all-groups
+
+      - name: Install wrknv
+        run: uv pip install "wrknv @ git+https://github.com/provide-io/wrknv.git@main"
 
       - name: Run CI pipeline
         run: |

@@ -3,8 +3,9 @@
 Welcome to the comprehensive documentation hub for the provide.io ecosystem - a collection of Python tools and frameworks for building Terraform providers, packaging applications, and managing development workflows.
 
 ## Key Features
-
-Key features are highlighted in the sections below and in the documentation.
+- Centralized documentation for the provide.io ecosystem.
+- Shared MkDocs theme and doc tooling for consistent docs across packages.
+- Guides for building, publishing, and extending ecosystem docs.
 
 ## 🚀 Quick Start
 
@@ -26,7 +27,6 @@ The documentation is built with MkDocs Material and covers:
 - **API Reference**: Complete API documentation
 
 ## Development
-
 - See [CLAUDE.md](https://github.com/provide-io/provide-foundry/blob/main/CLAUDE.md) for local development notes.
 - Run `mkdocs serve` in this repo for a live docs preview.
 
@@ -133,12 +133,10 @@ provide-foundation/
 ## 📦 Ecosystem Packages
 
 ### Foundation Layer
-
 - **[provide-foundation](https://github.com/provide-io/provide-foundation)** - Core telemetry and logging infrastructure
 - **[provide-testkit](https://github.com/provide-io/provide-testkit)** - Testing utilities and fixtures
 
 ### Pyvider Framework
-
 - **[pyvider](https://github.com/provide-io/pyvider)** - Core Terraform provider framework
 - **[pyvider-cty](https://github.com/provide-io/pyvider-cty)** - CTY type system implementation
 - **[pyvider-hcl](https://github.com/provide-io/pyvider-hcl)** - HCL parsing with CTY integration
@@ -147,7 +145,6 @@ provide-foundation/
 - **[terraform-provider-pyvider](https://github.com/provide-io/terraform-provider-pyvider)** - Official Pyvider provider
 
 ### Tools & Utilities
-
 - **[flavorpack](https://github.com/provide-io/flavorpack)** - PSPF packaging system for executable bundles
 - **[wrknv](https://github.com/provide-io/wrknv)** - Work environment management
 - **[plating](https://github.com/provide-io/plating)** - Documentation generation for providers
@@ -176,7 +173,6 @@ The provide.io ecosystem follows a layered architecture:
 ### For New Projects
 
 1. **Create mkdocs.yml** inheriting from base configuration:
-
    ```yaml
    # Inherit shared configuration from provide-foundry
    INHERIT: ../provide-foundry/base-mkdocs.yml
@@ -187,8 +183,7 @@ The provide.io ecosystem follows a layered architecture:
    dev_addr: '127.0.0.1:8XXX'  # Use unique port
    ```
 
-1. **Extract standardized task definitions** to wrknv.toml:
-
+2. **Extract standardized task definitions** to wrknv.toml:
    ```python
    # Extract canonical wrknv.toml for Python library projects
    from provide.foundry.config import extract_python_wrknv_tasks
@@ -202,7 +197,6 @@ The provide.io ecosystem follows a layered architecture:
    ```
 
    The template provides standardized tasks for all Python projects:
-
    - Testing: `test`, `test.unit`, `test.integration`, `test.coverage`, `test.parallel`
    - Quality: `lint`, `format`, `typecheck`, `quality`
    - Build: `build`, `clean`
@@ -210,8 +204,7 @@ The provide.io ecosystem follows a layered architecture:
    - Development: `dev.setup`, `dev.test`, `dev.check`
    - CI/CD: `ci`, `ci.test`, `ci.quality`
 
-1. **Include shared Makefile targets** (DEPRECATED - use wrknv.toml instead):
-
+3. **Include shared Makefile targets** (DEPRECATED - use wrknv.toml instead):
    ```python
    # Extract canonical Makefile for terraform-provider-* projects
    from provide.foundry.config import extract_makefile_provider
@@ -219,8 +212,7 @@ The provide.io ecosystem follows a layered architecture:
    extract_makefile_provider(Path('.'))
    ```
 
-1. **Configure API documentation** by adding gen-files plugin:
-
+4. **Configure API documentation** by adding gen-files plugin:
    ```yaml
    plugins:
      - gen-files:
@@ -238,4 +230,4 @@ The provide.io ecosystem follows a layered architecture:
 - Project documentation lives in `<project>/docs/` directory
 - API reference is auto-generated in `<project>/docs/reference/` at build time
 
-Copyright (c) Provide.io LLC.
+Copyright (c) provide.io LLC.

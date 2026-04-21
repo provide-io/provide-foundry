@@ -16,7 +16,6 @@ uv add {{PACKAGE_NAME}}[all]
 ```
 
 **In pyproject.toml:**
-
 ```toml
 [project]
 dependencies = [
@@ -29,7 +28,6 @@ dependencies = [
 The specific extras available depend on the project. Use `{{COMMAND_NAME}} --help` or check the project documentation for available feature groups.
 
 **Checking Installed Extras:**
-
 ```bash
 # Show package with dependencies
 uv run python -c "import importlib.metadata as m; print(m.version('{{PACKAGE_NAME}}'))"

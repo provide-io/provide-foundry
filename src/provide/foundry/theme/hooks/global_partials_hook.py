@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2025 provide.io llc. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) provide.io llc. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -23,9 +23,19 @@ _footer_content: str | None = None
 
 
 def _find_partials_dir(config: dict[str, Any]) -> Path | None:
-    """Find the partials directory, checking project overrides first, then foundry defaults."""
-    docs_dir = Path(config.get("docs_dir", "docs"))
-    project_root = docs_dir.parent
+    """Find the partials directory, checking project overrides first, then foundry defaults.
+
+    NOTE: When mkdocs-monorepo is used, docs_dir points to a temp directory.
+    We must use config_file_path to find the actual project root.
+    """
+    # Get actual project root from config file path (not docs_dir which may be temp)
+    config_file = config.get("config_file_path")
+    if config_file:
+        project_root = Path(config_file).parent
+    else:
+        # Fallback for non-monorepo builds
+        docs_dir = Path(config.get("docs_dir", "docs"))
+        project_root = docs_dir.parent
 
     # Check project-specific overrides first
     project_partials = project_root / "docs" / "_partials"
@@ -162,7 +172,7 @@ def on_page_markdown(
     skip_footer = meta.get("skip_global_footer", False)
 
     # Skip if already has header/footer injected (idempotency)
-    has_header = "POC (proof-of-concept)" in markdown or "<!-- global-header -->" in markdown
+    has_header = "AI-Generated Content" in markdown or "<!-- global-header -->" in markdown
     has_footer = "<!-- global-footer -->" in markdown
 
     # Inject header after first heading if not skipped and not already present

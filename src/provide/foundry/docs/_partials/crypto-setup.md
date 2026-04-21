@@ -55,7 +55,6 @@ ls -l *.pem
 ```
 
 **Expected output:**
-
 ```
 -rw------- 1 user user  119 Jan 15 10:30 private_key.pem
 -rw-r--r-- 1 user user   88 Jan 15 10:30 public_key.pem
@@ -183,13 +182,13 @@ git verify-commit HEAD
 
 **Recommended Permissions:**
 
-| File Type                        | Permissions        | Owner          | Purpose              |
-| -------------------------------- | ------------------ | -------------- | -------------------- |
-| Private keys (\*.pem, \*.key)    | 600 (`-rw-------`) | User only      | Encryption, signing  |
-| Public keys (\*.pub, \*.cert)    | 644 (`-rw-r--r--`) | World readable | Verification         |
-| CA certificates                  | 644 (`-rw-r--r--`) | World readable | Trust chain          |
-| Configuration files with secrets | 600 (`-rw-------`) | User only      | API keys, tokens     |
-| Scripts with credentials         | 700 (`-rwx------`) | User only      | Automated operations |
+| File Type | Permissions | Owner | Purpose |
+|-----------|-------------|-------|---------|
+| Private keys (*.pem, *.key) | 600 (`-rw-------`) | User only | Encryption, signing |
+| Public keys (*.pub, *.cert) | 644 (`-rw-r--r--`) | World readable | Verification |
+| CA certificates | 644 (`-rw-r--r--`) | World readable | Trust chain |
+| Configuration files with secrets | 600 (`-rw-------`) | User only | API keys, tokens |
+| Scripts with credentials | 700 (`-rwx------`) | User only | Automated operations |
 
 **Setting Permissions:**
 
@@ -317,18 +316,15 @@ except Exception as e:
 **Key Storage:**
 
 1. **Never commit private keys to version control**
-
    - Add `*.key`, `*.pem` (private), `*.p12` to `.gitignore`
    - Use environment variables or secret management systems
 
-1. **Use key rotation**
-
+2. **Use key rotation**
    - Regenerate keys periodically (e.g., annually)
    - Keep old public keys for verification of old signatures
    - Update systems to use new keys before expiration
 
-1. **Backup keys securely**
-
+3. **Backup keys securely**
    - Encrypt backups with strong passphrase
    - Store in secure location (password manager, HSM, vault)
    - Test restore procedures
@@ -336,19 +332,16 @@ except Exception as e:
 **Certificate Management:**
 
 1. **Monitor expiration**
-
    - Set alerts for certificates expiring soon
    - Automate renewal where possible
    - Keep certificate inventory
 
-1. **Use proper certificate hierarchy**
-
+2. **Use proper certificate hierarchy**
    - Root CA → Intermediate CA → Leaf certificates
    - Keep root CA offline when possible
    - Use intermediate CA for day-to-day signing
 
-1. **Validate certificate chains**
-
+3. **Validate certificate chains**
    - Always verify full chain to trusted root
    - Check for revocation (CRL, OCSP)
    - Reject self-signed certs in production

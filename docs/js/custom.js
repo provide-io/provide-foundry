@@ -111,7 +111,29 @@ function setupTermynal() {
     loadVisibleTermynals();
 }
 
+// Redirect /{project}/repo and /{project}/issues to GitHub
+function setupGitHubRedirects() {
+    var path = window.location.pathname.replace(/\/+$/, "");
+    var match = path.match(/^\/([^/]+)\/(repo|issues)$/);
+    if (!match) return;
+
+    var slug = match[1];
+    var route = match[2];
+
+    // Map foundry site slugs to GitHub repo names
+    var repoMap = {
+        "foundation": "provide-foundation",
+        "testkit": "provide-testkit"
+    };
+    var repo = repoMap[slug] || slug;
+    var url = "https://github.com/provide-io/" + repo;
+    if (route === "issues") url += "/issues";
+
+    window.location.replace(url);
+}
+
 async function main() {
+    setupGitHubRedirects();
     setupTermynal();
 }
 

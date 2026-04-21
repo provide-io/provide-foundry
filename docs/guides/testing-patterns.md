@@ -62,7 +62,6 @@ def reset_foundation():
 ```
 
 **Why this matters:**
-
 - Foundation maintains global state (logger, hub, config)
 - Tests can interfere with each other without reset
 - Ensures clean state for each test
@@ -323,7 +322,6 @@ make validate-pspf-combo
 ```
 
 **Never create standalone test packages:**
-
 ```python
 # ❌ DON'T: Create test packages in /tmp
 test_package = create_package("/tmp/test.psp")
@@ -487,7 +485,6 @@ Before pushing code, ensure:
 **Cause:** Shared state not being reset
 
 **Solution:**
-
 ```python
 @pytest.fixture(autouse=True)
 def reset_state():
@@ -502,7 +499,6 @@ def reset_state():
 **Cause:** Unclosed resources or infinite loops
 
 **Solution:**
-
 ```python
 @pytest.mark.timeout(10)
 @pytest.mark.asyncio
@@ -516,7 +512,6 @@ async def test_with_timeout():
 **Cause:** Race conditions or timing issues
 
 **Solution:**
-
 ```python
 import asyncio
 
@@ -540,9 +535,8 @@ async def test_with_retry():
 - [Coverage.py Documentation](https://coverage.readthedocs.io/)
 - [provide-testkit API Reference](../packages/testkit.md)
 
-______________________________________________________________________
+---
 
 **Related Guides:**
-
 - [Development Workflow Guide](development-workflow.md) - Daily development patterns
 - [IDE Setup Guide](ide-setup.md) - Configure testing in your IDE

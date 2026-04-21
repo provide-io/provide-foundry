@@ -5,13 +5,11 @@ Thank you for your interest in contributing to the provide.io ecosystem! This gu
 ## 🛠 Development Environment Setup
 
 ### Prerequisites
-
 - Python 3.11 or higher
 - UV package manager (installed automatically by `env.sh`)
 - Git
 
 ### Quick Setup
-
 ```bash
 # Clone and set up the entire ecosystem
 cd /Users/tim/code/gh/provide-io
@@ -46,14 +44,12 @@ provide-io/
 ### Code Standards
 
 #### Python Requirements
-
 - **Python 3.11+**: All code must use modern Python features
 - **Type Hints**: Full type annotations required (`str | None`, not `Optional[str]`)
 - **Modern Only**: No backward compatibility code or migration logic
 - **Modern Patterns**: Use `attrs` for data classes, async where appropriate
 
 #### Code Quality
-
 ```bash
 # Format and lint
 ruff format .
@@ -67,7 +63,6 @@ pytest
 ```
 
 #### Configuration Standards
-
 - **No inline defaults**: Use constants.py or defaults.py files
 - **No hardcoded values**: All configuration via environment or config files
 - **Modern pyproject.toml**: Use dependency-groups, not extras where possible
@@ -75,13 +70,11 @@ pytest
 ### Testing Requirements
 
 #### Test Structure
-
 - Use **provide-testkit** for all testing utilities
 - Follow the testing patterns established in provide-foundation
 - Include unit, integration, and property-based tests where appropriate
 
 #### Test Commands
-
 ```bash
 # Run all tests
 pytest
@@ -97,9 +90,7 @@ pytest -m integration
 ### Documentation Standards
 
 #### Required Documentation
-
 Every package must include:
-
 - **README.md**: Overview, installation, basic usage
 - **CHANGELOG.md**: Keep a Changelog format
 - **CONTRIBUTING.md**: Package-specific guidelines
@@ -108,7 +99,6 @@ Every package must include:
 - **examples/**: Runnable code examples
 
 #### Documentation Style
-
 - Use **Markdown** for all documentation
 - Include **code examples** that can be copy-pasted
 - **Cross-reference** related packages and concepts
@@ -119,19 +109,16 @@ Every package must include:
 ### Making Changes
 
 1. **Create a feature branch**:
-
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-1. **Make your changes**:
-
+2. **Make your changes**:
    - Follow code standards above
    - Add tests for new functionality
    - Update documentation as needed
 
-1. **Test your changes**:
-
+3. **Test your changes**:
    ```bash
    # Run quality checks
    ruff format . && ruff check .
@@ -141,8 +128,7 @@ Every package must include:
    pytest
    ```
 
-1. **Update documentation**:
-
+4. **Update documentation**:
    - Update README.md if needed
    - Add entries to CHANGELOG.md
    - Update API documentation if applicable
@@ -150,12 +136,11 @@ Every package must include:
 ### Submitting Pull Requests
 
 1. **Ensure tests pass**: All CI checks must be green
-1. **Write clear commit messages**: Use conventional commit format
-1. **Update documentation**: Include relevant documentation updates
-1. **Add changelog entry**: Follow Keep a Changelog format
+2. **Write clear commit messages**: Use conventional commit format
+3. **Update documentation**: Include relevant documentation updates
+4. **Add changelog entry**: Follow Keep a Changelog format
 
 ### Commit Message Format
-
 ```
 type(scope): description
 
@@ -165,7 +150,6 @@ type(scope): description
 ```
 
 Examples:
-
 - `feat(pyvider): add support for ephemeral resources`
 - `fix(testkit): resolve fixture cleanup issue`
 - `docs(foundation): add logging configuration guide`
@@ -182,18 +166,20 @@ All Python library projects in the ecosystem use **standardized Makefiles** for 
 
 #### Why Makefiles?
 
-✅ **Consistency**: Same commands work across all projects (`make test`, `make lint`, etc.) ✅ **Discoverability**: `make help` shows all available targets ✅ **Dependencies**: Make handles target dependencies elegantly ✅ **Standards**: Industry-standard build tool ✅ **Maintenance**: Single source of truth (template + custom targets)
+✅ **Consistency**: Same commands work across all projects (`make test`, `make lint`, etc.)
+✅ **Discoverability**: `make help` shows all available targets
+✅ **Dependencies**: Make handles target dependencies elegantly
+✅ **Standards**: Industry-standard build tool
+✅ **Maintenance**: Single source of truth (template + custom targets)
 
 #### Standard Makefile Targets
 
 All Python library projects have these standard targets:
 
 **Setup & Environment**:
-
 - `make setup` - Initialize development environment (uv sync)
 
 **Testing** (8 targets):
-
 - `make test` - Run all tests
 - `make test-parallel` - Run tests in parallel
 - `make test-verbose` - Run tests with verbose output
@@ -203,14 +189,12 @@ All Python library projects have these standard targets:
 - `make coverage-xml` - Generate XML coverage report for CI systems
 
 **Mutation Testing** (4 targets):
-
 - `make mutation-run` - Run mutation testing with mutmut
 - `make mutation-results` - Show mutation testing results
 - `make mutation-browse` - Open interactive mutation browser
 - `make mutation-clean` - Clean mutation testing artifacts
 
 **Code Quality** (7 targets):
-
 - `make lint` - Run linter (ruff check)
 - `make lint-fix` - Run linter with auto-fix
 - `make format` - Format code with ruff
@@ -220,7 +204,6 @@ All Python library projects have these standard targets:
 - `make quality-all` - Run all quality checks including tests
 
 **Build & Package** (5 targets):
-
 - `make build` - Build package
 - `make install` - Install in development mode
 - `make uninstall` - Uninstall package
@@ -228,26 +211,22 @@ All Python library projects have these standard targets:
 - `make version` - Show package version
 
 **Documentation** (4 targets):
-
 - `we run docs.setup` - Extract base-mkdocs.yml from foundry
 - `we run docs.build` - Build documentation
 - `we run docs.serve` - Serve documentation locally
 - `we run docs.clean` - Clean documentation artifacts
 
 **CI/CD** (3 targets):
-
 - `make ci-test` - Run tests with coverage for CI
 - `make ci-quality` - Run all quality checks for CI
 - `make ci-all` - Run full CI pipeline
 
 **Development Shortcuts** (3 targets):
-
 - `make dev-setup` - Alias for setup
 - `make dev-test` - Quick test run (parallel)
 - `make dev-check` - Quick quality check
 
 **Clean**:
-
 - `make clean` - Clean all build artifacts and caches
 
 ### When Shell Scripts Are Allowed
@@ -255,17 +234,14 @@ All Python library projects have these standard targets:
 Scripts are **only** allowed if they meet one of these criteria:
 
 1. **Templated from foundry**: Extracted via `extract_*_script()` functions
-
    - Examples: `validate_examples.sh`, `clean_artifacts.sh` (for Terraform providers)
 
-1. **Truly unique functionality**: Not duplicating Make targets
-
+2. **Truly unique functionality**: Not duplicating Make targets
    - Examples: `test-registry-url-alignment.sh` (plating), `build.sh` (flavorpack helpers)
 
 ### When Scripts Are NOT Allowed
 
 ❌ **Never create scripts that duplicate Makefile targets**:
-
 - NO: `scripts/test.sh` (use `make test`)
 - NO: `scripts/setup.sh` (use `make setup`)
 - NO: `scripts/docs-serve.sh` (use `we run docs.serve`)
@@ -294,7 +270,6 @@ custom-validate: ## Validate project-specific things
 ```
 
 **Best practices**:
-
 - Add custom section with clear header
 - Update `.PHONY` declaration
 - Use template color variables (`$(BLUE)`, `$(GREEN)`, etc.)
@@ -314,7 +289,6 @@ extract_python_makefile(Path('.'))
 ```
 
 Or via command line:
-
 ```bash
 python -c "from provide.foundry.config import extract_python_makefile; from pathlib import Path; extract_python_makefile(Path('.'))"
 ```
@@ -322,11 +296,9 @@ python -c "from provide.foundry.config import extract_python_makefile; from path
 ### Examples in the Ecosystem
 
 **Standard template only** (10 projects):
-
 - provide-foundation, provide-testkit, pyvider, pyvider-cty, pyvider-hcl, pyvider-rpcplugin, wrknv, tofusoup, supsrc, plating
 
 **Standard + custom targets** (2 projects):
-
 - **pyvider-components**: Adds plating documentation generation targets
 - **flavorpack**: Adds PSPF validation, build helpers, and release management targets
 
@@ -335,12 +307,11 @@ python -c "from provide.foundry.config import extract_python_makefile; from path
 If you find scripts that duplicate Makefile functionality:
 
 1. **Verify**: Check if script functionality exists in Makefile
-1. **Test**: Ensure Make target works correctly
-1. **Remove**: Delete the redundant script
-1. **Update docs**: Change documentation to reference Make targets
+2. **Test**: Ensure Make target works correctly
+3. **Remove**: Delete the redundant script
+4. **Update docs**: Change documentation to reference Make targets
 
 Example:
-
 ```bash
 # Before
 ./scripts/test.sh
@@ -351,22 +322,19 @@ make test
 
 ## 🏗 Package-Specific Guidelines
 
-### Foundation Layer (provide-\*)
-
+### Foundation Layer (provide-*)
 - **High stability**: Changes require careful consideration
 - **Comprehensive testing**: Near 100% test coverage expected
 - **Performance**: Benchmark critical paths
 - **Documentation**: Extensive API documentation required
 
-### Framework Layer (pyvider-\*)
-
+### Framework Layer (pyvider-*)
 - **Terraform compatibility**: Follow Terraform conventions
 - **Type safety**: Strict typing enforcement
 - **Cross-platform**: Support all major platforms
 - **Examples**: Include working Terraform examples
 
 ### Tools Layer (flavorpack, wrknv, etc.)
-
 - **User experience**: Focus on ease of use
 - **CLI design**: Follow best practices for command-line tools
 - **Error messages**: Clear, actionable error messages
@@ -375,7 +343,6 @@ make test
 ## 🔍 Review Process
 
 ### Code Review Checklist
-
 - [ ] Code follows style guidelines
 - [ ] Tests are included and pass
 - [ ] Documentation is updated
@@ -384,7 +351,6 @@ make test
 - [ ] Performance impact considered
 
 ### Review Guidelines
-
 - **Be constructive**: Provide specific, actionable feedback
 - **Consider alternatives**: Suggest improvements, not just problems
 - **Test thoroughly**: Actually run the code when reviewing
@@ -393,9 +359,7 @@ make test
 ## 🐛 Issue Reporting
 
 ### Bug Reports
-
 Include:
-
 - **Environment**: OS, Python version, package versions
 - **Steps to reproduce**: Minimal example that demonstrates the issue
 - **Expected behavior**: What should have happened
@@ -403,9 +367,7 @@ Include:
 - **Logs**: Any relevant error messages or logs
 
 ### Feature Requests
-
 Include:
-
 - **Use case**: Why is this feature needed?
 - **Proposed solution**: How should it work?
 - **Alternatives**: Other ways to solve the problem
@@ -416,10 +378,10 @@ Include:
 Releases are coordinated across the ecosystem:
 
 1. **Version coordination**: Ensure compatible versions across packages
-1. **Testing**: Run full integration test suite
-1. **Documentation**: Update all relevant documentation
-1. **Changelog**: Compile changes across packages
-1. **Announcement**: Communicate changes to users
+2. **Testing**: Run full integration test suite
+3. **Documentation**: Update all relevant documentation
+4. **Changelog**: Compile changes across packages
+5. **Announcement**: Communicate changes to users
 
 ## 📞 Getting Help
 
@@ -431,7 +393,6 @@ Releases are coordinated across the ecosystem:
 ## 🎉 Recognition
 
 Contributors are recognized through:
-
 - **Changelog entries**: All contributors are credited
 - **GitHub contributors**: Automatic recognition via GitHub
 - **Documentation**: Maintainers are listed in each package

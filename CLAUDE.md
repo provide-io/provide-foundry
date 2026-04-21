@@ -23,7 +23,6 @@ we run docs.clean
 ## Environment Management
 
 The ecosystem uses `uv` for package management and `env.sh` scripts for environment setup. Always use:
-
 - `uv sync` in parent directory for full ecosystem setup
 - Individual project `env.sh` scripts for isolated development
 - Workenv directories (not `.venv`) for virtual environments
@@ -33,12 +32,10 @@ The ecosystem uses `uv` for package management and `env.sh` scripts for environm
 The provide.io ecosystem is a multi-package Python workspace with four layers:
 
 ### Foundation Layer
-
 - **provide-foundation**: Core telemetry, logging, and infrastructure utilities
 - **provide-testkit**: Unified testing framework with fixtures and utilities
 
 ### Framework Layer
-
 - **pyvider**: Core Terraform provider framework in Python
 - **pyvider-cty**: CTY type system bindings for Terraform data types
 - **pyvider-hcl**: HCL parsing and manipulation
@@ -46,7 +43,6 @@ The provide.io ecosystem is a multi-package Python workspace with four layers:
 - **pyvider-components**: Standard reusable provider components
 
 ### Tools Layer
-
 - **flavorpack**: PSPF/2025 packaging system for secure executable bundles
 - **wrknv**: Work environment management and toolchain automation
 - **plating**: Documentation and code generation templates
@@ -56,7 +52,6 @@ The provide.io ecosystem is a multi-package Python workspace with four layers:
 ## Documentation System
 
 This repository aggregates documentation from all ecosystem packages using:
-
 - **mkdocs-monorepo plugin** - Automatic aggregation via `!include` directives
 - **MkDocs Material** - Rendering unified documentation site
 - **Shared base configuration** - All projects inherit from `base-mkdocs.yml`
@@ -65,7 +60,6 @@ This repository aggregates documentation from all ecosystem packages using:
 ## Key Commands
 
 ### Documentation Commands
-
 ```bash
 we run docs.serve       # Development server with auto-reload
 we run docs.build       # Production build
@@ -73,7 +67,6 @@ we run docs.validate    # Validate links and structure
 ```
 
 ### Maintenance Commands
-
 ```bash
 we run dev.setup     # Sync dependencies
 we run dev.check     # Format, lint, typecheck
@@ -81,7 +74,6 @@ we run clean         # Clean artifacts
 ```
 
 ### Testing Commands
-
 ```bash
 we run test          # Run test suite
 we run test.coverage # Run tests with coverage
@@ -98,12 +90,10 @@ we run test.coverage # Run tests with coverage
 ## Project Relationships
 
 Projects are interconnected:
-
 - Foundation packages provide core infrastructure to all others
 - Pyvider packages depend on Foundation layer
 - Tools can depend on both Foundation and Framework layers
 - All packages use unified workspace configuration in parent `pyproject.toml`
 
 When making changes that affect multiple packages, test the entire ecosystem build with `uv sync` in the parent directory.
-
 - do not use pkill when kill mkdocs

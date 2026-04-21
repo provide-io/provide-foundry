@@ -73,7 +73,6 @@ graph TB
 The foundation provides core infrastructure services that all other components rely on:
 
 #### provide-foundation
-
 - **Structured Logging**: Emoji-enhanced, high-performance logging
 - **Error Handling**: Rich error context and hierarchical error types
 - **Configuration**: Type-safe configuration management
@@ -82,7 +81,6 @@ The foundation provides core infrastructure services that all other components r
 - **Hub Pattern**: Centralized component discovery and registration
 
 #### provide-testkit
-
 - **Testing Framework**: Unified testing utilities across all packages
 - **Fixtures**: Reusable test fixtures organized by domain
 - **Mocking**: Comprehensive mocking utilities
@@ -94,7 +92,6 @@ The foundation provides core infrastructure services that all other components r
 The framework layer implements the core abstractions for building Terraform providers:
 
 #### pyvider (Core Framework)
-
 - **Provider Model**: `@provider` decorator and lifecycle management
 - **Resource Model**: `@resource` decorator with CRUD operations
 - **Data Source Model**: `@data_source` decorator for read-only resources
@@ -103,7 +100,6 @@ The framework layer implements the core abstractions for building Terraform prov
 - **Hub Integration**: Component discovery and registration
 
 #### pyvider-cty (Type System)
-
 - **CTY Types**: Complete implementation of Terraform's type system
 - **Value Handling**: Type-safe value creation and manipulation
 - **Conversion**: Bidirectional conversion between Python and CTY types
@@ -112,14 +108,12 @@ The framework layer implements the core abstractions for building Terraform prov
 - **MessagePack Codec**: Binary serialization for performance
 
 #### pyvider-hcl (Configuration Language)
-
 - **HCL Parsing**: Parse HCL configuration files
 - **CTY Integration**: Convert HCL values to CTY types
 - **Expression Evaluation**: Evaluate HCL expressions
 - **Template Processing**: HCL template functionality
 
 #### pyvider-rpcplugin (Protocol Implementation)
-
 - **gRPC Server**: Terraform plugin protocol server
 - **Transport Layer**: Unix sockets and TCP transport
 - **Handshake Protocol**: Secure plugin handshake
@@ -127,7 +121,6 @@ The framework layer implements the core abstractions for building Terraform prov
 - **Request Handling**: Process Terraform RPC requests
 
 #### pyvider-components (Standard Library)
-
 - **Standard Resources**: Common resource implementations
 - **Standard Data Sources**: Useful data source implementations
 - **Standard Functions**: Library of Terraform functions
@@ -138,7 +131,6 @@ The framework layer implements the core abstractions for building Terraform prov
 The tools layer provides development and deployment utilities:
 
 #### flavorpack (Packaging)
-
 - **PSPF Format**: Progressive Secure Package Format implementation
 - **Multi-Language**: Go, Rust, and Python launcher support
 - **Self-Contained**: Bundles runtime and dependencies
@@ -146,7 +138,6 @@ The tools layer provides development and deployment utilities:
 - **Cross-Platform**: Support for multiple OS/architecture combinations
 
 #### wrknv (Environment Management)
-
 - **Environment Generation**: Create standardized development environments
 - **Tool Management**: Install and manage development tools
 - **Sibling Detection**: Automatic discovery of related packages
@@ -154,7 +145,6 @@ The tools layer provides development and deployment utilities:
 - **Configuration**: TOML-based configuration management
 
 #### plating (Documentation)
-
 - **Schema Extraction**: Generate documentation from provider schemas
 - **Template System**: Jinja2-based documentation templates
 - **Example Integration**: Include Terraform examples in documentation
@@ -162,7 +152,6 @@ The tools layer provides development and deployment utilities:
 - **Multi-Format**: Support for various documentation formats
 
 #### tofusoup (Conformance Testing)
-
 - **Cross-Language Testing**: Test compatibility between implementations
 - **Conformance Suites**: Standardized test suites
 - **Performance Testing**: Benchmark implementations
@@ -170,7 +159,6 @@ The tools layer provides development and deployment utilities:
 - **Report Generation**: Comprehensive test reporting
 
 #### supsrc (Git Automation)
-
 - **File Watching**: Monitor filesystem for changes
 - **Auto-Commit**: Automatic commit based on rules
 - **Rule Engine**: Configurable commit triggers
@@ -195,7 +183,6 @@ components = hub.discover_by_type(ResourceBase)
 ```
 
 This pattern enables:
-
 - **Loose Coupling**: Components don't need direct references
 - **Dynamic Discovery**: Find components at runtime
 - **Plugin Architecture**: Easy to add new components
@@ -218,7 +205,6 @@ class MyResource:
 ```
 
 Benefits:
-
 - **Clean Syntax**: Minimal boilerplate
 - **Automatic Registration**: No manual registration required
 - **Type Safety**: Compile-time validation
@@ -237,7 +223,6 @@ class ResourceConfig:
 ```
 
 Advantages:
-
 - **Validation**: Automatic data validation
 - **Documentation**: Self-documenting schemas
 - **IDE Support**: Excellent autocomplete and type checking
@@ -258,7 +243,6 @@ class ProviderError(FoundationError):
 ```
 
 Features:
-
 - **Hierarchical**: Errors inherit from base types
 - **Contextual**: Rich error context and metadata
 - **Structured**: Consistent error structure
@@ -375,8 +359,8 @@ def get_component(name: str):
 Multi-level caching improves performance:
 
 1. **Memory Cache**: In-process caching of frequently accessed data
-1. **Disk Cache**: Persistent caching of build artifacts
-1. **Network Cache**: CDN caching for package distribution
+2. **Disk Cache**: Persistent caching of build artifacts
+3. **Network Cache**: CDN caching for package distribution
 
 ## Security Architecture
 
@@ -385,9 +369,9 @@ Multi-level caching improves performance:
 Security is implemented at multiple layers:
 
 1. **Package Level**: Digital signatures and integrity checking
-1. **Transport Level**: TLS encryption for network communication
-1. **Process Level**: Sandboxing and privilege separation
-1. **Data Level**: Input validation and sanitization
+2. **Transport Level**: TLS encryption for network communication
+3. **Process Level**: Sandboxing and privilege separation
+4. **Data Level**: Input validation and sanitization
 
 ### Signature Verification
 
@@ -476,6 +460,6 @@ The architecture supports cloud-native deployment:
 - **Orchestration**: Kubernetes-native deployment
 - **Observability**: Prometheus metrics and distributed tracing
 
-______________________________________________________________________
+---
 
-Continue exploring the foundry with our [design principles](principles/) or see how this architecture applies in practice with our [development guides](../guides/index/).
+Continue exploring the foundry with our [design principles](principles.md) or see how this architecture applies in practice with our [development guides](../guides/index.md).

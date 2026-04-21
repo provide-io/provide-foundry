@@ -5,7 +5,6 @@ Complete guide for setting up your IDE for development in the provide.io ecosyst
 ## Overview
 
 All projects in the provide.io ecosystem are Python 3.11+ projects using modern tooling:
-
 - **UV** for package management
 - **Ruff** for linting and formatting
 - **pytest** for testing
@@ -29,15 +28,15 @@ code .  # VSCode
 # or open with PyCharm File → Open
 ```
 
-______________________________________________________________________
+---
 
 ## Standard IDE Configuration
 
 The following configuration works for all ecosystem projects:
 
---8\<-- ".provide/foundry/docs/\_partials/ide-setup.md"
+--8<-- ".provide/foundry/docs/_partials/ide-setup.md"
 
-______________________________________________________________________
+---
 
 ## Ecosystem-Specific Configuration
 
@@ -76,15 +75,14 @@ When working across multiple ecosystem projects:
 
 **PyCharm Multi-Module Project:**
 
-1. File → Open → Select parent directory `/REDACTED_ABS_PATH`
-1. Each subdirectory becomes a module
-1. Configure Python interpreter per module
-1. Mark `src/` as Sources Root in each module
+1. File → Open → Select parent directory `/Users/tim/code/gh/provide-io/`
+2. Each subdirectory becomes a module
+3. Configure Python interpreter per module
+4. Mark `src/` as Sources Root in each module
 
 ### Project-Specific Settings
 
 **Foundation Projects** (provide-foundation, provide-testkit):
-
 ```json
 {
   "python.testing.pytestArgs": [
@@ -96,7 +94,6 @@ When working across multiple ecosystem projects:
 ```
 
 **Pyvider Projects** (pyvider, pyvider-cty, pyvider-hcl, pyvider-rpcplugin):
-
 ```json
 {
   "python.testing.pytestArgs": [
@@ -108,7 +105,6 @@ When working across multiple ecosystem projects:
 ```
 
 **Tool Projects** (flavorpack, wrknv, supsrc, tofusoup):
-
 ```json
 {
   "python.testing.pytestArgs": [
@@ -126,17 +122,17 @@ When working across multiple ecosystem projects:
 **VSCode Test Explorer:**
 
 1. Install Python extension
-1. Open Testing sidebar (beaker icon)
-1. Tests auto-discover from `tests/` directory
-1. Click play button to run tests
-1. Click debug icon to debug tests
+2. Open Testing sidebar (beaker icon)
+3. Tests auto-discover from `tests/` directory
+4. Click play button to run tests
+5. Click debug icon to debug tests
 
 **PyCharm Test Runner:**
 
 1. Right-click `tests/` directory
-1. Select "Run pytest in tests"
-1. Tests appear in Run tool window
-1. Use debug icon for breakpoint debugging
+2. Select "Run pytest in tests"
+3. Tests appear in Run tool window
+4. Use debug icon for breakpoint debugging
 
 ### Debugging Tests
 
@@ -213,12 +209,12 @@ Add task to `.vscode/tasks.json`:
 
 Projects use different type checkers:
 
-| Project            | Type Checker | Command                  |
-| ------------------ | ------------ | ------------------------ |
-| provide-foundation | mypy         | `uv run mypy src/`       |
-| pyvider-\*         | mypy         | `uv run mypy src/`       |
-| flavorpack         | mypy         | `uv run mypy src/flavor` |
-| wrknv              | mypy         | `uv run mypy src/`       |
+| Project | Type Checker | Command |
+|---------|-------------|---------|
+| provide-foundation | mypy | `uv run mypy src/` |
+| pyvider-* | mypy | `uv run mypy src/` |
+| flavorpack | mypy | `uv run mypy src/flavor` |
+| wrknv | mypy | `uv run mypy src/` |
 
 **VSCode Type Checking:**
 
@@ -243,7 +239,6 @@ Projects use different type checkers:
 **Problem:** IDE shows import errors but code runs fine
 
 **Solution:**
-
 ```json
 // VSCode - Add to settings.json
 {
@@ -262,7 +257,6 @@ Projects use different type checkers:
 **Solution:**
 
 VSCode:
-
 ```bash
 # Reload test discovery
 Python: Discover Tests (Command Palette)
@@ -272,7 +266,6 @@ uv run pytest --version
 ```
 
 PyCharm:
-
 - Settings → Tools → Python Integrated Tools
 - Set Default test runner to pytest
 - Invalidate Caches (File → Invalidate Caches)
@@ -284,7 +277,6 @@ PyCharm:
 **Solution:**
 
 VSCode:
-
 ```bash
 # Check ruff is installed
 uv run ruff --version
@@ -294,7 +286,6 @@ code --install-extension charliermarsh.ruff --force
 ```
 
 PyCharm:
-
 - Install Ruff external tool
 - Configure file watcher for auto-format
 
@@ -305,7 +296,6 @@ PyCharm:
 **Solution:**
 
 VSCode:
-
 ```json
 {
   "justMyCode": false,  // Debug into libraries
@@ -314,7 +304,6 @@ VSCode:
 ```
 
 PyCharm:
-
 - Run → Edit Configurations
 - Ensure "Attach to subprocess" is enabled
 - Check breakpoint is not disabled (red dot vs gray)
@@ -324,15 +313,14 @@ PyCharm:
 ### Development Workflow
 
 1. **Start fresh:** `uv sync` before coding session
-1. **Format on save:** Enable auto-format in IDE
-1. **Run tests frequently:** Use IDE shortcuts (Ctrl+Shift+F10)
-1. **Type check regularly:** Fix type errors as you code
-1. **Pre-commit before push:** Ensure hooks pass locally
+2. **Format on save:** Enable auto-format in IDE
+3. **Run tests frequently:** Use IDE shortcuts (Ctrl+Shift+F10)
+4. **Type check regularly:** Fix type errors as you code
+5. **Pre-commit before push:** Ensure hooks pass locally
 
 ### Performance Tips
 
 1. **Exclude build directories:**
-
    ```json
    {
      "files.watcherExclude": {
@@ -347,16 +335,14 @@ PyCharm:
    }
    ```
 
-1. **Limit test auto-discovery:**
-
+2. **Limit test auto-discovery:**
    ```json
    {
      "python.testing.autoTestDiscoverOnSaveEnabled": false
    }
    ```
 
-1. **Use focused tests during development:**
-
+3. **Use focused tests during development:**
    ```bash
    # Only run tests related to current work
    uv run pytest tests/test_specific_feature.py -v
@@ -369,9 +355,8 @@ PyCharm:
 - [Ruff Documentation](https://docs.astral.sh/ruff/)
 - [pytest Documentation](https://docs.pytest.org/)
 
-______________________________________________________________________
+---
 
 **Next Steps:**
-
 - [Development Workflow Guide](development-workflow.md) - Day-to-day development patterns
 - [Testing Patterns Guide](testing-patterns.md) - Testing strategies across projects

@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: Copyright (c) 2026 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 # Contributors to the provide.io ecosystem
 # Primary contributors and maintainers
 
@@ -25,7 +22,7 @@ contributors:
 
   - name: provide.io Team
     github: provide-io
-    email: code@provide.io
+    email: engineering@provide.io
     role: Core Team
     avatar: https://github.com/provide-io.png
     contributions:

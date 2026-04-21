@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 #
-# provide-foundry pyproject.toml
+# provide-foundry>=0.4.0 pyproject.toml
 #
 # Documentation hub for the provide.io ecosystem
 #
@@ -36,7 +36,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "provide-foundation>=0.3.21",
+    "provide-foundation>=0.4.0",
     "tomli>=2.2.1",
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.7.1",
