@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: Copyright (c) 2026 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 # People involved in the provide.io ecosystem
 # Team members, maintainers, and key contributors
 
@@ -21,7 +18,7 @@ core_team:
   - name: provide.io Engineering
     role: Core Engineering Team
     github: provide-io
-    email: code@provide.io
+    email: engineering@provide.io
     avatar: https://github.com/provide-io.png
     bio: Core engineering team maintaining the provide.io ecosystem
     focus_areas:

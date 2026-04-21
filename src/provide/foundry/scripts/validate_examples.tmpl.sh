@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# SPDX-FileCopyrightText: Copyright (c) 2026 provide.io llc. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
 # Validate Terraform examples for format and syntax
 # This script is maintained in provide-foundry and extracted to provider projects
 set -euo pipefail

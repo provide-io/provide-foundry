@@ -24,7 +24,7 @@ def main() -> None:
         extract_base_mkdocs(Path(tmp))
 
     # Stress: repeated extraction cycles into fresh temp dirs
-    for _ in range(CYCLES):
+    for _i in range(CYCLES):
         tmp = tempfile.mkdtemp(prefix="foundry_stress_")
         try:
             extract_base_mkdocs(Path(tmp))

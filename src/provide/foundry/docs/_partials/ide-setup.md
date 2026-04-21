@@ -118,22 +118,19 @@ code --install-extension charliermarsh.ruff
 
 1. **Open Project:** File → Open → Select project directory
 
-1. **Configure Python Interpreter:**
-
+2. **Configure Python Interpreter:**
    - File → Settings → Project → Python Interpreter
    - Click gear icon → Add → Virtualenv Environment
    - Select existing environment: `.venv/bin/python`
    - Apply changes
 
-1. **Mark Source Directories:**
-
+3. **Mark Source Directories:**
    - Right-click `src/` → Mark Directory as → Sources Root
    - Right-click `tests/` → Mark Directory as → Test Sources Root
 
 **Run Configurations:**
 
 **Pytest Configuration:**
-
 - Run → Edit Configurations → Add New → Python tests → pytest
 - Target: Custom (specify tests directory or file)
 - Python interpreter: Project interpreter
@@ -141,7 +138,6 @@ code --install-extension charliermarsh.ruff
 - Environment variables: `PYTHONPATH=src:$PYTHONPATH`
 
 **Debug Configuration:**
-
 - Run → Edit Configurations → Add New → Python
 - Script path: Path to your main script or module
 - Python interpreter: Project interpreter
@@ -151,15 +147,13 @@ code --install-extension charliermarsh.ruff
 **Code Quality Integration:**
 
 1. **Ruff Integration:**
-
    - Settings → Tools → External Tools → Add
    - Name: Ruff Format
    - Program: `$ProjectFileDir$/.venv/bin/ruff`
    - Arguments: `format $FilePath$`
    - Working directory: `$ProjectFileDir$`
 
-1. **File Watchers (Optional):**
-
+2. **File Watchers (Optional):**
    - Settings → Tools → File Watchers → Add
    - File type: Python
    - Scope: Project Files
@@ -170,20 +164,19 @@ code --install-extension charliermarsh.ruff
 
 Common shortcuts for productivity:
 
-| Action              | Windows/Linux  | macOS |
-| ------------------- | -------------- | ----- |
-| Run Tests           | Ctrl+Shift+F10 | ⌃⇧R   |
-| Debug               | Shift+F9       | ⌃D    |
-| Reformat Code       | Ctrl+Alt+L     | ⌘⌥L   |
-| Optimize Imports    | Ctrl+Alt+O     | ⌃⌥O   |
-| Quick Documentation | Ctrl+Q         | F1    |
+| Action | Windows/Linux | macOS |
+|--------|--------------|-------|
+| Run Tests | Ctrl+Shift+F10 | ⌃⇧R |
+| Debug | Shift+F9 | ⌃D |
+| Reformat Code | Ctrl+Alt+L | ⌘⌥L |
+| Optimize Imports | Ctrl+Alt+O | ⌃⌥O |
+| Quick Documentation | Ctrl+Q | F1 |
 
 #### Common Setup Issues
 
 **Issue: Tests not discovered**
 
 VSCode:
-
 ```bash
 # Check test discovery
 Python: Configure Tests → pytest
@@ -193,7 +186,6 @@ uv run pytest --version
 ```
 
 PyCharm:
-
 - Settings → Tools → Python Integrated Tools
 - Set Default test runner to pytest
 - Reload project
@@ -212,7 +204,6 @@ Add source directories to PYTHONPATH:
 **Issue: Type checking not working**
 
 VSCode:
-
 ```json
 {
   "python.analysis.typeCheckingMode": "basic",
@@ -221,7 +212,6 @@ VSCode:
 ```
 
 PyCharm:
-
 - Settings → Editor → Inspections
 - Enable Python → Type Checker
 - Set severity to Warning or Error
@@ -229,7 +219,6 @@ PyCharm:
 **Issue: Formatter not running**
 
 Verify ruff is installed:
-
 ```bash
 uv run ruff --version
 
@@ -242,14 +231,12 @@ uv sync
 Some projects may require additional setup:
 
 **For projects with multiple source directories:**
-
 ```python
 # Add to PYTHONPATH
 export PYTHONPATH="${PYTHONPATH}:${PWD}/src:${PWD}/lib"
 ```
 
 **For projects using specific test markers:**
-
 ```bash
 # VSCode pytest args
 "python.testing.pytestArgs": [
@@ -260,7 +247,6 @@ export PYTHONPATH="${PYTHONPATH}:${PWD}/src:${PWD}/lib"
 ```
 
 **For projects with custom entry points:**
-
 ```json
 // .vscode/launch.json
 {
@@ -276,8 +262,8 @@ export PYTHONPATH="${PYTHONPATH}:${PWD}/src:${PWD}/lib"
 #### Tips for Productivity
 
 1. **Use virtual environments:** Always activate `.venv` before opening IDE
-1. **Enable format on save:** Automatically format code on file save
-1. **Configure type checking:** Catch type errors early with Pylance/PyCharm
-1. **Use test runners:** Run tests directly from IDE with keyboard shortcuts
-1. **Set up debugging:** Use breakpoints and debug console for troubleshooting
-1. **Integrate linting:** Fix issues as you code with real-time feedback
+2. **Enable format on save:** Automatically format code on file save
+3. **Configure type checking:** Catch type errors early with Pylance/PyCharm
+4. **Use test runners:** Run tests directly from IDE with keyboard shortcuts
+5. **Set up debugging:** Use breakpoints and debug console for troubleshooting
+6. **Integrate linting:** Fix issues as you code with real-time feedback

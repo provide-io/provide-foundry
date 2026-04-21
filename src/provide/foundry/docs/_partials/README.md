@@ -15,7 +15,6 @@ Use the `--8<--` syntax from `pymdownx.snippets` to include partials in your doc
 ## Available Partials
 
 ### Installation & Setup (7 partials)
-
 - **python-requirements.md** - Python version requirements table
 - **uv-installation.md** - Installing the UV package manager
 - **python-version-setup.md** - Setting up Python versions with UV
@@ -25,7 +24,6 @@ Use the `--8<--` syntax from `pymdownx.snippets` to include partials in your doc
 - **DISTRIBUTION.md** - How the partial distribution system works
 
 ### Development (3 partials)
-
 - **testing-setup.md** - Standard pytest commands and options
 - **code-quality-setup.md** - Ruff, mypy, bandit commands
 - **verification-commands.md** - Post-install verification steps

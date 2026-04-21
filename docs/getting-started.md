@@ -10,7 +10,8 @@ Before you start, ensure you have:
 - **Git** for version control
 - **A Unix-like environment** (macOS, Linux, or WSL on Windows)
 
-!!! tip "Python Version" The Provide Foundry uses modern Python features and requires 3.11+. We recommend using [UV](https://github.com/astral-sh/uv) to manage Python versions with `uv python install 3.11`.
+!!! tip "Python Version"
+    The Provide Foundry uses modern Python features and requires 3.11+. We recommend using [UV](https://github.com/astral-sh/uv) to manage Python versions with `uv python install 3.11`.
 
 ## Quick Setup
 
@@ -25,7 +26,11 @@ uv tool install flavorpack
 uv tool install wrknv
 ```
 
-!!! success "Verification" Verify your setup by running: `bash     python -c "import provide, pyvider; print('✅ Foundry ready!')"     `
+!!! success "Verification"
+    Verify your setup by running:
+    ```bash
+    python -c "import provide, pyvider; print('✅ Foundry ready!')"
+    ```
 
 ## Your First Terraform Provider
 
@@ -153,7 +158,6 @@ terraform apply
 ```
 
 Expected output:
-
 ```
 greeting_message = "Hello, World!"
 ```
@@ -300,21 +304,21 @@ Now that you have the foundry set up, explore these guides:
 
 <div class="grid cards" markdown>
 
-- :material-terraform:{ .lg } **[Building Providers](guides/provider-development.md)**
+-   :material-terraform:{ .lg } **[Building Providers](guides/provider-development.md)**
 
-  Learn to create comprehensive Terraform providers with resources, data sources, and functions.
+    Learn to create comprehensive Terraform providers with resources, data sources, and functions.
 
-- :material-package:{ .lg } **[Packaging Applications](guides/packaging.md)**
+-   :material-package:{ .lg } **[Packaging Applications](guides/packaging.md)**
 
-  Use flavorpack to create self-contained, portable executable packages.
+    Use flavorpack to create self-contained, portable executable packages.
 
-- :material-test-tube:{ .lg } **[Testing Strategy](guides/testing.md)**
+-   :material-test-tube:{ .lg } **[Testing Strategy](guides/testing.md)**
 
-  Implement comprehensive testing with unit, integration, and conformance tests.
+    Implement comprehensive testing with unit, integration, and conformance tests.
 
-- :material-book:{ .lg } **[Documentation](guides/documentation.md)**
+-   :material-book:{ .lg } **[Documentation](guides/documentation.md)**
 
-  Generate beautiful documentation for your providers and tools.
+    Generate beautiful documentation for your providers and tools.
 
 </div>
 
@@ -323,8 +327,8 @@ Now that you have the foundry set up, explore these guides:
 If you run into issues:
 
 1. **Check the documentation**: Each package has comprehensive docs
-1. **Search issues**: Look for existing solutions on GitHub
-1. **Ask questions**: Use GitHub Discussions for help
-1. **Report bugs**: Create detailed issue reports
+2. **Search issues**: Look for existing solutions on GitHub
+3. **Ask questions**: Use GitHub Discussions for help
+4. **Report bugs**: Create detailed issue reports
 
 Happy building! 🚀

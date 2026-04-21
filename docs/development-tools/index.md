@@ -37,53 +37,53 @@ Each tool addresses a specific aspect of the development workflow:
 These tools are designed to work together throughout the development process:
 
 1. **Setup** (WrkNv): Initialize project environment and install dependencies
-1. **Generate** (Plating): Create boilerplate code and documentation structure
-1. **Develop**: Implement features using the frameworks
-1. **Commit** (SupSrc): Automate Git operations and commit management
-1. **Package** (Flavorpack): Build and sign distributable executables
+2. **Generate** (Plating): Create boilerplate code and documentation structure
+3. **Develop**: Implement features using the frameworks
+4. **Commit** (SupSrc): Automate Git operations and commit management
+5. **Package** (Flavorpack): Build and sign distributable executables
 
 ## Packages
 
 <div class="grid cards" markdown>
 
-- :material-check-circle: **CI/CD Tooling**
+-   :material-check-circle: **CI/CD Tooling**
 
-  ______________________________________________________________________
+    ---
 
-  Automated continuous integration and delivery with GitHub Actions, reusable workflows, and pre-commit hooks.
+    Automated continuous integration and delivery with GitHub Actions, reusable workflows, and pre-commit hooks.
 
-  [:octicons-arrow-right-24: Explore CI/CD Tooling](https://github.com/provide-io/ci-tooling)
+    [:octicons-arrow-right-24: Explore CI/CD Tooling](https://github.com/provide-io/ci-tooling)
 
-- :material-package: **Flavorpack**
+-   :material-package: **Flavorpack**
 
-  ______________________________________________________________________
+    ---
 
-  Secure executable packaging system using PSPF/2025 for single-file Python application distribution.
+    Secure executable packaging system using PSPF/2025 for single-file Python application distribution.
 
-  [:octicons-arrow-right-24: Explore FlavorPack](../packages/flavorpack.md)
+    [:octicons-arrow-right-24: Explore Flavorpack](../packages/flavorpack.md)
 
-- :material-briefcase: **WrkNv**
+-   :material-briefcase: **WrkNv**
 
-  ______________________________________________________________________
+    ---
 
-  Work environment management and toolchain automation for Python projects.
+    Work environment management and toolchain automation for Python projects.
 
-  [:octicons-arrow-right-24: Explore WrkNv](../packages/wrknv.md)
+    [:octicons-arrow-right-24: Explore WrkNv](../packages/wrknv.md)
 
-- :material-git: **SupSrc**
+-   :material-git: **SupSrc**
 
-  ______________________________________________________________________
+    ---
 
-  Automated Git workflow and commit management with smart automation.
+    Automated Git workflow and commit management with smart automation.
 
-  [:octicons-arrow-right-24: Explore SupSrc](../packages/supsrc.md)
+    [:octicons-arrow-right-24: Explore SupSrc](../packages/supsrc.md)
 
-- :material-file-document-multiple: **Plating**
+-   :material-file-document-multiple: **Plating**
 
-  ______________________________________________________________________
+    ---
 
-  Documentation and code generation templates for boilerplate creation.
+    Documentation and code generation templates for boilerplate creation.
 
-  [:octicons-arrow-right-24: Explore Plating](../packages/plating.md)
+    [:octicons-arrow-right-24: Explore Plating](../packages/plating.md)
 
 </div>

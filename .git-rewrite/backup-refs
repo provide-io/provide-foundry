@@ -1,0 +1,10 @@
+2c7b152cd6cd804238f526f7869acbe31da244dc commit	refs/backup/pre-parity-pass
+6a9d78b5742c9ab60143083ca2f3325c73d622b0 commit	refs/heads/backup/pre-gh-sync-2026-04-20
+fff4bd0ad483aa530d18133d273394b5f403952c commit	refs/heads/main
+fff4bd0ad483aa530d18133d273394b5f403952c commit	refs/remotes/gh-origin/main
+dcd2223e93a3686039296fe6c6490240d3c84cad commit	refs/remotes/upstream/HEAD
+13b159e6e6a51b7b1cf03047a48fb95a2c5bbfad commit	refs/remotes/upstream/develop
+dcd2223e93a3686039296fe6c6490240d3c84cad commit	refs/remotes/upstream/main
+7cee2c3a640226c7a372618a9757b326225744dc commit	refs/tags/v0.3.0
+93ba7c4d45141150e8b3388807fab1d4e230df63 commit	refs/tags/v0.3.21
+fff4bd0ad483aa530d18133d273394b5f403952c commit	refs/tags/v0.4.0

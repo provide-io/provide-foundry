@@ -34,21 +34,22 @@ In other words:
 
 The docs may be catching up, but the underlying system is not guesswork.
 
-!!! note "Intentionally designed?" "Guesswork" is not really an accurate word here. The system was intentionally designed — but this sentence was written by AI, so take it with a grain of salt.
+!!! note "Intentionally designed?"
+    "Guesswork" is not really an accurate word here. The system was intentionally designed — but this sentence was written by AI, so take it with a grain of salt.
 
 ## 🔍 What to Expect
 
 Because many pages have not yet been audited, you may encounter:
 
 1. **Hallucinations** — Confident claims about features or behavior that don't actually exist.
-1. **Overconfident explanations** — Statements delivered with precision, accuracy pending.
-1. **Missing edge cases** — Happy-path documentation without the unhappy-path realities.
-1. **Examples that almost work** — Technically adjacent to correct, but not quite runnable.
-1. **Omissions** — Missing context or implementation details.
-1. **Terminology drift** — Slight naming inconsistencies or invented phrasing.
-1. **Incorrect assumptions about intent** — The AI occasionally documents how it thinks things work.
-1. **Temporal confusion** — References to past, future, or speculative versions.
-1. **Unexpected emojis, Capitalization, and punctuation;** — Decorative icons, Inconsistent Casing, and punctuation choices appearing where they arguably shouldn't. 🎯
+2. **Overconfident explanations** — Statements delivered with precision, accuracy pending.
+3. **Missing edge cases** — Happy-path documentation without the unhappy-path realities.
+4. **Examples that almost work** — Technically adjacent to correct, but not quite runnable.
+5. **Omissions** — Missing context or implementation details.
+6. **Terminology drift** — Slight naming inconsistencies or invented phrasing.
+7. **Incorrect assumptions about intent** — The AI occasionally documents how it thinks things work.
+8. **Temporal confusion** — References to past, future, or speculative versions.
+9. **Unexpected emojis, Capitalization, and punctuation;** — Decorative icons, Inconsistent Casing, and punctuation choices appearing where they arguably shouldn't. 🎯
 
 ## 📋 The Audit Plan
 
