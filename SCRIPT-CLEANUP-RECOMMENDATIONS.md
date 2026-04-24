@@ -116,8 +116,8 @@ ______________________________________________________________________
 
 - provide-foundation/scripts/setup_github_auth.py
 - provide-foundation/scripts/version_checker.py
-- provide-workspace/scripts/bootstrap.sh
-- provide-workspace/scripts/setup.sh
+- provide-foundry/scripts/bootstrap.sh
+- provide-foundry/scripts/setup.sh
 - wrknv/scripts/shell-integration.sh
 - pyvider/scripts/install-opentofu.sh
 - pyvider/scripts/install-opentofu-wrapper.sh

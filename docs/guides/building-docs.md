@@ -37,7 +37,6 @@ Each project uses a unique port to avoid conflicts when running multiple documen
 ### Foundation Layer (11001-11003)
 - **11001** - provide-foundation
 - **11002** - provide-testkit
-- **11003** - provide-workspace
 
 ### Pyvider Framework (11010-11014)
 - **11010** - pyvider
