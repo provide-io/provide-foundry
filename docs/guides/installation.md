@@ -26,14 +26,14 @@ Complete installation guide for the Provide Foundry, covering all platforms and 
 
 ### Option 1: Complete Foundry (Recommended)
 
-Install the entire foundry as a unified workspace:
+Install the foundry from a local checkout:
 
 ```bash
-# Clone the workspace repository
+# Clone the foundry repository
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 
-# Set up the unified development environment
+# Set up the development environment
 uv sync --all-groups
 source .venv/bin/activate
 
@@ -41,7 +41,7 @@ source .venv/bin/activate
 python -c "import provide, pyvider; print('✅ Foundry ready!')"
 ```
 
-This installs all 13 foundry packages in editable mode with proper dependency resolution.
+This installs the foundry tooling and shared development dependencies from a local checkout.
 
 ### Option 2: Individual Packages
 
@@ -74,13 +74,13 @@ uv tool install flavorpack
 ```bash
 # Clone the repository
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 
 # Verify structure
 ls -la
-# Should show all package directories: provide-foundation, pyvider, wrknv, etc.
+# Should show the foundry docs, build tooling, and shared configuration files.
 
-# Set up unified development environment
+# Set up the development environment
 uv sync --all-groups
 
 # Activate environment
@@ -121,7 +121,7 @@ For active development on foundry packages:
 
 ```bash
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 
 # Development installation with all extras
 uv sync --all-groups
@@ -210,7 +210,7 @@ brew install git python@3.11 uv
 
 # Clone and setup
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 uv sync --all-groups
 source .venv/bin/activate
 ```
@@ -239,7 +239,7 @@ source $HOME/.cargo/env
 
 # Clone and setup
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 uv sync --all-groups
 source .venv/bin/activate
 ```
@@ -260,7 +260,7 @@ source ~/.bashrc
 
 # Clone and setup
 git clone https://github.com/provide-io/provide-foundry.git
-cd provide-workspace
+cd provide-foundry
 uv sync --all-groups
 source .venv/bin/activate
 ```

@@ -1,6 +1,6 @@
 # Packages Overview
 
-The provide.io foundry consists of 13 interconnected packages organized into three distinct layers, plus workspace tooling for unified development. Each package is designed to be independently useful while working seamlessly with others in the foundry.
+The provide.io foundry consists of 13 interconnected packages organized into three distinct layers. Each package is designed to be independently useful while working seamlessly with others in the foundry.
 
 ## Package Map
 
@@ -202,11 +202,11 @@ uv add pyvider[all] pyvider-components[all]
 Install everything for foundry development:
 
 ```bash
-# Clone the foundry
-git clone https://github.com/provide-io/provide-workspace.git
-cd provide-workspace
+# Clone the foundry docs and shared tooling
+git clone https://github.com/provide-io/provide-foundry.git
+cd provide-foundry
 
-# Install all packages in editable mode
+# Install the local development environment
 uv sync --all-groups
 source .venv/bin/activate
 ```
