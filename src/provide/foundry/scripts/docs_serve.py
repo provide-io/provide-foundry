@@ -31,7 +31,7 @@ def main() -> int:
     # Run preflight check - use script's directory to find sibling script
     script_dir = Path(__file__).parent
     preflight_script = script_dir / "docs_preflight.py"
-    result = subprocess.run([sys.executable, str(preflight_script)])
+    result = subprocess.run([sys.executable, str(preflight_script)])  # nosec B603
     if result.returncode != 0:
         return 1
 
@@ -56,7 +56,7 @@ def main() -> int:
 
     cmd = ["mkdocs", "serve", "--dev-addr", f"127.0.0.1:{port}"]
     try:
-        subprocess.run(cmd)
+        subprocess.run(cmd)  # nosec B603 B607
     except KeyboardInterrupt:
         print("\n✅ Documentation server stopped")
         return 0
