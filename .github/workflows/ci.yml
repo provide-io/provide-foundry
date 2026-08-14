@@ -1,5 +1,7 @@
 # CI workflow for Python projects
-# Uses wrknv tasks for consistency between local and CI environments.
+# Delegates to the org-wide reusable pipeline (matrix testing, coverage gate,
+# security + secret scanning) while running checks through wrknv (`we run <task>`)
+# so CI and local dev use the exact same commands.
 name: ⚙️ Continuous Integration
 
 on:
@@ -9,31 +11,22 @@ on:
     branches: [main, develop]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ci:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: astral-sh/setup-uv@v7
-        with:
-          enable-cache: true
-
-      - name: Set up Python
-        run: uv python install 3.11
-
-      - name: Install dependencies
-        run: uv sync --all-groups
-
-      - name: Install wrknv
-        run: uv pip install "wrknv @ git+https://github.com/provide-io/wrknv.git@main"
-
-      - name: Run CI pipeline
-        run: |
-          source .venv/bin/activate
-          we run ci
-
-      - name: Run security scan
-        run: |
-          source .venv/bin/activate
-          we run security
+    uses: provide-io/ci-tooling/.github/workflows/python-ci.yml@v0
+    with:
+      python-version: '3.11'
+      use-wrknv: true
+      platform-preset: standard  # ubuntu-24.04, ubuntu-24.04-arm, macos-15, macos-15-intel
+      coverage-threshold: 0  # not yet enforced on the wrknv path (test.coverage has no --cov-fail-under)
+      run-security: true
+      run-secret-scan: true
+    secrets: inherit
