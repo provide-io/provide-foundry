@@ -408,3 +408,10 @@ docs/.shared-theme/
 
 # Memray profiling output
 memray-output/
+
+# git-filter-repo scratch. Never belongs in a commit -- 343 of these files were
+# tracked from e7b54221 until they were removed.
+.git-rewrite/
+
+# Foundry docs-build tooling (injected by preflight; not versioned)
+.provide/
