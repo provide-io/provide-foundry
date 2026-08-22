@@ -132,25 +132,25 @@ def extract_base_mkdocs(target_dir: Path | str) -> Path:
                     scripts_dst / item.name,
                 )
 
-    # Copy CSS files from theme to docs/css (for projects to use)
+    # The theme is the site's `custom_dir`, and mkdocs copies a custom_dir's
+    # non-template files into the built site, so `extra_css: css/extra.css`
+    # resolves from there. Copying them into `docs/` as well used to be how
+    # this worked, and it put `docs/css/` and `docs/js/` into every project.
+    #
+    # For a Terraform provider that is a publishing error. The registry reads
+    # the whole of `docs/`, and terraform-plugin-docs' `ValidRegistryDirectories`
+    # is a closed list -- `data-sources`, `ephemeral-resources`, `guides`,
+    # `resources`, `functions`, `actions`, `list-resources`, `state-stores` and
+    # nothing else -- with `.md` as the only permitted extension. Six stylesheet
+    # and script files there fail `tfplugindocs validate` outright, so a repo
+    # carrying them can never adopt it as a gate.
+    #
+    # The empty `extra.css` still needs to exist somewhere the site can find it,
+    # or every page links a stylesheet that 404s. It belongs beside the rest of
+    # the theme's assets.
     css_src = theme_dst / "css"
-    css_dst = target_path / "docs" / "css"
     if css_src.exists():
-        css_dst.parent.mkdir(parents=True, exist_ok=True)
-        if css_dst.exists():
-            shutil.rmtree(css_dst)
-        shutil.copytree(css_src, css_dst)
-        # Create empty extra.css for project-specific overrides
-        (css_dst / "extra.css").touch(exist_ok=True)
-
-    # Copy JS files from theme to docs/js (for projects to use)
-    js_src = theme_dst / "js"
-    js_dst = target_path / "docs" / "js"
-    if js_src.exists():
-        js_dst.parent.mkdir(parents=True, exist_ok=True)
-        if js_dst.exists():
-            shutil.rmtree(js_dst)
-        shutil.copytree(js_src, js_dst)
+        (css_src / "extra.css").touch(exist_ok=True)
 
     return base_mkdocs_dst
 
