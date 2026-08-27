@@ -77,11 +77,6 @@ def generate_reference_pages() -> None:
         nav_file.writelines(nav.build_literate_nav())
 
 
-# Support direct execution for testing/debugging
-if __name__ == "__main__":
-    generate_reference_pages()
-
-
 def _resolve_src_root(config_dir: Path) -> Path | None:
     """Return the source root directory, trying fallbacks if needed."""
     candidates = [config_dir / "src", Path("src")]
@@ -130,3 +125,25 @@ def _is_package_module(path: Path, src_root: Path) -> bool:
             return False
         current_dir = current_dir.parent
     return True
+
+
+# mkdocs-gen-files executes this file with `runpy.run_path()` and no run_name,
+# which leaves __name__ as "<run_path>". The `if __name__ == "__main__"` guard
+# this replaces therefore never fired under the plugin, and the plugin has no
+# way to tell a script that generated nothing from one that had nothing to
+# generate: every consuming project built one hand-written reference page
+# instead of the ~350 this emits, and every link into the generated tree
+# dangled.
+#
+# The guard was broken for direct execution too. It sat above the helpers it
+# needs, so `python gen_ref_pages.py` died with
+# `NameError: name '_resolve_src_root' is not defined`. It has never run in any
+# invocation path, which is why this call must be the last statement in the
+# file rather than merely unconditional.
+#
+# runpy and `python gen_ref_pages.py` both leave __spec__ as None; a genuine
+# `import provide.foundry.docs.gen_ref_pages` sets it. Generating files is not
+# a side effect an import may have -- provide.foundry.docs re-exports
+# generate_reference_pages -- so __spec__ is what separates the two.
+if __spec__ is None:
+    generate_reference_pages()
