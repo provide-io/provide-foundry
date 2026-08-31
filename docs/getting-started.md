@@ -43,41 +43,29 @@ from pyvider.providers import register_provider, BaseProvider
 from pyvider.resources import register_resource, BaseResource
 from pyvider.schema import Attribute
 
+
 @register_provider("hello")
 class HelloProvider(BaseProvider):
     """A simple greeting provider."""
 
     # Provider configuration
-    api_key: str = Attribute(
-        description="API key for authentication",
-        sensitive=True,
-        required=True
-    )
+    api_key: str = Attribute(description="API key for authentication", sensitive=True, required=True)
+
 
 @register_resource("greeting")
 class Greeting(BaseResource):
     """A greeting resource."""
 
     # Resource schema
-    name: str = Attribute(
-        description="Name to greet",
-        required=True
-    )
+    name: str = Attribute(description="Name to greet", required=True)
 
-    message: str = Attribute(
-        description="The greeting message",
-        computed=True
-    )
+    message: str = Attribute(description="The greeting message", computed=True)
 
     # Lifecycle methods
     def create(self, config):
         """Create a new greeting."""
         message = f"Hello, {config.name}!"
-        return {
-            "id": f"greeting-{config.name.lower()}",
-            "name": config.name,
-            "message": message
-        }
+        return {"id": f"greeting-{config.name.lower()}", "name": config.name, "message": message}
 
     def read(self, config, state):
         """Read an existing greeting."""
@@ -86,11 +74,7 @@ class Greeting(BaseResource):
     def update(self, config, state):
         """Update a greeting."""
         message = f"Hello, {config.name}!"
-        return {
-            **state,
-            "name": config.name,
-            "message": message
-        }
+        return {**state, "name": config.name, "message": message}
 
     def delete(self, config, state):
         """Delete a greeting."""
@@ -249,6 +233,7 @@ The foundry emphasizes type safety throughout:
 from pyvider.schema import a_str, a_num, a_bool
 from attrs import define
 
+
 # Type-safe configuration with schema
 @define
 class Config:
@@ -259,11 +244,7 @@ class Config:
     @classmethod
     def get_schema(cls):
         """Define schema using factory functions."""
-        return {
-            "name": a_str(required=True),
-            "port": a_num(required=True),
-            "enabled": a_bool(default=True)
-        }
+        return {"name": a_str(required=True), "port": a_num(required=True), "enabled": a_bool(default=True)}
 ```
 
 ### 3. Testing
@@ -274,10 +255,12 @@ Use `provide-testkit` for comprehensive testing:
 import pytest
 from provide.testkit import temp_directory, mock_server
 
+
 def test_provider_creation(temp_directory):
     """Test provider functionality."""
     # Test implementation
     pass
+
 
 @pytest.mark.asyncio
 async def test_async_operation(mock_server):

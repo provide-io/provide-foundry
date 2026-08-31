@@ -43,6 +43,7 @@ from pyvider.data_sources import register_data_source, BaseDataSource
 from pyvider.schema import s_provider, s_resource, s_data_source, a_str, a_num, a_bool, a_list, b_block
 from provide.foundation import logger
 
+
 @register_provider("myservice")
 class MyServiceProvider(BaseProvider):
     """Terraform provider for MyService API."""
@@ -50,28 +51,19 @@ class MyServiceProvider(BaseProvider):
     @classmethod
     def get_schema(cls):
         """Define provider configuration schema."""
-        return s_provider({
-            "api_url": a_str(
-                description="MyService API base URL",
-                required=True,
-                default="https://api.myservice.com"
-            ),
-            "api_key": a_str(
-                description="API key for authentication",
-                required=True,
-                sensitive=True
-            )
-        })
+        return s_provider(
+            {
+                "api_url": a_str(
+                    description="MyService API base URL", required=True, default="https://api.myservice.com"
+                ),
+                "api_key": a_str(description="API key for authentication", required=True, sensitive=True),
+            }
+        )
 
     def configure(self, config):
         """Configure the provider client."""
-        self.client = MyServiceClient(
-            base_url=config.api_url,
-            api_key=config.api_key
-        )
-        logger.info("Provider configured", extra={
-            "api_url": config.api_url
-        })
+        self.client = MyServiceClient(base_url=config.api_url, api_key=config.api_key)
+        logger.info("Provider configured", extra={"api_url": config.api_url})
 ```
 
 ### Resource Implementation
@@ -84,50 +76,33 @@ class ServerResource(BaseResource):
     @classmethod
     def get_schema(cls):
         """Define resource schema."""
-        return s_resource({
-            # Required attributes
-            "name": a_str(
-                description="Server name",
-                required=True
-            ),
-            # Optional attributes with defaults
-            "size": a_str(
-                description="Server size",
-                default="small",
-                validation=lambda x: x in ["small", "medium", "large"]
-            ),
-            "region": a_str(
-                description="Deployment region",
-                required=True
-            ),
-            # Computed attributes
-            "id": a_str(
-                description="Server ID",
-                computed=True
-            ),
-            "status": a_str(
-                description="Server status",
-                computed=True
-            ),
-            "created_at": a_str(
-                description="Creation timestamp",
-                computed=True
-            )
-        })
+        return s_resource(
+            {
+                # Required attributes
+                "name": a_str(description="Server name", required=True),
+                # Optional attributes with defaults
+                "size": a_str(
+                    description="Server size",
+                    default="small",
+                    validation=lambda x: x in ["small", "medium", "large"],
+                ),
+                "region": a_str(description="Deployment region", required=True),
+                # Computed attributes
+                "id": a_str(description="Server ID", computed=True),
+                "status": a_str(description="Server status", computed=True),
+                "created_at": a_str(description="Creation timestamp", computed=True),
+            }
+        )
 
     def create(self, config):
         """Create a new server."""
-        logger.info("Creating server", extra={
-            "name": config.name,
-            "size": config.size,
-            "region": config.region
-        })
+        logger.info(
+            "Creating server", extra={"name": config.name, "size": config.size, "region": config.region}
+        )
 
-        response = self.provider.client.create_server({
-            "name": config.name,
-            "size": config.size,
-            "region": config.region
-        })
+        response = self.provider.client.create_server(
+            {"name": config.name, "size": config.size, "region": config.region}
+        )
 
         # Set computed values
         self.id = response["id"]
@@ -158,15 +133,9 @@ class ServerResource(BaseResource):
 
     def update(self, config):
         """Update server configuration."""
-        logger.info("Updating server", extra={
-            "id": self.id,
-            "name": config.name
-        })
+        logger.info("Updating server", extra={"id": self.id, "name": config.name})
 
-        response = self.provider.client.update_server(self.id, {
-            "name": config.name,
-            "size": config.size
-        })
+        response = self.provider.client.update_server(self.id, {"name": config.name, "size": config.size})
 
         # Update computed values
         self.status = response["status"]
@@ -175,9 +144,7 @@ class ServerResource(BaseResource):
 
     def delete(self, config):
         """Delete the server."""
-        logger.info("Deleting server", extra={
-            "id": self.id
-        })
+        logger.info("Deleting server", extra={"id": self.id})
 
         self.provider.client.delete_server(self.id)
 ```
@@ -192,23 +159,19 @@ class ImageDataSource(BaseDataSource):
     @classmethod
     def get_schema(cls):
         """Define data source schema."""
-        return s_data_source({
-            # Filter attributes
-            "name_filter": a_str(
-                description="Filter images by name pattern",
-                required=False
-            ),
-            "os_type": a_str(
-                description="Operating system type",
-                required=False,
-                validation=lambda x: x in ["linux", "windows"]
-            ),
-            # Computed attributes
-            "images": a_list(
-                description="List of matching images",
-                computed=True
-            )
-        })
+        return s_data_source(
+            {
+                # Filter attributes
+                "name_filter": a_str(description="Filter images by name pattern", required=False),
+                "os_type": a_str(
+                    description="Operating system type",
+                    required=False,
+                    validation=lambda x: x in ["linux", "windows"],
+                ),
+                # Computed attributes
+                "images": a_list(description="List of matching images", computed=True),
+            }
+        )
 
     def read(self, config):
         """Fetch image data."""
@@ -221,12 +184,7 @@ class ImageDataSource(BaseDataSource):
         response = self.provider.client.list_images(filters)
 
         self.images = [
-            {
-                "id": img["id"],
-                "name": img["name"],
-                "os_type": img["os_type"],
-                "version": img["version"]
-            }
+            {"id": img["id"], "name": img["name"], "os_type": img["os_type"], "version": img["version"]}
             for img in response["images"]
         ]
 
@@ -245,30 +203,32 @@ class ApplicationResource(BaseResource):
     @classmethod
     def get_schema(cls):
         """Define resource schema with nested blocks."""
-        return s_resource({
-            # Nested block configuration
-            "database": b_block(
-                description="Database configuration",
-                required=False,
-                max_items=1,
-                attributes={
-                    "host": a_str(required=True),
-                    "port": a_num(default=5432),
-                    "name": a_str(required=True),
-                    "ssl_enabled": a_bool(default=True)
-                }
-            ),
-            # Repeated blocks
-            "environment_variables": b_block(
-                description="Environment variables",
-                required=False,
-                attributes={
-                    "name": a_str(required=True),
-                    "value": a_str(required=True),
-                    "sensitive": a_bool(default=False)
-                }
-            )
-        })
+        return s_resource(
+            {
+                # Nested block configuration
+                "database": b_block(
+                    description="Database configuration",
+                    required=False,
+                    max_items=1,
+                    attributes={
+                        "host": a_str(required=True),
+                        "port": a_num(default=5432),
+                        "name": a_str(required=True),
+                        "ssl_enabled": a_bool(default=True),
+                    },
+                ),
+                # Repeated blocks
+                "environment_variables": b_block(
+                    description="Environment variables",
+                    required=False,
+                    attributes={
+                        "name": a_str(required=True),
+                        "value": a_str(required=True),
+                        "sensitive": a_bool(default=False),
+                    },
+                ),
+            }
+        )
 ```
 
 ### State Migration
@@ -295,6 +255,7 @@ class ServerResource:
 ```python
 from pyvider.validation import ValidationError
 
+
 @register_resource("myservice_database")
 class DatabaseResource(BaseResource):
     """Database with custom validation."""
@@ -302,23 +263,16 @@ class DatabaseResource(BaseResource):
     @classmethod
     def get_schema(cls):
         """Define database resource schema."""
-        return s_resource({
-            "name": a_str(required=True),
-            "backup_retention_days": a_num(default=7)
-        })
+        return s_resource({"name": a_str(required=True), "backup_retention_days": a_num(default=7)})
 
     def validate(self, config):
         """Custom validation logic."""
         if not config.name.startswith("db-"):
-            raise ValidationError(
-                "Database name must start with 'db-'",
-                attribute="name"
-            )
+            raise ValidationError("Database name must start with 'db-'", attribute="name")
 
         if config.backup_retention_days < 1 or config.backup_retention_days > 365:
             raise ValidationError(
-                "Backup retention must be between 1 and 365 days",
-                attribute="backup_retention_days"
+                "Backup retention must be between 1 and 365 days", attribute="backup_retention_days"
             )
 ```
 
@@ -328,6 +282,7 @@ class DatabaseResource(BaseResource):
 
 ```python
 from pyvider.exceptions import ProviderError, ResourceError
+
 
 class ServerResource:
     """Server resource with comprehensive error handling."""
@@ -339,23 +294,14 @@ class ServerResource:
 
         except APIError as e:
             if e.status_code == 409:
-                raise ResourceError(
-                    f"Server with name '{config.name}' already exists",
-                    retryable=False
-                )
+                raise ResourceError(f"Server with name '{config.name}' already exists", retryable=False)
             elif e.status_code == 429:
-                raise ResourceError(
-                    "Rate limit exceeded, please retry",
-                    retryable=True
-                )
+                raise ResourceError("Rate limit exceeded, please retry", retryable=True)
             else:
                 raise ProviderError(f"API error: {e.message}")
 
         except NetworkError as e:
-            raise ProviderError(
-                f"Network error: {e.message}",
-                retryable=True
-            )
+            raise ProviderError(f"Network error: {e.message}", retryable=True)
 ```
 
 ## Testing
@@ -366,6 +312,7 @@ class ServerResource:
 import pytest
 from unittest.mock import Mock
 from provide.testkit import TestCase
+
 
 class TestServerResource(TestCase):
     """Test server resource functionality."""
@@ -382,7 +329,7 @@ class TestServerResource(TestCase):
             "id": "srv-123",
             "name": "test-server",
             "status": "creating",
-            "created_at": "2023-01-01T00:00:00Z"
+            "created_at": "2023-01-01T00:00:00Z",
         }
 
         # Create server
@@ -394,11 +341,9 @@ class TestServerResource(TestCase):
         result = self.resource.create(config)
 
         # Verify API call
-        self.provider.client.create_server.assert_called_once_with({
-            "name": "test-server",
-            "size": "small",
-            "region": "us-east-1"
-        })
+        self.provider.client.create_server.assert_called_once_with(
+            {"name": "test-server", "size": "small", "region": "us-east-1"}
+        )
 
         # Verify state
         self.assertEqual(result.id, "srv-123")
@@ -410,6 +355,7 @@ class TestServerResource(TestCase):
 ```python
 from provide.testkit import IntegrationTestCase
 
+
 class TestServerResourceIntegration(IntegrationTestCase):
     """Integration tests with real API."""
 
@@ -419,19 +365,15 @@ class TestServerResourceIntegration(IntegrationTestCase):
     def test_server_lifecycle(self):
         """Test complete server lifecycle."""
         # Create server
-        server = self.create_resource("myservice_server", {
-            "name": "integration-test-server",
-            "size": "small",
-            "region": "us-east-1"
-        })
+        server = self.create_resource(
+            "myservice_server", {"name": "integration-test-server", "size": "small", "region": "us-east-1"}
+        )
 
         self.assertIsNotNone(server.id)
         self.assertEqual(server.name, "integration-test-server")
 
         # Update server
-        updated = self.update_resource(server, {
-            "name": "updated-server-name"
-        })
+        updated = self.update_resource(server, {"name": "updated-server-name"})
 
         self.assertEqual(updated.name, "updated-server-name")
 
@@ -484,10 +426,12 @@ terraform apply
 ```python
 # Enable development mode
 from pyvider.dev import enable_debug_mode
+
 enable_debug_mode()
 
 # Mock API responses for testing
 from pyvider.testing import mock_api_response
+
 with mock_api_response("create_server", {"id": "test-123"}):
     # Run provider operations
     pass

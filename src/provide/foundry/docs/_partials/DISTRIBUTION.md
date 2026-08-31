@@ -51,7 +51,7 @@ Which executes:
 from provide.foundry.config import extract_base_mkdocs
 from pathlib import Path
 
-extract_base_mkdocs(Path('.'))
+extract_base_mkdocs(Path("."))
 ```
 
 This extracts to `.provide/foundry/docs/_partials/`:

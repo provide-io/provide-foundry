@@ -199,9 +199,11 @@ import sys
 from pyvider.runtime import run_provider
 from .provider import MyServiceProvider
 
+
 def main():
     """Run the provider."""
     return run_provider(MyServiceProvider, sys.argv[1:])
+
 
 if __name__ == "__main__":
     sys.exit(main())
@@ -217,6 +219,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+
 
 def build_provider():
     """Build the provider for distribution."""
@@ -237,6 +240,7 @@ def build_provider():
 
     # Create distribution package
     create_distribution_package()
+
 
 def create_distribution_package():
     """Create complete distribution package."""
@@ -261,6 +265,7 @@ def create_distribution_package():
     shutil.copy2("LICENSE", dist_dir)
     shutil.copy2("CHANGELOG.md", dist_dir)
 
+
 if __name__ == "__main__":
     build_provider()
 ```
@@ -275,6 +280,7 @@ if __name__ == "__main__":
 
 from pyvider.docs import DocumentationGenerator
 from terraform_provider_myservice import MyServiceProvider
+
 
 def generate_docs():
     """Generate documentation for all resources and data sources."""
@@ -293,6 +299,7 @@ def generate_docs():
 
     # Generate provider documentation
     generator.generate_provider_docs("docs/index.md")
+
 
 if __name__ == "__main__":
     generate_docs()
@@ -633,6 +640,7 @@ jobs:
 import re
 from pathlib import Path
 
+
 def bump_version(part="patch"):
     """Bump version number."""
 
@@ -666,27 +674,22 @@ def bump_version(part="patch"):
 
     return new_version
 
+
 def update_version_in_file(file_path, version):
     """Update version in file."""
     content = file_path.read_text()
 
     if file_path.name == "__init__.py":
-        content = re.sub(
-            r'__version__ = "\d+\.\d+\.\d+"',
-            f'__version__ = "{version}"',
-            content
-        )
+        content = re.sub(r'__version__ = "\d+\.\d+\.\d+"', f'__version__ = "{version}"', content)
     elif file_path.name == "pyproject.toml":
-        content = re.sub(
-            r'version = "\d+\.\d+\.\d+"',
-            f'version = "{version}"',
-            content
-        )
+        content = re.sub(r'version = "\d+\.\d+\.\d+"', f'version = "{version}"', content)
 
     file_path.write_text(content)
 
+
 if __name__ == "__main__":
     import sys
+
     part = sys.argv[1] if len(sys.argv) > 1 else "patch"
     new_version = bump_version(part)
     print(f"Version bumped to {new_version}")

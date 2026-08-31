@@ -196,11 +196,14 @@ Framework components use decorators for clean registration:
 @provider
 class MyProvider:
     """Provider implementation."""
+
     pass
+
 
 @resource
 class MyResource:
     """Resource implementation."""
+
     pass
 ```
 
@@ -216,6 +219,7 @@ All data structures are defined with comprehensive schemas:
 
 ```python
 from pyvider.schema import Attribute, Block
+
 
 class ResourceConfig:
     name: str = Attribute(required=True, description="Resource name")
@@ -234,6 +238,7 @@ Errors are handled in a layered approach with rich context:
 
 ```python
 from provide.foundation.errors import FoundationError
+
 
 class ProviderError(FoundationError):
     """Provider-specific error."""

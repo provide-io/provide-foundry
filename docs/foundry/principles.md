@@ -19,6 +19,7 @@ Every decision prioritizes the developer experience. This means:
 class WebServer(BaseResource):
     port: int = Attribute(description="Port to listen on", default=8080)
 
+
 # Bad: Unclear, complex API
 class WebServerResource(BaseResource):
     def __init__(self):
@@ -37,12 +38,9 @@ Static typing catches errors early and improves code quality:
 
 ```python
 # Good: Comprehensive type annotations
-def create_resource(
-    config: ResourceConfig,
-    provider: Provider,
-    timeout: float = 30.0
-) -> ResourceState:
+def create_resource(config: ResourceConfig, provider: Provider, timeout: float = 30.0) -> ResourceState:
     pass
+
 
 # Bad: Missing or weak typing
 def create_resource(config, provider, timeout=30):
@@ -64,6 +62,7 @@ class ResourceManager:
     def __init__(self, validator: Validator, logger: Logger):
         self.validator = validator
         self.logger = logger
+
 
 # Bad: Deep inheritance
 class ResourceManager(BaseManager, ValidatorMixin, LoggerMixin):
@@ -97,9 +96,10 @@ def create_provider(
     *,
     config_path: Path | None = None,
     log_level: LogLevel = LogLevel.INFO,
-    enable_telemetry: bool = True
+    enable_telemetry: bool = True,
 ) -> Provider:
     pass
+
 
 # Bad: Boolean trap and unclear parameters
 def create_provider(name, config, log, telemetry=True):
@@ -144,6 +144,7 @@ class CustomProcessor(LogProcessor):
         # Custom processing logic
         return record
 
+
 # Register the processor
 get_hub().register_processor(CustomProcessor())
 ```
@@ -163,6 +164,7 @@ The foundry prioritizes clean, modern code over backward compatibility:
 # Good: Modern Python features
 def process_items(items: list[Item]) -> dict[str, Any]:
     return {item.name: item.value for item in items}
+
 
 # Bad: Backward compatibility
 def process_items(items):
@@ -187,6 +189,7 @@ class DatabaseConfig:
     port: int = 5432
     timeout: float = 30.0
 
+
 # Bad: Hidden defaults
 class Database:
     def __init__(self, host):
@@ -207,10 +210,9 @@ Detect and report errors as early as possible:
 # Good: Early validation with clear errors
 def create_server(port: int) -> Server:
     if not (1 <= port <= 65535):
-        raise ValueError(
-            f"Port {port} is invalid. Must be between 1 and 65535."
-        )
+        raise ValueError(f"Port {port} is invalid. Must be between 1 and 65535.")
     return Server(port)
+
 
 # Bad: Silent failures or late errors
 def create_server(port):
@@ -236,10 +238,11 @@ def test_resource_creation_with_valid_config():
     assert resource.name == "test"
     assert resource.port == 8080
 
+
 # Bad: Test implementation
 def test_resource_creation_calls_constructor():
     config = ResourceConfig(name="test", port=8080)
-    with mock.patch('Resource.__init__') as mock_init:
+    with mock.patch("Resource.__init__") as mock_init:
         create_resource(config)
         mock_init.assert_called_once()
 ```
@@ -255,6 +258,7 @@ Use property-based testing for complex logic:
 
 ```python
 from hypothesis import given, strategies as st
+
 
 @given(st.integers(min_value=1, max_value=65535))
 def test_server_accepts_valid_ports(port):
@@ -371,6 +375,7 @@ Security should be the default, not an option:
 class DatabaseConfig:
     password: str = attrs.field(repr=False)  # Hidden from repr
     ssl_mode: str = "require"  # Secure default
+
 
 # Bad: Insecure defaults
 @attrs.define
