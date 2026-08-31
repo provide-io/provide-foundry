@@ -31,6 +31,7 @@ import pytest
 from unittest.mock import Mock, patch
 from provide.testkit import TestCase, fixtures
 
+
 class TestServerResource(TestCase):
     """Unit tests for server resource."""
 
@@ -47,7 +48,7 @@ class TestServerResource(TestCase):
             "id": "srv-123",
             "name": "test-server",
             "status": "active",
-            "created_at": "2023-01-01T00:00:00Z"
+            "created_at": "2023-01-01T00:00:00Z",
         }
 
         config = Mock()
@@ -63,19 +64,17 @@ class TestServerResource(TestCase):
         self.assertEqual(result.name, "test-server")
         self.assertEqual(result.status, "active")
 
-        self.provider.client.create_server.assert_called_once_with({
-            "name": "test-server",
-            "size": "small",
-            "region": "us-east-1"
-        })
+        self.provider.client.create_server.assert_called_once_with(
+            {"name": "test-server", "size": "small", "region": "us-east-1"}
+        )
 
     def test_create_server_api_error(self):
         """Test server creation with API error."""
         # Arrange
         from myservice.exceptions import APIError
+
         self.provider.client.create_server.side_effect = APIError(
-            "Server name already exists",
-            status_code=409
+            "Server name already exists", status_code=409
         )
 
         config = Mock()
@@ -93,6 +92,7 @@ class TestServerResource(TestCase):
 
 ```python
 from provide.testkit import fixtures
+
 
 class TestServerResource(TestCase):
     """Tests using testkit fixtures."""
@@ -150,16 +150,20 @@ class TestResourceSchema(TestCase):
     def test_validation_rules(self):
         """Test custom validation rules."""
         with self.assertRaises(ValidationError):
-            ServerResource.validate({
-                "name": "",  # Empty name should fail
-                "region": "us-east-1"
-            })
+            ServerResource.validate(
+                {
+                    "name": "",  # Empty name should fail
+                    "region": "us-east-1",
+                }
+            )
 
         with self.assertRaises(ValidationError):
-            ServerResource.validate({
-                "name": "test-server",
-                "size": "invalid-size"  # Invalid size should fail
-            })
+            ServerResource.validate(
+                {
+                    "name": "test-server",
+                    "size": "invalid-size",  # Invalid size should fail
+                }
+            )
 ```
 
 ## Integration Testing
@@ -169,16 +173,16 @@ class TestResourceSchema(TestCase):
 ```python
 from provide.testkit import IntegrationTestCase
 
+
 class TestServerResourceIntegration(IntegrationTestCase):
     """Integration tests with real API."""
 
     @classmethod
     def setUpClass(cls):
         """Set up test environment."""
-        cls.provider = cls.create_test_provider({
-            "api_url": cls.get_test_api_url(),
-            "api_key": cls.get_test_api_key()
-        })
+        cls.provider = cls.create_test_provider(
+            {"api_url": cls.get_test_api_url(), "api_key": cls.get_test_api_key()}
+        )
 
     def setUp(self):
         """Set up each test."""
@@ -195,11 +199,9 @@ class TestServerResourceIntegration(IntegrationTestCase):
     def test_server_lifecycle(self):
         """Test complete server lifecycle."""
         # Create server
-        server = self.create_resource("myservice_server", {
-            "name": f"test-server-{self.test_id}",
-            "size": "small",
-            "region": "us-east-1"
-        })
+        server = self.create_resource(
+            "myservice_server", {"name": f"test-server-{self.test_id}", "size": "small", "region": "us-east-1"}
+        )
         self.cleanup_resources.append(server)
 
         # Verify creation
@@ -212,9 +214,7 @@ class TestServerResourceIntegration(IntegrationTestCase):
         self.assertEqual(refreshed.name, server.name)
 
         # Test update
-        updated = server.update({
-            "name": f"updated-server-{self.test_id}"
-        })
+        updated = server.update({"name": f"updated-server-{self.test_id}"})
         self.assertEqual(updated.name, f"updated-server-{self.test_id}")
 
         # Test delete
@@ -230,23 +230,16 @@ class TestServerResourceIntegration(IntegrationTestCase):
         import threading
 
         def create_server(index):
-            return self.create_resource("myservice_server", {
-                "name": f"concurrent-server-{index}-{self.test_id}",
-                "size": "small",
-                "region": "us-east-1"
-            })
+            return self.create_resource(
+                "myservice_server",
+                {"name": f"concurrent-server-{index}-{self.test_id}", "size": "small", "region": "us-east-1"},
+            )
 
         # Create servers concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            futures = [
-                executor.submit(create_server, i)
-                for i in range(5)
-            ]
+            futures = [executor.submit(create_server, i) for i in range(5)]
 
-            servers = [
-                future.result(timeout=30)
-                for future in concurrent.futures.as_completed(futures)
-            ]
+            servers = [future.result(timeout=30) for future in concurrent.futures.as_completed(futures)]
 
         # Verify all servers created successfully
         self.assertEqual(len(servers), 5)
@@ -263,14 +256,11 @@ class TestErrorHandling(IntegrationTestCase):
 
     def test_network_timeout(self):
         """Test handling of network timeouts."""
-        with patch('requests.post') as mock_post:
+        with patch("requests.post") as mock_post:
             mock_post.side_effect = requests.Timeout("Request timeout")
 
             with self.assertRaises(ProviderError) as cm:
-                self.create_resource("myservice_server", {
-                    "name": "timeout-test",
-                    "region": "us-east-1"
-                })
+                self.create_resource("myservice_server", {"name": "timeout-test", "region": "us-east-1"})
 
             self.assertTrue(cm.exception.retryable)
 
@@ -279,10 +269,7 @@ class TestErrorHandling(IntegrationTestCase):
         # Simulate rate limiting by making many rapid requests
         for i in range(100):
             try:
-                self.create_resource("myservice_server", {
-                    "name": f"rate-test-{i}",
-                    "region": "us-east-1"
-                })
+                self.create_resource("myservice_server", {"name": f"rate-test-{i}", "region": "us-east-1"})
             except ProviderError as e:
                 if "rate limit" in str(e).lower():
                     self.assertTrue(e.retryable)
@@ -292,16 +279,12 @@ class TestErrorHandling(IntegrationTestCase):
 
     def test_invalid_credentials(self):
         """Test handling of invalid credentials."""
-        invalid_provider = self.create_test_provider({
-            "api_url": self.get_test_api_url(),
-            "api_key": "invalid-key-123"
-        })
+        invalid_provider = self.create_test_provider(
+            {"api_url": self.get_test_api_url(), "api_key": "invalid-key-123"}
+        )
 
         with self.assertRaises(ProviderError) as cm:
-            invalid_provider.create_resource("myservice_server", {
-                "name": "auth-test",
-                "region": "us-east-1"
-            })
+            invalid_provider.create_resource("myservice_server", {"name": "auth-test", "region": "us-east-1"})
 
         self.assertIn("authentication", str(cm.exception).lower())
 ```
@@ -313,18 +296,19 @@ class TestErrorHandling(IntegrationTestCase):
 ```python
 from provide.testkit import AcceptanceTestCase
 
+
 class TestServerResourceAcceptance(AcceptanceTestCase):
     """Terraform acceptance tests."""
 
     def test_basic_server_creation(self):
         """Test basic server creation through Terraform."""
-        config = '''
+        config = """
         resource "myservice_server" "test" {
           name   = "acceptance-test-server"
           size   = "small"
           region = "us-east-1"
         }
-        '''
+        """
 
         with self.terraform_config(config) as tf:
             # Apply configuration
@@ -339,15 +323,9 @@ class TestServerResourceAcceptance(AcceptanceTestCase):
             self.assertIsNotNone(server.attributes["id"])
 
             # Test import
-            imported_state = tf.import_resource(
-                "myservice_server.test_import",
-                server.attributes["id"]
-            )
+            imported_state = tf.import_resource("myservice_server.test_import", server.attributes["id"])
 
-            self.assertEqual(
-                imported_state.attributes["name"],
-                server.attributes["name"]
-            )
+            self.assertEqual(imported_state.attributes["name"], server.attributes["name"])
 
             # Test plan shows no changes
             plan = tf.plan()
@@ -355,21 +333,21 @@ class TestServerResourceAcceptance(AcceptanceTestCase):
 
     def test_server_update(self):
         """Test server updates through Terraform."""
-        initial_config = '''
+        initial_config = """
         resource "myservice_server" "test" {
           name   = "update-test-server"
           size   = "small"
           region = "us-east-1"
         }
-        '''
+        """
 
-        updated_config = '''
+        updated_config = """
         resource "myservice_server" "test" {
           name   = "updated-test-server"
           size   = "medium"
           region = "us-east-1"
         }
-        '''
+        """
 
         with self.terraform_config(initial_config) as tf:
             # Initial apply
@@ -398,7 +376,7 @@ class TestServerResourceAcceptance(AcceptanceTestCase):
 
     def test_data_source(self):
         """Test data source functionality."""
-        config = '''
+        config = """
         data "myservice_image" "test" {
           name_filter = "ubuntu"
           os_type     = "linux"
@@ -407,7 +385,7 @@ class TestServerResourceAcceptance(AcceptanceTestCase):
         output "image_count" {
           value = length(data.myservice_image.test.images)
         }
-        '''
+        """
 
         with self.terraform_config(config) as tf:
             tf.apply()
@@ -434,13 +412,13 @@ class TestProviderCompatibility(AcceptanceTestCase):
         """Test state migration between provider versions."""
         # Create resource with old provider version
         with self.provider_version("1.0.0"):
-            config = '''
+            config = """
             resource "myservice_server" "test" {
               name          = "migration-test"
               instance_type = "small"  # Old attribute name
               region        = "us-east-1"
             }
-            '''
+            """
 
             with self.terraform_config(config) as tf:
                 tf.apply()
@@ -448,13 +426,13 @@ class TestProviderCompatibility(AcceptanceTestCase):
 
         # Upgrade to new provider version
         with self.provider_version("2.0.0"):
-            updated_config = '''
+            updated_config = """
             resource "myservice_server" "test" {
               name   = "migration-test"
               size   = "small"  # New attribute name
               region = "us-east-1"
             }
-            '''
+            """
 
             with self.terraform_config(updated_config, state=old_state) as tf:
                 # Plan should show no changes (migration handled automatically)
@@ -477,6 +455,7 @@ class TestProviderCompatibility(AcceptanceTestCase):
 ```python
 from provide.testkit import PerformanceTestCase
 
+
 class TestProviderPerformance(PerformanceTestCase):
     """Performance and load testing."""
 
@@ -487,11 +466,9 @@ class TestProviderPerformance(PerformanceTestCase):
         with self.measure_time() as timer:
             servers = []
             for i in range(resource_count):
-                server = self.create_resource("myservice_server", {
-                    "name": f"bulk-test-{i}",
-                    "size": "small",
-                    "region": "us-east-1"
-                })
+                server = self.create_resource(
+                    "myservice_server", {"name": f"bulk-test-{i}", "size": "small", "region": "us-east-1"}
+                )
                 servers.append(server)
 
         # Verify performance targets
@@ -505,11 +482,9 @@ class TestProviderPerformance(PerformanceTestCase):
     def test_concurrent_reads(self):
         """Test concurrent read operations."""
         # Create test server
-        server = self.create_resource("myservice_server", {
-            "name": "read-test-server",
-            "size": "small",
-            "region": "us-east-1"
-        })
+        server = self.create_resource(
+            "myservice_server", {"name": "read-test-server", "size": "small", "region": "us-east-1"}
+        )
 
         def read_server():
             return server.read()
@@ -563,12 +538,13 @@ performance_targets:
 import pytest
 from provide.testkit import configure_testing
 
+
 def pytest_configure(config):
     """Configure pytest for provider testing."""
     configure_testing(
-        config_file="tests/config/test_config.yaml",
-        environment=config.getoption("--test-env", default="unit")
+        config_file="tests/config/test_config.yaml", environment=config.getoption("--test-env", default="unit")
     )
+
 
 def pytest_addoption(parser):
     """Add custom pytest options."""
@@ -576,20 +552,19 @@ def pytest_addoption(parser):
         "--test-env",
         choices=["unit", "integration", "acceptance"],
         default="unit",
-        help="Test environment to use"
+        help="Test environment to use",
     )
 
     parser.addoption(
-        "--cleanup",
-        action="store_true",
-        default=False,
-        help="Clean up test resources after running"
+        "--cleanup", action="store_true", default=False, help="Clean up test resources after running"
     )
+
 
 @pytest.fixture(scope="session")
 def test_provider():
     """Provide test provider instance."""
     from provide.testkit import create_test_provider
+
     return create_test_provider()
 ```
 

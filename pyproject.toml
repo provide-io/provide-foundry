@@ -109,7 +109,11 @@ markers = [
 line-length = 111
 indent-width = 4
 target-version = "py311"
-exclude = [".venv", "workenv", "build", "dist", ".git", "site"]
+# `.ci-tooling` is another repository, checked out into the workspace by CI.
+# The wrknv `format.check` task runs `ruff format .` unscoped, so it walks into
+# that checkout and fails Code Quality on files this repository does not own --
+# CI sees 135 files where a local run sees 104.
+exclude = [".venv", "workenv", "build", "dist", ".git", "site", ".ci-tooling"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "ANN", "B", "BLE", "C90", "PIE", "PLR", "S", "SIM", "PTH", "RUF"]

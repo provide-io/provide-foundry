@@ -269,6 +269,7 @@ Example:
     ['read', 'write']
 """
 
+
 class AuthManager:
     """
     Manages user authentication and session handling.
@@ -622,6 +623,7 @@ if __name__ == "__main__":
 import subprocess
 from pathlib import Path
 
+
 def test_code_examples():
     """Test all code examples in documentation."""
     docs_dir = Path("docs")
@@ -647,6 +649,7 @@ def test_code_examples():
             except Exception as e:
                 print(f"  ✗ Block {i}: {e}")
 
+
 def extract_python_code_blocks(content: str) -> List[str]:
     """Extract Python code blocks from Markdown."""
     import re
@@ -655,20 +658,21 @@ def extract_python_code_blocks(content: str) -> List[str]:
     matches = re.findall(pattern, content, re.DOTALL)
     return matches
 
+
 def has_external_dependencies(code: str) -> bool:
     """Check if code has external dependencies."""
-    import_lines = [line.strip() for line in code.split('\n')
-                   if line.strip().startswith(('import ', 'from '))]
+    import_lines = [line.strip() for line in code.split("\n") if line.strip().startswith(("import ", "from "))]
 
     # List of safe imports for testing
-    safe_imports = ['os', 'sys', 'json', 'datetime', 'pathlib']
+    safe_imports = ["os", "sys", "json", "datetime", "pathlib"]
 
     for line in import_lines:
-        module = line.split()[1].split('.')[0]
+        module = line.split()[1].split(".")[0]
         if module not in safe_imports:
             return True
 
     return False
+
 
 def test_links():
     """Test all internal and external links."""
@@ -679,15 +683,17 @@ def test_links():
 
         # Extract markdown links
         import re
-        links = re.findall(r'\[.*?\]\((.*?)\)', content)
+
+        links = re.findall(r"\[.*?\]\((.*?)\)", content)
 
         for link in links:
-            if link.startswith('http'):
+            if link.startswith("http"):
                 # Test external link
                 test_external_link(link)
             else:
                 # Test internal link
                 test_internal_link(md_file, link)
+
 
 def test_external_link(url: str):
     """Test external link availability."""
@@ -702,9 +708,10 @@ def test_external_link(url: str):
     except Exception as e:
         print(f"  ✗ {url}: {e}")
 
+
 def test_internal_link(source_file: Path, link: str):
     """Test internal link exists."""
-    if link.startswith('#'):
+    if link.startswith("#"):
         # Anchor link - would need to parse headers
         return
 
@@ -716,6 +723,7 @@ def test_internal_link(source_file: Path, link: str):
         print(f"  ✓ {link}")
     else:
         print(f"  ✗ {link}: File not found")
+
 
 if __name__ == "__main__":
     test_code_examples()
@@ -848,13 +856,12 @@ mike list
 import subprocess
 import sys
 
+
 def main():
     """Run documentation checks."""
 
     # Check for missing docstrings
-    result = subprocess.run([
-        "python", "scripts/check_docstrings.py"
-    ], capture_output=True, text=True)
+    result = subprocess.run(["python", "scripts/check_docstrings.py"], capture_output=True, text=True)
 
     if result.returncode != 0:
         print("Documentation check failed:")
@@ -862,9 +869,7 @@ def main():
         return 1
 
     # Test code examples
-    result = subprocess.run([
-        "python", "scripts/test_docs.py"
-    ], capture_output=True, text=True)
+    result = subprocess.run(["python", "scripts/test_docs.py"], capture_output=True, text=True)
 
     if result.returncode != 0:
         print("Documentation tests failed:")
@@ -873,6 +878,7 @@ def main():
 
     print("Documentation checks passed ✓")
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

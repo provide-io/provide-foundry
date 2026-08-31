@@ -285,7 +285,7 @@ from provide.foundry.config import extract_python_makefile
 from pathlib import Path
 
 # Extract to current directory
-extract_python_makefile(Path('.'))
+extract_python_makefile(Path("."))
 ```
 
 Or via command line:

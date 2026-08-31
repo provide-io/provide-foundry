@@ -14,10 +14,12 @@ All projects use pytest with async support and follow similar testing patterns. 
 import pytest
 from pathlib import Path
 
+
 def test_basic_functionality():
     """Test basic feature behavior."""
     result = my_function("input")
     assert result == "expected"
+
 
 @pytest.mark.asyncio
 async def test_async_functionality():
@@ -34,10 +36,12 @@ def sample_data():
     """Provide test data."""
     return {"key": "value"}
 
+
 @pytest.fixture
 def temp_dir(tmp_path):
     """Provide temporary directory."""
     return tmp_path
+
 
 def test_with_fixtures(sample_data, temp_dir):
     """Test using fixtures."""
@@ -54,6 +58,7 @@ def test_with_fixtures(sample_data, temp_dir):
 ```python
 import pytest
 from provide.testkit import reset_foundation_setup_for_testing
+
 
 @pytest.fixture(autouse=True)
 def reset_foundation():
@@ -72,12 +77,14 @@ def reset_foundation():
 from provide.testkit import set_log_stream_for_testing
 from io import StringIO
 
+
 def test_logging_output():
     """Test log messages."""
     log_stream = StringIO()
     set_log_stream_for_testing(log_stream)
 
     from provide.foundation import logger
+
     logger.info("test message", value=42)
 
     output = log_stream.getvalue()
@@ -89,6 +96,7 @@ def test_logging_output():
 
 ```python
 from provide.foundation.hub import get_hub
+
 
 def test_hub_component():
     """Test Hub initialization."""
@@ -105,6 +113,7 @@ def test_hub_component():
 
 ```python
 import pytest
+
 
 @pytest.mark.asyncio
 async def test_async_operation():
@@ -124,6 +133,7 @@ async def async_client():
     yield client
     await client.disconnect()
 
+
 @pytest.mark.asyncio
 async def test_with_async_client(async_client):
     """Test using async client."""
@@ -137,14 +147,11 @@ async def test_with_async_client(async_client):
 import asyncio
 import pytest
 
+
 @pytest.mark.asyncio
 async def test_concurrent_operations():
     """Test multiple concurrent operations."""
-    tasks = [
-        async_operation(1),
-        async_operation(2),
-        async_operation(3)
-    ]
+    tasks = [async_operation(1), async_operation(2), async_operation(3)]
     results = await asyncio.gather(*tasks)
     assert len(results) == 3
     assert all(r is not None for r in results)
@@ -175,12 +182,14 @@ def test_integration_flow():
 import pytest
 from unittest.mock import Mock, patch
 
+
 @pytest.fixture
 def mock_http_client():
     """Mock HTTP client."""
-    with patch('httpx.Client') as mock:
+    with patch("httpx.Client") as mock:
         mock.return_value.get.return_value.json.return_value = {"status": "ok"}
         yield mock
+
 
 def test_with_mock_http(mock_http_client):
     """Test using mocked HTTP client."""
@@ -194,6 +203,7 @@ def test_with_mock_http(mock_http_client):
 
 ```python
 from pathlib import Path
+
 
 def test_file_operations(tmp_path):
     """Test file read/write."""
@@ -211,6 +221,7 @@ def test_file_operations(tmp_path):
 
 ```python
 from provide.foundation.file.atomic import atomic_write
+
 
 def test_atomic_write(tmp_path):
     """Test atomic file writing."""
@@ -230,6 +241,7 @@ def test_atomic_write(tmp_path):
 ```python
 import pytest
 from my_module import MyError
+
 
 def test_raises_error():
     """Test that error is raised."""
@@ -259,6 +271,7 @@ def test_error_message():
 ```python
 import pytest
 
+
 @pytest.mark.timeout(5)
 def test_completes_quickly():
     """Test completes within 5 seconds."""
@@ -269,6 +282,7 @@ def test_completes_quickly():
 
 ```python
 import pytest
+
 
 @pytest.mark.benchmark
 def test_performance(benchmark):
@@ -284,11 +298,15 @@ def test_performance(benchmark):
 ```python
 import pytest
 
-@pytest.mark.parametrize("input,expected", [
-    ("hello", "HELLO"),
-    ("world", "WORLD"),
-    ("test", "TEST"),
-])
+
+@pytest.mark.parametrize(
+    "input,expected",
+    [
+        ("hello", "HELLO"),
+        ("world", "WORLD"),
+        ("test", "TEST"),
+    ],
+)
 def test_upper(input, expected):
     """Test uppercase conversion."""
     assert input.upper() == expected
@@ -297,10 +315,13 @@ def test_upper(input, expected):
 ### Complex Parametrization
 
 ```python
-@pytest.mark.parametrize("config", [
-    {"mode": "sync", "timeout": 30},
-    {"mode": "async", "timeout": 60},
-])
+@pytest.mark.parametrize(
+    "config",
+    [
+        {"mode": "sync", "timeout": 30},
+        {"mode": "async", "timeout": 60},
+    ],
+)
 def test_with_config(config):
     """Test with different configurations."""
     result = process_with_config(config)
@@ -328,6 +349,7 @@ test_package = create_package("/tmp/test.psp")
 
 # ✅ DO: Use pretaster
 from tests.pretaster import validate_package
+
 validate_package(package_spec)
 ```
 
@@ -339,10 +361,12 @@ validate_package(package_spec)
 import pytest
 from provide.testkit import reset_foundation_setup_for_testing
 
+
 @pytest.fixture(autouse=True)
 def reset_foundation():
     """Reset Foundation state."""
     reset_foundation_setup_for_testing()
+
 
 @pytest.mark.asyncio
 async def test_rpc_server():
@@ -381,6 +405,7 @@ def test_with_harness():
 
 ```python
 import asyncio
+
 
 async def test_atomic_detection():
     """Test atomic save detection."""
@@ -514,6 +539,7 @@ async def test_with_timeout():
 **Solution:**
 ```python
 import asyncio
+
 
 async def test_with_retry():
     """Test with retry for flaky operations."""

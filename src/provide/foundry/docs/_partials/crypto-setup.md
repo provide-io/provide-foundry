@@ -290,10 +290,7 @@ from cryptography.hazmat.primitives import serialization
 
 # Load private key
 with open("private_key.pem", "rb") as f:
-    private_key = serialization.load_pem_private_key(
-        f.read(),
-        password=None
-    )
+    private_key = serialization.load_pem_private_key(f.read(), password=None)
 
 # Sign data
 message = b"Important message"

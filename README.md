@@ -190,10 +190,10 @@ The provide.io ecosystem follows a layered architecture:
    from pathlib import Path
 
    # Fresh extraction (no merge)
-   extract_python_wrknv_tasks(Path('.'), merge=False)
+   extract_python_wrknv_tasks(Path("."), merge=False)
 
    # Or merge with existing wrknv.toml (preserves custom tasks/config)
-   extract_python_wrknv_tasks(Path('.'), merge=True)
+   extract_python_wrknv_tasks(Path("."), merge=True)
    ```
 
    The template provides standardized tasks for all Python projects:
@@ -209,7 +209,8 @@ The provide.io ecosystem follows a layered architecture:
    # Extract canonical Makefile for terraform-provider-* projects
    from provide.foundry.config import extract_makefile_provider
    from pathlib import Path
-   extract_makefile_provider(Path('.'))
+
+   extract_makefile_provider(Path("."))
    ```
 
 4. **Configure API documentation** by adding gen-files plugin:
