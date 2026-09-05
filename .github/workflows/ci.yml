@@ -28,5 +28,9 @@ jobs:
       platform-preset: standard  # ubuntu-24.04, ubuntu-24.04-arm, macos-15, macos-15-intel
       coverage-threshold: 0  # not yet enforced on the wrknv path (test.coverage has no --cov-fail-under)
       run-security: true
+      # A known vulnerability in the lock reddens this build rather
+      # than filing a report nobody reads. The lock is clean: 77
+      # packages, no advisories.
+      fail-on-vulnerability: true
       run-secret-scan: true
     secrets: inherit
