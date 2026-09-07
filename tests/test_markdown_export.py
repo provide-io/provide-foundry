@@ -223,6 +223,29 @@ class TestCrossReferenceUpdates:
         assert "](roadmap.md)" in content
         assert "](roadmap/index.md)" not in content
 
+    def test_a_collapsed_page_has_its_links_rewritten(
+        self, plugin: MarkdownExportPlugin, temp_dir: Path
+    ) -> None:
+        """Collapse and rewrite, driven end to end rather than from a fixed dict.
+
+        The tests around this one set `renamed_files` by hand, with the forward
+        slashes a Markdown link uses, so none of them reaches the code that
+        builds those keys. That code spelled them with the host separator, so on
+        Windows the patterns below never matched: pages were collapsed and every
+        link to them was left pointing at a file that no longer existed.
+        """
+        (temp_dir / "guide" / "concepts").mkdir(parents=True)
+        (temp_dir / "guide" / "concepts" / "index.md").write_text("# Concepts")
+        (temp_dir / "index.md").write_text("See [Concepts](guide/concepts/index.md)")
+
+        plugin.output_path = temp_dir
+        plugin.renamed_files = {}
+        plugin._collapse_structure()
+        plugin._update_cross_references()
+
+        assert plugin.renamed_files == {"guide/concepts/index.md": "guide/concepts.md"}
+        assert "](guide/concepts.md)" in (temp_dir / "index.md").read_text()
+
     def test_update_directory_links(self, plugin: MarkdownExportPlugin, temp_dir: Path) -> None:
         """Test updating directory-style links."""
         # Setup renamed file
