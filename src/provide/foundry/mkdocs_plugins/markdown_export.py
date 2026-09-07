@@ -273,9 +273,13 @@ class MarkdownExportPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
 
             # Track API reference files
             if self._is_api_reference(page):
-                # Store relative path from site-markdown root
+                # Store relative path from site-markdown root, in document
+                # space: these are matched against Markdown links and written
+                # into the manifest, both of which are forward-slashed
+                # everywhere. `str()` would spell them with the host's
+                # separator and stop matching on Windows.
                 relative_path = output_file.relative_to(self.output_path)
-                self.api_files.append(str(relative_path))
+                self.api_files.append(relative_path.as_posix())
 
             # Store for single file generation
             if self.config["single_file"]:
@@ -448,8 +452,11 @@ class MarkdownExportPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call
             if len(md_files) == 1 and md_files[0].name == "index.md" and not subdirs:
                 # Move dir/index.md -> dir.md
                 new_path = parent_dir.with_suffix(".md")
-                old_relative = str(index_file.relative_to(self.output_path))
-                new_relative = str(new_path.relative_to(self.output_path))
+                # Document space, not filesystem space -- these keys are
+                # substituted into `](...)` link targets below, and a Markdown
+                # link is forward-slashed on every platform.
+                old_relative = index_file.relative_to(self.output_path).as_posix()
+                new_relative = new_path.relative_to(self.output_path).as_posix()
 
                 # Track rename for cross-reference updates
                 self.renamed_files[old_relative] = new_relative
